@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.6.1
 // - protoc             (unknown)
-// source: cosmos/slashing/v1beta1/query.proto
+// source: overloan/loan/v1/query.proto
 
-package slashingv1beta1
+package loanv1
 
 import (
 	context "context"
@@ -19,23 +19,23 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Query_Params_FullMethodName       = "/cosmos.slashing.v1beta1.Query/Params"
-	Query_SigningInfo_FullMethodName  = "/cosmos.slashing.v1beta1.Query/SigningInfo"
-	Query_SigningInfos_FullMethodName = "/cosmos.slashing.v1beta1.Query/SigningInfos"
+	Query_Params_FullMethodName          = "/loan.v1.Query/Params"
+	Query_Loan_FullMethodName            = "/loan.v1.Query/Loan"
+	Query_LoansByBorrower_FullMethodName = "/loan.v1.Query/LoansByBorrower"
 )
 
 // QueryClient is the client API for Query service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
-// Query provides defines the gRPC querier service
+// Query defines the gRPC querier service
 type QueryClient interface {
-	// Params queries the parameters of slashing module
+	// Mengambil parameter (Params) konfigurasi global modul loan
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
-	// SigningInfo queries the signing info of given cons address
-	SigningInfo(ctx context.Context, in *QuerySigningInfoRequest, opts ...grpc.CallOption) (*QuerySigningInfoResponse, error)
-	// SigningInfos queries signing info of all validators
-	SigningInfos(ctx context.Context, in *QuerySigningInfosRequest, opts ...grpc.CallOption) (*QuerySigningInfosResponse, error)
+	// Mengambil detail satu pinjaman berdasarkan loan_id
+	Loan(ctx context.Context, in *QueryLoanRequest, opts ...grpc.CallOption) (*QueryLoanResponse, error)
+	// Mengambil daftar pinjaman milik borrower tertentu (biasanya dengan pagination)
+	LoansByBorrower(ctx context.Context, in *QueryLoansByBorrowerRequest, opts ...grpc.CallOption) (*QueryLoansByBorrowerResponse, error)
 }
 
 type queryClient struct {
@@ -56,20 +56,20 @@ func (c *queryClient) Params(ctx context.Context, in *QueryParamsRequest, opts .
 	return out, nil
 }
 
-func (c *queryClient) SigningInfo(ctx context.Context, in *QuerySigningInfoRequest, opts ...grpc.CallOption) (*QuerySigningInfoResponse, error) {
+func (c *queryClient) Loan(ctx context.Context, in *QueryLoanRequest, opts ...grpc.CallOption) (*QueryLoanResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(QuerySigningInfoResponse)
-	err := c.cc.Invoke(ctx, Query_SigningInfo_FullMethodName, in, out, cOpts...)
+	out := new(QueryLoanResponse)
+	err := c.cc.Invoke(ctx, Query_Loan_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *queryClient) SigningInfos(ctx context.Context, in *QuerySigningInfosRequest, opts ...grpc.CallOption) (*QuerySigningInfosResponse, error) {
+func (c *queryClient) LoansByBorrower(ctx context.Context, in *QueryLoansByBorrowerRequest, opts ...grpc.CallOption) (*QueryLoansByBorrowerResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(QuerySigningInfosResponse)
-	err := c.cc.Invoke(ctx, Query_SigningInfos_FullMethodName, in, out, cOpts...)
+	out := new(QueryLoansByBorrowerResponse)
+	err := c.cc.Invoke(ctx, Query_LoansByBorrower_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -80,14 +80,14 @@ func (c *queryClient) SigningInfos(ctx context.Context, in *QuerySigningInfosReq
 // All implementations must embed UnimplementedQueryServer
 // for forward compatibility.
 //
-// Query provides defines the gRPC querier service
+// Query defines the gRPC querier service
 type QueryServer interface {
-	// Params queries the parameters of slashing module
+	// Mengambil parameter (Params) konfigurasi global modul loan
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
-	// SigningInfo queries the signing info of given cons address
-	SigningInfo(context.Context, *QuerySigningInfoRequest) (*QuerySigningInfoResponse, error)
-	// SigningInfos queries signing info of all validators
-	SigningInfos(context.Context, *QuerySigningInfosRequest) (*QuerySigningInfosResponse, error)
+	// Mengambil detail satu pinjaman berdasarkan loan_id
+	Loan(context.Context, *QueryLoanRequest) (*QueryLoanResponse, error)
+	// Mengambil daftar pinjaman milik borrower tertentu (biasanya dengan pagination)
+	LoansByBorrower(context.Context, *QueryLoansByBorrowerRequest) (*QueryLoansByBorrowerResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -101,11 +101,11 @@ type UnimplementedQueryServer struct{}
 func (UnimplementedQueryServer) Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Params not implemented")
 }
-func (UnimplementedQueryServer) SigningInfo(context.Context, *QuerySigningInfoRequest) (*QuerySigningInfoResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method SigningInfo not implemented")
+func (UnimplementedQueryServer) Loan(context.Context, *QueryLoanRequest) (*QueryLoanResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method Loan not implemented")
 }
-func (UnimplementedQueryServer) SigningInfos(context.Context, *QuerySigningInfosRequest) (*QuerySigningInfosResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method SigningInfos not implemented")
+func (UnimplementedQueryServer) LoansByBorrower(context.Context, *QueryLoansByBorrowerRequest) (*QueryLoansByBorrowerResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method LoansByBorrower not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 func (UnimplementedQueryServer) testEmbeddedByValue()               {}
@@ -146,38 +146,38 @@ func _Query_Params_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_SigningInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QuerySigningInfoRequest)
+func _Query_Loan_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryLoanRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).SigningInfo(ctx, in)
+		return srv.(QueryServer).Loan(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Query_SigningInfo_FullMethodName,
+		FullMethod: Query_Loan_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).SigningInfo(ctx, req.(*QuerySigningInfoRequest))
+		return srv.(QueryServer).Loan(ctx, req.(*QueryLoanRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Query_SigningInfos_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QuerySigningInfosRequest)
+func _Query_LoansByBorrower_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryLoansByBorrowerRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(QueryServer).SigningInfos(ctx, in)
+		return srv.(QueryServer).LoansByBorrower(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Query_SigningInfos_FullMethodName,
+		FullMethod: Query_LoansByBorrower_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(QueryServer).SigningInfos(ctx, req.(*QuerySigningInfosRequest))
+		return srv.(QueryServer).LoansByBorrower(ctx, req.(*QueryLoansByBorrowerRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -186,7 +186,7 @@ func _Query_SigningInfos_Handler(srv interface{}, ctx context.Context, dec func(
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Query_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cosmos.slashing.v1beta1.Query",
+	ServiceName: "loan.v1.Query",
 	HandlerType: (*QueryServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -194,14 +194,14 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Query_Params_Handler,
 		},
 		{
-			MethodName: "SigningInfo",
-			Handler:    _Query_SigningInfo_Handler,
+			MethodName: "Loan",
+			Handler:    _Query_Loan_Handler,
 		},
 		{
-			MethodName: "SigningInfos",
-			Handler:    _Query_SigningInfos_Handler,
+			MethodName: "LoansByBorrower",
+			Handler:    _Query_LoansByBorrower_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "cosmos/slashing/v1beta1/query.proto",
+	Metadata: "overloan/loan/v1/query.proto",
 }

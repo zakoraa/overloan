@@ -1,26 +1,26 @@
 syntax = "proto3";
 
-package loan.v1;
+package overloan.loan.v1;
 
 option go_package = "github.com/zakoraa/overloan/x/loan/types";
 
+// Params berisi konfigurasi global modul loan yang dapat diubah melalui governance
 message Params {
-    // denom token yang digunakan (uover, uatom)
-    string settlement_denom = 1;
+  // denom token yang digunakan (uover, uatom)
+  string settlement_denom = 1;
 
-    // max pinjaman
-    uint64 max_loan_amount = 2;
+  // max pinjaman
+  uint64 max_loan_amount = 2;
 
-    // min pinjaman
-    uint64 min_loan_amount = 3;
+  // min pinjaman
+  uint64 min_loan_amount = 3;
 
-    // min durasi peminjaman
-    uint64 max_tenor_months = 4;
+  // min durasi peminjaman
+  uint64 max_tenor_months = 4;
 
-    // Group policy address yang berwenang approve loan
-    string laz_group_policy = 5;
+  // Group policy address yang berwenang approve loan
+  string laz_group_policy = 5;
 
-    // approval disbursement, approval settlement, atau handling pool dana terpusat
-    string omnibus_group_policy = 6;
-
+  // approval disbursement, approval settlement, atau handling pool dana terpusat
+  string omnibus_group_policy = 6;
 }

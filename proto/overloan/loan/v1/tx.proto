@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package loan.v1;
+package overloan.loan.v1;
 
 option go_package = "github.com/zakoraa/overloan/x/loan/types";
 
@@ -8,52 +8,73 @@ import "cosmos/base/v1beta1/coin.proto";
 
 // Msg defines the Msg service
 service Msg {
-    // Membuat permohonan pinjaman baru dengan status PENDING oleh borrower
-    rpc CreateLoan(MsgCreateLoan) returns (MsgCreateLoanResponse);
+  // Membuat permohonan pinjaman baru dengan status PENDING oleh borrower
+  rpc CreateLoan(MsgCreateLoan) returns (MsgCreateLoanResponse);
 
-    // Menyetujui pinjaman berstatus PENDING oleh laz_group_policy yang berwenang
-    // status berubah jadi APPROVED  
-    rpc ApproveLoan(MsgApproveLoan) returns (MsgApproveLoanResponse);
+  // Menyetujui pinjaman berstatus PENDING oleh laz_group_policy yang berwenang
+  // status berubah jadi APPROVED
+  rpc ApproveLoan(MsgApproveLoan) returns (MsgApproveLoanResponse);
 
-    // Menolak pinjaman berstatus PENDING oleh laz_group_policy yang berwenang
-    // status berubah jadi REJECTED  
-    rpc RejectLoan(MsgRejectLoan) returns (MsgRejectLoanResponse);
+  // Menolak pinjaman berstatus PENDING oleh laz_group_policy yang berwenang
+  // status berubah jadi REJECTED
+  rpc RejectLoan(MsgRejectLoan) returns (MsgRejectLoanResponse);
 
-    // Mengonfirmasi pencairan dana dan mengubah status menjadi DISBURSED.
-    rpc ConfirmDisbursement(MsgConfirmDisbursement) returns (MsgConfirmDisbursementResponse);
-
+  // Mengonfirmasi pencairan dana dan mengubah status menjadi DISBURSED
+  rpc ConfirmDisbursement(MsgConfirmDisbursement) returns (MsgConfirmDisbursementResponse);
 }
-
+// MsgCreateLoan digunakan oleh borrower untuk mengajukan permohonan pinjaman baru
 message MsgCreateLoan {
-    string borrower = 1;
-    cosmos.base.v1beta1.Coin principal = 2;
-    uint64 tenor_months = 3;
-    string metadata_hash = 4;
+  // Alamat borrower (Bech32) sebagai pemohon pinjaman
+  string borrower = 1;
+
+  // Nilai pokok pinjaman yang diajukan
+  cosmos.base.v1beta1.Coin principal = 2;
+
+  // Durasi pinjaman dalam satuan bulan
+  uint64 tenor_months = 3;
+
+  // Hash dokumen pendukung (misalnya IPFS CID atau SHA256 kontrak)
+  string metadata_hash = 4;
 }
 
+// MsgCreateLoanResponse mengembalikan ID pinjaman yang baru dibuat
 message MsgCreateLoanResponse {
+  // ID unik pinjaman yang tersimpan di state
   uint64 loan_id = 1;
 }
 
+// MsgApproveLoan digunakan oleh policy yang berwenang untuk menyetujui pinjaman
 message MsgApproveLoan {
-    // laz group policy address
-    string authority = 1;
-    uint64 loan_id = 2;
+  // Alamat group policy (laz_group_policy) sebagai otoritas persetujuan
+  string authority = 1;
+
+  // ID pinjaman yang akan disetujui
+  uint64 loan_id = 2;
 }
 
+// MsgApproveLoanResponse tidak mengembalikan data tambahan
 message MsgApproveLoanResponse {}
 
+// MsgRejectLoan digunakan oleh policy yang berwenang untuk menolak pinjaman
 message MsgRejectLoan {
-    string authority = 1;
-    uint64 loan_id = 2;
+  // Alamat group policy sebagai otoritas penolakan
+  string authority = 1;
+
+  // ID pinjaman yang akan ditolak
+  uint64 loan_id = 2;
 }
 
+// MsgRejectLoanResponse tidak mengembalikan data tambahan
 message MsgRejectLoanResponse {}
 
+// MsgConfirmDisbursement digunakan untuk mengonfirmasi bahwa dana telah dicairkan
 message MsgConfirmDisbursement {
-    // omnibus group policy
-    string authority = 1; 
-    uint64 loan_id = 2;
+  // Alamat omnibus_group_policy sebagai otoritas pencairan dana
+  string authority = 1;
+
+  // ID pinjaman yang dicairkan
+  uint64 loan_id = 2;
 }
 
+// MsgConfirmDisbursementResponse tidak mengembalikan data tambahan
 message MsgConfirmDisbursementResponse {}

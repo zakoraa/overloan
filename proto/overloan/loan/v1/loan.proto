@@ -1,46 +1,65 @@
 syntax = "proto3";
 
-package loan.v1;
+package overloan.loan.v1;
 
 option go_package = "github.com/zakoraa/overloan/x/loan/types";
 
 import "cosmos/base/v1beta1/coin.proto";
 import "google/protobuf/timestamp.proto";
 
+// LoanStatus merupakam status dari sebuah pinjaman
 enum LoanStatus {
-    LOAN_STATUS_UNSFECIFIED = 0;
-    LOAN_STATUS_PENDING     = 1;
-    LOAN_STATUS_APPROVED    = 2;
-    LOAN_STATUS_DISBURSED   = 3;
-    LOAN_STATUS_REJECTED    = 4;
-    LOAN_STATUS_CANCELLED   = 5;
+  // nilai default
+  LOAN_STATUS_UNSPECIFIED = 0;
+
+  // pinjaman baru dibuat dan menunggu persetujuan
+  LOAN_STATUS_PENDING = 1;
+
+  // pinjaman telah disetujui oleh policy yang berwenang (laz)
+  LOAN_STATUS_APPROVED = 2;
+
+  // dana sudah dicairkan ke borrower
+  LOAN_STATUS_DISBURSED = 3;
+
+  // pinjaman ditolak oleh policy yang berwenang (laz)
+  LOAN_STATUS_REJECTED = 4;
+
+  // pinjaman dibatalkan sebelum pencairan
+  LOAN_STATUS_CANCELLED = 5;
 }
 
+// Loan merupakan representasi kontrak pinjaman
 message Loan {
-    uint64 id = 1;
+  // ID unik pinjaman
+  uint64 id = 1;
 
-    // sdk.AccAddress (bech32)
-    string borrower = 2;
+  // sdk.AccAddress (dalam format bech32)
+  string borrower = 2;
 
-    // group policy address yang approve
-    // audit siapa policy yang approve
-    string laz_policy = 3;
+  // group policy address yang approve
+  // audit siapa policy yang approve
+  string laz_policy = 3;
 
-    // Nilai pokok awal peminjaman
-    cosmos.base.v1beta1.Coin principal = 4;
-    // Sisa kewajiban bayar saat ini
-    cosmos.base.v1beta1.Coin outstanding = 5;
+  // Nilai pokok awal peminjaman saat disetujui
+  cosmos.base.v1beta1.Coin principal = 4;
+  // Sisa kewajiban yang masih harus dibayar
+  cosmos.base.v1beta1.Coin outstanding = 5;
 
-    // Durasi pinjaman dalam bulan
-    uint64 tenor_months = 6;
+  // Durasi pinjaman dalam bulan
+  uint64 tenor_months = 6;
 
-    // status pembayaran
-    LoanStatus status = 7;
+  // status pembayaran
+  LoanStatus status = 7;
 
-    google.protobuf.Timestamp created_at = 8;
-    google.protobuf.Timestamp approved_at = 9;
-    google.protobuf.Timestamp disbursed_at = 10;
+  // waktu saat permohonan pinjaman dibuat (block time).
+  google.protobuf.Timestamp created_at = 8;
 
-    // document hash (bisa pakai hash dari IPFS kalau digunakan)
-    string metadata_hash = 11;
+  // waktu saat pinjaman disetujui.
+  google.protobuf.Timestamp approved_at = 9;
+
+  // waktu saat dana dicairkan ke borrower.
+  google.protobuf.Timestamp disbursed_at = 10;
+
+  // document hash (bisa pakai hash dari IPFS kalau digunakan)
+  string metadata_hash = 11;
 }

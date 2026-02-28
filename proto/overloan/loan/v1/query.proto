@@ -1,45 +1,55 @@
 syntax = "proto3";
 
-package loan.v1;
+package overloan.loan.v1;
 
 import "overloan/loan/v1/loan.proto";
 import "overloan/loan/v1/params.proto";
 
 option go_package = "github.com/zakoraa/overloan/x/loan/types";
 
-
 // Query defines the gRPC querier service
 service Query {
-    // Mengambil parameter (Params) konfigurasi global modul loan
-    rpc Params(QueryParamsRequest) returns (QueryParamsResponse);
-    
-    // Mengambil detail satu pinjaman berdasarkan loan_id
-    rpc Loan(QueryLoanRequest) returns (QueryLoanResponse);
+  // Mengambil parameter (Params) konfigurasi global modul loan
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse);
 
-    // Mengambil daftar pinjaman milik borrower tertentu (biasanya dengan pagination)
-    rpc LoansByBorrower(QueryLoansByBorrowerRequest) returns (QueryLoansByBorrowerResponse);
+  // Mengambil detail satu pinjaman berdasarkan loan_id
+  rpc Loan(QueryLoanRequest) returns (QueryLoanResponse);
 
+  // Mengambil daftar pinjaman milik borrower tertentu (biasanya dengan pagination)
+  rpc LoansByBorrower(QueryLoansByBorrowerRequest) returns (QueryLoansByBorrowerResponse);
 }
 
+// QueryParamsRequest adalah request kosong untuk mengambil parameter global modul
 message QueryParamsRequest {}
 
+// QueryParamsResponse mengembalikan konfigurasi global (Params) modul loan
 message QueryParamsResponse {
+  // Parameter aktif modul loan
   Params params = 1;
 }
 
+// QueryLoanRequest digunakan untuk mengambil detail satu pinjaman berdasarkan ID
 message QueryLoanRequest {
-    uint64 loan_id = 1;
+  // ID unik pinjaman yang ingin diambil
+  uint64 loan_id = 1;
 }
 
+// QueryLoanResponse mengembalikan data pinjaman sesuai loan_id
 message QueryLoanResponse {
-    Loan loan = 1;
+  // Informasi lengkap pinjaman
+  Loan loan = 1;
 }
 
+// QueryLoansByBorrowerRequest digunakan untuk mengambil seluruh pinjaman
+// milik borrower tertentu
 message QueryLoansByBorrowerRequest {
-    string borrower = 1;
+  // Alamat borrower dalam format Bech32
+  string borrower = 1;
 }
 
+// QueryLoansByBorrowerResponse mengembalikan daftar pinjaman
+// yang dimiliki oleh borrower
 message QueryLoansByBorrowerResponse {
-    repeated Loan loans = 1;
+  // Daftar pinjaman milik borrower
+  repeated Loan loans = 1;
 }
-
