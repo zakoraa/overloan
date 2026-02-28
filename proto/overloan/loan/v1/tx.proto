@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package loan.v1;
+
+option go_package = "github.com/zakoraa/overloan/x/loan/types";
+
+import "cosmos/base/v1beta1/coin.proto";
+
+// Msg defines the Msg service
+service Msg {
+    // Membuat permohonan pinjaman baru dengan status PENDING oleh borrower
+    rpc CreateLoan(MsgCreateLoan) returns (MsgCreateLoanResponse);
+
+    // Menyetujui pinjaman berstatus PENDING oleh laz_group_policy yang berwenang
+    // status berubah jadi APPROVED  
+    rpc ApproveLoan(MsgApproveLoan) returns (MsgApproveLoanResponse);
+
+    // Menolak pinjaman berstatus PENDING oleh laz_group_policy yang berwenang
+    // status berubah jadi REJECTED  
+    rpc RejectLoan(MsgRejectLoan) returns (MsgRejectLoanResponse);
+
+    // Mengonfirmasi pencairan dana dan mengubah status menjadi DISBURSED.
+    rpc ConfirmDisbursement(MsgConfirmDisbursement) returns (MsgConfirmDisbursementResponse);
+
+}
+
+message MsgCreateLoan {
+    string borrower = 1;
+    cosmos.base.v1beta1.Coin principal = 2;
+    uint64 tenor_months = 3;
+    string metadata_hash = 4;
+}
+
+message MsgCreateLoanResponse {
+  uint64 loan_id = 1;
+}
+
+message MsgApproveLoan {
+    // laz group policy address
+    string authority = 1;
+    uint64 loan_id = 2;
+}
+
+message MsgApproveLoanResponse {}
+
+message MsgRejectLoan {
+    string authority = 1;
+    uint64 loan_id = 2;
+}
+
+message MsgRejectLoanResponse {}
+
+message MsgConfirmDisbursement {
+    // omnibus group policy
+    string authority = 1; 
+    uint64 loan_id = 2;
+}
+
+message MsgConfirmDisbursementResponse {}

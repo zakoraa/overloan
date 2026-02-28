@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package loan.v1;
+
+option go_package = "github.com/zakoraa/overloan/x/loan/types";
+
+import "cosmos/base/v1beta1/coin.proto";
+import "google/protobuf/timestamp.proto";
+
+enum LoanStatus {
+    LOAN_STATUS_UNSFECIFIED = 0;
+    LOAN_STATUS_PENDING     = 1;
+    LOAN_STATUS_APPROVED    = 2;
+    LOAN_STATUS_DISBURSED   = 3;
+    LOAN_STATUS_REJECTED    = 4;
+    LOAN_STATUS_CANCELLED   = 5;
+}
+
+message Loan {
+    uint64 id = 1;
+
+    // sdk.AccAddress (bech32)
+    string borrower = 2;
+
+    // group policy address yang approve
+    // audit siapa policy yang approve
+    string laz_policy = 3;
+
+    // Nilai pokok awal peminjaman
+    cosmos.base.v1beta1.Coin principal = 4;
+    // Sisa kewajiban bayar saat ini
+    cosmos.base.v1beta1.Coin outstanding = 5;
+
+    // Durasi pinjaman dalam bulan
+    uint64 tenor_months = 6;
+
+    // status pembayaran
+    LoanStatus status = 7;
+
+    google.protobuf.Timestamp created_at = 8;
+    google.protobuf.Timestamp approved_at = 9;
+    google.protobuf.Timestamp disbursed_at = 10;
+
+    // document hash (bisa pakai hash dari IPFS kalau digunakan)
+    string metadata_hash = 11;
+}
