@@ -1,12 +1,71 @@
 package types
 
 import (
+	"fmt"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	loanv1 "github.com/zakoraa/cosmos-sdk/api/overloan/loan/v1"
+	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
+
+	loanv1 "cosmossdk.io/api/overloan/loan/v1"
 )
 
-// Validate melakukan validasi konfigurasi parameter modul secara stateless
-func (p loanv1.Params) Validate() error {
+// Parameter Store Keys
+var (
+	KeySettlementDenom    = []byte("SettlementDenom")
+	KeyMinLoanAmount      = []byte("MinLoanAmount")
+	KeyMaxLoanAmount      = []byte("MaxLoanAmount")
+	KeyMaxTenorMonths     = []byte("MaxTenorMonths")
+	KeyLazGroupPolicy     = []byte("LazGroupPolicy")
+	KeyOmnibusGroupPolicy = []byte("OmnibusGroupPolicy")
+)
+
+// Params wrapper lokal agar bisa implement ParamSet
+type Params struct {
+	loanv1.Params
+}
+
+func ParamKeyTable() paramtypes.KeyTable {
+	return paramtypes.NewKeyTable().RegisterParamSet(&Params{})
+}
+
+// ParamSetPairs Implement ParamSet Interface
+func (p *Params) ParamSetPairs() paramtypes.ParamSetPairs {
+	return paramtypes.ParamSetPairs{
+		paramtypes.NewParamSetPair(
+			KeySettlementDenom,
+			&p.SettlementDenom,
+			validateDenom,
+		),
+		paramtypes.NewParamSetPair(
+			KeyMinLoanAmount,
+			&p.MinLoanAmount,
+			validateUint64,
+		),
+		paramtypes.NewParamSetPair(
+			KeyMaxLoanAmount,
+			&p.MaxLoanAmount,
+			validateUint64,
+		),
+		paramtypes.NewParamSetPair(
+			KeyMaxTenorMonths,
+			&p.MaxTenorMonths,
+			validateUint64,
+		),
+		paramtypes.NewParamSetPair(
+			KeyLazGroupPolicy,
+			&p.LazGroupPolicy,
+			validateAddress,
+		),
+		paramtypes.NewParamSetPair(
+			KeyOmnibusGroupPolicy,
+			&p.OmnibusGroupPolicy,
+			validateAddress,
+		),
+	}
+}
+
+// ValidateParams Stateless Validation (bisnis rule)
+func ValidateParams(p *loanv1.Params) error {
 
 	// SettlementDenom wajib diisi sebagai denom token utama
 	if p.SettlementDenom == "" {
@@ -38,5 +97,36 @@ func (p loanv1.Params) Validate() error {
 		return ErrInvalidAddress.Wrap("invalid omnibus group policy")
 	}
 
+	return nil
+}
+
+// Validators untuk Param Store
+func validateDenom(i interface{}) error {
+	v, ok := i.(string)
+	if !ok {
+		return fmt.Errorf("invalid parameter type")
+	}
+	if v == "" {
+		return fmt.Errorf("denom cannot be empty")
+	}
+	return nil
+}
+
+func validateUint64(i interface{}) error {
+	_, ok := i.(uint64)
+	if !ok {
+		return fmt.Errorf("invalid parameter type")
+	}
+	return nil
+}
+
+func validateAddress(i interface{}) error {
+	v, ok := i.(string)
+	if !ok {
+		return fmt.Errorf("invalid parameter type")
+	}
+	if _, err := sdk.AccAddressFromBech32(v); err != nil {
+		return fmt.Errorf("invalid address format")
+	}
 	return nil
 }

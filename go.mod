@@ -2,6 +2,8 @@ go 1.25.7
 
 module github.com/cosmos/cosmos-sdk
 
+replace cosmossdk.io/api => ./api
+
 require (
 	cosmossdk.io/api v1.0.0
 	cosmossdk.io/collections v1.4.0

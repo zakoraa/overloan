@@ -134,19 +134,19 @@ func (x *fastReflection_MsgCreateLoan) Range(f func(protoreflect.FieldDescriptor
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_MsgCreateLoan) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "loan.v1.MsgCreateLoan.borrower":
+	case "overloan.loan.v1.MsgCreateLoan.borrower":
 		return x.Borrower != ""
-	case "loan.v1.MsgCreateLoan.principal":
+	case "overloan.loan.v1.MsgCreateLoan.principal":
 		return x.Principal != nil
-	case "loan.v1.MsgCreateLoan.tenor_months":
+	case "overloan.loan.v1.MsgCreateLoan.tenor_months":
 		return x.TenorMonths != uint64(0)
-	case "loan.v1.MsgCreateLoan.metadata_hash":
+	case "overloan.loan.v1.MsgCreateLoan.metadata_hash":
 		return x.MetadataHash != ""
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgCreateLoan"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgCreateLoan"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgCreateLoan does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgCreateLoan does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -158,19 +158,19 @@ func (x *fastReflection_MsgCreateLoan) Has(fd protoreflect.FieldDescriptor) bool
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgCreateLoan) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "loan.v1.MsgCreateLoan.borrower":
+	case "overloan.loan.v1.MsgCreateLoan.borrower":
 		x.Borrower = ""
-	case "loan.v1.MsgCreateLoan.principal":
+	case "overloan.loan.v1.MsgCreateLoan.principal":
 		x.Principal = nil
-	case "loan.v1.MsgCreateLoan.tenor_months":
+	case "overloan.loan.v1.MsgCreateLoan.tenor_months":
 		x.TenorMonths = uint64(0)
-	case "loan.v1.MsgCreateLoan.metadata_hash":
+	case "overloan.loan.v1.MsgCreateLoan.metadata_hash":
 		x.MetadataHash = ""
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgCreateLoan"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgCreateLoan"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgCreateLoan does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgCreateLoan does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -182,23 +182,23 @@ func (x *fastReflection_MsgCreateLoan) Clear(fd protoreflect.FieldDescriptor) {
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_MsgCreateLoan) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "loan.v1.MsgCreateLoan.borrower":
+	case "overloan.loan.v1.MsgCreateLoan.borrower":
 		value := x.Borrower
 		return protoreflect.ValueOfString(value)
-	case "loan.v1.MsgCreateLoan.principal":
+	case "overloan.loan.v1.MsgCreateLoan.principal":
 		value := x.Principal
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
-	case "loan.v1.MsgCreateLoan.tenor_months":
+	case "overloan.loan.v1.MsgCreateLoan.tenor_months":
 		value := x.TenorMonths
 		return protoreflect.ValueOfUint64(value)
-	case "loan.v1.MsgCreateLoan.metadata_hash":
+	case "overloan.loan.v1.MsgCreateLoan.metadata_hash":
 		value := x.MetadataHash
 		return protoreflect.ValueOfString(value)
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgCreateLoan"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgCreateLoan"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgCreateLoan does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgCreateLoan does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -214,19 +214,19 @@ func (x *fastReflection_MsgCreateLoan) Get(descriptor protoreflect.FieldDescript
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgCreateLoan) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "loan.v1.MsgCreateLoan.borrower":
+	case "overloan.loan.v1.MsgCreateLoan.borrower":
 		x.Borrower = value.Interface().(string)
-	case "loan.v1.MsgCreateLoan.principal":
+	case "overloan.loan.v1.MsgCreateLoan.principal":
 		x.Principal = value.Message().Interface().(*v1beta1.Coin)
-	case "loan.v1.MsgCreateLoan.tenor_months":
+	case "overloan.loan.v1.MsgCreateLoan.tenor_months":
 		x.TenorMonths = value.Uint()
-	case "loan.v1.MsgCreateLoan.metadata_hash":
+	case "overloan.loan.v1.MsgCreateLoan.metadata_hash":
 		x.MetadataHash = value.Interface().(string)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgCreateLoan"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgCreateLoan"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgCreateLoan does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgCreateLoan does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -242,22 +242,22 @@ func (x *fastReflection_MsgCreateLoan) Set(fd protoreflect.FieldDescriptor, valu
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgCreateLoan) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "loan.v1.MsgCreateLoan.principal":
+	case "overloan.loan.v1.MsgCreateLoan.principal":
 		if x.Principal == nil {
 			x.Principal = new(v1beta1.Coin)
 		}
 		return protoreflect.ValueOfMessage(x.Principal.ProtoReflect())
-	case "loan.v1.MsgCreateLoan.borrower":
-		panic(fmt.Errorf("field borrower of message loan.v1.MsgCreateLoan is not mutable"))
-	case "loan.v1.MsgCreateLoan.tenor_months":
-		panic(fmt.Errorf("field tenor_months of message loan.v1.MsgCreateLoan is not mutable"))
-	case "loan.v1.MsgCreateLoan.metadata_hash":
-		panic(fmt.Errorf("field metadata_hash of message loan.v1.MsgCreateLoan is not mutable"))
+	case "overloan.loan.v1.MsgCreateLoan.borrower":
+		panic(fmt.Errorf("field borrower of message overloan.loan.v1.MsgCreateLoan is not mutable"))
+	case "overloan.loan.v1.MsgCreateLoan.tenor_months":
+		panic(fmt.Errorf("field tenor_months of message overloan.loan.v1.MsgCreateLoan is not mutable"))
+	case "overloan.loan.v1.MsgCreateLoan.metadata_hash":
+		panic(fmt.Errorf("field metadata_hash of message overloan.loan.v1.MsgCreateLoan is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgCreateLoan"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgCreateLoan"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgCreateLoan does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgCreateLoan does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -266,20 +266,20 @@ func (x *fastReflection_MsgCreateLoan) Mutable(fd protoreflect.FieldDescriptor) 
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_MsgCreateLoan) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "loan.v1.MsgCreateLoan.borrower":
+	case "overloan.loan.v1.MsgCreateLoan.borrower":
 		return protoreflect.ValueOfString("")
-	case "loan.v1.MsgCreateLoan.principal":
+	case "overloan.loan.v1.MsgCreateLoan.principal":
 		m := new(v1beta1.Coin)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
-	case "loan.v1.MsgCreateLoan.tenor_months":
+	case "overloan.loan.v1.MsgCreateLoan.tenor_months":
 		return protoreflect.ValueOfUint64(uint64(0))
-	case "loan.v1.MsgCreateLoan.metadata_hash":
+	case "overloan.loan.v1.MsgCreateLoan.metadata_hash":
 		return protoreflect.ValueOfString("")
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgCreateLoan"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgCreateLoan"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgCreateLoan does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgCreateLoan does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -289,7 +289,7 @@ func (x *fastReflection_MsgCreateLoan) NewField(fd protoreflect.FieldDescriptor)
 func (x *fastReflection_MsgCreateLoan) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in loan.v1.MsgCreateLoan", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in overloan.loan.v1.MsgCreateLoan", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -721,13 +721,13 @@ func (x *fastReflection_MsgCreateLoanResponse) Range(f func(protoreflect.FieldDe
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_MsgCreateLoanResponse) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "loan.v1.MsgCreateLoanResponse.loan_id":
+	case "overloan.loan.v1.MsgCreateLoanResponse.loan_id":
 		return x.LoanId != uint64(0)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgCreateLoanResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgCreateLoanResponse"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgCreateLoanResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgCreateLoanResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -739,13 +739,13 @@ func (x *fastReflection_MsgCreateLoanResponse) Has(fd protoreflect.FieldDescript
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgCreateLoanResponse) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "loan.v1.MsgCreateLoanResponse.loan_id":
+	case "overloan.loan.v1.MsgCreateLoanResponse.loan_id":
 		x.LoanId = uint64(0)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgCreateLoanResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgCreateLoanResponse"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgCreateLoanResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgCreateLoanResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -757,14 +757,14 @@ func (x *fastReflection_MsgCreateLoanResponse) Clear(fd protoreflect.FieldDescri
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_MsgCreateLoanResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "loan.v1.MsgCreateLoanResponse.loan_id":
+	case "overloan.loan.v1.MsgCreateLoanResponse.loan_id":
 		value := x.LoanId
 		return protoreflect.ValueOfUint64(value)
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgCreateLoanResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgCreateLoanResponse"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgCreateLoanResponse does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgCreateLoanResponse does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -780,13 +780,13 @@ func (x *fastReflection_MsgCreateLoanResponse) Get(descriptor protoreflect.Field
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgCreateLoanResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "loan.v1.MsgCreateLoanResponse.loan_id":
+	case "overloan.loan.v1.MsgCreateLoanResponse.loan_id":
 		x.LoanId = value.Uint()
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgCreateLoanResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgCreateLoanResponse"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgCreateLoanResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgCreateLoanResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -802,13 +802,13 @@ func (x *fastReflection_MsgCreateLoanResponse) Set(fd protoreflect.FieldDescript
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgCreateLoanResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "loan.v1.MsgCreateLoanResponse.loan_id":
-		panic(fmt.Errorf("field loan_id of message loan.v1.MsgCreateLoanResponse is not mutable"))
+	case "overloan.loan.v1.MsgCreateLoanResponse.loan_id":
+		panic(fmt.Errorf("field loan_id of message overloan.loan.v1.MsgCreateLoanResponse is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgCreateLoanResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgCreateLoanResponse"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgCreateLoanResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgCreateLoanResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -817,13 +817,13 @@ func (x *fastReflection_MsgCreateLoanResponse) Mutable(fd protoreflect.FieldDesc
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_MsgCreateLoanResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "loan.v1.MsgCreateLoanResponse.loan_id":
+	case "overloan.loan.v1.MsgCreateLoanResponse.loan_id":
 		return protoreflect.ValueOfUint64(uint64(0))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgCreateLoanResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgCreateLoanResponse"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgCreateLoanResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgCreateLoanResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -833,7 +833,7 @@ func (x *fastReflection_MsgCreateLoanResponse) NewField(fd protoreflect.FieldDes
 func (x *fastReflection_MsgCreateLoanResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in loan.v1.MsgCreateLoanResponse", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in overloan.loan.v1.MsgCreateLoanResponse", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -1133,15 +1133,15 @@ func (x *fastReflection_MsgApproveLoan) Range(f func(protoreflect.FieldDescripto
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_MsgApproveLoan) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "loan.v1.MsgApproveLoan.authority":
+	case "overloan.loan.v1.MsgApproveLoan.authority":
 		return x.Authority != ""
-	case "loan.v1.MsgApproveLoan.loan_id":
+	case "overloan.loan.v1.MsgApproveLoan.loan_id":
 		return x.LoanId != uint64(0)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgApproveLoan"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgApproveLoan"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgApproveLoan does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgApproveLoan does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1153,15 +1153,15 @@ func (x *fastReflection_MsgApproveLoan) Has(fd protoreflect.FieldDescriptor) boo
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgApproveLoan) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "loan.v1.MsgApproveLoan.authority":
+	case "overloan.loan.v1.MsgApproveLoan.authority":
 		x.Authority = ""
-	case "loan.v1.MsgApproveLoan.loan_id":
+	case "overloan.loan.v1.MsgApproveLoan.loan_id":
 		x.LoanId = uint64(0)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgApproveLoan"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgApproveLoan"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgApproveLoan does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgApproveLoan does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1173,17 +1173,17 @@ func (x *fastReflection_MsgApproveLoan) Clear(fd protoreflect.FieldDescriptor) {
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_MsgApproveLoan) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "loan.v1.MsgApproveLoan.authority":
+	case "overloan.loan.v1.MsgApproveLoan.authority":
 		value := x.Authority
 		return protoreflect.ValueOfString(value)
-	case "loan.v1.MsgApproveLoan.loan_id":
+	case "overloan.loan.v1.MsgApproveLoan.loan_id":
 		value := x.LoanId
 		return protoreflect.ValueOfUint64(value)
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgApproveLoan"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgApproveLoan"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgApproveLoan does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgApproveLoan does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -1199,15 +1199,15 @@ func (x *fastReflection_MsgApproveLoan) Get(descriptor protoreflect.FieldDescrip
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgApproveLoan) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "loan.v1.MsgApproveLoan.authority":
+	case "overloan.loan.v1.MsgApproveLoan.authority":
 		x.Authority = value.Interface().(string)
-	case "loan.v1.MsgApproveLoan.loan_id":
+	case "overloan.loan.v1.MsgApproveLoan.loan_id":
 		x.LoanId = value.Uint()
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgApproveLoan"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgApproveLoan"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgApproveLoan does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgApproveLoan does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1223,15 +1223,15 @@ func (x *fastReflection_MsgApproveLoan) Set(fd protoreflect.FieldDescriptor, val
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgApproveLoan) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "loan.v1.MsgApproveLoan.authority":
-		panic(fmt.Errorf("field authority of message loan.v1.MsgApproveLoan is not mutable"))
-	case "loan.v1.MsgApproveLoan.loan_id":
-		panic(fmt.Errorf("field loan_id of message loan.v1.MsgApproveLoan is not mutable"))
+	case "overloan.loan.v1.MsgApproveLoan.authority":
+		panic(fmt.Errorf("field authority of message overloan.loan.v1.MsgApproveLoan is not mutable"))
+	case "overloan.loan.v1.MsgApproveLoan.loan_id":
+		panic(fmt.Errorf("field loan_id of message overloan.loan.v1.MsgApproveLoan is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgApproveLoan"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgApproveLoan"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgApproveLoan does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgApproveLoan does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1240,15 +1240,15 @@ func (x *fastReflection_MsgApproveLoan) Mutable(fd protoreflect.FieldDescriptor)
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_MsgApproveLoan) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "loan.v1.MsgApproveLoan.authority":
+	case "overloan.loan.v1.MsgApproveLoan.authority":
 		return protoreflect.ValueOfString("")
-	case "loan.v1.MsgApproveLoan.loan_id":
+	case "overloan.loan.v1.MsgApproveLoan.loan_id":
 		return protoreflect.ValueOfUint64(uint64(0))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgApproveLoan"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgApproveLoan"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgApproveLoan does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgApproveLoan does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1258,7 +1258,7 @@ func (x *fastReflection_MsgApproveLoan) NewField(fd protoreflect.FieldDescriptor
 func (x *fastReflection_MsgApproveLoan) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in loan.v1.MsgApproveLoan", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in overloan.loan.v1.MsgApproveLoan", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -1587,9 +1587,9 @@ func (x *fastReflection_MsgApproveLoanResponse) Has(fd protoreflect.FieldDescrip
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgApproveLoanResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgApproveLoanResponse"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgApproveLoanResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgApproveLoanResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1603,9 +1603,9 @@ func (x *fastReflection_MsgApproveLoanResponse) Clear(fd protoreflect.FieldDescr
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgApproveLoanResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgApproveLoanResponse"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgApproveLoanResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgApproveLoanResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1619,9 +1619,9 @@ func (x *fastReflection_MsgApproveLoanResponse) Get(descriptor protoreflect.Fiel
 	switch descriptor.FullName() {
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgApproveLoanResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgApproveLoanResponse"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgApproveLoanResponse does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgApproveLoanResponse does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -1639,9 +1639,9 @@ func (x *fastReflection_MsgApproveLoanResponse) Set(fd protoreflect.FieldDescrip
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgApproveLoanResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgApproveLoanResponse"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgApproveLoanResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgApproveLoanResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1659,9 +1659,9 @@ func (x *fastReflection_MsgApproveLoanResponse) Mutable(fd protoreflect.FieldDes
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgApproveLoanResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgApproveLoanResponse"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgApproveLoanResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgApproveLoanResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1672,9 +1672,9 @@ func (x *fastReflection_MsgApproveLoanResponse) NewField(fd protoreflect.FieldDe
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgApproveLoanResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgApproveLoanResponse"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgApproveLoanResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgApproveLoanResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1684,7 +1684,7 @@ func (x *fastReflection_MsgApproveLoanResponse) NewField(fd protoreflect.FieldDe
 func (x *fastReflection_MsgApproveLoanResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in loan.v1.MsgApproveLoanResponse", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in overloan.loan.v1.MsgApproveLoanResponse", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -1957,15 +1957,15 @@ func (x *fastReflection_MsgRejectLoan) Range(f func(protoreflect.FieldDescriptor
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_MsgRejectLoan) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "loan.v1.MsgRejectLoan.authority":
+	case "overloan.loan.v1.MsgRejectLoan.authority":
 		return x.Authority != ""
-	case "loan.v1.MsgRejectLoan.loan_id":
+	case "overloan.loan.v1.MsgRejectLoan.loan_id":
 		return x.LoanId != uint64(0)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgRejectLoan"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgRejectLoan"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgRejectLoan does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgRejectLoan does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1977,15 +1977,15 @@ func (x *fastReflection_MsgRejectLoan) Has(fd protoreflect.FieldDescriptor) bool
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgRejectLoan) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "loan.v1.MsgRejectLoan.authority":
+	case "overloan.loan.v1.MsgRejectLoan.authority":
 		x.Authority = ""
-	case "loan.v1.MsgRejectLoan.loan_id":
+	case "overloan.loan.v1.MsgRejectLoan.loan_id":
 		x.LoanId = uint64(0)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgRejectLoan"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgRejectLoan"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgRejectLoan does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgRejectLoan does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1997,17 +1997,17 @@ func (x *fastReflection_MsgRejectLoan) Clear(fd protoreflect.FieldDescriptor) {
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_MsgRejectLoan) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "loan.v1.MsgRejectLoan.authority":
+	case "overloan.loan.v1.MsgRejectLoan.authority":
 		value := x.Authority
 		return protoreflect.ValueOfString(value)
-	case "loan.v1.MsgRejectLoan.loan_id":
+	case "overloan.loan.v1.MsgRejectLoan.loan_id":
 		value := x.LoanId
 		return protoreflect.ValueOfUint64(value)
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgRejectLoan"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgRejectLoan"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgRejectLoan does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgRejectLoan does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -2023,15 +2023,15 @@ func (x *fastReflection_MsgRejectLoan) Get(descriptor protoreflect.FieldDescript
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgRejectLoan) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "loan.v1.MsgRejectLoan.authority":
+	case "overloan.loan.v1.MsgRejectLoan.authority":
 		x.Authority = value.Interface().(string)
-	case "loan.v1.MsgRejectLoan.loan_id":
+	case "overloan.loan.v1.MsgRejectLoan.loan_id":
 		x.LoanId = value.Uint()
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgRejectLoan"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgRejectLoan"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgRejectLoan does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgRejectLoan does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2047,15 +2047,15 @@ func (x *fastReflection_MsgRejectLoan) Set(fd protoreflect.FieldDescriptor, valu
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgRejectLoan) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "loan.v1.MsgRejectLoan.authority":
-		panic(fmt.Errorf("field authority of message loan.v1.MsgRejectLoan is not mutable"))
-	case "loan.v1.MsgRejectLoan.loan_id":
-		panic(fmt.Errorf("field loan_id of message loan.v1.MsgRejectLoan is not mutable"))
+	case "overloan.loan.v1.MsgRejectLoan.authority":
+		panic(fmt.Errorf("field authority of message overloan.loan.v1.MsgRejectLoan is not mutable"))
+	case "overloan.loan.v1.MsgRejectLoan.loan_id":
+		panic(fmt.Errorf("field loan_id of message overloan.loan.v1.MsgRejectLoan is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgRejectLoan"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgRejectLoan"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgRejectLoan does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgRejectLoan does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2064,15 +2064,15 @@ func (x *fastReflection_MsgRejectLoan) Mutable(fd protoreflect.FieldDescriptor) 
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_MsgRejectLoan) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "loan.v1.MsgRejectLoan.authority":
+	case "overloan.loan.v1.MsgRejectLoan.authority":
 		return protoreflect.ValueOfString("")
-	case "loan.v1.MsgRejectLoan.loan_id":
+	case "overloan.loan.v1.MsgRejectLoan.loan_id":
 		return protoreflect.ValueOfUint64(uint64(0))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgRejectLoan"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgRejectLoan"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgRejectLoan does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgRejectLoan does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2082,7 +2082,7 @@ func (x *fastReflection_MsgRejectLoan) NewField(fd protoreflect.FieldDescriptor)
 func (x *fastReflection_MsgRejectLoan) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in loan.v1.MsgRejectLoan", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in overloan.loan.v1.MsgRejectLoan", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -2411,9 +2411,9 @@ func (x *fastReflection_MsgRejectLoanResponse) Has(fd protoreflect.FieldDescript
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgRejectLoanResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgRejectLoanResponse"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgRejectLoanResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgRejectLoanResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2427,9 +2427,9 @@ func (x *fastReflection_MsgRejectLoanResponse) Clear(fd protoreflect.FieldDescri
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgRejectLoanResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgRejectLoanResponse"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgRejectLoanResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgRejectLoanResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2443,9 +2443,9 @@ func (x *fastReflection_MsgRejectLoanResponse) Get(descriptor protoreflect.Field
 	switch descriptor.FullName() {
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgRejectLoanResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgRejectLoanResponse"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgRejectLoanResponse does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgRejectLoanResponse does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -2463,9 +2463,9 @@ func (x *fastReflection_MsgRejectLoanResponse) Set(fd protoreflect.FieldDescript
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgRejectLoanResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgRejectLoanResponse"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgRejectLoanResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgRejectLoanResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2483,9 +2483,9 @@ func (x *fastReflection_MsgRejectLoanResponse) Mutable(fd protoreflect.FieldDesc
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgRejectLoanResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgRejectLoanResponse"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgRejectLoanResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgRejectLoanResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2496,9 +2496,9 @@ func (x *fastReflection_MsgRejectLoanResponse) NewField(fd protoreflect.FieldDes
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgRejectLoanResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgRejectLoanResponse"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgRejectLoanResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgRejectLoanResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2508,7 +2508,7 @@ func (x *fastReflection_MsgRejectLoanResponse) NewField(fd protoreflect.FieldDes
 func (x *fastReflection_MsgRejectLoanResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in loan.v1.MsgRejectLoanResponse", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in overloan.loan.v1.MsgRejectLoanResponse", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -2677,6 +2677,909 @@ func (x *fastReflection_MsgRejectLoanResponse) ProtoMethods() *protoiface.Method
 }
 
 var (
+	md_MsgRepayLoan           protoreflect.MessageDescriptor
+	fd_MsgRepayLoan_authority protoreflect.FieldDescriptor
+	fd_MsgRepayLoan_loan_id   protoreflect.FieldDescriptor
+	fd_MsgRepayLoan_amount    protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_overloan_loan_v1_tx_proto_init()
+	md_MsgRepayLoan = File_overloan_loan_v1_tx_proto.Messages().ByName("MsgRepayLoan")
+	fd_MsgRepayLoan_authority = md_MsgRepayLoan.Fields().ByName("authority")
+	fd_MsgRepayLoan_loan_id = md_MsgRepayLoan.Fields().ByName("loan_id")
+	fd_MsgRepayLoan_amount = md_MsgRepayLoan.Fields().ByName("amount")
+}
+
+var _ protoreflect.Message = (*fastReflection_MsgRepayLoan)(nil)
+
+type fastReflection_MsgRepayLoan MsgRepayLoan
+
+func (x *MsgRepayLoan) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgRepayLoan)(x)
+}
+
+func (x *MsgRepayLoan) slowProtoReflect() protoreflect.Message {
+	mi := &file_overloan_loan_v1_tx_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_MsgRepayLoan_messageType fastReflection_MsgRepayLoan_messageType
+var _ protoreflect.MessageType = fastReflection_MsgRepayLoan_messageType{}
+
+type fastReflection_MsgRepayLoan_messageType struct{}
+
+func (x fastReflection_MsgRepayLoan_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgRepayLoan)(nil)
+}
+func (x fastReflection_MsgRepayLoan_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgRepayLoan)
+}
+func (x fastReflection_MsgRepayLoan_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgRepayLoan
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_MsgRepayLoan) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgRepayLoan
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_MsgRepayLoan) Type() protoreflect.MessageType {
+	return _fastReflection_MsgRepayLoan_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_MsgRepayLoan) New() protoreflect.Message {
+	return new(fastReflection_MsgRepayLoan)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_MsgRepayLoan) Interface() protoreflect.ProtoMessage {
+	return (*MsgRepayLoan)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_MsgRepayLoan) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.Authority != "" {
+		value := protoreflect.ValueOfString(x.Authority)
+		if !f(fd_MsgRepayLoan_authority, value) {
+			return
+		}
+	}
+	if x.LoanId != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.LoanId)
+		if !f(fd_MsgRepayLoan_loan_id, value) {
+			return
+		}
+	}
+	if x.Amount != nil {
+		value := protoreflect.ValueOfMessage(x.Amount.ProtoReflect())
+		if !f(fd_MsgRepayLoan_amount, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_MsgRepayLoan) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "overloan.loan.v1.MsgRepayLoan.authority":
+		return x.Authority != ""
+	case "overloan.loan.v1.MsgRepayLoan.loan_id":
+		return x.LoanId != uint64(0)
+	case "overloan.loan.v1.MsgRepayLoan.amount":
+		return x.Amount != nil
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgRepayLoan"))
+		}
+		panic(fmt.Errorf("message overloan.loan.v1.MsgRepayLoan does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgRepayLoan) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "overloan.loan.v1.MsgRepayLoan.authority":
+		x.Authority = ""
+	case "overloan.loan.v1.MsgRepayLoan.loan_id":
+		x.LoanId = uint64(0)
+	case "overloan.loan.v1.MsgRepayLoan.amount":
+		x.Amount = nil
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgRepayLoan"))
+		}
+		panic(fmt.Errorf("message overloan.loan.v1.MsgRepayLoan does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_MsgRepayLoan) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "overloan.loan.v1.MsgRepayLoan.authority":
+		value := x.Authority
+		return protoreflect.ValueOfString(value)
+	case "overloan.loan.v1.MsgRepayLoan.loan_id":
+		value := x.LoanId
+		return protoreflect.ValueOfUint64(value)
+	case "overloan.loan.v1.MsgRepayLoan.amount":
+		value := x.Amount
+		return protoreflect.ValueOfMessage(value.ProtoReflect())
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgRepayLoan"))
+		}
+		panic(fmt.Errorf("message overloan.loan.v1.MsgRepayLoan does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgRepayLoan) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "overloan.loan.v1.MsgRepayLoan.authority":
+		x.Authority = value.Interface().(string)
+	case "overloan.loan.v1.MsgRepayLoan.loan_id":
+		x.LoanId = value.Uint()
+	case "overloan.loan.v1.MsgRepayLoan.amount":
+		x.Amount = value.Message().Interface().(*v1beta1.Coin)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgRepayLoan"))
+		}
+		panic(fmt.Errorf("message overloan.loan.v1.MsgRepayLoan does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgRepayLoan) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "overloan.loan.v1.MsgRepayLoan.amount":
+		if x.Amount == nil {
+			x.Amount = new(v1beta1.Coin)
+		}
+		return protoreflect.ValueOfMessage(x.Amount.ProtoReflect())
+	case "overloan.loan.v1.MsgRepayLoan.authority":
+		panic(fmt.Errorf("field authority of message overloan.loan.v1.MsgRepayLoan is not mutable"))
+	case "overloan.loan.v1.MsgRepayLoan.loan_id":
+		panic(fmt.Errorf("field loan_id of message overloan.loan.v1.MsgRepayLoan is not mutable"))
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgRepayLoan"))
+		}
+		panic(fmt.Errorf("message overloan.loan.v1.MsgRepayLoan does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_MsgRepayLoan) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "overloan.loan.v1.MsgRepayLoan.authority":
+		return protoreflect.ValueOfString("")
+	case "overloan.loan.v1.MsgRepayLoan.loan_id":
+		return protoreflect.ValueOfUint64(uint64(0))
+	case "overloan.loan.v1.MsgRepayLoan.amount":
+		m := new(v1beta1.Coin)
+		return protoreflect.ValueOfMessage(m.ProtoReflect())
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgRepayLoan"))
+		}
+		panic(fmt.Errorf("message overloan.loan.v1.MsgRepayLoan does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_MsgRepayLoan) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in overloan.loan.v1.MsgRepayLoan", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_MsgRepayLoan) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgRepayLoan) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_MsgRepayLoan) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_MsgRepayLoan) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*MsgRepayLoan)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		l = len(x.Authority)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.LoanId != 0 {
+			n += 1 + runtime.Sov(uint64(x.LoanId))
+		}
+		if x.Amount != nil {
+			l = options.Size(x.Amount)
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*MsgRepayLoan)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if x.Amount != nil {
+			encoded, err := options.Marshal(x.Amount)
+			if err != nil {
+				return protoiface.MarshalOutput{
+					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+					Buf:               input.Buf,
+				}, err
+			}
+			i -= len(encoded)
+			copy(dAtA[i:], encoded)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+			i--
+			dAtA[i] = 0x1a
+		}
+		if x.LoanId != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.LoanId))
+			i--
+			dAtA[i] = 0x10
+		}
+		if len(x.Authority) > 0 {
+			i -= len(x.Authority)
+			copy(dAtA[i:], x.Authority)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Authority)))
+			i--
+			dAtA[i] = 0xa
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*MsgRepayLoan)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgRepayLoan: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgRepayLoan: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Authority", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Authority = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 2:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field LoanId", wireType)
+				}
+				x.LoanId = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.LoanId |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			case 3:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Amount", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if x.Amount == nil {
+					x.Amount = &v1beta1.Coin{}
+				}
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Amount); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var (
+	md_MsgRepayLoanResponse protoreflect.MessageDescriptor
+)
+
+func init() {
+	file_overloan_loan_v1_tx_proto_init()
+	md_MsgRepayLoanResponse = File_overloan_loan_v1_tx_proto.Messages().ByName("MsgRepayLoanResponse")
+}
+
+var _ protoreflect.Message = (*fastReflection_MsgRepayLoanResponse)(nil)
+
+type fastReflection_MsgRepayLoanResponse MsgRepayLoanResponse
+
+func (x *MsgRepayLoanResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgRepayLoanResponse)(x)
+}
+
+func (x *MsgRepayLoanResponse) slowProtoReflect() protoreflect.Message {
+	mi := &file_overloan_loan_v1_tx_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_MsgRepayLoanResponse_messageType fastReflection_MsgRepayLoanResponse_messageType
+var _ protoreflect.MessageType = fastReflection_MsgRepayLoanResponse_messageType{}
+
+type fastReflection_MsgRepayLoanResponse_messageType struct{}
+
+func (x fastReflection_MsgRepayLoanResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgRepayLoanResponse)(nil)
+}
+func (x fastReflection_MsgRepayLoanResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgRepayLoanResponse)
+}
+func (x fastReflection_MsgRepayLoanResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgRepayLoanResponse
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_MsgRepayLoanResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgRepayLoanResponse
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_MsgRepayLoanResponse) Type() protoreflect.MessageType {
+	return _fastReflection_MsgRepayLoanResponse_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_MsgRepayLoanResponse) New() protoreflect.Message {
+	return new(fastReflection_MsgRepayLoanResponse)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_MsgRepayLoanResponse) Interface() protoreflect.ProtoMessage {
+	return (*MsgRepayLoanResponse)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_MsgRepayLoanResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_MsgRepayLoanResponse) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgRepayLoanResponse"))
+		}
+		panic(fmt.Errorf("message overloan.loan.v1.MsgRepayLoanResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgRepayLoanResponse) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgRepayLoanResponse"))
+		}
+		panic(fmt.Errorf("message overloan.loan.v1.MsgRepayLoanResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_MsgRepayLoanResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgRepayLoanResponse"))
+		}
+		panic(fmt.Errorf("message overloan.loan.v1.MsgRepayLoanResponse does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgRepayLoanResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgRepayLoanResponse"))
+		}
+		panic(fmt.Errorf("message overloan.loan.v1.MsgRepayLoanResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgRepayLoanResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgRepayLoanResponse"))
+		}
+		panic(fmt.Errorf("message overloan.loan.v1.MsgRepayLoanResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_MsgRepayLoanResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgRepayLoanResponse"))
+		}
+		panic(fmt.Errorf("message overloan.loan.v1.MsgRepayLoanResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_MsgRepayLoanResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in overloan.loan.v1.MsgRepayLoanResponse", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_MsgRepayLoanResponse) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgRepayLoanResponse) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_MsgRepayLoanResponse) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_MsgRepayLoanResponse) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*MsgRepayLoanResponse)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*MsgRepayLoanResponse)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*MsgRepayLoanResponse)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgRepayLoanResponse: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgRepayLoanResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var (
 	md_MsgConfirmDisbursement           protoreflect.MessageDescriptor
 	fd_MsgConfirmDisbursement_authority protoreflect.FieldDescriptor
 	fd_MsgConfirmDisbursement_loan_id   protoreflect.FieldDescriptor
@@ -2698,7 +3601,7 @@ func (x *MsgConfirmDisbursement) ProtoReflect() protoreflect.Message {
 }
 
 func (x *MsgConfirmDisbursement) slowProtoReflect() protoreflect.Message {
-	mi := &file_overloan_loan_v1_tx_proto_msgTypes[6]
+	mi := &file_overloan_loan_v1_tx_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2781,15 +3684,15 @@ func (x *fastReflection_MsgConfirmDisbursement) Range(f func(protoreflect.FieldD
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_MsgConfirmDisbursement) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "loan.v1.MsgConfirmDisbursement.authority":
+	case "overloan.loan.v1.MsgConfirmDisbursement.authority":
 		return x.Authority != ""
-	case "loan.v1.MsgConfirmDisbursement.loan_id":
+	case "overloan.loan.v1.MsgConfirmDisbursement.loan_id":
 		return x.LoanId != uint64(0)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgConfirmDisbursement"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgConfirmDisbursement"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgConfirmDisbursement does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgConfirmDisbursement does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2801,15 +3704,15 @@ func (x *fastReflection_MsgConfirmDisbursement) Has(fd protoreflect.FieldDescrip
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgConfirmDisbursement) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "loan.v1.MsgConfirmDisbursement.authority":
+	case "overloan.loan.v1.MsgConfirmDisbursement.authority":
 		x.Authority = ""
-	case "loan.v1.MsgConfirmDisbursement.loan_id":
+	case "overloan.loan.v1.MsgConfirmDisbursement.loan_id":
 		x.LoanId = uint64(0)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgConfirmDisbursement"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgConfirmDisbursement"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgConfirmDisbursement does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgConfirmDisbursement does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2821,17 +3724,17 @@ func (x *fastReflection_MsgConfirmDisbursement) Clear(fd protoreflect.FieldDescr
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_MsgConfirmDisbursement) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "loan.v1.MsgConfirmDisbursement.authority":
+	case "overloan.loan.v1.MsgConfirmDisbursement.authority":
 		value := x.Authority
 		return protoreflect.ValueOfString(value)
-	case "loan.v1.MsgConfirmDisbursement.loan_id":
+	case "overloan.loan.v1.MsgConfirmDisbursement.loan_id":
 		value := x.LoanId
 		return protoreflect.ValueOfUint64(value)
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgConfirmDisbursement"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgConfirmDisbursement"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgConfirmDisbursement does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgConfirmDisbursement does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -2847,15 +3750,15 @@ func (x *fastReflection_MsgConfirmDisbursement) Get(descriptor protoreflect.Fiel
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgConfirmDisbursement) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "loan.v1.MsgConfirmDisbursement.authority":
+	case "overloan.loan.v1.MsgConfirmDisbursement.authority":
 		x.Authority = value.Interface().(string)
-	case "loan.v1.MsgConfirmDisbursement.loan_id":
+	case "overloan.loan.v1.MsgConfirmDisbursement.loan_id":
 		x.LoanId = value.Uint()
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgConfirmDisbursement"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgConfirmDisbursement"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgConfirmDisbursement does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgConfirmDisbursement does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2871,15 +3774,15 @@ func (x *fastReflection_MsgConfirmDisbursement) Set(fd protoreflect.FieldDescrip
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgConfirmDisbursement) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "loan.v1.MsgConfirmDisbursement.authority":
-		panic(fmt.Errorf("field authority of message loan.v1.MsgConfirmDisbursement is not mutable"))
-	case "loan.v1.MsgConfirmDisbursement.loan_id":
-		panic(fmt.Errorf("field loan_id of message loan.v1.MsgConfirmDisbursement is not mutable"))
+	case "overloan.loan.v1.MsgConfirmDisbursement.authority":
+		panic(fmt.Errorf("field authority of message overloan.loan.v1.MsgConfirmDisbursement is not mutable"))
+	case "overloan.loan.v1.MsgConfirmDisbursement.loan_id":
+		panic(fmt.Errorf("field loan_id of message overloan.loan.v1.MsgConfirmDisbursement is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgConfirmDisbursement"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgConfirmDisbursement"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgConfirmDisbursement does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgConfirmDisbursement does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2888,15 +3791,15 @@ func (x *fastReflection_MsgConfirmDisbursement) Mutable(fd protoreflect.FieldDes
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_MsgConfirmDisbursement) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "loan.v1.MsgConfirmDisbursement.authority":
+	case "overloan.loan.v1.MsgConfirmDisbursement.authority":
 		return protoreflect.ValueOfString("")
-	case "loan.v1.MsgConfirmDisbursement.loan_id":
+	case "overloan.loan.v1.MsgConfirmDisbursement.loan_id":
 		return protoreflect.ValueOfUint64(uint64(0))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgConfirmDisbursement"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgConfirmDisbursement"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgConfirmDisbursement does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgConfirmDisbursement does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2906,7 +3809,7 @@ func (x *fastReflection_MsgConfirmDisbursement) NewField(fd protoreflect.FieldDe
 func (x *fastReflection_MsgConfirmDisbursement) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in loan.v1.MsgConfirmDisbursement", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in overloan.loan.v1.MsgConfirmDisbursement", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -3162,7 +4065,7 @@ func (x *MsgConfirmDisbursementResponse) ProtoReflect() protoreflect.Message {
 }
 
 func (x *MsgConfirmDisbursementResponse) slowProtoReflect() protoreflect.Message {
-	mi := &file_overloan_loan_v1_tx_proto_msgTypes[7]
+	mi := &file_overloan_loan_v1_tx_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3235,9 +4138,9 @@ func (x *fastReflection_MsgConfirmDisbursementResponse) Has(fd protoreflect.Fiel
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgConfirmDisbursementResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgConfirmDisbursementResponse"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgConfirmDisbursementResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgConfirmDisbursementResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -3251,9 +4154,9 @@ func (x *fastReflection_MsgConfirmDisbursementResponse) Clear(fd protoreflect.Fi
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgConfirmDisbursementResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgConfirmDisbursementResponse"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgConfirmDisbursementResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgConfirmDisbursementResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -3267,9 +4170,9 @@ func (x *fastReflection_MsgConfirmDisbursementResponse) Get(descriptor protorefl
 	switch descriptor.FullName() {
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgConfirmDisbursementResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgConfirmDisbursementResponse"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgConfirmDisbursementResponse does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgConfirmDisbursementResponse does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -3287,9 +4190,9 @@ func (x *fastReflection_MsgConfirmDisbursementResponse) Set(fd protoreflect.Fiel
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgConfirmDisbursementResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgConfirmDisbursementResponse"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgConfirmDisbursementResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgConfirmDisbursementResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -3307,9 +4210,9 @@ func (x *fastReflection_MsgConfirmDisbursementResponse) Mutable(fd protoreflect.
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgConfirmDisbursementResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgConfirmDisbursementResponse"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgConfirmDisbursementResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgConfirmDisbursementResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -3320,9 +4223,9 @@ func (x *fastReflection_MsgConfirmDisbursementResponse) NewField(fd protoreflect
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: loan.v1.MsgConfirmDisbursementResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.MsgConfirmDisbursementResponse"))
 		}
-		panic(fmt.Errorf("message loan.v1.MsgConfirmDisbursementResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message overloan.loan.v1.MsgConfirmDisbursementResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -3332,7 +4235,7 @@ func (x *fastReflection_MsgConfirmDisbursementResponse) NewField(fd protoreflect
 func (x *fastReflection_MsgConfirmDisbursementResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in loan.v1.MsgConfirmDisbursementResponse", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in overloan.loan.v1.MsgConfirmDisbursementResponse", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -3513,15 +4416,20 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// MsgCreateLoan digunakan oleh borrower untuk mengajukan permohonan pinjaman baru
 type MsgCreateLoan struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Borrower     string        `protobuf:"bytes,1,opt,name=borrower,proto3" json:"borrower,omitempty"`
-	Principal    *v1beta1.Coin `protobuf:"bytes,2,opt,name=principal,proto3" json:"principal,omitempty"`
-	TenorMonths  uint64        `protobuf:"varint,3,opt,name=tenor_months,json=tenorMonths,proto3" json:"tenor_months,omitempty"`
-	MetadataHash string        `protobuf:"bytes,4,opt,name=metadata_hash,json=metadataHash,proto3" json:"metadata_hash,omitempty"`
+	// Alamat borrower (Bech32) sebagai pemohon pinjaman
+	Borrower string `protobuf:"bytes,1,opt,name=borrower,proto3" json:"borrower,omitempty"`
+	// Nilai pokok pinjaman yang diajukan
+	Principal *v1beta1.Coin `protobuf:"bytes,2,opt,name=principal,proto3" json:"principal,omitempty"`
+	// Durasi pinjaman dalam satuan bulan
+	TenorMonths uint64 `protobuf:"varint,3,opt,name=tenor_months,json=tenorMonths,proto3" json:"tenor_months,omitempty"`
+	// Hash dokumen pendukung (misalnya IPFS CID atau SHA256 kontrak)
+	MetadataHash string `protobuf:"bytes,4,opt,name=metadata_hash,json=metadataHash,proto3" json:"metadata_hash,omitempty"`
 }
 
 func (x *MsgCreateLoan) Reset() {
@@ -3572,11 +4480,13 @@ func (x *MsgCreateLoan) GetMetadataHash() string {
 	return ""
 }
 
+// MsgCreateLoanResponse mengembalikan ID pinjaman yang baru dibuat
 type MsgCreateLoanResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// ID unik pinjaman yang tersimpan di state
 	LoanId uint64 `protobuf:"varint,1,opt,name=loan_id,json=loanId,proto3" json:"loan_id,omitempty"`
 }
 
@@ -3607,14 +4517,16 @@ func (x *MsgCreateLoanResponse) GetLoanId() uint64 {
 	return 0
 }
 
+// MsgApproveLoan digunakan oleh policy yang berwenang untuk menyetujui pinjaman
 type MsgApproveLoan struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// laz group policy address
+	// Alamat group policy (laz_group_policy) sebagai otoritas persetujuan
 	Authority string `protobuf:"bytes,1,opt,name=authority,proto3" json:"authority,omitempty"`
-	LoanId    uint64 `protobuf:"varint,2,opt,name=loan_id,json=loanId,proto3" json:"loan_id,omitempty"`
+	// ID pinjaman yang akan disetujui
+	LoanId uint64 `protobuf:"varint,2,opt,name=loan_id,json=loanId,proto3" json:"loan_id,omitempty"`
 }
 
 func (x *MsgApproveLoan) Reset() {
@@ -3651,6 +4563,7 @@ func (x *MsgApproveLoan) GetLoanId() uint64 {
 	return 0
 }
 
+// MsgApproveLoanResponse tidak mengembalikan data tambahan
 type MsgApproveLoanResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -3677,13 +4590,16 @@ func (*MsgApproveLoanResponse) Descriptor() ([]byte, []int) {
 	return file_overloan_loan_v1_tx_proto_rawDescGZIP(), []int{3}
 }
 
+// MsgRejectLoan digunakan oleh policy yang berwenang untuk menolak pinjaman
 type MsgRejectLoan struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
+	// Alamat group policy sebagai otoritas penolakan
 	Authority string `protobuf:"bytes,1,opt,name=authority,proto3" json:"authority,omitempty"`
-	LoanId    uint64 `protobuf:"varint,2,opt,name=loan_id,json=loanId,proto3" json:"loan_id,omitempty"`
+	// ID pinjaman yang akan ditolak
+	LoanId uint64 `protobuf:"varint,2,opt,name=loan_id,json=loanId,proto3" json:"loan_id,omitempty"`
 }
 
 func (x *MsgRejectLoan) Reset() {
@@ -3720,6 +4636,7 @@ func (x *MsgRejectLoan) GetLoanId() uint64 {
 	return 0
 }
 
+// MsgRejectLoanResponse tidak mengembalikan data tambahan
 type MsgRejectLoanResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -3746,20 +4663,104 @@ func (*MsgRejectLoanResponse) Descriptor() ([]byte, []int) {
 	return file_overloan_loan_v1_tx_proto_rawDescGZIP(), []int{5}
 }
 
+// MsgRepayLoan digunakan untuk mencatat pembayaran pinjaman
+type MsgRepayLoan struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Alamat omnibus_group_policy sebagai otoritas pembayaran
+	Authority string `protobuf:"bytes,1,opt,name=authority,proto3" json:"authority,omitempty"`
+	// ID pinjaman yang dibayar
+	LoanId uint64 `protobuf:"varint,2,opt,name=loan_id,json=loanId,proto3" json:"loan_id,omitempty"`
+	// Jumlah yang dibayarkan
+	Amount *v1beta1.Coin `protobuf:"bytes,3,opt,name=amount,proto3" json:"amount,omitempty"`
+}
+
+func (x *MsgRepayLoan) Reset() {
+	*x = MsgRepayLoan{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_overloan_loan_v1_tx_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MsgRepayLoan) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MsgRepayLoan) ProtoMessage() {}
+
+// Deprecated: Use MsgRepayLoan.ProtoReflect.Descriptor instead.
+func (*MsgRepayLoan) Descriptor() ([]byte, []int) {
+	return file_overloan_loan_v1_tx_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *MsgRepayLoan) GetAuthority() string {
+	if x != nil {
+		return x.Authority
+	}
+	return ""
+}
+
+func (x *MsgRepayLoan) GetLoanId() uint64 {
+	if x != nil {
+		return x.LoanId
+	}
+	return 0
+}
+
+func (x *MsgRepayLoan) GetAmount() *v1beta1.Coin {
+	if x != nil {
+		return x.Amount
+	}
+	return nil
+}
+
+// MsgRepayLoanResponse tidak mengembalikan data tambahan
+type MsgRepayLoanResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *MsgRepayLoanResponse) Reset() {
+	*x = MsgRepayLoanResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_overloan_loan_v1_tx_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MsgRepayLoanResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MsgRepayLoanResponse) ProtoMessage() {}
+
+// Deprecated: Use MsgRepayLoanResponse.ProtoReflect.Descriptor instead.
+func (*MsgRepayLoanResponse) Descriptor() ([]byte, []int) {
+	return file_overloan_loan_v1_tx_proto_rawDescGZIP(), []int{7}
+}
+
+// MsgConfirmDisbursement digunakan untuk mengonfirmasi bahwa dana telah dicairkan
 type MsgConfirmDisbursement struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// omnibus group policy
+	// Alamat omnibus_group_policy sebagai otoritas pencairan dana
 	Authority string `protobuf:"bytes,1,opt,name=authority,proto3" json:"authority,omitempty"`
-	LoanId    uint64 `protobuf:"varint,2,opt,name=loan_id,json=loanId,proto3" json:"loan_id,omitempty"`
+	// ID pinjaman yang dicairkan
+	LoanId uint64 `protobuf:"varint,2,opt,name=loan_id,json=loanId,proto3" json:"loan_id,omitempty"`
 }
 
 func (x *MsgConfirmDisbursement) Reset() {
 	*x = MsgConfirmDisbursement{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_overloan_loan_v1_tx_proto_msgTypes[6]
+		mi := &file_overloan_loan_v1_tx_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3773,7 +4774,7 @@ func (*MsgConfirmDisbursement) ProtoMessage() {}
 
 // Deprecated: Use MsgConfirmDisbursement.ProtoReflect.Descriptor instead.
 func (*MsgConfirmDisbursement) Descriptor() ([]byte, []int) {
-	return file_overloan_loan_v1_tx_proto_rawDescGZIP(), []int{6}
+	return file_overloan_loan_v1_tx_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *MsgConfirmDisbursement) GetAuthority() string {
@@ -3790,6 +4791,7 @@ func (x *MsgConfirmDisbursement) GetLoanId() uint64 {
 	return 0
 }
 
+// MsgConfirmDisbursementResponse tidak mengembalikan data tambahan
 type MsgConfirmDisbursementResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -3799,7 +4801,7 @@ type MsgConfirmDisbursementResponse struct {
 func (x *MsgConfirmDisbursementResponse) Reset() {
 	*x = MsgConfirmDisbursementResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_overloan_loan_v1_tx_proto_msgTypes[7]
+		mi := &file_overloan_loan_v1_tx_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -3813,79 +4815,101 @@ func (*MsgConfirmDisbursementResponse) ProtoMessage() {}
 
 // Deprecated: Use MsgConfirmDisbursementResponse.ProtoReflect.Descriptor instead.
 func (*MsgConfirmDisbursementResponse) Descriptor() ([]byte, []int) {
-	return file_overloan_loan_v1_tx_proto_rawDescGZIP(), []int{7}
+	return file_overloan_loan_v1_tx_proto_rawDescGZIP(), []int{9}
 }
 
 var File_overloan_loan_v1_tx_proto protoreflect.FileDescriptor
 
 var file_overloan_loan_v1_tx_proto_rawDesc = []byte{
 	0x0a, 0x19, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x2f, 0x6c, 0x6f, 0x61, 0x6e, 0x2f,
-	0x76, 0x31, 0x2f, 0x74, 0x78, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x07, 0x6c, 0x6f, 0x61,
-	0x6e, 0x2e, 0x76, 0x31, 0x1a, 0x1e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x62, 0x61, 0x73,
-	0x65, 0x2f, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2f, 0x63, 0x6f, 0x69, 0x6e, 0x2e, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x22, 0xac, 0x01, 0x0a, 0x0d, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61,
-	0x74, 0x65, 0x4c, 0x6f, 0x61, 0x6e, 0x12, 0x1a, 0x0a, 0x08, 0x62, 0x6f, 0x72, 0x72, 0x6f, 0x77,
-	0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x62, 0x6f, 0x72, 0x72, 0x6f, 0x77,
-	0x65, 0x72, 0x12, 0x37, 0x0a, 0x09, 0x70, 0x72, 0x69, 0x6e, 0x63, 0x69, 0x70, 0x61, 0x6c, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62,
-	0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x43, 0x6f, 0x69, 0x6e,
-	0x52, 0x09, 0x70, 0x72, 0x69, 0x6e, 0x63, 0x69, 0x70, 0x61, 0x6c, 0x12, 0x21, 0x0a, 0x0c, 0x74,
-	0x65, 0x6e, 0x6f, 0x72, 0x5f, 0x6d, 0x6f, 0x6e, 0x74, 0x68, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28,
-	0x04, 0x52, 0x0b, 0x74, 0x65, 0x6e, 0x6f, 0x72, 0x4d, 0x6f, 0x6e, 0x74, 0x68, 0x73, 0x12, 0x23,
-	0x0a, 0x0d, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x5f, 0x68, 0x61, 0x73, 0x68, 0x18,
-	0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x48,
-	0x61, 0x73, 0x68, 0x22, 0x30, 0x0a, 0x15, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
-	0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x17, 0x0a, 0x07,
-	0x6c, 0x6f, 0x61, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x06, 0x6c,
-	0x6f, 0x61, 0x6e, 0x49, 0x64, 0x22, 0x47, 0x0a, 0x0e, 0x4d, 0x73, 0x67, 0x41, 0x70, 0x70, 0x72,
-	0x6f, 0x76, 0x65, 0x4c, 0x6f, 0x61, 0x6e, 0x12, 0x1c, 0x0a, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f,
-	0x72, 0x69, 0x74, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x61, 0x75, 0x74, 0x68,
-	0x6f, 0x72, 0x69, 0x74, 0x79, 0x12, 0x17, 0x0a, 0x07, 0x6c, 0x6f, 0x61, 0x6e, 0x5f, 0x69, 0x64,
-	0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x06, 0x6c, 0x6f, 0x61, 0x6e, 0x49, 0x64, 0x22, 0x18,
-	0x0a, 0x16, 0x4d, 0x73, 0x67, 0x41, 0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x4c, 0x6f, 0x61, 0x6e,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x46, 0x0a, 0x0d, 0x4d, 0x73, 0x67, 0x52,
-	0x65, 0x6a, 0x65, 0x63, 0x74, 0x4c, 0x6f, 0x61, 0x6e, 0x12, 0x1c, 0x0a, 0x09, 0x61, 0x75, 0x74,
-	0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x61, 0x75,
-	0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x12, 0x17, 0x0a, 0x07, 0x6c, 0x6f, 0x61, 0x6e, 0x5f,
-	0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x06, 0x6c, 0x6f, 0x61, 0x6e, 0x49, 0x64,
-	0x22, 0x17, 0x0a, 0x15, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x6a, 0x65, 0x63, 0x74, 0x4c, 0x6f, 0x61,
-	0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x4f, 0x0a, 0x16, 0x4d, 0x73, 0x67,
-	0x43, 0x6f, 0x6e, 0x66, 0x69, 0x72, 0x6d, 0x44, 0x69, 0x73, 0x62, 0x75, 0x72, 0x73, 0x65, 0x6d,
-	0x65, 0x6e, 0x74, 0x12, 0x1c, 0x0a, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74,
-	0x79, 0x12, 0x17, 0x0a, 0x07, 0x6c, 0x6f, 0x61, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01,
-	0x28, 0x04, 0x52, 0x06, 0x6c, 0x6f, 0x61, 0x6e, 0x49, 0x64, 0x22, 0x20, 0x0a, 0x1e, 0x4d, 0x73,
-	0x67, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x72, 0x6d, 0x44, 0x69, 0x73, 0x62, 0x75, 0x72, 0x73, 0x65,
-	0x6d, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0xbb, 0x02, 0x0a,
-	0x03, 0x4d, 0x73, 0x67, 0x12, 0x44, 0x0a, 0x0a, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4c, 0x6f,
-	0x61, 0x6e, 0x12, 0x16, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67,
-	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4c, 0x6f, 0x61, 0x6e, 0x1a, 0x1e, 0x2e, 0x6c, 0x6f, 0x61,
-	0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4c, 0x6f,
-	0x61, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x47, 0x0a, 0x0b, 0x41, 0x70,
-	0x70, 0x72, 0x6f, 0x76, 0x65, 0x4c, 0x6f, 0x61, 0x6e, 0x12, 0x17, 0x2e, 0x6c, 0x6f, 0x61, 0x6e,
-	0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x41, 0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x4c, 0x6f,
-	0x61, 0x6e, 0x1a, 0x1f, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67,
-	0x41, 0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x44, 0x0a, 0x0a, 0x52, 0x65, 0x6a, 0x65, 0x63, 0x74, 0x4c, 0x6f, 0x61,
-	0x6e, 0x12, 0x16, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x52,
-	0x65, 0x6a, 0x65, 0x63, 0x74, 0x4c, 0x6f, 0x61, 0x6e, 0x1a, 0x1e, 0x2e, 0x6c, 0x6f, 0x61, 0x6e,
+	0x76, 0x31, 0x2f, 0x74, 0x78, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x10, 0x6f, 0x76, 0x65,
+	0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x1a, 0x1e, 0x63,
+	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x62, 0x61, 0x73, 0x65, 0x2f, 0x76, 0x31, 0x62, 0x65, 0x74,
+	0x61, 0x31, 0x2f, 0x63, 0x6f, 0x69, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xac, 0x01,
+	0x0a, 0x0d, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4c, 0x6f, 0x61, 0x6e, 0x12,
+	0x1a, 0x0a, 0x08, 0x62, 0x6f, 0x72, 0x72, 0x6f, 0x77, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x08, 0x62, 0x6f, 0x72, 0x72, 0x6f, 0x77, 0x65, 0x72, 0x12, 0x37, 0x0a, 0x09, 0x70,
+	0x72, 0x69, 0x6e, 0x63, 0x69, 0x70, 0x61, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19,
+	0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x62,
+	0x65, 0x74, 0x61, 0x31, 0x2e, 0x43, 0x6f, 0x69, 0x6e, 0x52, 0x09, 0x70, 0x72, 0x69, 0x6e, 0x63,
+	0x69, 0x70, 0x61, 0x6c, 0x12, 0x21, 0x0a, 0x0c, 0x74, 0x65, 0x6e, 0x6f, 0x72, 0x5f, 0x6d, 0x6f,
+	0x6e, 0x74, 0x68, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0b, 0x74, 0x65, 0x6e, 0x6f,
+	0x72, 0x4d, 0x6f, 0x6e, 0x74, 0x68, 0x73, 0x12, 0x23, 0x0a, 0x0d, 0x6d, 0x65, 0x74, 0x61, 0x64,
+	0x61, 0x74, 0x61, 0x5f, 0x68, 0x61, 0x73, 0x68, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c,
+	0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x48, 0x61, 0x73, 0x68, 0x22, 0x30, 0x0a, 0x15,
+	0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x17, 0x0a, 0x07, 0x6c, 0x6f, 0x61, 0x6e, 0x5f, 0x69, 0x64,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x06, 0x6c, 0x6f, 0x61, 0x6e, 0x49, 0x64, 0x22, 0x47,
+	0x0a, 0x0e, 0x4d, 0x73, 0x67, 0x41, 0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x4c, 0x6f, 0x61, 0x6e,
+	0x12, 0x1c, 0x0a, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x12, 0x17,
+	0x0a, 0x07, 0x6c, 0x6f, 0x61, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52,
+	0x06, 0x6c, 0x6f, 0x61, 0x6e, 0x49, 0x64, 0x22, 0x18, 0x0a, 0x16, 0x4d, 0x73, 0x67, 0x41, 0x70,
+	0x70, 0x72, 0x6f, 0x76, 0x65, 0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x22, 0x46, 0x0a, 0x0d, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x6a, 0x65, 0x63, 0x74, 0x4c, 0x6f,
+	0x61, 0x6e, 0x12, 0x1c, 0x0a, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79,
+	0x12, 0x17, 0x0a, 0x07, 0x6c, 0x6f, 0x61, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x04, 0x52, 0x06, 0x6c, 0x6f, 0x61, 0x6e, 0x49, 0x64, 0x22, 0x17, 0x0a, 0x15, 0x4d, 0x73, 0x67,
+	0x52, 0x65, 0x6a, 0x65, 0x63, 0x74, 0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x22, 0x78, 0x0a, 0x0c, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x70, 0x61, 0x79, 0x4c, 0x6f,
+	0x61, 0x6e, 0x12, 0x1c, 0x0a, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79,
+	0x12, 0x17, 0x0a, 0x07, 0x6c, 0x6f, 0x61, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x04, 0x52, 0x06, 0x6c, 0x6f, 0x61, 0x6e, 0x49, 0x64, 0x12, 0x31, 0x0a, 0x06, 0x61, 0x6d, 0x6f,
+	0x75, 0x6e, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x63, 0x6f, 0x73, 0x6d,
+	0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e,
+	0x43, 0x6f, 0x69, 0x6e, 0x52, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x22, 0x16, 0x0a, 0x14,
+	0x4d, 0x73, 0x67, 0x52, 0x65, 0x70, 0x61, 0x79, 0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x4f, 0x0a, 0x16, 0x4d, 0x73, 0x67, 0x43, 0x6f, 0x6e, 0x66, 0x69,
+	0x72, 0x6d, 0x44, 0x69, 0x73, 0x62, 0x75, 0x72, 0x73, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x12, 0x1c,
+	0x0a, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x12, 0x17, 0x0a, 0x07,
+	0x6c, 0x6f, 0x61, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x06, 0x6c,
+	0x6f, 0x61, 0x6e, 0x49, 0x64, 0x22, 0x20, 0x0a, 0x1e, 0x4d, 0x73, 0x67, 0x43, 0x6f, 0x6e, 0x66,
+	0x69, 0x72, 0x6d, 0x44, 0x69, 0x73, 0x62, 0x75, 0x72, 0x73, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0xd8, 0x03, 0x0a, 0x03, 0x4d, 0x73, 0x67, 0x12,
+	0x56, 0x0a, 0x0a, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4c, 0x6f, 0x61, 0x6e, 0x12, 0x1f, 0x2e,
+	0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31,
+	0x2e, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4c, 0x6f, 0x61, 0x6e, 0x1a, 0x27,
+	0x2e, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76,
+	0x31, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4c, 0x6f, 0x61, 0x6e, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x59, 0x0a, 0x0b, 0x41, 0x70, 0x70, 0x72, 0x6f,
+	0x76, 0x65, 0x4c, 0x6f, 0x61, 0x6e, 0x12, 0x20, 0x2e, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61,
+	0x6e, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x41, 0x70, 0x70,
+	0x72, 0x6f, 0x76, 0x65, 0x4c, 0x6f, 0x61, 0x6e, 0x1a, 0x28, 0x2e, 0x6f, 0x76, 0x65, 0x72, 0x6c,
+	0x6f, 0x61, 0x6e, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x41,
+	0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x56, 0x0a, 0x0a, 0x52, 0x65, 0x6a, 0x65, 0x63, 0x74, 0x4c, 0x6f, 0x61, 0x6e,
+	0x12, 0x1f, 0x2e, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x6c, 0x6f, 0x61, 0x6e,
 	0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x6a, 0x65, 0x63, 0x74, 0x4c, 0x6f, 0x61,
-	0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5f, 0x0a, 0x13, 0x43, 0x6f, 0x6e,
+	0x6e, 0x1a, 0x27, 0x2e, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x6c, 0x6f, 0x61,
+	0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x6a, 0x65, 0x63, 0x74, 0x4c, 0x6f,
+	0x61, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x53, 0x0a, 0x09, 0x52, 0x65,
+	0x70, 0x61, 0x79, 0x4c, 0x6f, 0x61, 0x6e, 0x12, 0x1e, 0x2e, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f,
+	0x61, 0x6e, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x52, 0x65,
+	0x70, 0x61, 0x79, 0x4c, 0x6f, 0x61, 0x6e, 0x1a, 0x26, 0x2e, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f,
+	0x61, 0x6e, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x52, 0x65,
+	0x70, 0x61, 0x79, 0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x71, 0x0a, 0x13, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x72, 0x6d, 0x44, 0x69, 0x73, 0x62, 0x75, 0x72,
+	0x73, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x12, 0x28, 0x2e, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61,
+	0x6e, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x6f, 0x6e,
 	0x66, 0x69, 0x72, 0x6d, 0x44, 0x69, 0x73, 0x62, 0x75, 0x72, 0x73, 0x65, 0x6d, 0x65, 0x6e, 0x74,
-	0x12, 0x1f, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x6f,
-	0x6e, 0x66, 0x69, 0x72, 0x6d, 0x44, 0x69, 0x73, 0x62, 0x75, 0x72, 0x73, 0x65, 0x6d, 0x65, 0x6e,
-	0x74, 0x1a, 0x27, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x43,
-	0x6f, 0x6e, 0x66, 0x69, 0x72, 0x6d, 0x44, 0x69, 0x73, 0x62, 0x75, 0x72, 0x73, 0x65, 0x6d, 0x65,
-	0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x7d, 0x0a, 0x0b, 0x63, 0x6f,
-	0x6d, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x42, 0x07, 0x54, 0x78, 0x50, 0x72, 0x6f,
-	0x74, 0x6f, 0x50, 0x01, 0x5a, 0x28, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e,
-	0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x2f,
-	0x6c, 0x6f, 0x61, 0x6e, 0x2f, 0x76, 0x31, 0x3b, 0x6c, 0x6f, 0x61, 0x6e, 0x76, 0x31, 0xa2, 0x02,
-	0x03, 0x4c, 0x58, 0x58, 0xaa, 0x02, 0x07, 0x4c, 0x6f, 0x61, 0x6e, 0x2e, 0x56, 0x31, 0xca, 0x02,
-	0x07, 0x4c, 0x6f, 0x61, 0x6e, 0x5c, 0x56, 0x31, 0xe2, 0x02, 0x13, 0x4c, 0x6f, 0x61, 0x6e, 0x5c,
-	0x56, 0x31, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02,
-	0x08, 0x4c, 0x6f, 0x61, 0x6e, 0x3a, 0x3a, 0x56, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x33,
+	0x1a, 0x30, 0x2e, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x6c, 0x6f, 0x61, 0x6e,
+	0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x72, 0x6d, 0x44, 0x69,
+	0x73, 0x62, 0x75, 0x72, 0x73, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x42, 0xab, 0x01, 0x0a, 0x14, 0x63, 0x6f, 0x6d, 0x2e, 0x6f, 0x76, 0x65, 0x72, 0x6c,
+	0x6f, 0x61, 0x6e, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x42, 0x07, 0x54, 0x78, 0x50,
+	0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x28, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64,
+	0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61,
+	0x6e, 0x2f, 0x6c, 0x6f, 0x61, 0x6e, 0x2f, 0x76, 0x31, 0x3b, 0x6c, 0x6f, 0x61, 0x6e, 0x76, 0x31,
+	0xa2, 0x02, 0x03, 0x4f, 0x4c, 0x58, 0xaa, 0x02, 0x10, 0x4f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61,
+	0x6e, 0x2e, 0x4c, 0x6f, 0x61, 0x6e, 0x2e, 0x56, 0x31, 0xca, 0x02, 0x10, 0x4f, 0x76, 0x65, 0x72,
+	0x6c, 0x6f, 0x61, 0x6e, 0x5c, 0x4c, 0x6f, 0x61, 0x6e, 0x5c, 0x56, 0x31, 0xe2, 0x02, 0x1c, 0x4f,
+	0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x5c, 0x4c, 0x6f, 0x61, 0x6e, 0x5c, 0x56, 0x31, 0x5c,
+	0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x12, 0x4f, 0x76,
+	0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x3a, 0x3a, 0x4c, 0x6f, 0x61, 0x6e, 0x3a, 0x3a, 0x56, 0x31,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -3900,33 +4924,38 @@ func file_overloan_loan_v1_tx_proto_rawDescGZIP() []byte {
 	return file_overloan_loan_v1_tx_proto_rawDescData
 }
 
-var file_overloan_loan_v1_tx_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_overloan_loan_v1_tx_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_overloan_loan_v1_tx_proto_goTypes = []interface{}{
-	(*MsgCreateLoan)(nil),                  // 0: loan.v1.MsgCreateLoan
-	(*MsgCreateLoanResponse)(nil),          // 1: loan.v1.MsgCreateLoanResponse
-	(*MsgApproveLoan)(nil),                 // 2: loan.v1.MsgApproveLoan
-	(*MsgApproveLoanResponse)(nil),         // 3: loan.v1.MsgApproveLoanResponse
-	(*MsgRejectLoan)(nil),                  // 4: loan.v1.MsgRejectLoan
-	(*MsgRejectLoanResponse)(nil),          // 5: loan.v1.MsgRejectLoanResponse
-	(*MsgConfirmDisbursement)(nil),         // 6: loan.v1.MsgConfirmDisbursement
-	(*MsgConfirmDisbursementResponse)(nil), // 7: loan.v1.MsgConfirmDisbursementResponse
-	(*v1beta1.Coin)(nil),                   // 8: cosmos.base.v1beta1.Coin
+	(*MsgCreateLoan)(nil),                  // 0: overloan.loan.v1.MsgCreateLoan
+	(*MsgCreateLoanResponse)(nil),          // 1: overloan.loan.v1.MsgCreateLoanResponse
+	(*MsgApproveLoan)(nil),                 // 2: overloan.loan.v1.MsgApproveLoan
+	(*MsgApproveLoanResponse)(nil),         // 3: overloan.loan.v1.MsgApproveLoanResponse
+	(*MsgRejectLoan)(nil),                  // 4: overloan.loan.v1.MsgRejectLoan
+	(*MsgRejectLoanResponse)(nil),          // 5: overloan.loan.v1.MsgRejectLoanResponse
+	(*MsgRepayLoan)(nil),                   // 6: overloan.loan.v1.MsgRepayLoan
+	(*MsgRepayLoanResponse)(nil),           // 7: overloan.loan.v1.MsgRepayLoanResponse
+	(*MsgConfirmDisbursement)(nil),         // 8: overloan.loan.v1.MsgConfirmDisbursement
+	(*MsgConfirmDisbursementResponse)(nil), // 9: overloan.loan.v1.MsgConfirmDisbursementResponse
+	(*v1beta1.Coin)(nil),                   // 10: cosmos.base.v1beta1.Coin
 }
 var file_overloan_loan_v1_tx_proto_depIdxs = []int32{
-	8, // 0: loan.v1.MsgCreateLoan.principal:type_name -> cosmos.base.v1beta1.Coin
-	0, // 1: loan.v1.Msg.CreateLoan:input_type -> loan.v1.MsgCreateLoan
-	2, // 2: loan.v1.Msg.ApproveLoan:input_type -> loan.v1.MsgApproveLoan
-	4, // 3: loan.v1.Msg.RejectLoan:input_type -> loan.v1.MsgRejectLoan
-	6, // 4: loan.v1.Msg.ConfirmDisbursement:input_type -> loan.v1.MsgConfirmDisbursement
-	1, // 5: loan.v1.Msg.CreateLoan:output_type -> loan.v1.MsgCreateLoanResponse
-	3, // 6: loan.v1.Msg.ApproveLoan:output_type -> loan.v1.MsgApproveLoanResponse
-	5, // 7: loan.v1.Msg.RejectLoan:output_type -> loan.v1.MsgRejectLoanResponse
-	7, // 8: loan.v1.Msg.ConfirmDisbursement:output_type -> loan.v1.MsgConfirmDisbursementResponse
-	5, // [5:9] is the sub-list for method output_type
-	1, // [1:5] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	10, // 0: overloan.loan.v1.MsgCreateLoan.principal:type_name -> cosmos.base.v1beta1.Coin
+	10, // 1: overloan.loan.v1.MsgRepayLoan.amount:type_name -> cosmos.base.v1beta1.Coin
+	0,  // 2: overloan.loan.v1.Msg.CreateLoan:input_type -> overloan.loan.v1.MsgCreateLoan
+	2,  // 3: overloan.loan.v1.Msg.ApproveLoan:input_type -> overloan.loan.v1.MsgApproveLoan
+	4,  // 4: overloan.loan.v1.Msg.RejectLoan:input_type -> overloan.loan.v1.MsgRejectLoan
+	6,  // 5: overloan.loan.v1.Msg.RepayLoan:input_type -> overloan.loan.v1.MsgRepayLoan
+	8,  // 6: overloan.loan.v1.Msg.ConfirmDisbursement:input_type -> overloan.loan.v1.MsgConfirmDisbursement
+	1,  // 7: overloan.loan.v1.Msg.CreateLoan:output_type -> overloan.loan.v1.MsgCreateLoanResponse
+	3,  // 8: overloan.loan.v1.Msg.ApproveLoan:output_type -> overloan.loan.v1.MsgApproveLoanResponse
+	5,  // 9: overloan.loan.v1.Msg.RejectLoan:output_type -> overloan.loan.v1.MsgRejectLoanResponse
+	7,  // 10: overloan.loan.v1.Msg.RepayLoan:output_type -> overloan.loan.v1.MsgRepayLoanResponse
+	9,  // 11: overloan.loan.v1.Msg.ConfirmDisbursement:output_type -> overloan.loan.v1.MsgConfirmDisbursementResponse
+	7,  // [7:12] is the sub-list for method output_type
+	2,  // [2:7] is the sub-list for method input_type
+	2,  // [2:2] is the sub-list for extension type_name
+	2,  // [2:2] is the sub-list for extension extendee
+	0,  // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_overloan_loan_v1_tx_proto_init() }
@@ -4008,7 +5037,7 @@ func file_overloan_loan_v1_tx_proto_init() {
 			}
 		}
 		file_overloan_loan_v1_tx_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MsgConfirmDisbursement); i {
+			switch v := v.(*MsgRepayLoan); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -4020,6 +5049,30 @@ func file_overloan_loan_v1_tx_proto_init() {
 			}
 		}
 		file_overloan_loan_v1_tx_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MsgRepayLoanResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_overloan_loan_v1_tx_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MsgConfirmDisbursement); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_overloan_loan_v1_tx_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*MsgConfirmDisbursementResponse); i {
 			case 0:
 				return &v.state
@@ -4038,7 +5091,7 @@ func file_overloan_loan_v1_tx_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_overloan_loan_v1_tx_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

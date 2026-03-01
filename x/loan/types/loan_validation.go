@@ -1,9 +1,9 @@
 package types
 
-import loanv1 "github.com/zakoraa/overloan/api/overloan/loan/v1"
+import loanv1 "cosmossdk.io/api/overloan/loan/v1"
 
 // CanApprove memastikan loan dalam status yang valid untuk disetujui
-func (l loanv1.Loan) CanApprove() error {
+func CanApprove(l *loanv1.Loan) error {
 
 	// Loan hanya boleh disetujui jika masih berstatus PENDING
 	if l.Status != loanv1.LoanStatus_LOAN_STATUS_PENDING {
@@ -13,8 +13,16 @@ func (l loanv1.Loan) CanApprove() error {
 	return nil
 }
 
+func CanReject(l *loanv1.Loan) error {
+	if l.Status != loanv1.LoanStatus_LOAN_STATUS_PENDING {
+		return ErrInvalidStateTransition.
+			Wrap("loan must be pending to reject")
+	}
+	return nil
+}
+
 // CanDisburse memastikan loan dalam status yang valid untuk dicairkan
-func (l loanv1.Loan) CanDisburse() error {
+func CanDisburse(l *loanv1.Loan) error {
 
 	// Loan hanya boleh dicairkan jika sudah berstatus APPROVED
 	if l.Status != loanv1.LoanStatus_LOAN_STATUS_APPROVED {

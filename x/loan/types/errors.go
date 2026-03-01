@@ -14,4 +14,5 @@ var (
 	ErrInvalidAuthority       = errorsmod.Register(ModuleName, 7, "invalid authority")
 	ErrInvalidAddress         = errorsmod.Register(ModuleName, 8, "invalid address")
 	ErrInvalidRequest         = errorsmod.Register(ModuleName, 9, "invalid request")
+	ErrInvalidCoin            = errorsmod.Register(ModuleName, 10, "invalid coin")
 )

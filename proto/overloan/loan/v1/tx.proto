@@ -19,6 +19,10 @@ service Msg {
   // status berubah jadi REJECTED
   rpc RejectLoan(MsgRejectLoan) returns (MsgRejectLoanResponse);
 
+  // Mencatat pembayaran pinjaman oleh omnibus_group_policy
+  // Mengurangi outstanding dan membakar settlement token
+  rpc RepayLoan(MsgRepayLoan) returns (MsgRepayLoanResponse);
+
   // Mengonfirmasi pencairan dana dan mengubah status menjadi DISBURSED
   rpc ConfirmDisbursement(MsgConfirmDisbursement) returns (MsgConfirmDisbursementResponse);
 }
@@ -66,6 +70,21 @@ message MsgRejectLoan {
 
 // MsgRejectLoanResponse tidak mengembalikan data tambahan
 message MsgRejectLoanResponse {}
+
+// MsgRepayLoan digunakan untuk mencatat pembayaran pinjaman
+message MsgRepayLoan {
+  // Alamat omnibus_group_policy sebagai otoritas pembayaran
+  string authority = 1;
+
+  // ID pinjaman yang dibayar
+  uint64 loan_id = 2;
+
+  // Jumlah yang dibayarkan
+  cosmos.base.v1beta1.Coin amount = 3;
+}
+
+// MsgRepayLoanResponse tidak mengembalikan data tambahan
+message MsgRepayLoanResponse {}
 
 // MsgConfirmDisbursement digunakan untuk mengonfirmasi bahwa dana telah dicairkan
 message MsgConfirmDisbursement {

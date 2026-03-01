@@ -4,15 +4,15 @@ import (
 	errorsmod "cosmossdk.io/errors" // package error resmi SDK terbaru
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	loanv1 "github.com/zakoraa/overloan/api/overloan/loan/v1"
+	loanv1 "cosmossdk.io/api/overloan/loan/v1"
 )
 
 // Pastikan MsgCreateLoan dari proto memenuhi interface sdk.Msg
 var _ sdk.Msg = (*loanv1.MsgCreateLoan)(nil)
 
-// ValidateBasic melakukan validasi stateless (tanpa akses store)
+// ValidateCreateLoan melakukan validasi stateless (tanpa akses store)
 // Fungsi ini dipanggil sebelum tx diproses keeper
-func (msg *loanv1.MsgCreateLoan) ValidateBasic() error {
+func ValidateCreateLoan(msg *loanv1.MsgCreateLoan) error {
 
 	// Validasi alamat borrower dalam format Bech32
 	if _, err := sdk.AccAddressFromBech32(msg.Borrower); err != nil {
@@ -23,14 +23,13 @@ func (msg *loanv1.MsgCreateLoan) ValidateBasic() error {
 		)
 	}
 
-	// Validasi struktur coin (denom & amount valid)
-	if !msg.Principal.IsValid() {
-		return ErrInvalidPrincipal.Wrap("invalid coin format")
-	}
-
-	// Principal tidak boleh nol atau negatif
-	if msg.Principal.IsZero() || msg.Principal.Amount.IsNegative() {
-		return ErrInvalidPrincipal.Wrap("principal must be positive")
+	// Validasi bahwa principal memiliki denom valid dan amount positif
+	if err := ValidatePositiveCoin(msg.Principal.Denom, msg.Principal.Amount); err != nil {
+		return errorsmod.Wrapf(
+			ErrInvalidCoin,
+			"invalid pricipal: %v",
+			err,
+		)
 	}
 
 	// Tenor wajib lebih dari 0 bulan

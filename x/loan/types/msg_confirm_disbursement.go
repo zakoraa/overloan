@@ -4,15 +4,15 @@ import (
 	errorsmod "cosmossdk.io/errors" // package error resmi SDK terbaru
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	loanv1 "github.com/zakoraa/overloan/api/overloan/loan/v1"
+	loanv1 "cosmossdk.io/api/overloan/loan/v1"
 )
 
 // Pastikan MsgConfirmDisbursement dari proto memenuhi interface sdk.Msg
 var _ sdk.Msg = (*loanv1.MsgConfirmDisbursement)(nil)
 
-// ValidateBasic melakukan validasi stateless (tanpa akses store)
+// ValidateConfirmDisbursement melakukan validasi stateless (tanpa akses store)
 // Fungsi ini dipanggil sebelum tx diproses keeper
-func (msg *loanv1.MsgConfirmDisbursement) ValidateBasic() error {
+func ValidateConfirmDisbursement(msg *loanv1.MsgConfirmDisbursement) error {
 
 	// Validasi alamat authority dalam format Bech32
 	if _, err := sdk.AccAddressFromBech32(msg.Authority); err != nil {

@@ -19,9 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Query_Params_FullMethodName          = "/loan.v1.Query/Params"
-	Query_Loan_FullMethodName            = "/loan.v1.Query/Loan"
-	Query_LoansByBorrower_FullMethodName = "/loan.v1.Query/LoansByBorrower"
+	Query_Params_FullMethodName          = "/overloan.loan.v1.Query/Params"
+	Query_Loan_FullMethodName            = "/overloan.loan.v1.Query/Loan"
+	Query_LoansByBorrower_FullMethodName = "/overloan.loan.v1.Query/LoansByBorrower"
 )
 
 // QueryClient is the client API for Query service.
@@ -186,7 +186,7 @@ func _Query_LoansByBorrower_Handler(srv interface{}, ctx context.Context, dec fu
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Query_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "loan.v1.Query",
+	ServiceName: "overloan.loan.v1.Query",
 	HandlerType: (*QueryServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
