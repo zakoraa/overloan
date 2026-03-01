@@ -78,6 +78,9 @@ import (
 	govkeeper "github.com/cosmos/cosmos-sdk/x/gov/keeper"
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 	govv1beta1 "github.com/cosmos/cosmos-sdk/x/gov/types/v1beta1"
+	loan "github.com/cosmos/cosmos-sdk/x/loan"
+	loankeeper "github.com/cosmos/cosmos-sdk/x/loan/keeper"
+	loantypes "github.com/cosmos/cosmos-sdk/x/loan/types"
 	"github.com/cosmos/cosmos-sdk/x/mint"
 	mintkeeper "github.com/cosmos/cosmos-sdk/x/mint/keeper"
 	minttypes "github.com/cosmos/cosmos-sdk/x/mint/types"
@@ -112,6 +115,7 @@ var (
 		govtypes.ModuleName:                         {authtypes.Burner},
 		protocolpooltypes.ModuleName:                nil,
 		protocolpooltypes.ProtocolPoolEscrowAccount: nil,
+		loantypes.ModuleName:                        {authtypes.Minter, authtypes.Burner},
 	}
 )
 
@@ -150,6 +154,7 @@ type SimApp struct {
 	AuthzKeeper        authzkeeper.Keeper
 	EpochsKeeper       *epochskeeper.Keeper
 	ProtocolPoolKeeper protocolpoolkeeper.Keeper
+	LoanKeeper         loankeeper.Keeper
 
 	// the module manager
 	ModuleManager      *module.Manager
@@ -255,6 +260,7 @@ func NewSimApp(
 		authzkeeper.StoreKey,
 		epochstypes.StoreKey,
 		protocolpooltypes.StoreKey,
+		loantypes.StoreKey,
 	)
 
 	// register streaming services
@@ -299,6 +305,15 @@ func NewSimApp(
 		BlockedAddresses(),
 		authtypes.NewModuleAddress(govtypes.ModuleName).String(),
 		logger,
+	)
+
+	app.LoanKeeper = loankeeper.NewKeeper(
+		appCodec,
+		runtime.NewKVStoreService(keys[loantypes.StoreKey]),
+		app.BankKeeper,
+		app.AccountKeeper,
+		// app.GroupKeeper,
+		authtypes.NewModuleAddress(govtypes.ModuleName).String(),
 	)
 
 	// optional: enable sign mode textual by overwriting the default tx config (after setting the bank keeper)
@@ -482,6 +497,7 @@ func NewSimApp(
 		consensus.NewAppModule(appCodec, app.ConsensusParamsKeeper),
 		epochs.NewAppModule(app.EpochsKeeper),
 		protocolpool.NewAppModule(app.ProtocolPoolKeeper, app.AccountKeeper, app.BankKeeper),
+		loan.NewAppModule(appCodec, app.LoanKeeper, app.AccountKeeper, app.BankKeeper),
 	)
 
 	// BasicModuleManager defines the module BasicManager is in charge of setting up basic,
@@ -518,6 +534,7 @@ func NewSimApp(
 		genutiltypes.ModuleName,
 		authz.ModuleName,
 		epochstypes.ModuleName,
+		loantypes.ModuleName,
 	)
 	app.ModuleManager.SetOrderEndBlockers(
 		banktypes.ModuleName,
@@ -548,6 +565,7 @@ func NewSimApp(
 		consensusparamtypes.ModuleName,
 		epochstypes.ModuleName,
 		protocolpooltypes.ModuleName,
+		loantypes.ModuleName,
 	}
 
 	exportModuleOrder := []string{

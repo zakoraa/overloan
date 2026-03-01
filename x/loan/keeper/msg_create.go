@@ -63,7 +63,7 @@ func (m msgServer) CreateLoan(
 	// Ambil waktu block sebagai timestamp pembuatan
 	now := sdkCtx.BlockTime()
 
-	// Bentuk entity Loan baru dengan status awal PENDING
+	// entity Loan baru dengan status awal PENDING
 	loan := &loanv1.Loan{
 		Id:       loanID,
 		Borrower: msg.Borrower,
