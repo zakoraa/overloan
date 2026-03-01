@@ -5,8 +5,8 @@ import (
 	"fmt"
 
 	basev1beta1 "cosmossdk.io/api/cosmos/base/v1beta1"
-	loanv1 "cosmossdk.io/api/overloan/loan/v1"
 	sdkmath "cosmossdk.io/math"
+	loanv1 "github.com/cosmos/cosmos-sdk/api/overloan/loan/v1"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/loan/types"
 	"google.golang.org/protobuf/types/known/timestamppb"
@@ -22,7 +22,10 @@ func (m msgServer) CreateLoan(
 	sdkCtx := sdk.UnwrapSDKContext(ctx)
 
 	// Ambil parameter module untuk validasi stateful
-	params := m.GetParams(sdkCtx)
+	params, err := m.GetParams(sdkCtx)
+	if err != nil {
+		return nil, err
+	}
 
 	// Validasi denom harus sesuai settlement denom
 	if msg.Principal.Denom != params.SettlementDenom {
@@ -58,7 +61,11 @@ func (m msgServer) CreateLoan(
 	}
 
 	// Ambil ID loan berikutnya dari sequence
-	loanID := m.GetNextLoanID(sdkCtx)
+	loanID, err := m.GetNextLoanID(sdkCtx)
+
+	if err != nil {
+		return nil, err
+	}
 
 	// Ambil waktu block sebagai timestamp pembuatan
 	now := sdkCtx.BlockTime()

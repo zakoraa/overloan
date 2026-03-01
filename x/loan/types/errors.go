@@ -15,4 +15,5 @@ var (
 	ErrInvalidAddress         = errorsmod.Register(ModuleName, 8, "invalid address")
 	ErrInvalidRequest         = errorsmod.Register(ModuleName, 9, "invalid request")
 	ErrInvalidCoin            = errorsmod.Register(ModuleName, 10, "invalid coin")
+	ErrParamsNotFound         = errorsmod.Register(ModuleName, 11, "params not found")
 )

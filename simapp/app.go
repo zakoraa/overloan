@@ -307,6 +307,14 @@ func NewSimApp(
 		logger,
 	)
 
+// 	app.GroupKeeper = groupkeeper.NewKeeper(
+// 	appCodec,
+// 	runtime.NewKVStoreService(keys[grouptypes.StoreKey]),
+// 	app.AccountKeeper,
+// 	app.BankKeeper,
+// 	authtypes.NewModuleAddress(govtypes.ModuleName).String(),
+// )
+
 	app.LoanKeeper = loankeeper.NewKeeper(
 		appCodec,
 		runtime.NewKVStoreService(keys[loantypes.StoreKey]),
@@ -497,6 +505,7 @@ func NewSimApp(
 		consensus.NewAppModule(appCodec, app.ConsensusParamsKeeper),
 		epochs.NewAppModule(app.EpochsKeeper),
 		protocolpool.NewAppModule(app.ProtocolPoolKeeper, app.AccountKeeper, app.BankKeeper),
+		// group.NewAppModule(appCodec, app.GroupKeeper, app.AccountKeeper, app.BankKeeper, app.interfaceRegistry),
 		loan.NewAppModule(appCodec, app.LoanKeeper, app.AccountKeeper, app.BankKeeper),
 	)
 

@@ -2,15 +2,19 @@ package keeper
 
 import (
 	"cosmossdk.io/store/prefix"
+	"github.com/cosmos/cosmos-sdk/runtime"
 	"github.com/cosmos/cosmos-sdk/x/loan/types"
 
-	loanv1 "cosmossdk.io/api/overloan/loan/v1"
 	sdkmath "cosmossdk.io/math"
+	loanv1 "github.com/cosmos/cosmos-sdk/api/overloan/loan/v1"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
 func (k Keeper) GetTotalOutstanding(ctx sdk.Context) sdkmath.Int {
-	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.LoanKeyPrefix)
+	store := prefix.NewStore(
+		runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx)),
+		types.LoanKeyPrefix,
+	)
 
 	iterator := store.Iterator(nil, nil)
 	defer iterator.Close()

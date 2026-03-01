@@ -12,6 +12,8 @@ const (
 )
 
 var (
+	ParamsKey = []byte("loan_params")
+
 	EventTypeLoanCreated   = "loan_created"
 	EventTypeLoanApproved  = "loan_approved"
 	EventTypeLoanRejected  = "loan_rejected"

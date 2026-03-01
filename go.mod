@@ -2,7 +2,7 @@ go 1.25.7
 
 module github.com/cosmos/cosmos-sdk
 
-replace cosmossdk.io/api => ./api
+replace github.com/cosmos/cosmos-sdk/api => ./api
 
 require (
 	cosmossdk.io/api v1.0.0
@@ -23,6 +23,7 @@ require (
 	github.com/cosmos/btree v1.0.0
 	github.com/cosmos/cosmos-db v1.1.3
 	github.com/cosmos/cosmos-proto v1.0.0-beta.5
+	github.com/cosmos/cosmos-sdk/api v0.0.0-00010101000000-000000000000
 	github.com/cosmos/go-bip39 v1.0.0
 	github.com/cosmos/gogogateway v1.2.0
 	github.com/cosmos/gogoproto v1.7.2

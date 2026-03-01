@@ -2,6 +2,7 @@ package keeper
 
 import (
 	"fmt"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
@@ -12,7 +13,10 @@ func (k Keeper) SettlementSendRestriction(
 	amount sdk.Coins,
 ) error {
 
-	params := k.GetParams(ctx)
+	params, err := k.GetParams(ctx)
+	if err != nil {
+		return err
+	}
 	moduleAddr := k.GetModuleAddress()
 
 	for _, coin := range amount {

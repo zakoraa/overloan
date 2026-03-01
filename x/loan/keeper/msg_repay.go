@@ -2,10 +2,12 @@ package keeper
 
 import (
 	"context"
+	"errors"
 	"fmt"
 
-	loanv1 "cosmossdk.io/api/overloan/loan/v1"
+	"cosmossdk.io/collections"
 	sdkmath "cosmossdk.io/math"
+	loanv1 "github.com/cosmos/cosmos-sdk/api/overloan/loan/v1"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/loan/types"
 )
@@ -17,7 +19,10 @@ func (m msgServer) RepayLoan(
 
 	sdkCtx := sdk.UnwrapSDKContext(ctx)
 
-	params := m.GetParams(sdkCtx)
+	params, err := m.GetParams(sdkCtx)
+	if err != nil {
+		return nil, err
+	}
 
 	//  Validasi authority
 	if err := m.ValidateAuthority(sdkCtx, msg.Authority); err != nil {
@@ -25,9 +30,12 @@ func (m msgServer) RepayLoan(
 	}
 
 	//  Ambil loan
-	loan, found := m.GetLoan(sdkCtx, msg.LoanId)
-	if !found {
-		return nil, types.ErrLoanNotFound
+	loan, err := m.GetLoan(sdkCtx, msg.LoanId)
+	if err != nil {
+		if errors.Is(err, collections.ErrNotFound) {
+			return nil, types.ErrLoanNotFound
+		}
+		return nil, err
 	}
 
 	//  Harus sudah disbursed

@@ -58,7 +58,7 @@ func (k Keeper) SetBalance(ctx Context, addr AccAddress, balance Coin) error {
     return err
   }
 
-  store := ctx.KVStore(k.storeKey)
+  store := k.storeService.OpenKVStore(ctx)
   balancesStore := prefix.NewStore(store, BalancesPrefix)
   accountStore := prefix.NewStore(balancesStore, addr.Bytes())
 

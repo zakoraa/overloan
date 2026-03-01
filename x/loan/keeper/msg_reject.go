@@ -2,9 +2,11 @@ package keeper
 
 import (
 	"context"
+	"errors"
 	"fmt"
 
-	loanv1 "cosmossdk.io/api/overloan/loan/v1"
+	"cosmossdk.io/collections"
+	loanv1 "github.com/cosmos/cosmos-sdk/api/overloan/loan/v1"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/loan/types"
 )
@@ -22,9 +24,12 @@ func (m msgServer) RejectLoan(
 	}
 
 	//  Ambil loan
-	loan, found := m.GetLoan(sdkCtx, msg.LoanId)
-	if !found {
-		return nil, types.ErrLoanNotFound
+	loan, err := m.GetLoan(sdkCtx, msg.LoanId)
+	if err != nil {
+		if errors.Is(err, collections.ErrNotFound) {
+			return nil, types.ErrLoanNotFound
+		}
+		return nil, err
 	}
 
 	//  Validasi state machine

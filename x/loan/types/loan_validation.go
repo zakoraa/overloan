@@ -1,6 +1,6 @@
 package types
 
-import loanv1 "cosmossdk.io/api/overloan/loan/v1"
+import loanv1 "github.com/cosmos/cosmos-sdk/api/overloan/loan/v1"
 
 // CanApprove memastikan loan dalam status yang valid untuk disetujui
 func CanApprove(l *loanv1.Loan) error {

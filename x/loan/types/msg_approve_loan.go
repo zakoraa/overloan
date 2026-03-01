@@ -4,7 +4,7 @@ import (
 	errorsmod "cosmossdk.io/errors" // package error resmi SDK terbaru
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	loanv1 "cosmossdk.io/api/overloan/loan/v1"
+	loanv1 "github.com/cosmos/cosmos-sdk/api/overloan/loan/v1"
 )
 
 // Pastikan MsgApproveLoan dari proto memenuhi interface sdk.Msg

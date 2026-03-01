@@ -2,10 +2,12 @@ package keeper
 
 import (
 	"context"
+	"errors"
 	"fmt"
 
-	loanv1 "cosmossdk.io/api/overloan/loan/v1"
+	"cosmossdk.io/collections"
 	sdkmath "cosmossdk.io/math"
+	loanv1 "github.com/cosmos/cosmos-sdk/api/overloan/loan/v1"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/loan/types"
 	"google.golang.org/protobuf/types/known/timestamppb"
@@ -19,7 +21,10 @@ func (m msgServer) ConfirmDisbursement(
 	sdkCtx := sdk.UnwrapSDKContext(ctx)
 
 	// Ambil params
-	params := m.GetParams(sdkCtx)
+	params, err := m.GetParams(sdkCtx)
+	if err != nil {
+		return nil, err
+	}
 
 	// Validasi authority (harus omnibus policy)
 	if err := m.ValidateAuthority(
@@ -30,9 +35,12 @@ func (m msgServer) ConfirmDisbursement(
 	}
 
 	// Ambil loan
-	loan, found := m.GetLoan(sdkCtx, msg.LoanId)
-	if !found {
-		return nil, types.ErrLoanNotFound
+	loan, err := m.GetLoan(sdkCtx, msg.LoanId)
+	if err != nil {
+		if errors.Is(err, collections.ErrNotFound) {
+			return nil, types.ErrLoanNotFound
+		}
+		return nil, err
 	}
 
 	// Validasi state machine

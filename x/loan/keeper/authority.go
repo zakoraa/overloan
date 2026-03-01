@@ -11,19 +11,22 @@ func (k Keeper) ValidateAuthority(ctx sdk.Context, authority string) error {
 		return types.ErrUnauthorized
 	}
 
-	params := k.GetParams(ctx)
+	params, err := k.GetParams(ctx)
+	if err != nil {
+		return err
+	}
 
 	if authority != params.LazGroupPolicy {
 		return types.ErrUnauthorized
 	}
 
-	ok, err := k.groupKeeper.HasGroupPolicy(ctx, authority)
-	if err != nil {
-		return err
-	}
-	if !ok {
-		return types.ErrInvalidAuthority
-	}
+	// ok, err := k.groupKeeper.HasGroupPolicy(ctx, authority)
+	// if err != nil {
+	// 	return err
+	// }
+	// if !ok {
+	// 	return types.ErrInvalidAuthority
+	// }
 
 	return nil
 }

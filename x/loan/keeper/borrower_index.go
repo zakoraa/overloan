@@ -1,16 +1,23 @@
 package keeper
 
 import (
+	"errors"
+
+	"cosmossdk.io/collections"
 	"cosmossdk.io/store/prefix"
+	"github.com/cosmos/cosmos-sdk/runtime"
 	"github.com/cosmos/cosmos-sdk/x/loan/types"
 
-	loanv1 "cosmossdk.io/api/overloan/loan/v1"
 	storetypes "cosmossdk.io/store/types"
+	loanv1 "github.com/cosmos/cosmos-sdk/api/overloan/loan/v1"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
 func (k Keeper) SetLoanByBorrower(ctx sdk.Context, borrower sdk.AccAddress, loanID uint64) {
-	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.LoanByBorrowerPrefix)
+	store := prefix.NewStore(
+		runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx)),
+		types.LoanByBorrowerPrefix,
+	)
 
 	key := append(borrower.Bytes(), sdk.Uint64ToBigEndian(loanID)...)
 	store.Set(key, []byte{1})
@@ -21,7 +28,10 @@ func (k Keeper) GetLoansByBorrower(
 	borrower sdk.AccAddress,
 ) []*loanv1.Loan {
 
-	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.LoanByBorrowerPrefix)
+	store := prefix.NewStore(
+		runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx)),
+		types.LoanByBorrowerPrefix,
+	)
 
 	iterator := store.Iterator(
 		borrower.Bytes(),
@@ -35,10 +45,15 @@ func (k Keeper) GetLoansByBorrower(
 		key := iterator.Key()
 		loanID := sdk.BigEndianToUint64(key[len(borrower.Bytes()):])
 
-		loan, found := k.GetLoan(ctx, loanID)
-		if found {
-			loans = append(loans, loan)
+		loan, err := k.GetLoan(ctx, loanID)
+		if err != nil {
+			if errors.Is(err, collections.ErrNotFound) {
+				continue
+			}
+			return nil
 		}
+
+		loans = append(loans, loan)
 	}
 
 	return loans

@@ -485,7 +485,7 @@ func (k BaseSendKeeper) GetAllSendEnabledEntries(ctx context.Context) []types.Se
 //
 // Example usage:
 //
-//	store := ctx.KVStore(k.storeKey)
+//	store := k.storeService.OpenKVStore(ctx)
 //	sendEnabled, found := getSendEnabled(store, "atom")
 //	if !found {
 //	    sendEnabled = DefaultSendEnabled
