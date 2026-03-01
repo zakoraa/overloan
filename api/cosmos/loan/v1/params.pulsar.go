@@ -23,8 +23,8 @@ var (
 )
 
 func init() {
-	file_overloan_loan_v1_params_proto_init()
-	md_Params = File_overloan_loan_v1_params_proto.Messages().ByName("Params")
+	file_cosmos_loan_v1_params_proto_init()
+	md_Params = File_cosmos_loan_v1_params_proto.Messages().ByName("Params")
 	fd_Params_settlement_denom = md_Params.Fields().ByName("settlement_denom")
 	fd_Params_max_loan_amount = md_Params.Fields().ByName("max_loan_amount")
 	fd_Params_min_loan_amount = md_Params.Fields().ByName("min_loan_amount")
@@ -42,7 +42,7 @@ func (x *Params) ProtoReflect() protoreflect.Message {
 }
 
 func (x *Params) slowProtoReflect() protoreflect.Message {
-	mi := &file_overloan_loan_v1_params_proto_msgTypes[0]
+	mi := &file_cosmos_loan_v1_params_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -149,23 +149,23 @@ func (x *fastReflection_Params) Range(f func(protoreflect.FieldDescriptor, proto
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_Params) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "overloan.loan.v1.Params.settlement_denom":
+	case "cosmos.loan.v1.Params.settlement_denom":
 		return x.SettlementDenom != ""
-	case "overloan.loan.v1.Params.max_loan_amount":
+	case "cosmos.loan.v1.Params.max_loan_amount":
 		return x.MaxLoanAmount != uint64(0)
-	case "overloan.loan.v1.Params.min_loan_amount":
+	case "cosmos.loan.v1.Params.min_loan_amount":
 		return x.MinLoanAmount != uint64(0)
-	case "overloan.loan.v1.Params.max_tenor_months":
+	case "cosmos.loan.v1.Params.max_tenor_months":
 		return x.MaxTenorMonths != uint64(0)
-	case "overloan.loan.v1.Params.laz_group_policy":
+	case "cosmos.loan.v1.Params.laz_group_policy":
 		return x.LazGroupPolicy != ""
-	case "overloan.loan.v1.Params.omnibus_group_policy":
+	case "cosmos.loan.v1.Params.omnibus_group_policy":
 		return x.OmnibusGroupPolicy != ""
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.Params"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.Params"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.Params does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.Params does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -177,23 +177,23 @@ func (x *fastReflection_Params) Has(fd protoreflect.FieldDescriptor) bool {
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_Params) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "overloan.loan.v1.Params.settlement_denom":
+	case "cosmos.loan.v1.Params.settlement_denom":
 		x.SettlementDenom = ""
-	case "overloan.loan.v1.Params.max_loan_amount":
+	case "cosmos.loan.v1.Params.max_loan_amount":
 		x.MaxLoanAmount = uint64(0)
-	case "overloan.loan.v1.Params.min_loan_amount":
+	case "cosmos.loan.v1.Params.min_loan_amount":
 		x.MinLoanAmount = uint64(0)
-	case "overloan.loan.v1.Params.max_tenor_months":
+	case "cosmos.loan.v1.Params.max_tenor_months":
 		x.MaxTenorMonths = uint64(0)
-	case "overloan.loan.v1.Params.laz_group_policy":
+	case "cosmos.loan.v1.Params.laz_group_policy":
 		x.LazGroupPolicy = ""
-	case "overloan.loan.v1.Params.omnibus_group_policy":
+	case "cosmos.loan.v1.Params.omnibus_group_policy":
 		x.OmnibusGroupPolicy = ""
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.Params"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.Params"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.Params does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.Params does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -205,29 +205,29 @@ func (x *fastReflection_Params) Clear(fd protoreflect.FieldDescriptor) {
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_Params) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "overloan.loan.v1.Params.settlement_denom":
+	case "cosmos.loan.v1.Params.settlement_denom":
 		value := x.SettlementDenom
 		return protoreflect.ValueOfString(value)
-	case "overloan.loan.v1.Params.max_loan_amount":
+	case "cosmos.loan.v1.Params.max_loan_amount":
 		value := x.MaxLoanAmount
 		return protoreflect.ValueOfUint64(value)
-	case "overloan.loan.v1.Params.min_loan_amount":
+	case "cosmos.loan.v1.Params.min_loan_amount":
 		value := x.MinLoanAmount
 		return protoreflect.ValueOfUint64(value)
-	case "overloan.loan.v1.Params.max_tenor_months":
+	case "cosmos.loan.v1.Params.max_tenor_months":
 		value := x.MaxTenorMonths
 		return protoreflect.ValueOfUint64(value)
-	case "overloan.loan.v1.Params.laz_group_policy":
+	case "cosmos.loan.v1.Params.laz_group_policy":
 		value := x.LazGroupPolicy
 		return protoreflect.ValueOfString(value)
-	case "overloan.loan.v1.Params.omnibus_group_policy":
+	case "cosmos.loan.v1.Params.omnibus_group_policy":
 		value := x.OmnibusGroupPolicy
 		return protoreflect.ValueOfString(value)
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.Params"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.Params"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.Params does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.Params does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -243,23 +243,23 @@ func (x *fastReflection_Params) Get(descriptor protoreflect.FieldDescriptor) pro
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_Params) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "overloan.loan.v1.Params.settlement_denom":
+	case "cosmos.loan.v1.Params.settlement_denom":
 		x.SettlementDenom = value.Interface().(string)
-	case "overloan.loan.v1.Params.max_loan_amount":
+	case "cosmos.loan.v1.Params.max_loan_amount":
 		x.MaxLoanAmount = value.Uint()
-	case "overloan.loan.v1.Params.min_loan_amount":
+	case "cosmos.loan.v1.Params.min_loan_amount":
 		x.MinLoanAmount = value.Uint()
-	case "overloan.loan.v1.Params.max_tenor_months":
+	case "cosmos.loan.v1.Params.max_tenor_months":
 		x.MaxTenorMonths = value.Uint()
-	case "overloan.loan.v1.Params.laz_group_policy":
+	case "cosmos.loan.v1.Params.laz_group_policy":
 		x.LazGroupPolicy = value.Interface().(string)
-	case "overloan.loan.v1.Params.omnibus_group_policy":
+	case "cosmos.loan.v1.Params.omnibus_group_policy":
 		x.OmnibusGroupPolicy = value.Interface().(string)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.Params"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.Params"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.Params does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.Params does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -275,23 +275,23 @@ func (x *fastReflection_Params) Set(fd protoreflect.FieldDescriptor, value proto
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_Params) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "overloan.loan.v1.Params.settlement_denom":
-		panic(fmt.Errorf("field settlement_denom of message overloan.loan.v1.Params is not mutable"))
-	case "overloan.loan.v1.Params.max_loan_amount":
-		panic(fmt.Errorf("field max_loan_amount of message overloan.loan.v1.Params is not mutable"))
-	case "overloan.loan.v1.Params.min_loan_amount":
-		panic(fmt.Errorf("field min_loan_amount of message overloan.loan.v1.Params is not mutable"))
-	case "overloan.loan.v1.Params.max_tenor_months":
-		panic(fmt.Errorf("field max_tenor_months of message overloan.loan.v1.Params is not mutable"))
-	case "overloan.loan.v1.Params.laz_group_policy":
-		panic(fmt.Errorf("field laz_group_policy of message overloan.loan.v1.Params is not mutable"))
-	case "overloan.loan.v1.Params.omnibus_group_policy":
-		panic(fmt.Errorf("field omnibus_group_policy of message overloan.loan.v1.Params is not mutable"))
+	case "cosmos.loan.v1.Params.settlement_denom":
+		panic(fmt.Errorf("field settlement_denom of message cosmos.loan.v1.Params is not mutable"))
+	case "cosmos.loan.v1.Params.max_loan_amount":
+		panic(fmt.Errorf("field max_loan_amount of message cosmos.loan.v1.Params is not mutable"))
+	case "cosmos.loan.v1.Params.min_loan_amount":
+		panic(fmt.Errorf("field min_loan_amount of message cosmos.loan.v1.Params is not mutable"))
+	case "cosmos.loan.v1.Params.max_tenor_months":
+		panic(fmt.Errorf("field max_tenor_months of message cosmos.loan.v1.Params is not mutable"))
+	case "cosmos.loan.v1.Params.laz_group_policy":
+		panic(fmt.Errorf("field laz_group_policy of message cosmos.loan.v1.Params is not mutable"))
+	case "cosmos.loan.v1.Params.omnibus_group_policy":
+		panic(fmt.Errorf("field omnibus_group_policy of message cosmos.loan.v1.Params is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.Params"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.Params"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.Params does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.Params does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -300,23 +300,23 @@ func (x *fastReflection_Params) Mutable(fd protoreflect.FieldDescriptor) protore
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_Params) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "overloan.loan.v1.Params.settlement_denom":
+	case "cosmos.loan.v1.Params.settlement_denom":
 		return protoreflect.ValueOfString("")
-	case "overloan.loan.v1.Params.max_loan_amount":
+	case "cosmos.loan.v1.Params.max_loan_amount":
 		return protoreflect.ValueOfUint64(uint64(0))
-	case "overloan.loan.v1.Params.min_loan_amount":
+	case "cosmos.loan.v1.Params.min_loan_amount":
 		return protoreflect.ValueOfUint64(uint64(0))
-	case "overloan.loan.v1.Params.max_tenor_months":
+	case "cosmos.loan.v1.Params.max_tenor_months":
 		return protoreflect.ValueOfUint64(uint64(0))
-	case "overloan.loan.v1.Params.laz_group_policy":
+	case "cosmos.loan.v1.Params.laz_group_policy":
 		return protoreflect.ValueOfString("")
-	case "overloan.loan.v1.Params.omnibus_group_policy":
+	case "cosmos.loan.v1.Params.omnibus_group_policy":
 		return protoreflect.ValueOfString("")
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.Params"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.Params"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.Params does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.Params does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -326,7 +326,7 @@ func (x *fastReflection_Params) NewField(fd protoreflect.FieldDescriptor) protor
 func (x *fastReflection_Params) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in overloan.loan.v1.Params", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in cosmos.loan.v1.Params", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -708,7 +708,7 @@ func (x *fastReflection_Params) ProtoMethods() *protoiface.Methods {
 // versions:
 // 	protoc-gen-go v1.27.0
 // 	protoc        (unknown)
-// source: overloan/loan/v1/params.proto
+// source: cosmos/loan/v1/params.proto
 
 const (
 	// Verify that this generated code is sufficiently up-to-date.
@@ -740,7 +740,7 @@ type Params struct {
 func (x *Params) Reset() {
 	*x = Params{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_overloan_loan_v1_params_proto_msgTypes[0]
+		mi := &file_cosmos_loan_v1_params_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -754,7 +754,7 @@ func (*Params) ProtoMessage() {}
 
 // Deprecated: Use Params.ProtoReflect.Descriptor instead.
 func (*Params) Descriptor() ([]byte, []int) {
-	return file_overloan_loan_v1_params_proto_rawDescGZIP(), []int{0}
+	return file_cosmos_loan_v1_params_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Params) GetSettlementDenom() string {
@@ -799,60 +799,59 @@ func (x *Params) GetOmnibusGroupPolicy() string {
 	return ""
 }
 
-var File_overloan_loan_v1_params_proto protoreflect.FileDescriptor
+var File_cosmos_loan_v1_params_proto protoreflect.FileDescriptor
 
-var file_overloan_loan_v1_params_proto_rawDesc = []byte{
-	0x0a, 0x1d, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x2f, 0x6c, 0x6f, 0x61, 0x6e, 0x2f,
-	0x76, 0x31, 0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12,
-	0x10, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76,
-	0x31, 0x22, 0x89, 0x02, 0x0a, 0x06, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x29, 0x0a, 0x10,
-	0x73, 0x65, 0x74, 0x74, 0x6c, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x5f, 0x64, 0x65, 0x6e, 0x6f, 0x6d,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0f, 0x73, 0x65, 0x74, 0x74, 0x6c, 0x65, 0x6d, 0x65,
-	0x6e, 0x74, 0x44, 0x65, 0x6e, 0x6f, 0x6d, 0x12, 0x26, 0x0a, 0x0f, 0x6d, 0x61, 0x78, 0x5f, 0x6c,
-	0x6f, 0x61, 0x6e, 0x5f, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04,
-	0x52, 0x0d, 0x6d, 0x61, 0x78, 0x4c, 0x6f, 0x61, 0x6e, 0x41, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x12,
-	0x26, 0x0a, 0x0f, 0x6d, 0x69, 0x6e, 0x5f, 0x6c, 0x6f, 0x61, 0x6e, 0x5f, 0x61, 0x6d, 0x6f, 0x75,
-	0x6e, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0d, 0x6d, 0x69, 0x6e, 0x4c, 0x6f, 0x61,
-	0x6e, 0x41, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x28, 0x0a, 0x10, 0x6d, 0x61, 0x78, 0x5f, 0x74,
-	0x65, 0x6e, 0x6f, 0x72, 0x5f, 0x6d, 0x6f, 0x6e, 0x74, 0x68, 0x73, 0x18, 0x04, 0x20, 0x01, 0x28,
-	0x04, 0x52, 0x0e, 0x6d, 0x61, 0x78, 0x54, 0x65, 0x6e, 0x6f, 0x72, 0x4d, 0x6f, 0x6e, 0x74, 0x68,
-	0x73, 0x12, 0x28, 0x0a, 0x10, 0x6c, 0x61, 0x7a, 0x5f, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x5f, 0x70,
-	0x6f, 0x6c, 0x69, 0x63, 0x79, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0e, 0x6c, 0x61, 0x7a,
-	0x47, 0x72, 0x6f, 0x75, 0x70, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x12, 0x30, 0x0a, 0x14, 0x6f,
-	0x6d, 0x6e, 0x69, 0x62, 0x75, 0x73, 0x5f, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x5f, 0x70, 0x6f, 0x6c,
-	0x69, 0x63, 0x79, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x12, 0x6f, 0x6d, 0x6e, 0x69, 0x62,
-	0x75, 0x73, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x42, 0xaf, 0x01,
-	0x0a, 0x14, 0x63, 0x6f, 0x6d, 0x2e, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x6c,
-	0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x42, 0x0b, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x50, 0x72,
-	0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x28, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b,
-	0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e,
-	0x2f, 0x6c, 0x6f, 0x61, 0x6e, 0x2f, 0x76, 0x31, 0x3b, 0x6c, 0x6f, 0x61, 0x6e, 0x76, 0x31, 0xa2,
-	0x02, 0x03, 0x4f, 0x4c, 0x58, 0xaa, 0x02, 0x10, 0x4f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e,
-	0x2e, 0x4c, 0x6f, 0x61, 0x6e, 0x2e, 0x56, 0x31, 0xca, 0x02, 0x10, 0x4f, 0x76, 0x65, 0x72, 0x6c,
-	0x6f, 0x61, 0x6e, 0x5c, 0x4c, 0x6f, 0x61, 0x6e, 0x5c, 0x56, 0x31, 0xe2, 0x02, 0x1c, 0x4f, 0x76,
-	0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x5c, 0x4c, 0x6f, 0x61, 0x6e, 0x5c, 0x56, 0x31, 0x5c, 0x47,
-	0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x12, 0x4f, 0x76, 0x65,
-	0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x3a, 0x3a, 0x4c, 0x6f, 0x61, 0x6e, 0x3a, 0x3a, 0x56, 0x31, 0x62,
+var file_cosmos_loan_v1_params_proto_rawDesc = []byte{
+	0x0a, 0x1b, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x6c, 0x6f, 0x61, 0x6e, 0x2f, 0x76, 0x31,
+	0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0e, 0x63,
+	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x22, 0x89, 0x02,
+	0x0a, 0x06, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x29, 0x0a, 0x10, 0x73, 0x65, 0x74, 0x74,
+	0x6c, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x5f, 0x64, 0x65, 0x6e, 0x6f, 0x6d, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x0f, 0x73, 0x65, 0x74, 0x74, 0x6c, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x44, 0x65,
+	0x6e, 0x6f, 0x6d, 0x12, 0x26, 0x0a, 0x0f, 0x6d, 0x61, 0x78, 0x5f, 0x6c, 0x6f, 0x61, 0x6e, 0x5f,
+	0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0d, 0x6d, 0x61,
+	0x78, 0x4c, 0x6f, 0x61, 0x6e, 0x41, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x26, 0x0a, 0x0f, 0x6d,
+	0x69, 0x6e, 0x5f, 0x6c, 0x6f, 0x61, 0x6e, 0x5f, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x04, 0x52, 0x0d, 0x6d, 0x69, 0x6e, 0x4c, 0x6f, 0x61, 0x6e, 0x41, 0x6d, 0x6f,
+	0x75, 0x6e, 0x74, 0x12, 0x28, 0x0a, 0x10, 0x6d, 0x61, 0x78, 0x5f, 0x74, 0x65, 0x6e, 0x6f, 0x72,
+	0x5f, 0x6d, 0x6f, 0x6e, 0x74, 0x68, 0x73, 0x18, 0x04, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0e, 0x6d,
+	0x61, 0x78, 0x54, 0x65, 0x6e, 0x6f, 0x72, 0x4d, 0x6f, 0x6e, 0x74, 0x68, 0x73, 0x12, 0x28, 0x0a,
+	0x10, 0x6c, 0x61, 0x7a, 0x5f, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x5f, 0x70, 0x6f, 0x6c, 0x69, 0x63,
+	0x79, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0e, 0x6c, 0x61, 0x7a, 0x47, 0x72, 0x6f, 0x75,
+	0x70, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x12, 0x30, 0x0a, 0x14, 0x6f, 0x6d, 0x6e, 0x69, 0x62,
+	0x75, 0x73, 0x5f, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x5f, 0x70, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x18,
+	0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x12, 0x6f, 0x6d, 0x6e, 0x69, 0x62, 0x75, 0x73, 0x47, 0x72,
+	0x6f, 0x75, 0x70, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x42, 0xa3, 0x01, 0x0a, 0x12, 0x63, 0x6f,
+	0x6d, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31,
+	0x42, 0x0b, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a,
+	0x26, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70,
+	0x69, 0x2f, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x6c, 0x6f, 0x61, 0x6e, 0x2f, 0x76, 0x31,
+	0x3b, 0x6c, 0x6f, 0x61, 0x6e, 0x76, 0x31, 0xa2, 0x02, 0x03, 0x43, 0x4c, 0x58, 0xaa, 0x02, 0x0e,
+	0x43, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x4c, 0x6f, 0x61, 0x6e, 0x2e, 0x56, 0x31, 0xca, 0x02,
+	0x0e, 0x43, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x5c, 0x4c, 0x6f, 0x61, 0x6e, 0x5c, 0x56, 0x31, 0xe2,
+	0x02, 0x1a, 0x43, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x5c, 0x4c, 0x6f, 0x61, 0x6e, 0x5c, 0x56, 0x31,
+	0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x10, 0x43,
+	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x3a, 0x3a, 0x4c, 0x6f, 0x61, 0x6e, 0x3a, 0x3a, 0x56, 0x31, 0x62,
 	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_overloan_loan_v1_params_proto_rawDescOnce sync.Once
-	file_overloan_loan_v1_params_proto_rawDescData = file_overloan_loan_v1_params_proto_rawDesc
+	file_cosmos_loan_v1_params_proto_rawDescOnce sync.Once
+	file_cosmos_loan_v1_params_proto_rawDescData = file_cosmos_loan_v1_params_proto_rawDesc
 )
 
-func file_overloan_loan_v1_params_proto_rawDescGZIP() []byte {
-	file_overloan_loan_v1_params_proto_rawDescOnce.Do(func() {
-		file_overloan_loan_v1_params_proto_rawDescData = protoimpl.X.CompressGZIP(file_overloan_loan_v1_params_proto_rawDescData)
+func file_cosmos_loan_v1_params_proto_rawDescGZIP() []byte {
+	file_cosmos_loan_v1_params_proto_rawDescOnce.Do(func() {
+		file_cosmos_loan_v1_params_proto_rawDescData = protoimpl.X.CompressGZIP(file_cosmos_loan_v1_params_proto_rawDescData)
 	})
-	return file_overloan_loan_v1_params_proto_rawDescData
+	return file_cosmos_loan_v1_params_proto_rawDescData
 }
 
-var file_overloan_loan_v1_params_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
-var file_overloan_loan_v1_params_proto_goTypes = []interface{}{
-	(*Params)(nil), // 0: overloan.loan.v1.Params
+var file_cosmos_loan_v1_params_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_cosmos_loan_v1_params_proto_goTypes = []interface{}{
+	(*Params)(nil), // 0: cosmos.loan.v1.Params
 }
-var file_overloan_loan_v1_params_proto_depIdxs = []int32{
+var file_cosmos_loan_v1_params_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
 	0, // [0:0] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -860,13 +859,13 @@ var file_overloan_loan_v1_params_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_overloan_loan_v1_params_proto_init() }
-func file_overloan_loan_v1_params_proto_init() {
-	if File_overloan_loan_v1_params_proto != nil {
+func init() { file_cosmos_loan_v1_params_proto_init() }
+func file_cosmos_loan_v1_params_proto_init() {
+	if File_cosmos_loan_v1_params_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_overloan_loan_v1_params_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_cosmos_loan_v1_params_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Params); i {
 			case 0:
 				return &v.state
@@ -883,18 +882,18 @@ func file_overloan_loan_v1_params_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_overloan_loan_v1_params_proto_rawDesc,
+			RawDescriptor: file_cosmos_loan_v1_params_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   1,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_overloan_loan_v1_params_proto_goTypes,
-		DependencyIndexes: file_overloan_loan_v1_params_proto_depIdxs,
-		MessageInfos:      file_overloan_loan_v1_params_proto_msgTypes,
+		GoTypes:           file_cosmos_loan_v1_params_proto_goTypes,
+		DependencyIndexes: file_cosmos_loan_v1_params_proto_depIdxs,
+		MessageInfos:      file_cosmos_loan_v1_params_proto_msgTypes,
 	}.Build()
-	File_overloan_loan_v1_params_proto = out.File
-	file_overloan_loan_v1_params_proto_rawDesc = nil
-	file_overloan_loan_v1_params_proto_goTypes = nil
-	file_overloan_loan_v1_params_proto_depIdxs = nil
+	File_cosmos_loan_v1_params_proto = out.File
+	file_cosmos_loan_v1_params_proto_rawDesc = nil
+	file_cosmos_loan_v1_params_proto_goTypes = nil
+	file_cosmos_loan_v1_params_proto_depIdxs = nil
 }

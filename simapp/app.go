@@ -307,13 +307,13 @@ func NewSimApp(
 		logger,
 	)
 
-// 	app.GroupKeeper = groupkeeper.NewKeeper(
-// 	appCodec,
-// 	runtime.NewKVStoreService(keys[grouptypes.StoreKey]),
-// 	app.AccountKeeper,
-// 	app.BankKeeper,
-// 	authtypes.NewModuleAddress(govtypes.ModuleName).String(),
-// )
+	// 	app.GroupKeeper = groupkeeper.NewKeeper(
+	// 	appCodec,
+	// 	runtime.NewKVStoreService(keys[grouptypes.StoreKey]),
+	// 	app.AccountKeeper,
+	// 	app.BankKeeper,
+	// 	authtypes.NewModuleAddress(govtypes.ModuleName).String(),
+	// )
 
 	app.LoanKeeper = loankeeper.NewKeeper(
 		appCodec,
@@ -506,7 +506,8 @@ func NewSimApp(
 		epochs.NewAppModule(app.EpochsKeeper),
 		protocolpool.NewAppModule(app.ProtocolPoolKeeper, app.AccountKeeper, app.BankKeeper),
 		// group.NewAppModule(appCodec, app.GroupKeeper, app.AccountKeeper, app.BankKeeper, app.interfaceRegistry),
-		loan.NewAppModule(appCodec, app.LoanKeeper, app.AccountKeeper, app.BankKeeper),
+		loan.NewAppModule(app.LoanKeeper),
+		// loan.NewAppModule(appCodec, app.LoanKeeper, app.AccountKeeper, app.BankKeeper),
 	)
 
 	// BasicModuleManager defines the module BasicManager is in charge of setting up basic,
@@ -528,6 +529,7 @@ func NewSimApp(
 	app.ModuleManager.SetOrderPreBlockers(
 		upgradetypes.ModuleName,
 		authtypes.ModuleName,
+		loantypes.ModuleName,
 	)
 	// During begin block slashing happens after distr.BeginBlocker so that
 	// there is nothing left over in the validator fee pool, so as to keep the
@@ -552,6 +554,7 @@ func NewSimApp(
 		genutiltypes.ModuleName,
 		feegrant.ModuleName,
 		protocolpooltypes.ModuleName,
+		loantypes.ModuleName,
 	)
 
 	// NOTE: The genutils module must occur after staking so that pools are

@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.6.1
 // - protoc             (unknown)
-// source: overloan/loan/v1/tx.proto
+// source: cosmos/loan/v1/tx.proto
 
 package loanv1
 
@@ -19,11 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Msg_CreateLoan_FullMethodName          = "/overloan.loan.v1.Msg/CreateLoan"
-	Msg_ApproveLoan_FullMethodName         = "/overloan.loan.v1.Msg/ApproveLoan"
-	Msg_RejectLoan_FullMethodName          = "/overloan.loan.v1.Msg/RejectLoan"
-	Msg_RepayLoan_FullMethodName           = "/overloan.loan.v1.Msg/RepayLoan"
-	Msg_ConfirmDisbursement_FullMethodName = "/overloan.loan.v1.Msg/ConfirmDisbursement"
+	Msg_CreateLoan_FullMethodName          = "/cosmos.loan.v1.Msg/CreateLoan"
+	Msg_ApproveLoan_FullMethodName         = "/cosmos.loan.v1.Msg/ApproveLoan"
+	Msg_RejectLoan_FullMethodName          = "/cosmos.loan.v1.Msg/RejectLoan"
+	Msg_RepayLoan_FullMethodName           = "/cosmos.loan.v1.Msg/RepayLoan"
+	Msg_ConfirmDisbursement_FullMethodName = "/cosmos.loan.v1.Msg/ConfirmDisbursement"
 )
 
 // MsgClient is the client API for Msg service.
@@ -264,7 +264,7 @@ func _Msg_ConfirmDisbursement_Handler(srv interface{}, ctx context.Context, dec 
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Msg_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "overloan.loan.v1.Msg",
+	ServiceName: "cosmos.loan.v1.Msg",
 	HandlerType: (*MsgServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -289,5 +289,5 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "overloan/loan/v1/tx.proto",
+	Metadata: "cosmos/loan/v1/tx.proto",
 }

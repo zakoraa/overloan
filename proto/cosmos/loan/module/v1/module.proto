@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package overloan.loan.module.v1;
+package cosmos.loan.module.v1;
 
 import "cosmos/app/v1alpha1/module.proto";
 
-option go_package = "github.com/zakoraa/overloan/x/loan/types";
+option go_package = "github.com/cosmos/cosmos-sdk/x/loan/types";
 
 // Module is the config object for the module.
 message Module {

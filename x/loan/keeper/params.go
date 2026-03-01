@@ -1,7 +1,7 @@
 package keeper
 
 import (
-	loanv1 "github.com/cosmos/cosmos-sdk/api/overloan/loan/v1"
+	loanv1 "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 

@@ -1,31 +1,77 @@
 package loan
 
 import (
-	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/cosmos/cosmos-sdk/types/module"
+	"context"
+	"encoding/json"
 
-	loanv1 "github.com/cosmos/cosmos-sdk/api/overloan/loan/v1"
+	"github.com/cosmos/cosmos-sdk/client"
+	"github.com/cosmos/cosmos-sdk/codec"
+	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
+	"github.com/cosmos/cosmos-sdk/types/module"
+	"github.com/grpc-ecosystem/grpc-gateway/runtime"
+
+	loanv1 "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
 	"github.com/cosmos/cosmos-sdk/x/loan/keeper"
-	"github.com/cosmos/cosmos-sdk/x/loan/types"
+	loantypes "github.com/cosmos/cosmos-sdk/x/loan/types"
 )
 
+var (
+	_ module.AppModuleBasic = AppModuleBasic{}
+	_ module.AppModule      = AppModule{}
+)
+
+//
+// BASIC
+//
+
+type AppModuleBasic struct{}
+
+func (AppModuleBasic) Name() string {
+	return loantypes.ModuleName
+}
+
+func (AppModuleBasic) RegisterLegacyAminoCodec(cdc *codec.LegacyAmino) {}
+
+func (AppModuleBasic) RegisterInterfaces(reg codectypes.InterfaceRegistry) {}
+
+func (AppModuleBasic) DefaultGenesis(codec.JSONCodec) json.RawMessage {
+	return json.RawMessage("{}")
+}
+
+func (AppModuleBasic) ValidateGenesis(codec.JSONCodec, json.RawMessage) error {
+	return nil
+}
+
+func (AppModuleBasic) RegisterGRPCGatewayRoutes(
+	clientCtx client.Context,
+	mux *runtime.ServeMux,
+) {}
+
+//
+// FULL MODULE
+//
+
 type AppModule struct {
-	module.AppModule
+	AppModuleBasic
 	keeper keeper.Keeper
 }
 
-func NewAppModule(
-	cdc codec.Codec,
-	k keeper.Keeper,
-	ak types.AccountKeeper,
-	bk types.BankKeeper,
-) AppModule {
-	return AppModule{
-		keeper: k,
-	}
+func NewAppModule(k keeper.Keeper) AppModule {
+	return AppModule{keeper: k}
 }
+
+func (AppModule) IsAppModule() {}
+
+func (AppModule) IsOnePerModuleType() {}
 
 func (am AppModule) RegisterServices(cfg module.Configurator) {
 	loanv1.RegisterMsgServer(cfg.MsgServer(), keeper.NewMsgServerImpl(am.keeper))
-	// loanv1.RegisterQueryServer(cfg.QueryServer(), keeper.NewQueryServer(am.keeper))
+}
+
+func (am AppModule) InitGenesis(ctx context.Context, _ json.RawMessage) error {
+	return nil
+}
+
+func (am AppModule) ExportGenesis(ctx context.Context) (json.RawMessage, error) {
+	return json.RawMessage("{}"), nil
 }

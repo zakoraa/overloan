@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.6.1
 // - protoc             (unknown)
-// source: overloan/loan/v1/query.proto
+// source: cosmos/loan/v1/query.proto
 
 package loanv1
 
@@ -19,9 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Query_Params_FullMethodName          = "/overloan.loan.v1.Query/Params"
-	Query_Loan_FullMethodName            = "/overloan.loan.v1.Query/Loan"
-	Query_LoansByBorrower_FullMethodName = "/overloan.loan.v1.Query/LoansByBorrower"
+	Query_Params_FullMethodName          = "/cosmos.loan.v1.Query/Params"
+	Query_Loan_FullMethodName            = "/cosmos.loan.v1.Query/Loan"
+	Query_LoansByBorrower_FullMethodName = "/cosmos.loan.v1.Query/LoansByBorrower"
 )
 
 // QueryClient is the client API for Query service.
@@ -186,7 +186,7 @@ func _Query_LoansByBorrower_Handler(srv interface{}, ctx context.Context, dec fu
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Query_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "overloan.loan.v1.Query",
+	ServiceName: "cosmos.loan.v1.Query",
 	HandlerType: (*QueryServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -203,5 +203,5 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "overloan/loan/v1/query.proto",
+	Metadata: "cosmos/loan/v1/query.proto",
 }

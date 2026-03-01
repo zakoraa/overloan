@@ -6,7 +6,7 @@ import (
 
 	basev1beta1 "cosmossdk.io/api/cosmos/base/v1beta1"
 	sdkmath "cosmossdk.io/math"
-	loanv1 "github.com/cosmos/cosmos-sdk/api/overloan/loan/v1"
+	loanv1 "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/loan/types"
 	"google.golang.org/protobuf/types/known/timestamppb"

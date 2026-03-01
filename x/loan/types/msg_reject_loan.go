@@ -4,7 +4,7 @@ import (
 	errorsmod "cosmossdk.io/errors"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	loanv1 "github.com/cosmos/cosmos-sdk/api/overloan/loan/v1"
+	loanv1 "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
 )
 
 // Pastikan MsgRejectLoan memenuhi sdk.Msg

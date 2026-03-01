@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package overloan.loan.v1;
+package cosmos.loan.v1;
 
-import "overloan/loan/v1/loan.proto";
-import "overloan/loan/v1/params.proto";
+import "cosmos/loan/v1/loan.proto";
+import "cosmos/loan/v1/params.proto";
 
-option go_package = "github.com/zakoraa/overloan/x/loan/types";
+option go_package = "github.com/cosmos/cosmos-sdk/x/loan/types";
 
 // Query defines the gRPC querier service
 service Query {

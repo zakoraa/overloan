@@ -17,8 +17,8 @@ var (
 )
 
 func init() {
-	file_overloan_loan_v1_query_proto_init()
-	md_QueryParamsRequest = File_overloan_loan_v1_query_proto.Messages().ByName("QueryParamsRequest")
+	file_cosmos_loan_v1_query_proto_init()
+	md_QueryParamsRequest = File_cosmos_loan_v1_query_proto.Messages().ByName("QueryParamsRequest")
 }
 
 var _ protoreflect.Message = (*fastReflection_QueryParamsRequest)(nil)
@@ -30,7 +30,7 @@ func (x *QueryParamsRequest) ProtoReflect() protoreflect.Message {
 }
 
 func (x *QueryParamsRequest) slowProtoReflect() protoreflect.Message {
-	mi := &file_overloan_loan_v1_query_proto_msgTypes[0]
+	mi := &file_cosmos_loan_v1_query_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -103,9 +103,9 @@ func (x *fastReflection_QueryParamsRequest) Has(fd protoreflect.FieldDescriptor)
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryParamsRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryParamsRequest"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryParamsRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryParamsRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -119,9 +119,9 @@ func (x *fastReflection_QueryParamsRequest) Clear(fd protoreflect.FieldDescripto
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryParamsRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryParamsRequest"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryParamsRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryParamsRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -135,9 +135,9 @@ func (x *fastReflection_QueryParamsRequest) Get(descriptor protoreflect.FieldDes
 	switch descriptor.FullName() {
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryParamsRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryParamsRequest"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryParamsRequest does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryParamsRequest does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -155,9 +155,9 @@ func (x *fastReflection_QueryParamsRequest) Set(fd protoreflect.FieldDescriptor,
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryParamsRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryParamsRequest"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryParamsRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryParamsRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -175,9 +175,9 @@ func (x *fastReflection_QueryParamsRequest) Mutable(fd protoreflect.FieldDescrip
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryParamsRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryParamsRequest"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryParamsRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryParamsRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -188,9 +188,9 @@ func (x *fastReflection_QueryParamsRequest) NewField(fd protoreflect.FieldDescri
 	switch fd.FullName() {
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryParamsRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryParamsRequest"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryParamsRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryParamsRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -200,7 +200,7 @@ func (x *fastReflection_QueryParamsRequest) NewField(fd protoreflect.FieldDescri
 func (x *fastReflection_QueryParamsRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in overloan.loan.v1.QueryParamsRequest", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in cosmos.loan.v1.QueryParamsRequest", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -374,8 +374,8 @@ var (
 )
 
 func init() {
-	file_overloan_loan_v1_query_proto_init()
-	md_QueryParamsResponse = File_overloan_loan_v1_query_proto.Messages().ByName("QueryParamsResponse")
+	file_cosmos_loan_v1_query_proto_init()
+	md_QueryParamsResponse = File_cosmos_loan_v1_query_proto.Messages().ByName("QueryParamsResponse")
 	fd_QueryParamsResponse_params = md_QueryParamsResponse.Fields().ByName("params")
 }
 
@@ -388,7 +388,7 @@ func (x *QueryParamsResponse) ProtoReflect() protoreflect.Message {
 }
 
 func (x *QueryParamsResponse) slowProtoReflect() protoreflect.Message {
-	mi := &file_overloan_loan_v1_query_proto_msgTypes[1]
+	mi := &file_cosmos_loan_v1_query_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -465,13 +465,13 @@ func (x *fastReflection_QueryParamsResponse) Range(f func(protoreflect.FieldDesc
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_QueryParamsResponse) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "overloan.loan.v1.QueryParamsResponse.params":
+	case "cosmos.loan.v1.QueryParamsResponse.params":
 		return x.Params != nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryParamsResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryParamsResponse"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryParamsResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryParamsResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -483,13 +483,13 @@ func (x *fastReflection_QueryParamsResponse) Has(fd protoreflect.FieldDescriptor
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_QueryParamsResponse) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "overloan.loan.v1.QueryParamsResponse.params":
+	case "cosmos.loan.v1.QueryParamsResponse.params":
 		x.Params = nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryParamsResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryParamsResponse"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryParamsResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryParamsResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -501,14 +501,14 @@ func (x *fastReflection_QueryParamsResponse) Clear(fd protoreflect.FieldDescript
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_QueryParamsResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "overloan.loan.v1.QueryParamsResponse.params":
+	case "cosmos.loan.v1.QueryParamsResponse.params":
 		value := x.Params
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryParamsResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryParamsResponse"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryParamsResponse does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryParamsResponse does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -524,13 +524,13 @@ func (x *fastReflection_QueryParamsResponse) Get(descriptor protoreflect.FieldDe
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_QueryParamsResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "overloan.loan.v1.QueryParamsResponse.params":
+	case "cosmos.loan.v1.QueryParamsResponse.params":
 		x.Params = value.Message().Interface().(*Params)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryParamsResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryParamsResponse"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryParamsResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryParamsResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -546,16 +546,16 @@ func (x *fastReflection_QueryParamsResponse) Set(fd protoreflect.FieldDescriptor
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_QueryParamsResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "overloan.loan.v1.QueryParamsResponse.params":
+	case "cosmos.loan.v1.QueryParamsResponse.params":
 		if x.Params == nil {
 			x.Params = new(Params)
 		}
 		return protoreflect.ValueOfMessage(x.Params.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryParamsResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryParamsResponse"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryParamsResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryParamsResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -564,14 +564,14 @@ func (x *fastReflection_QueryParamsResponse) Mutable(fd protoreflect.FieldDescri
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_QueryParamsResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "overloan.loan.v1.QueryParamsResponse.params":
+	case "cosmos.loan.v1.QueryParamsResponse.params":
 		m := new(Params)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryParamsResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryParamsResponse"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryParamsResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryParamsResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -581,7 +581,7 @@ func (x *fastReflection_QueryParamsResponse) NewField(fd protoreflect.FieldDescr
 func (x *fastReflection_QueryParamsResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in overloan.loan.v1.QueryParamsResponse", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in cosmos.loan.v1.QueryParamsResponse", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -809,8 +809,8 @@ var (
 )
 
 func init() {
-	file_overloan_loan_v1_query_proto_init()
-	md_QueryLoanRequest = File_overloan_loan_v1_query_proto.Messages().ByName("QueryLoanRequest")
+	file_cosmos_loan_v1_query_proto_init()
+	md_QueryLoanRequest = File_cosmos_loan_v1_query_proto.Messages().ByName("QueryLoanRequest")
 	fd_QueryLoanRequest_loan_id = md_QueryLoanRequest.Fields().ByName("loan_id")
 }
 
@@ -823,7 +823,7 @@ func (x *QueryLoanRequest) ProtoReflect() protoreflect.Message {
 }
 
 func (x *QueryLoanRequest) slowProtoReflect() protoreflect.Message {
-	mi := &file_overloan_loan_v1_query_proto_msgTypes[2]
+	mi := &file_cosmos_loan_v1_query_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -900,13 +900,13 @@ func (x *fastReflection_QueryLoanRequest) Range(f func(protoreflect.FieldDescrip
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_QueryLoanRequest) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "overloan.loan.v1.QueryLoanRequest.loan_id":
+	case "cosmos.loan.v1.QueryLoanRequest.loan_id":
 		return x.LoanId != uint64(0)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryLoanRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryLoanRequest"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryLoanRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryLoanRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -918,13 +918,13 @@ func (x *fastReflection_QueryLoanRequest) Has(fd protoreflect.FieldDescriptor) b
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_QueryLoanRequest) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "overloan.loan.v1.QueryLoanRequest.loan_id":
+	case "cosmos.loan.v1.QueryLoanRequest.loan_id":
 		x.LoanId = uint64(0)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryLoanRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryLoanRequest"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryLoanRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryLoanRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -936,14 +936,14 @@ func (x *fastReflection_QueryLoanRequest) Clear(fd protoreflect.FieldDescriptor)
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_QueryLoanRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "overloan.loan.v1.QueryLoanRequest.loan_id":
+	case "cosmos.loan.v1.QueryLoanRequest.loan_id":
 		value := x.LoanId
 		return protoreflect.ValueOfUint64(value)
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryLoanRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryLoanRequest"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryLoanRequest does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryLoanRequest does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -959,13 +959,13 @@ func (x *fastReflection_QueryLoanRequest) Get(descriptor protoreflect.FieldDescr
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_QueryLoanRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "overloan.loan.v1.QueryLoanRequest.loan_id":
+	case "cosmos.loan.v1.QueryLoanRequest.loan_id":
 		x.LoanId = value.Uint()
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryLoanRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryLoanRequest"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryLoanRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryLoanRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -981,13 +981,13 @@ func (x *fastReflection_QueryLoanRequest) Set(fd protoreflect.FieldDescriptor, v
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_QueryLoanRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "overloan.loan.v1.QueryLoanRequest.loan_id":
-		panic(fmt.Errorf("field loan_id of message overloan.loan.v1.QueryLoanRequest is not mutable"))
+	case "cosmos.loan.v1.QueryLoanRequest.loan_id":
+		panic(fmt.Errorf("field loan_id of message cosmos.loan.v1.QueryLoanRequest is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryLoanRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryLoanRequest"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryLoanRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryLoanRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -996,13 +996,13 @@ func (x *fastReflection_QueryLoanRequest) Mutable(fd protoreflect.FieldDescripto
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_QueryLoanRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "overloan.loan.v1.QueryLoanRequest.loan_id":
+	case "cosmos.loan.v1.QueryLoanRequest.loan_id":
 		return protoreflect.ValueOfUint64(uint64(0))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryLoanRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryLoanRequest"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryLoanRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryLoanRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1012,7 +1012,7 @@ func (x *fastReflection_QueryLoanRequest) NewField(fd protoreflect.FieldDescript
 func (x *fastReflection_QueryLoanRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in overloan.loan.v1.QueryLoanRequest", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in cosmos.loan.v1.QueryLoanRequest", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -1213,8 +1213,8 @@ var (
 )
 
 func init() {
-	file_overloan_loan_v1_query_proto_init()
-	md_QueryLoanResponse = File_overloan_loan_v1_query_proto.Messages().ByName("QueryLoanResponse")
+	file_cosmos_loan_v1_query_proto_init()
+	md_QueryLoanResponse = File_cosmos_loan_v1_query_proto.Messages().ByName("QueryLoanResponse")
 	fd_QueryLoanResponse_loan = md_QueryLoanResponse.Fields().ByName("loan")
 }
 
@@ -1227,7 +1227,7 @@ func (x *QueryLoanResponse) ProtoReflect() protoreflect.Message {
 }
 
 func (x *QueryLoanResponse) slowProtoReflect() protoreflect.Message {
-	mi := &file_overloan_loan_v1_query_proto_msgTypes[3]
+	mi := &file_cosmos_loan_v1_query_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1304,13 +1304,13 @@ func (x *fastReflection_QueryLoanResponse) Range(f func(protoreflect.FieldDescri
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_QueryLoanResponse) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "overloan.loan.v1.QueryLoanResponse.loan":
+	case "cosmos.loan.v1.QueryLoanResponse.loan":
 		return x.Loan != nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryLoanResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryLoanResponse"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryLoanResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryLoanResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1322,13 +1322,13 @@ func (x *fastReflection_QueryLoanResponse) Has(fd protoreflect.FieldDescriptor) 
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_QueryLoanResponse) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "overloan.loan.v1.QueryLoanResponse.loan":
+	case "cosmos.loan.v1.QueryLoanResponse.loan":
 		x.Loan = nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryLoanResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryLoanResponse"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryLoanResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryLoanResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1340,14 +1340,14 @@ func (x *fastReflection_QueryLoanResponse) Clear(fd protoreflect.FieldDescriptor
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_QueryLoanResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "overloan.loan.v1.QueryLoanResponse.loan":
+	case "cosmos.loan.v1.QueryLoanResponse.loan":
 		value := x.Loan
 		return protoreflect.ValueOfMessage(value.ProtoReflect())
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryLoanResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryLoanResponse"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryLoanResponse does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryLoanResponse does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -1363,13 +1363,13 @@ func (x *fastReflection_QueryLoanResponse) Get(descriptor protoreflect.FieldDesc
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_QueryLoanResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "overloan.loan.v1.QueryLoanResponse.loan":
+	case "cosmos.loan.v1.QueryLoanResponse.loan":
 		x.Loan = value.Message().Interface().(*Loan)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryLoanResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryLoanResponse"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryLoanResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryLoanResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1385,16 +1385,16 @@ func (x *fastReflection_QueryLoanResponse) Set(fd protoreflect.FieldDescriptor, 
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_QueryLoanResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "overloan.loan.v1.QueryLoanResponse.loan":
+	case "cosmos.loan.v1.QueryLoanResponse.loan":
 		if x.Loan == nil {
 			x.Loan = new(Loan)
 		}
 		return protoreflect.ValueOfMessage(x.Loan.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryLoanResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryLoanResponse"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryLoanResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryLoanResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1403,14 +1403,14 @@ func (x *fastReflection_QueryLoanResponse) Mutable(fd protoreflect.FieldDescript
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_QueryLoanResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "overloan.loan.v1.QueryLoanResponse.loan":
+	case "cosmos.loan.v1.QueryLoanResponse.loan":
 		m := new(Loan)
 		return protoreflect.ValueOfMessage(m.ProtoReflect())
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryLoanResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryLoanResponse"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryLoanResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryLoanResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1420,7 +1420,7 @@ func (x *fastReflection_QueryLoanResponse) NewField(fd protoreflect.FieldDescrip
 func (x *fastReflection_QueryLoanResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in overloan.loan.v1.QueryLoanResponse", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in cosmos.loan.v1.QueryLoanResponse", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -1648,8 +1648,8 @@ var (
 )
 
 func init() {
-	file_overloan_loan_v1_query_proto_init()
-	md_QueryLoansByBorrowerRequest = File_overloan_loan_v1_query_proto.Messages().ByName("QueryLoansByBorrowerRequest")
+	file_cosmos_loan_v1_query_proto_init()
+	md_QueryLoansByBorrowerRequest = File_cosmos_loan_v1_query_proto.Messages().ByName("QueryLoansByBorrowerRequest")
 	fd_QueryLoansByBorrowerRequest_borrower = md_QueryLoansByBorrowerRequest.Fields().ByName("borrower")
 }
 
@@ -1662,7 +1662,7 @@ func (x *QueryLoansByBorrowerRequest) ProtoReflect() protoreflect.Message {
 }
 
 func (x *QueryLoansByBorrowerRequest) slowProtoReflect() protoreflect.Message {
-	mi := &file_overloan_loan_v1_query_proto_msgTypes[4]
+	mi := &file_cosmos_loan_v1_query_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1739,13 +1739,13 @@ func (x *fastReflection_QueryLoansByBorrowerRequest) Range(f func(protoreflect.F
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_QueryLoansByBorrowerRequest) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "overloan.loan.v1.QueryLoansByBorrowerRequest.borrower":
+	case "cosmos.loan.v1.QueryLoansByBorrowerRequest.borrower":
 		return x.Borrower != ""
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryLoansByBorrowerRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryLoansByBorrowerRequest"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryLoansByBorrowerRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryLoansByBorrowerRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1757,13 +1757,13 @@ func (x *fastReflection_QueryLoansByBorrowerRequest) Has(fd protoreflect.FieldDe
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_QueryLoansByBorrowerRequest) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "overloan.loan.v1.QueryLoansByBorrowerRequest.borrower":
+	case "cosmos.loan.v1.QueryLoansByBorrowerRequest.borrower":
 		x.Borrower = ""
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryLoansByBorrowerRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryLoansByBorrowerRequest"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryLoansByBorrowerRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryLoansByBorrowerRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1775,14 +1775,14 @@ func (x *fastReflection_QueryLoansByBorrowerRequest) Clear(fd protoreflect.Field
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_QueryLoansByBorrowerRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "overloan.loan.v1.QueryLoansByBorrowerRequest.borrower":
+	case "cosmos.loan.v1.QueryLoansByBorrowerRequest.borrower":
 		value := x.Borrower
 		return protoreflect.ValueOfString(value)
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryLoansByBorrowerRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryLoansByBorrowerRequest"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryLoansByBorrowerRequest does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryLoansByBorrowerRequest does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -1798,13 +1798,13 @@ func (x *fastReflection_QueryLoansByBorrowerRequest) Get(descriptor protoreflect
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_QueryLoansByBorrowerRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "overloan.loan.v1.QueryLoansByBorrowerRequest.borrower":
+	case "cosmos.loan.v1.QueryLoansByBorrowerRequest.borrower":
 		x.Borrower = value.Interface().(string)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryLoansByBorrowerRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryLoansByBorrowerRequest"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryLoansByBorrowerRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryLoansByBorrowerRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1820,13 +1820,13 @@ func (x *fastReflection_QueryLoansByBorrowerRequest) Set(fd protoreflect.FieldDe
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_QueryLoansByBorrowerRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "overloan.loan.v1.QueryLoansByBorrowerRequest.borrower":
-		panic(fmt.Errorf("field borrower of message overloan.loan.v1.QueryLoansByBorrowerRequest is not mutable"))
+	case "cosmos.loan.v1.QueryLoansByBorrowerRequest.borrower":
+		panic(fmt.Errorf("field borrower of message cosmos.loan.v1.QueryLoansByBorrowerRequest is not mutable"))
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryLoansByBorrowerRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryLoansByBorrowerRequest"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryLoansByBorrowerRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryLoansByBorrowerRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1835,13 +1835,13 @@ func (x *fastReflection_QueryLoansByBorrowerRequest) Mutable(fd protoreflect.Fie
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_QueryLoansByBorrowerRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "overloan.loan.v1.QueryLoansByBorrowerRequest.borrower":
+	case "cosmos.loan.v1.QueryLoansByBorrowerRequest.borrower":
 		return protoreflect.ValueOfString("")
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryLoansByBorrowerRequest"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryLoansByBorrowerRequest"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryLoansByBorrowerRequest does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryLoansByBorrowerRequest does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -1851,7 +1851,7 @@ func (x *fastReflection_QueryLoansByBorrowerRequest) NewField(fd protoreflect.Fi
 func (x *fastReflection_QueryLoansByBorrowerRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in overloan.loan.v1.QueryLoansByBorrowerRequest", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in cosmos.loan.v1.QueryLoansByBorrowerRequest", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -2119,8 +2119,8 @@ var (
 )
 
 func init() {
-	file_overloan_loan_v1_query_proto_init()
-	md_QueryLoansByBorrowerResponse = File_overloan_loan_v1_query_proto.Messages().ByName("QueryLoansByBorrowerResponse")
+	file_cosmos_loan_v1_query_proto_init()
+	md_QueryLoansByBorrowerResponse = File_cosmos_loan_v1_query_proto.Messages().ByName("QueryLoansByBorrowerResponse")
 	fd_QueryLoansByBorrowerResponse_loans = md_QueryLoansByBorrowerResponse.Fields().ByName("loans")
 }
 
@@ -2133,7 +2133,7 @@ func (x *QueryLoansByBorrowerResponse) ProtoReflect() protoreflect.Message {
 }
 
 func (x *QueryLoansByBorrowerResponse) slowProtoReflect() protoreflect.Message {
-	mi := &file_overloan_loan_v1_query_proto_msgTypes[5]
+	mi := &file_cosmos_loan_v1_query_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2210,13 +2210,13 @@ func (x *fastReflection_QueryLoansByBorrowerResponse) Range(f func(protoreflect.
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_QueryLoansByBorrowerResponse) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "overloan.loan.v1.QueryLoansByBorrowerResponse.loans":
+	case "cosmos.loan.v1.QueryLoansByBorrowerResponse.loans":
 		return len(x.Loans) != 0
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryLoansByBorrowerResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryLoansByBorrowerResponse"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryLoansByBorrowerResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryLoansByBorrowerResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2228,13 +2228,13 @@ func (x *fastReflection_QueryLoansByBorrowerResponse) Has(fd protoreflect.FieldD
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_QueryLoansByBorrowerResponse) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "overloan.loan.v1.QueryLoansByBorrowerResponse.loans":
+	case "cosmos.loan.v1.QueryLoansByBorrowerResponse.loans":
 		x.Loans = nil
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryLoansByBorrowerResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryLoansByBorrowerResponse"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryLoansByBorrowerResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryLoansByBorrowerResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2246,7 +2246,7 @@ func (x *fastReflection_QueryLoansByBorrowerResponse) Clear(fd protoreflect.Fiel
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_QueryLoansByBorrowerResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "overloan.loan.v1.QueryLoansByBorrowerResponse.loans":
+	case "cosmos.loan.v1.QueryLoansByBorrowerResponse.loans":
 		if len(x.Loans) == 0 {
 			return protoreflect.ValueOfList(&_QueryLoansByBorrowerResponse_1_list{})
 		}
@@ -2254,9 +2254,9 @@ func (x *fastReflection_QueryLoansByBorrowerResponse) Get(descriptor protoreflec
 		return protoreflect.ValueOfList(listValue)
 	default:
 		if descriptor.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryLoansByBorrowerResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryLoansByBorrowerResponse"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryLoansByBorrowerResponse does not contain field %s", descriptor.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryLoansByBorrowerResponse does not contain field %s", descriptor.FullName()))
 	}
 }
 
@@ -2272,15 +2272,15 @@ func (x *fastReflection_QueryLoansByBorrowerResponse) Get(descriptor protoreflec
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_QueryLoansByBorrowerResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "overloan.loan.v1.QueryLoansByBorrowerResponse.loans":
+	case "cosmos.loan.v1.QueryLoansByBorrowerResponse.loans":
 		lv := value.List()
 		clv := lv.(*_QueryLoansByBorrowerResponse_1_list)
 		x.Loans = *clv.list
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryLoansByBorrowerResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryLoansByBorrowerResponse"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryLoansByBorrowerResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryLoansByBorrowerResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2296,7 +2296,7 @@ func (x *fastReflection_QueryLoansByBorrowerResponse) Set(fd protoreflect.FieldD
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_QueryLoansByBorrowerResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "overloan.loan.v1.QueryLoansByBorrowerResponse.loans":
+	case "cosmos.loan.v1.QueryLoansByBorrowerResponse.loans":
 		if x.Loans == nil {
 			x.Loans = []*Loan{}
 		}
@@ -2304,9 +2304,9 @@ func (x *fastReflection_QueryLoansByBorrowerResponse) Mutable(fd protoreflect.Fi
 		return protoreflect.ValueOfList(value)
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryLoansByBorrowerResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryLoansByBorrowerResponse"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryLoansByBorrowerResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryLoansByBorrowerResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2315,14 +2315,14 @@ func (x *fastReflection_QueryLoansByBorrowerResponse) Mutable(fd protoreflect.Fi
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_QueryLoansByBorrowerResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "overloan.loan.v1.QueryLoansByBorrowerResponse.loans":
+	case "cosmos.loan.v1.QueryLoansByBorrowerResponse.loans":
 		list := []*Loan{}
 		return protoreflect.ValueOfList(&_QueryLoansByBorrowerResponse_1_list{list: &list})
 	default:
 		if fd.IsExtension() {
-			panic(fmt.Errorf("proto3 declared messages do not support extensions: overloan.loan.v1.QueryLoansByBorrowerResponse"))
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.QueryLoansByBorrowerResponse"))
 		}
-		panic(fmt.Errorf("message overloan.loan.v1.QueryLoansByBorrowerResponse does not contain field %s", fd.FullName()))
+		panic(fmt.Errorf("message cosmos.loan.v1.QueryLoansByBorrowerResponse does not contain field %s", fd.FullName()))
 	}
 }
 
@@ -2332,7 +2332,7 @@ func (x *fastReflection_QueryLoansByBorrowerResponse) NewField(fd protoreflect.F
 func (x *fastReflection_QueryLoansByBorrowerResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
 	switch d.FullName() {
 	default:
-		panic(fmt.Errorf("%s is not a oneof field in overloan.loan.v1.QueryLoansByBorrowerResponse", d.FullName()))
+		panic(fmt.Errorf("%s is not a oneof field in cosmos.loan.v1.QueryLoansByBorrowerResponse", d.FullName()))
 	}
 	panic("unreachable")
 }
@@ -2560,7 +2560,7 @@ func (x *fastReflection_QueryLoansByBorrowerResponse) ProtoMethods() *protoiface
 // versions:
 // 	protoc-gen-go v1.27.0
 // 	protoc        (unknown)
-// source: overloan/loan/v1/query.proto
+// source: cosmos/loan/v1/query.proto
 
 const (
 	// Verify that this generated code is sufficiently up-to-date.
@@ -2579,7 +2579,7 @@ type QueryParamsRequest struct {
 func (x *QueryParamsRequest) Reset() {
 	*x = QueryParamsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_overloan_loan_v1_query_proto_msgTypes[0]
+		mi := &file_cosmos_loan_v1_query_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2593,7 +2593,7 @@ func (*QueryParamsRequest) ProtoMessage() {}
 
 // Deprecated: Use QueryParamsRequest.ProtoReflect.Descriptor instead.
 func (*QueryParamsRequest) Descriptor() ([]byte, []int) {
-	return file_overloan_loan_v1_query_proto_rawDescGZIP(), []int{0}
+	return file_cosmos_loan_v1_query_proto_rawDescGZIP(), []int{0}
 }
 
 // QueryParamsResponse mengembalikan konfigurasi global (Params) modul loan
@@ -2609,7 +2609,7 @@ type QueryParamsResponse struct {
 func (x *QueryParamsResponse) Reset() {
 	*x = QueryParamsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_overloan_loan_v1_query_proto_msgTypes[1]
+		mi := &file_cosmos_loan_v1_query_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2623,7 +2623,7 @@ func (*QueryParamsResponse) ProtoMessage() {}
 
 // Deprecated: Use QueryParamsResponse.ProtoReflect.Descriptor instead.
 func (*QueryParamsResponse) Descriptor() ([]byte, []int) {
-	return file_overloan_loan_v1_query_proto_rawDescGZIP(), []int{1}
+	return file_cosmos_loan_v1_query_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *QueryParamsResponse) GetParams() *Params {
@@ -2646,7 +2646,7 @@ type QueryLoanRequest struct {
 func (x *QueryLoanRequest) Reset() {
 	*x = QueryLoanRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_overloan_loan_v1_query_proto_msgTypes[2]
+		mi := &file_cosmos_loan_v1_query_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2660,7 +2660,7 @@ func (*QueryLoanRequest) ProtoMessage() {}
 
 // Deprecated: Use QueryLoanRequest.ProtoReflect.Descriptor instead.
 func (*QueryLoanRequest) Descriptor() ([]byte, []int) {
-	return file_overloan_loan_v1_query_proto_rawDescGZIP(), []int{2}
+	return file_cosmos_loan_v1_query_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *QueryLoanRequest) GetLoanId() uint64 {
@@ -2683,7 +2683,7 @@ type QueryLoanResponse struct {
 func (x *QueryLoanResponse) Reset() {
 	*x = QueryLoanResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_overloan_loan_v1_query_proto_msgTypes[3]
+		mi := &file_cosmos_loan_v1_query_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2697,7 +2697,7 @@ func (*QueryLoanResponse) ProtoMessage() {}
 
 // Deprecated: Use QueryLoanResponse.ProtoReflect.Descriptor instead.
 func (*QueryLoanResponse) Descriptor() ([]byte, []int) {
-	return file_overloan_loan_v1_query_proto_rawDescGZIP(), []int{3}
+	return file_cosmos_loan_v1_query_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *QueryLoanResponse) GetLoan() *Loan {
@@ -2721,7 +2721,7 @@ type QueryLoansByBorrowerRequest struct {
 func (x *QueryLoansByBorrowerRequest) Reset() {
 	*x = QueryLoansByBorrowerRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_overloan_loan_v1_query_proto_msgTypes[4]
+		mi := &file_cosmos_loan_v1_query_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2735,7 +2735,7 @@ func (*QueryLoansByBorrowerRequest) ProtoMessage() {}
 
 // Deprecated: Use QueryLoansByBorrowerRequest.ProtoReflect.Descriptor instead.
 func (*QueryLoansByBorrowerRequest) Descriptor() ([]byte, []int) {
-	return file_overloan_loan_v1_query_proto_rawDescGZIP(), []int{4}
+	return file_cosmos_loan_v1_query_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *QueryLoansByBorrowerRequest) GetBorrower() string {
@@ -2759,7 +2759,7 @@ type QueryLoansByBorrowerResponse struct {
 func (x *QueryLoansByBorrowerResponse) Reset() {
 	*x = QueryLoansByBorrowerResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_overloan_loan_v1_query_proto_msgTypes[5]
+		mi := &file_cosmos_loan_v1_query_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2773,7 +2773,7 @@ func (*QueryLoansByBorrowerResponse) ProtoMessage() {}
 
 // Deprecated: Use QueryLoansByBorrowerResponse.ProtoReflect.Descriptor instead.
 func (*QueryLoansByBorrowerResponse) Descriptor() ([]byte, []int) {
-	return file_overloan_loan_v1_query_proto_rawDescGZIP(), []int{5}
+	return file_cosmos_loan_v1_query_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *QueryLoansByBorrowerResponse) GetLoans() []*Loan {
@@ -2783,102 +2783,100 @@ func (x *QueryLoansByBorrowerResponse) GetLoans() []*Loan {
 	return nil
 }
 
-var File_overloan_loan_v1_query_proto protoreflect.FileDescriptor
+var File_cosmos_loan_v1_query_proto protoreflect.FileDescriptor
 
-var file_overloan_loan_v1_query_proto_rawDesc = []byte{
-	0x0a, 0x1c, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x2f, 0x6c, 0x6f, 0x61, 0x6e, 0x2f,
-	0x76, 0x31, 0x2f, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x10,
-	0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31,
-	0x1a, 0x1b, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x2f, 0x6c, 0x6f, 0x61, 0x6e, 0x2f,
-	0x76, 0x31, 0x2f, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1d, 0x6f,
-	0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x2f, 0x6c, 0x6f, 0x61, 0x6e, 0x2f, 0x76, 0x31, 0x2f,
-	0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x14, 0x0a, 0x12,
-	0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x22, 0x47, 0x0a, 0x13, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d,
-	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x30, 0x0a, 0x06, 0x70, 0x61, 0x72,
-	0x61, 0x6d, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x6f, 0x76, 0x65, 0x72,
-	0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x61, 0x72,
-	0x61, 0x6d, 0x73, 0x52, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x22, 0x2b, 0x0a, 0x10, 0x51,
-	0x75, 0x65, 0x72, 0x79, 0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
-	0x17, 0x0a, 0x07, 0x6c, 0x6f, 0x61, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04,
-	0x52, 0x06, 0x6c, 0x6f, 0x61, 0x6e, 0x49, 0x64, 0x22, 0x3f, 0x0a, 0x11, 0x51, 0x75, 0x65, 0x72,
-	0x79, 0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2a, 0x0a,
-	0x04, 0x6c, 0x6f, 0x61, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x6f, 0x76,
-	0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4c,
-	0x6f, 0x61, 0x6e, 0x52, 0x04, 0x6c, 0x6f, 0x61, 0x6e, 0x22, 0x39, 0x0a, 0x1b, 0x51, 0x75, 0x65,
-	0x72, 0x79, 0x4c, 0x6f, 0x61, 0x6e, 0x73, 0x42, 0x79, 0x42, 0x6f, 0x72, 0x72, 0x6f, 0x77, 0x65,
-	0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08, 0x62, 0x6f, 0x72, 0x72,
-	0x6f, 0x77, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x62, 0x6f, 0x72, 0x72,
-	0x6f, 0x77, 0x65, 0x72, 0x22, 0x4c, 0x0a, 0x1c, 0x51, 0x75, 0x65, 0x72, 0x79, 0x4c, 0x6f, 0x61,
-	0x6e, 0x73, 0x42, 0x79, 0x42, 0x6f, 0x72, 0x72, 0x6f, 0x77, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2c, 0x0a, 0x05, 0x6c, 0x6f, 0x61, 0x6e, 0x73, 0x18, 0x01, 0x20,
-	0x03, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x6c,
-	0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x05, 0x6c, 0x6f, 0x61,
-	0x6e, 0x73, 0x32, 0xa1, 0x02, 0x0a, 0x05, 0x51, 0x75, 0x65, 0x72, 0x79, 0x12, 0x55, 0x0a, 0x06,
-	0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x24, 0x2e, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61,
-	0x6e, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50,
-	0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x25, 0x2e, 0x6f,
-	0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e,
-	0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x4f, 0x0a, 0x04, 0x4c, 0x6f, 0x61, 0x6e, 0x12, 0x22, 0x2e, 0x6f, 0x76,
-	0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x51,
-	0x75, 0x65, 0x72, 0x79, 0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
-	0x23, 0x2e, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e,
-	0x76, 0x31, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x70, 0x0a, 0x0f, 0x4c, 0x6f, 0x61, 0x6e, 0x73, 0x42, 0x79, 0x42,
-	0x6f, 0x72, 0x72, 0x6f, 0x77, 0x65, 0x72, 0x12, 0x2d, 0x2e, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f,
-	0x61, 0x6e, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79,
-	0x4c, 0x6f, 0x61, 0x6e, 0x73, 0x42, 0x79, 0x42, 0x6f, 0x72, 0x72, 0x6f, 0x77, 0x65, 0x72, 0x52,
-	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2e, 0x2e, 0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61,
-	0x6e, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x4c,
-	0x6f, 0x61, 0x6e, 0x73, 0x42, 0x79, 0x42, 0x6f, 0x72, 0x72, 0x6f, 0x77, 0x65, 0x72, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0xae, 0x01, 0x0a, 0x14, 0x63, 0x6f, 0x6d, 0x2e, 0x6f,
-	0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x42,
-	0x0a, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x28, 0x63,
-	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f,
-	0x6f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x2f, 0x6c, 0x6f, 0x61, 0x6e, 0x2f, 0x76, 0x31,
-	0x3b, 0x6c, 0x6f, 0x61, 0x6e, 0x76, 0x31, 0xa2, 0x02, 0x03, 0x4f, 0x4c, 0x58, 0xaa, 0x02, 0x10,
-	0x4f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x4c, 0x6f, 0x61, 0x6e, 0x2e, 0x56, 0x31,
-	0xca, 0x02, 0x10, 0x4f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x5c, 0x4c, 0x6f, 0x61, 0x6e,
-	0x5c, 0x56, 0x31, 0xe2, 0x02, 0x1c, 0x4f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x5c, 0x4c,
-	0x6f, 0x61, 0x6e, 0x5c, 0x56, 0x31, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61,
-	0x74, 0x61, 0xea, 0x02, 0x12, 0x4f, 0x76, 0x65, 0x72, 0x6c, 0x6f, 0x61, 0x6e, 0x3a, 0x3a, 0x4c,
-	0x6f, 0x61, 0x6e, 0x3a, 0x3a, 0x56, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+var file_cosmos_loan_v1_query_proto_rawDesc = []byte{
+	0x0a, 0x1a, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x6c, 0x6f, 0x61, 0x6e, 0x2f, 0x76, 0x31,
+	0x2f, 0x71, 0x75, 0x65, 0x72, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0e, 0x63, 0x6f,
+	0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x1a, 0x19, 0x63, 0x6f,
+	0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x6c, 0x6f, 0x61, 0x6e, 0x2f, 0x76, 0x31, 0x2f, 0x6c, 0x6f, 0x61,
+	0x6e, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1b, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2f,
+	0x6c, 0x6f, 0x61, 0x6e, 0x2f, 0x76, 0x31, 0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x22, 0x14, 0x0a, 0x12, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72,
+	0x61, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x45, 0x0a, 0x13, 0x51, 0x75,
+	0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x2e, 0x0a, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x16, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e,
+	0x76, 0x31, 0x2e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x06, 0x70, 0x61, 0x72, 0x61, 0x6d,
+	0x73, 0x22, 0x2b, 0x0a, 0x10, 0x51, 0x75, 0x65, 0x72, 0x79, 0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x6c, 0x6f, 0x61, 0x6e, 0x5f, 0x69, 0x64,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x06, 0x6c, 0x6f, 0x61, 0x6e, 0x49, 0x64, 0x22, 0x3d,
+	0x0a, 0x11, 0x51, 0x75, 0x65, 0x72, 0x79, 0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x28, 0x0a, 0x04, 0x6c, 0x6f, 0x61, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x0b, 0x32, 0x14, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e,
+	0x76, 0x31, 0x2e, 0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x04, 0x6c, 0x6f, 0x61, 0x6e, 0x22, 0x39, 0x0a,
+	0x1b, 0x51, 0x75, 0x65, 0x72, 0x79, 0x4c, 0x6f, 0x61, 0x6e, 0x73, 0x42, 0x79, 0x42, 0x6f, 0x72,
+	0x72, 0x6f, 0x77, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1a, 0x0a, 0x08,
+	0x62, 0x6f, 0x72, 0x72, 0x6f, 0x77, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08,
+	0x62, 0x6f, 0x72, 0x72, 0x6f, 0x77, 0x65, 0x72, 0x22, 0x4a, 0x0a, 0x1c, 0x51, 0x75, 0x65, 0x72,
+	0x79, 0x4c, 0x6f, 0x61, 0x6e, 0x73, 0x42, 0x79, 0x42, 0x6f, 0x72, 0x72, 0x6f, 0x77, 0x65, 0x72,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2a, 0x0a, 0x05, 0x6c, 0x6f, 0x61, 0x6e,
+	0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
+	0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x05, 0x6c,
+	0x6f, 0x61, 0x6e, 0x73, 0x32, 0x95, 0x02, 0x0a, 0x05, 0x51, 0x75, 0x65, 0x72, 0x79, 0x12, 0x51,
+	0x0a, 0x06, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x22, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f,
+	0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50,
+	0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x23, 0x2e, 0x63,
+	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x51, 0x75,
+	0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x4b, 0x0a, 0x04, 0x4c, 0x6f, 0x61, 0x6e, 0x12, 0x20, 0x2e, 0x63, 0x6f, 0x73, 0x6d,
+	0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79,
+	0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x21, 0x2e, 0x63, 0x6f,
+	0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x51, 0x75, 0x65,
+	0x72, 0x79, 0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x6c,
+	0x0a, 0x0f, 0x4c, 0x6f, 0x61, 0x6e, 0x73, 0x42, 0x79, 0x42, 0x6f, 0x72, 0x72, 0x6f, 0x77, 0x65,
+	0x72, 0x12, 0x2b, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e,
+	0x76, 0x31, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x4c, 0x6f, 0x61, 0x6e, 0x73, 0x42, 0x79, 0x42,
+	0x6f, 0x72, 0x72, 0x6f, 0x77, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2c,
+	0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e,
+	0x51, 0x75, 0x65, 0x72, 0x79, 0x4c, 0x6f, 0x61, 0x6e, 0x73, 0x42, 0x79, 0x42, 0x6f, 0x72, 0x72,
+	0x6f, 0x77, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0xa2, 0x01, 0x0a,
+	0x12, 0x63, 0x6f, 0x6d, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e,
+	0x2e, 0x76, 0x31, 0x42, 0x0a, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50,
+	0x01, 0x5a, 0x26, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f,
+	0x61, 0x70, 0x69, 0x2f, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x6c, 0x6f, 0x61, 0x6e, 0x2f,
+	0x76, 0x31, 0x3b, 0x6c, 0x6f, 0x61, 0x6e, 0x76, 0x31, 0xa2, 0x02, 0x03, 0x43, 0x4c, 0x58, 0xaa,
+	0x02, 0x0e, 0x43, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x4c, 0x6f, 0x61, 0x6e, 0x2e, 0x56, 0x31,
+	0xca, 0x02, 0x0e, 0x43, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x5c, 0x4c, 0x6f, 0x61, 0x6e, 0x5c, 0x56,
+	0x31, 0xe2, 0x02, 0x1a, 0x43, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x5c, 0x4c, 0x6f, 0x61, 0x6e, 0x5c,
+	0x56, 0x31, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02,
+	0x10, 0x43, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x3a, 0x3a, 0x4c, 0x6f, 0x61, 0x6e, 0x3a, 0x3a, 0x56,
+	0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_overloan_loan_v1_query_proto_rawDescOnce sync.Once
-	file_overloan_loan_v1_query_proto_rawDescData = file_overloan_loan_v1_query_proto_rawDesc
+	file_cosmos_loan_v1_query_proto_rawDescOnce sync.Once
+	file_cosmos_loan_v1_query_proto_rawDescData = file_cosmos_loan_v1_query_proto_rawDesc
 )
 
-func file_overloan_loan_v1_query_proto_rawDescGZIP() []byte {
-	file_overloan_loan_v1_query_proto_rawDescOnce.Do(func() {
-		file_overloan_loan_v1_query_proto_rawDescData = protoimpl.X.CompressGZIP(file_overloan_loan_v1_query_proto_rawDescData)
+func file_cosmos_loan_v1_query_proto_rawDescGZIP() []byte {
+	file_cosmos_loan_v1_query_proto_rawDescOnce.Do(func() {
+		file_cosmos_loan_v1_query_proto_rawDescData = protoimpl.X.CompressGZIP(file_cosmos_loan_v1_query_proto_rawDescData)
 	})
-	return file_overloan_loan_v1_query_proto_rawDescData
+	return file_cosmos_loan_v1_query_proto_rawDescData
 }
 
-var file_overloan_loan_v1_query_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
-var file_overloan_loan_v1_query_proto_goTypes = []interface{}{
-	(*QueryParamsRequest)(nil),           // 0: overloan.loan.v1.QueryParamsRequest
-	(*QueryParamsResponse)(nil),          // 1: overloan.loan.v1.QueryParamsResponse
-	(*QueryLoanRequest)(nil),             // 2: overloan.loan.v1.QueryLoanRequest
-	(*QueryLoanResponse)(nil),            // 3: overloan.loan.v1.QueryLoanResponse
-	(*QueryLoansByBorrowerRequest)(nil),  // 4: overloan.loan.v1.QueryLoansByBorrowerRequest
-	(*QueryLoansByBorrowerResponse)(nil), // 5: overloan.loan.v1.QueryLoansByBorrowerResponse
-	(*Params)(nil),                       // 6: overloan.loan.v1.Params
-	(*Loan)(nil),                         // 7: overloan.loan.v1.Loan
+var file_cosmos_loan_v1_query_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_cosmos_loan_v1_query_proto_goTypes = []interface{}{
+	(*QueryParamsRequest)(nil),           // 0: cosmos.loan.v1.QueryParamsRequest
+	(*QueryParamsResponse)(nil),          // 1: cosmos.loan.v1.QueryParamsResponse
+	(*QueryLoanRequest)(nil),             // 2: cosmos.loan.v1.QueryLoanRequest
+	(*QueryLoanResponse)(nil),            // 3: cosmos.loan.v1.QueryLoanResponse
+	(*QueryLoansByBorrowerRequest)(nil),  // 4: cosmos.loan.v1.QueryLoansByBorrowerRequest
+	(*QueryLoansByBorrowerResponse)(nil), // 5: cosmos.loan.v1.QueryLoansByBorrowerResponse
+	(*Params)(nil),                       // 6: cosmos.loan.v1.Params
+	(*Loan)(nil),                         // 7: cosmos.loan.v1.Loan
 }
-var file_overloan_loan_v1_query_proto_depIdxs = []int32{
-	6, // 0: overloan.loan.v1.QueryParamsResponse.params:type_name -> overloan.loan.v1.Params
-	7, // 1: overloan.loan.v1.QueryLoanResponse.loan:type_name -> overloan.loan.v1.Loan
-	7, // 2: overloan.loan.v1.QueryLoansByBorrowerResponse.loans:type_name -> overloan.loan.v1.Loan
-	0, // 3: overloan.loan.v1.Query.Params:input_type -> overloan.loan.v1.QueryParamsRequest
-	2, // 4: overloan.loan.v1.Query.Loan:input_type -> overloan.loan.v1.QueryLoanRequest
-	4, // 5: overloan.loan.v1.Query.LoansByBorrower:input_type -> overloan.loan.v1.QueryLoansByBorrowerRequest
-	1, // 6: overloan.loan.v1.Query.Params:output_type -> overloan.loan.v1.QueryParamsResponse
-	3, // 7: overloan.loan.v1.Query.Loan:output_type -> overloan.loan.v1.QueryLoanResponse
-	5, // 8: overloan.loan.v1.Query.LoansByBorrower:output_type -> overloan.loan.v1.QueryLoansByBorrowerResponse
+var file_cosmos_loan_v1_query_proto_depIdxs = []int32{
+	6, // 0: cosmos.loan.v1.QueryParamsResponse.params:type_name -> cosmos.loan.v1.Params
+	7, // 1: cosmos.loan.v1.QueryLoanResponse.loan:type_name -> cosmos.loan.v1.Loan
+	7, // 2: cosmos.loan.v1.QueryLoansByBorrowerResponse.loans:type_name -> cosmos.loan.v1.Loan
+	0, // 3: cosmos.loan.v1.Query.Params:input_type -> cosmos.loan.v1.QueryParamsRequest
+	2, // 4: cosmos.loan.v1.Query.Loan:input_type -> cosmos.loan.v1.QueryLoanRequest
+	4, // 5: cosmos.loan.v1.Query.LoansByBorrower:input_type -> cosmos.loan.v1.QueryLoansByBorrowerRequest
+	1, // 6: cosmos.loan.v1.Query.Params:output_type -> cosmos.loan.v1.QueryParamsResponse
+	3, // 7: cosmos.loan.v1.Query.Loan:output_type -> cosmos.loan.v1.QueryLoanResponse
+	5, // 8: cosmos.loan.v1.Query.LoansByBorrower:output_type -> cosmos.loan.v1.QueryLoansByBorrowerResponse
 	6, // [6:9] is the sub-list for method output_type
 	3, // [3:6] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name
@@ -2886,15 +2884,15 @@ var file_overloan_loan_v1_query_proto_depIdxs = []int32{
 	0, // [0:3] is the sub-list for field type_name
 }
 
-func init() { file_overloan_loan_v1_query_proto_init() }
-func file_overloan_loan_v1_query_proto_init() {
-	if File_overloan_loan_v1_query_proto != nil {
+func init() { file_cosmos_loan_v1_query_proto_init() }
+func file_cosmos_loan_v1_query_proto_init() {
+	if File_cosmos_loan_v1_query_proto != nil {
 		return
 	}
-	file_overloan_loan_v1_loan_proto_init()
-	file_overloan_loan_v1_params_proto_init()
+	file_cosmos_loan_v1_loan_proto_init()
+	file_cosmos_loan_v1_params_proto_init()
 	if !protoimpl.UnsafeEnabled {
-		file_overloan_loan_v1_query_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_cosmos_loan_v1_query_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*QueryParamsRequest); i {
 			case 0:
 				return &v.state
@@ -2906,7 +2904,7 @@ func file_overloan_loan_v1_query_proto_init() {
 				return nil
 			}
 		}
-		file_overloan_loan_v1_query_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_cosmos_loan_v1_query_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*QueryParamsResponse); i {
 			case 0:
 				return &v.state
@@ -2918,7 +2916,7 @@ func file_overloan_loan_v1_query_proto_init() {
 				return nil
 			}
 		}
-		file_overloan_loan_v1_query_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_cosmos_loan_v1_query_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*QueryLoanRequest); i {
 			case 0:
 				return &v.state
@@ -2930,7 +2928,7 @@ func file_overloan_loan_v1_query_proto_init() {
 				return nil
 			}
 		}
-		file_overloan_loan_v1_query_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_cosmos_loan_v1_query_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*QueryLoanResponse); i {
 			case 0:
 				return &v.state
@@ -2942,7 +2940,7 @@ func file_overloan_loan_v1_query_proto_init() {
 				return nil
 			}
 		}
-		file_overloan_loan_v1_query_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_cosmos_loan_v1_query_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*QueryLoansByBorrowerRequest); i {
 			case 0:
 				return &v.state
@@ -2954,7 +2952,7 @@ func file_overloan_loan_v1_query_proto_init() {
 				return nil
 			}
 		}
-		file_overloan_loan_v1_query_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_cosmos_loan_v1_query_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*QueryLoansByBorrowerResponse); i {
 			case 0:
 				return &v.state
@@ -2971,18 +2969,18 @@ func file_overloan_loan_v1_query_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_overloan_loan_v1_query_proto_rawDesc,
+			RawDescriptor: file_cosmos_loan_v1_query_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_overloan_loan_v1_query_proto_goTypes,
-		DependencyIndexes: file_overloan_loan_v1_query_proto_depIdxs,
-		MessageInfos:      file_overloan_loan_v1_query_proto_msgTypes,
+		GoTypes:           file_cosmos_loan_v1_query_proto_goTypes,
+		DependencyIndexes: file_cosmos_loan_v1_query_proto_depIdxs,
+		MessageInfos:      file_cosmos_loan_v1_query_proto_msgTypes,
 	}.Build()
-	File_overloan_loan_v1_query_proto = out.File
-	file_overloan_loan_v1_query_proto_rawDesc = nil
-	file_overloan_loan_v1_query_proto_goTypes = nil
-	file_overloan_loan_v1_query_proto_depIdxs = nil
+	File_cosmos_loan_v1_query_proto = out.File
+	file_cosmos_loan_v1_query_proto_rawDesc = nil
+	file_cosmos_loan_v1_query_proto_goTypes = nil
+	file_cosmos_loan_v1_query_proto_depIdxs = nil
 }

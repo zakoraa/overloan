@@ -10,7 +10,7 @@ package keeper
 import (
 	"cosmossdk.io/collections"
 	"cosmossdk.io/core/store"
-	loanv1 "github.com/cosmos/cosmos-sdk/api/overloan/loan/v1"
+	loanv1 "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
 	"github.com/cosmos/cosmos-sdk/codec"
 	"github.com/cosmos/cosmos-sdk/x/loan/types"
 )

@@ -4,6 +4,8 @@ module github.com/cosmos/cosmos-sdk
 
 replace github.com/cosmos/cosmos-sdk/api => ./api
 
+replace github.com/cosmos/cosmos-sdk/client/v2 => ./client/v2
+
 require (
 	cosmossdk.io/api v1.0.0
 	cosmossdk.io/collections v1.4.0

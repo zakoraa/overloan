@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package overloan.loan.v1;
+package cosmos.loan.v1;
 
-option go_package = "github.com/zakoraa/overloan/x/loan/types";
+option go_package = "github.com/cosmos/cosmos-sdk/x/loan/types";
 
 import "cosmos/base/v1beta1/coin.proto";
 import "google/protobuf/timestamp.proto";
@@ -21,11 +21,14 @@ enum LoanStatus {
   // dana sudah dicairkan ke borrower
   LOAN_STATUS_DISBURSED = 3;
 
+  // sisa dana telah dibayarkan
+  LOAN_STATUS_REPAID = 4;
+
   // pinjaman ditolak oleh policy yang berwenang (laz)
-  LOAN_STATUS_REJECTED = 4;
+  LOAN_STATUS_REJECTED = 5;
 
   // pinjaman dibatalkan sebelum pencairan
-  LOAN_STATUS_CANCELLED = 5;
+  LOAN_STATUS_CANCELLED = 6;
 }
 
 // Loan merupakan representasi kontrak pinjaman
