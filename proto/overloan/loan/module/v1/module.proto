@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package overloan.loan.module.v1;
+
+import "cosmos/app/v1alpha1/module.proto";
+
+option go_package = "github.com/zakoraa/overloan/x/loan/types";
+
+// Module is the config object for the module.
+message Module {
+  option (cosmos.app.v1alpha1.module) = {
+    go_import: "github.com/zakoraa/overloan/x/loan"
+  };
+
+  // authority defines the custom module authority.
+  // If not set, defaults to the governance module.
+  string authority = 1;
+}
