@@ -16,13 +16,20 @@ func (k Keeper) SetLoanByBorrower(ctx sdk.Context, borrower sdk.AccAddress, loan
 	store.Set(key, []byte{1})
 }
 
-func (k Keeper) GetLoansByBorrower(ctx sdk.Context, borrower sdk.AccAddress) []loanv1.Loan {
+func (k Keeper) GetLoansByBorrower(
+	ctx sdk.Context,
+	borrower sdk.AccAddress,
+) []*loanv1.Loan {
+
 	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.LoanByBorrowerPrefix)
 
-	iterator := store.Iterator(borrower.Bytes(), storetypes.PrefixEndBytes(borrower.Bytes()))
+	iterator := store.Iterator(
+		borrower.Bytes(),
+		storetypes.PrefixEndBytes(borrower.Bytes()),
+	)
 	defer iterator.Close()
 
-	var loans []loanv1.Loan
+	var loans []*loanv1.Loan
 
 	for ; iterator.Valid(); iterator.Next() {
 		key := iterator.Key()

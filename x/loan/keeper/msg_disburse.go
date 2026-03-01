@@ -36,7 +36,7 @@ func (m msgServer) ConfirmDisbursement(
 	}
 
 	// Validasi state machine
-	if err := types.CanDisburse(&loan); err != nil {
+	if err := types.CanDisburse(loan); err != nil {
 		return nil, err
 	}
 

@@ -31,7 +31,7 @@ func (m msgServer) ApproveLoan(
 	}
 
 	// Validasi state machine
-	if err := types.CanApprove(&loan); err != nil {
+	if err := types.CanApprove(loan); err != nil {
 		return nil, err
 	}
 

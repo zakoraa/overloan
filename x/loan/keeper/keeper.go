@@ -1,3 +1,10 @@
+/*
+Package keeper berisi implementasi logika bisnis dan
+pengelolaan state untuk modul loan.
+
+Package ini menangani lifecycle pinjaman,
+validasi otoritas, akuntansi token settlement,
+*/
 package keeper
 
 import (

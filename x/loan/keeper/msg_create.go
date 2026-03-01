@@ -64,7 +64,7 @@ func (m msgServer) CreateLoan(
 	now := sdkCtx.BlockTime()
 
 	// Bentuk entity Loan baru dengan status awal PENDING
-	loan := loanv1.Loan{
+	loan := &loanv1.Loan{
 		Id:       loanID,
 		Borrower: msg.Borrower,
 		Principal: &basev1beta1.Coin{

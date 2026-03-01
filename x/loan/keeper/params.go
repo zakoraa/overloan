@@ -6,13 +6,13 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/loan/types"
 )
 
-func (k Keeper) GetParams(ctx sdk.Context) loanv1.Params {
+func (k Keeper) GetParams(ctx sdk.Context) *loanv1.Params {
 	var params types.Params
 	k.paramSpace.GetParamSet(ctx, &params)
 	return params.Params
 }
 
-func (k Keeper) SetParams(ctx sdk.Context, params loanv1.Params) {
+func (k Keeper) SetParams(ctx sdk.Context, params *loanv1.Params) {
 	k.paramSpace.SetParamSet(ctx, &types.Params{
 		Params: params,
 	})

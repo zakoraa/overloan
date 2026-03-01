@@ -21,7 +21,7 @@ var (
 
 // Params wrapper lokal agar bisa implement ParamSet
 type Params struct {
-	loanv1.Params
+	*loanv1.Params
 }
 
 func ParamKeyTable() paramtypes.KeyTable {
