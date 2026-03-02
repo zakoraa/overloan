@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	Query_Params_FullMethodName          = "/cosmos.loan.v1.Query/Params"
 	Query_Loan_FullMethodName            = "/cosmos.loan.v1.Query/Loan"
+	Query_Loans_FullMethodName           = "/cosmos.loan.v1.Query/Loans"
 	Query_LoansByBorrower_FullMethodName = "/cosmos.loan.v1.Query/LoansByBorrower"
 )
 
@@ -34,7 +35,9 @@ type QueryClient interface {
 	Params(ctx context.Context, in *QueryParamsRequest, opts ...grpc.CallOption) (*QueryParamsResponse, error)
 	// Mengambil detail satu pinjaman berdasarkan loan_id
 	Loan(ctx context.Context, in *QueryLoanRequest, opts ...grpc.CallOption) (*QueryLoanResponse, error)
-	// Mengambil daftar pinjaman milik borrower tertentu (biasanya dengan pagination)
+	// Mengambil list data pinjaman (dengan pagination)
+	Loans(ctx context.Context, in *QueryLoansRequest, opts ...grpc.CallOption) (*QueryLoansResponse, error)
+	// Mengambil daftar pinjaman milik borrower tertentu (dengan pagination)
 	LoansByBorrower(ctx context.Context, in *QueryLoansByBorrowerRequest, opts ...grpc.CallOption) (*QueryLoansByBorrowerResponse, error)
 }
 
@@ -66,6 +69,16 @@ func (c *queryClient) Loan(ctx context.Context, in *QueryLoanRequest, opts ...gr
 	return out, nil
 }
 
+func (c *queryClient) Loans(ctx context.Context, in *QueryLoansRequest, opts ...grpc.CallOption) (*QueryLoansResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(QueryLoansResponse)
+	err := c.cc.Invoke(ctx, Query_Loans_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *queryClient) LoansByBorrower(ctx context.Context, in *QueryLoansByBorrowerRequest, opts ...grpc.CallOption) (*QueryLoansByBorrowerResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(QueryLoansByBorrowerResponse)
@@ -86,7 +99,9 @@ type QueryServer interface {
 	Params(context.Context, *QueryParamsRequest) (*QueryParamsResponse, error)
 	// Mengambil detail satu pinjaman berdasarkan loan_id
 	Loan(context.Context, *QueryLoanRequest) (*QueryLoanResponse, error)
-	// Mengambil daftar pinjaman milik borrower tertentu (biasanya dengan pagination)
+	// Mengambil list data pinjaman (dengan pagination)
+	Loans(context.Context, *QueryLoansRequest) (*QueryLoansResponse, error)
+	// Mengambil daftar pinjaman milik borrower tertentu (dengan pagination)
 	LoansByBorrower(context.Context, *QueryLoansByBorrowerRequest) (*QueryLoansByBorrowerResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
@@ -103,6 +118,9 @@ func (UnimplementedQueryServer) Params(context.Context, *QueryParamsRequest) (*Q
 }
 func (UnimplementedQueryServer) Loan(context.Context, *QueryLoanRequest) (*QueryLoanResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Loan not implemented")
+}
+func (UnimplementedQueryServer) Loans(context.Context, *QueryLoansRequest) (*QueryLoansResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method Loans not implemented")
 }
 func (UnimplementedQueryServer) LoansByBorrower(context.Context, *QueryLoansByBorrowerRequest) (*QueryLoansByBorrowerResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method LoansByBorrower not implemented")
@@ -164,6 +182,24 @@ func _Query_Loan_Handler(srv interface{}, ctx context.Context, dec func(interfac
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_Loans_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryLoansRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).Loans(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_Loans_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).Loans(ctx, req.(*QueryLoansRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Query_LoansByBorrower_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(QueryLoansByBorrowerRequest)
 	if err := dec(in); err != nil {
@@ -196,6 +232,10 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Loan",
 			Handler:    _Query_Loan_Handler,
+		},
+		{
+			MethodName: "Loans",
+			Handler:    _Query_Loans_Handler,
 		},
 		{
 			MethodName: "LoansByBorrower",

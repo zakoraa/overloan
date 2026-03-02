@@ -3,15 +3,17 @@ Package keeper berisi implementasi logika bisnis dan
 pengelolaan state untuk modul loan.
 
 Package ini menangani lifecycle pinjaman,
-validasi otoritas, akuntansi token settlement,
+validasi otoritas, akuntansi token settlement.
 */
 package keeper
 
 import (
 	"cosmossdk.io/collections"
 	"cosmossdk.io/core/store"
-	loanv1 "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
+
 	"github.com/cosmos/cosmos-sdk/codec"
+
+	loanv1 "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
 	"github.com/cosmos/cosmos-sdk/x/loan/types"
 )
 
@@ -21,15 +23,21 @@ type Keeper struct {
 
 	bankKeeper    types.BankKeeper
 	accountKeeper types.AccountKeeper
-	// groupKeeper   types.GroupKeeper
 
 	authority string
 
 	Schema collections.Schema
 
+	// Primary storage
 	Loans  collections.Map[uint64, loanv1.Loan]
 	NextID collections.Item[uint64]
 	Params collections.Item[loanv1.Params]
+
+	// Secondary index
+	LoansByBorrower collections.Map[
+		collections.Pair[string, uint64],
+		uint64,
+	]
 }
 
 // NewKeeper membuat instance keeper
@@ -38,18 +46,27 @@ func NewKeeper(
 	storeService store.KVStoreService,
 	bankKeeper types.BankKeeper,
 	accountKeeper types.AccountKeeper,
-	// groupKeeper types.GroupKeeper,
 	authority string,
 ) Keeper {
 
 	sb := collections.NewSchemaBuilder(storeService)
 
+	// Primary map: loanID -> Loan
 	loans := collections.NewMap(
 		sb,
 		collections.NewPrefix("loans"),
 		"loans",
 		collections.Uint64Key,
 		codec.CollValue[loanv1.Loan](cdc),
+	)
+
+	// Secondary index: borrower -> loanID
+	loansByBorrower := collections.NewMap(
+		sb,
+		collections.NewPrefix("loans_by_borrower"),
+		"loans_by_borrower",
+		collections.PairKeyCodec(collections.StringKey, collections.Uint64Key),
+		collections.Uint64Value,
 	)
 
 	nextID := collections.NewItem(
@@ -72,15 +89,15 @@ func NewKeeper(
 	}
 
 	return Keeper{
-		cdc:           cdc,
-		storeService:  storeService,
-		bankKeeper:    bankKeeper,
-		accountKeeper: accountKeeper,
-		// groupKeeper:   groupKeeper,
-		authority:     authority,
-		Schema:        schema,
-		Loans:         loans,
-		NextID:        nextID,
-		Params:        params,
+		cdc:             cdc,
+		storeService:    storeService,
+		bankKeeper:      bankKeeper,
+		accountKeeper:   accountKeeper,
+		authority:       authority,
+		Schema:          schema,
+		Loans:           loans,
+		LoansByBorrower: loansByBorrower,
+		NextID:          nextID,
+		Params:          params,
 	}
 }

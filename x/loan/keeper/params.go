@@ -5,10 +5,19 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
-func (k Keeper) GetParams(ctx sdk.Context) (loanv1.Params, error) {
-	return k.Params.Get(ctx)
+func (k Keeper) GetParams(ctx sdk.Context) (*loanv1.Params, error) {
+	params, err := k.Params.Get(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return &params, nil
 }
 
 func (k Keeper) SetParams(ctx sdk.Context, params *loanv1.Params) error {
-	return k.Params.Set(ctx, *params)
+	err := k.Params.Set(ctx, *params)
+
+	if err != nil {
+		return err
+	}
+	return nil
 }

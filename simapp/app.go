@@ -506,7 +506,11 @@ func NewSimApp(
 		epochs.NewAppModule(app.EpochsKeeper),
 		protocolpool.NewAppModule(app.ProtocolPoolKeeper, app.AccountKeeper, app.BankKeeper),
 		// group.NewAppModule(appCodec, app.GroupKeeper, app.AccountKeeper, app.BankKeeper, app.interfaceRegistry),
-		loan.NewAppModule(app.LoanKeeper),
+		// loan.NewAppModule(app.LoanKeeper),
+		loan.NewAppModule(
+			app.appCodec,
+			app.LoanKeeper,
+		),
 		// loan.NewAppModule(appCodec, app.LoanKeeper, app.AccountKeeper, app.BankKeeper),
 	)
 
@@ -597,6 +601,7 @@ func NewSimApp(
 		upgradetypes.ModuleName,
 		vestingtypes.ModuleName,
 		epochstypes.ModuleName,
+		loantypes.ModuleName,
 	}
 
 	app.ModuleManager.SetOrderInitGenesis(genesisModuleOrder...)

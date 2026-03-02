@@ -21,7 +21,17 @@ var (
 
 // Params wrapper lokal agar bisa implement ParamSet
 type Params struct {
-	*loanv1.Params
+	loanv1.Params
+}
+
+// NewParams creates a new Params instance.
+func NewParams() Params {
+	return Params{}
+}
+
+// DefaultParams returns a default set of parameters.
+func DefaultParams() Params {
+	return NewParams()
 }
 
 func ParamKeyTable() paramtypes.KeyTable {
