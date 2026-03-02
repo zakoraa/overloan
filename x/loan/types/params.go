@@ -19,10 +19,9 @@ var (
 	KeyOmnibusGroupPolicy = []byte("OmnibusGroupPolicy")
 )
 
+type Params loanv1.Params
+
 // Params wrapper lokal agar bisa implement ParamSet
-type Params struct {
-	loanv1.Params
-}
 
 // NewParams creates a new Params instance.
 func NewParams() Params {
@@ -138,5 +137,33 @@ func validateAddress(i interface{}) error {
 	if _, err := sdk.AccAddressFromBech32(v); err != nil {
 		return fmt.Errorf("invalid address format")
 	}
+	return nil
+}
+
+func (p Params) Validate() error {
+	if p.SettlementDenom == "" {
+		return fmt.Errorf("settlement denom required")
+	}
+
+	if p.MinLoanAmount == 0 {
+		return fmt.Errorf("min loan amount must be > 0")
+	}
+
+	if p.MaxLoanAmount <= p.MinLoanAmount {
+		return fmt.Errorf("max loan amount must be greater than min loan amount")
+	}
+
+	if p.MaxTenorMonths == 0 {
+		return fmt.Errorf("max tenor must be > 0")
+	}
+
+	if _, err := sdk.AccAddressFromBech32(p.LazGroupPolicy); err != nil {
+		return fmt.Errorf("invalid laz group policy address")
+	}
+
+	if _, err := sdk.AccAddressFromBech32(p.OmnibusGroupPolicy); err != nil {
+		return fmt.Errorf("invalid omnibus group policy address")
+	}
+
 	return nil
 }

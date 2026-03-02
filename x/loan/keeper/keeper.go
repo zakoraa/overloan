@@ -54,7 +54,7 @@ func NewKeeper(
 	// Primary map: loanID -> Loan
 	loans := collections.NewMap(
 		sb,
-		collections.NewPrefix("loans"),
+		types.LoanKeyPrefix,
 		"loans",
 		collections.Uint64Key,
 		codec.CollValue[loanv1.Loan](cdc),
@@ -63,7 +63,7 @@ func NewKeeper(
 	// Secondary index: borrower -> loanID
 	loansByBorrower := collections.NewMap(
 		sb,
-		collections.NewPrefix("loans_by_borrower"),
+		types.LoanByBorrowerPrefix,
 		"loans_by_borrower",
 		collections.PairKeyCodec(collections.StringKey, collections.Uint64Key),
 		collections.Uint64Value,
@@ -71,14 +71,14 @@ func NewKeeper(
 
 	nextID := collections.NewItem(
 		sb,
-		collections.NewPrefix("next_id"),
+		types.LoanIDKey,
 		"next_id",
 		collections.Uint64Value,
 	)
 
 	params := collections.NewItem(
 		sb,
-		collections.NewPrefix("params"),
+		types.ParamsKey,
 		"params",
 		codec.CollValue[loanv1.Params](cdc),
 	)
