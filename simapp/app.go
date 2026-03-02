@@ -514,13 +514,6 @@ func NewSimApp(
 		// loan.NewAppModule(appCodec, app.LoanKeeper, app.AccountKeeper, app.BankKeeper),
 	)
 
-	fmt.Println("=== Registered Modules ===")
-	for _, m := range app.ModuleManager.Modules {
-		if hasName, ok := m.(module.HasName); ok {
-			fmt.Println(hasName.Name())
-		}
-	}
-
 	// BasicModuleManager defines the module BasicManager is in charge of setting up basic,
 	// non-dependent module elements, such as codec registration and genesis verification.
 	// By default it is composed of all the module from the module manager.
@@ -786,18 +779,11 @@ func (app *SimApp) TxConfig() client.TxConfig {
 // AutoCliOpts returns the autocli options for the app.
 func (app *SimApp) AutoCliOpts() autocli.AppOptions {
 	modules := make(map[string]appmodule.AppModule, 0)
-	fmt.Println("=== Checking AutoCLI Modules ===")
-
 	for _, m := range app.ModuleManager.Modules {
 		if moduleWithName, ok := m.(module.HasName); ok {
 			moduleName := moduleWithName.Name()
-
-			fmt.Println("Found module:", moduleName)
 			if appModule, ok := moduleWithName.(appmodule.AppModule); ok {
-				fmt.Println(" -> implements appmodule.AppModule:", moduleName)
 				modules[moduleName] = appModule
-			} else {
-				fmt.Println(" -> DOES NOT implement appmodule.AppModule:", moduleName)
 			}
 		}
 	}
