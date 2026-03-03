@@ -72,19 +72,19 @@ func (p *Params) ParamSetPairs() paramtypes.ParamSetPairs {
 func (p Params) Validate() error {
 
 	// Denom wajib diisi
-	if p.SettlementDenom == "" {
-		return fmt.Errorf("settlement denom required")
-	}
+	// if p.SettlementDenom == "" {
+	// 	return fmt.Errorf("settlement denom required")
+	// }
 
-	// Min tidak boleh lebih besar dari Max
-	if p.MinLoanAmount > p.MaxLoanAmount {
-		return fmt.Errorf("min loan amount cannot exceed max loan amount")
-	}
+	// // Min tidak boleh lebih besar dari Max
+	// if p.MinLoanAmount > p.MaxLoanAmount {
+	// 	return fmt.Errorf("min loan amount cannot exceed max loan amount")
+	// }
 
-	// Max tenor harus > 0
-	if p.MaxTenorMonths == 0 {
-		return fmt.Errorf("max tenor months must be positive")
-	}
+	// // Max tenor harus > 0
+	// if p.MaxTenorMonths == 0 {
+	// 	return fmt.Errorf("max tenor months must be positive")
+	// }
 
 	return nil
 }
