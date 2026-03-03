@@ -6,6 +6,7 @@ import (
 
 	"cosmossdk.io/core/appmodule"
 	gwruntime "github.com/grpc-ecosystem/grpc-gateway/runtime"
+	"github.com/spf13/cobra"
 
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/codec"
@@ -14,6 +15,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/module"
 
 	loanv1 "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
+	"github.com/cosmos/cosmos-sdk/x/loan/client/cli"
 	"github.com/cosmos/cosmos-sdk/x/loan/keeper"
 	loantypes "github.com/cosmos/cosmos-sdk/x/loan/types"
 )
@@ -27,15 +29,15 @@ var (
 const ConsensusVersion = 1
 
 type AppModule struct {
-    cdc    codec.BinaryCodec
-    keeper keeper.Keeper
+	cdc    codec.BinaryCodec
+	keeper keeper.Keeper
 }
 
 func NewAppModule(cdc codec.BinaryCodec, keeper keeper.Keeper) AppModule {
-    return AppModule{
-        cdc:    cdc,
-        keeper: keeper,
-    }
+	return AppModule{
+		cdc:    cdc,
+		keeper: keeper,
+	}
 }
 
 func (AppModule) Name() string { return loantypes.ModuleName }
@@ -80,4 +82,8 @@ func (am AppModule) ExportGenesis(ctx sdk.Context, cdc codec.JSONCodec) json.Raw
 		panic(err)
 	}
 	return cdc.MustMarshalJSON(gs)
+}
+
+func (AppModule) GetTxCmd() *cobra.Command {
+	return cli.GetTxCmd()
 }

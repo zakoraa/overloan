@@ -5,6 +5,8 @@ package cosmos.loan.v1;
 option go_package = "github.com/cosmos/cosmos-sdk/x/loan/types";
 
 import "cosmos/base/v1beta1/coin.proto";
+import "cosmos/msg/v1/msg.proto";
+
 
 // Msg defines the Msg service
 service Msg {
@@ -28,6 +30,8 @@ service Msg {
 }
 // MsgCreateLoan digunakan oleh borrower untuk mengajukan permohonan pinjaman baru
 message MsgCreateLoan {
+  option (cosmos.msg.v1.signer) = "borrower";
+
   // Alamat borrower (Bech32) sebagai pemohon pinjaman
   string borrower = 1;
 
@@ -49,6 +53,8 @@ message MsgCreateLoanResponse {
 
 // MsgApproveLoan digunakan oleh policy yang berwenang untuk menyetujui pinjaman
 message MsgApproveLoan {
+  option (cosmos.msg.v1.signer) = "authority";
+
   // Alamat group policy (laz_group_policy) sebagai otoritas persetujuan
   string authority = 1;
 
@@ -61,6 +67,8 @@ message MsgApproveLoanResponse {}
 
 // MsgRejectLoan digunakan oleh policy yang berwenang untuk menolak pinjaman
 message MsgRejectLoan {
+  option (cosmos.msg.v1.signer) = "authority";
+
   // Alamat group policy sebagai otoritas penolakan
   string authority = 1;
 
@@ -73,6 +81,8 @@ message MsgRejectLoanResponse {}
 
 // MsgRepayLoan digunakan untuk mencatat pembayaran pinjaman
 message MsgRepayLoan {
+  option (cosmos.msg.v1.signer) = "authority";
+
   // Alamat omnibus_group_policy sebagai otoritas pembayaran
   string authority = 1;
 
@@ -88,6 +98,8 @@ message MsgRepayLoanResponse {}
 
 // MsgConfirmDisbursement digunakan untuk mengonfirmasi bahwa dana telah dicairkan
 message MsgConfirmDisbursement {
+  option (cosmos.msg.v1.signer) = "authority";
+
   // Alamat omnibus_group_policy sebagai otoritas pencairan dana
   string authority = 1;
 

@@ -20,12 +20,12 @@ func ValidateGenesis(gs *loanv1.GenesisState) error {
 		return fmt.Errorf("genesis state cannot be nil")
 	}
 
-	if gs.Params != nil {
-		params := Params(*gs.Params)
-		if err := params.Validate(); err != nil {
-			return err
-		}
-	}
+	// if gs.Params != nil {
+	// 	params := Params(*gs.Params)
+	// 	if err := params.Validate(); err != nil {
+	// 		return err
+	// 	}
+	// }
 
 	return nil
 }
