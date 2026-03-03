@@ -25,8 +25,17 @@ func NewParams() Params {
 }
 
 // DefaultParams returns a default set of parameters.
+//
+//	func DefaultParams() Params {
+//		return NewParams()
+//	}
 func DefaultParams() Params {
-	return NewParams()
+	return Params{
+		SettlementDenom: "stake",
+		MaxLoanAmount:   1_000_000,
+		MinLoanAmount:   100,
+		MaxTenorMonths:  12,
+	}
 }
 
 func ParamKeyTable() paramtypes.KeyTable {
