@@ -3,15 +3,13 @@ package types
 import (
 	errorsmod "cosmossdk.io/errors"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-
-	loanv1 "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
 )
 
 // Pastikan MsgRejectLoan memenuhi sdk.Msg
-var _ sdk.Msg = (*loanv1.MsgRejectLoan)(nil)
+var _ sdk.Msg = (*MsgRejectLoan)(nil)
 
 // ValidateMsgRejectLoan melakukan validasi stateless
-func ValidateMsgRejectLoan(msg *loanv1.MsgRejectLoan) error {
+func ValidateMsgRejectLoan(msg *MsgRejectLoan) error {
 
 	// Authority wajib valid Bech32
 	if _, err := sdk.AccAddressFromBech32(msg.Authority); err != nil {

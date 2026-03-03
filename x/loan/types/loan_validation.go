@@ -1,20 +1,19 @@
 package types
 
-import loanv1 "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
 
 // CanApprove memastikan loan dalam status yang valid untuk disetujui
-func CanApprove(l *loanv1.Loan) error {
+func CanApprove(l *Loan) error {
 
 	// Loan hanya boleh disetujui jika masih berstatus PENDING
-	if l.Status != loanv1.LoanStatus_LOAN_STATUS_PENDING {
+	if l.Status != LoanStatus_LOAN_STATUS_PENDING {
 		return ErrInvalidStateTransition.Wrap("loan must be pending")
 	}
 
 	return nil
 }
 
-func CanReject(l *loanv1.Loan) error {
-	if l.Status != loanv1.LoanStatus_LOAN_STATUS_PENDING {
+func CanReject(l *Loan) error {
+	if l.Status != LoanStatus_LOAN_STATUS_PENDING {
 		return ErrInvalidStateTransition.
 			Wrap("loan must be pending to reject")
 	}
@@ -22,10 +21,10 @@ func CanReject(l *loanv1.Loan) error {
 }
 
 // CanDisburse memastikan loan dalam status yang valid untuk dicairkan
-func CanDisburse(l *loanv1.Loan) error {
+func CanDisburse(l *Loan) error {
 
 	// Loan hanya boleh dicairkan jika sudah berstatus APPROVED
-	if l.Status != loanv1.LoanStatus_LOAN_STATUS_APPROVED {
+	if l.Status != LoanStatus_LOAN_STATUS_APPROVED {
 		return ErrInvalidStateTransition.Wrap("loan must be approved")
 	}
 
@@ -33,12 +32,12 @@ func CanDisburse(l *loanv1.Loan) error {
 }
 
 // IsActiveStatus menentukan apakah loan masih dianggap aktif secara bisnis
-func IsActiveStatus(status loanv1.LoanStatus) bool {
+func IsActiveStatus(status LoanStatus) bool {
 
 	switch status {
-	case loanv1.LoanStatus_LOAN_STATUS_PENDING,
-		loanv1.LoanStatus_LOAN_STATUS_APPROVED,
-		loanv1.LoanStatus_LOAN_STATUS_DISBURSED:
+	case LoanStatus_LOAN_STATUS_PENDING,
+		LoanStatus_LOAN_STATUS_APPROVED,
+		LoanStatus_LOAN_STATUS_DISBURSED:
 		return true
 	default:
 		return false

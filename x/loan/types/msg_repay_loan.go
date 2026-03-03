@@ -3,16 +3,14 @@ package types
 import (
 	errorsmod "cosmossdk.io/errors"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-
-	loanv1 "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
 )
 
 // Pastikan MsgRepayLoan dari proto memenuhi interface sdk.Msg
-var _ sdk.Msg = (*loanv1.MsgRepayLoan)(nil)
+var _ sdk.Msg = (*MsgRepayLoan)(nil)
 
 // ValidateMsgRepayLoan melakukan validasi stateless
 // Fungsi ini dipanggil sebelum tx diproses keeper
-func ValidateMsgRepayLoan(msg *loanv1.MsgRepayLoan) error {
+func ValidateMsgRepayLoan(msg *MsgRepayLoan) error {
 
 	// Validasi authority address (format Bech32)
 	if _, err := sdk.AccAddressFromBech32(msg.Authority); err != nil {

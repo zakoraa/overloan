@@ -1,40 +1,38 @@
 package keeper
 
 import (
-	loanv1 "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/cosmos/cosmos-sdk/x/loan/types"
 )
 
 // InitGenesis initializes the module's state from a provided genesis state.
-func (k Keeper) InitGenesis(ctx sdk.Context, gs loanv1.GenesisState) {
+func (k Keeper) InitGenesis(ctx sdk.Context, gs types.GenesisState) {
 
-	if gs.Params != nil {
-		if err := k.SetParams(ctx, gs.Params); err != nil {
-			panic(err)
-		}
+	if err := k.SetParams(ctx, gs.Params); err != nil {
+		panic(err)
 	}
 
 	if err := k.NextID.Set(ctx, gs.NextId); err != nil {
 		panic(err)
 	}
 
-	for _, loan := range gs.Loans {
-		if err := k.SetLoan(ctx, loan); err != nil {
+	for i := range gs.Loans {
+		loan := gs.Loans[i]
+		if err := k.SetLoan(ctx, &loan); err != nil {
 			panic(err)
 		}
 	}
 }
 
-// ExportGenesis returns the module's exported genesis.
-func (k Keeper) ExportGenesis(ctx sdk.Context) (*loanv1.GenesisState, error) {
+func (k Keeper) ExportGenesis(ctx sdk.Context) (*types.GenesisState, error) {
 
-	genesis := &loanv1.GenesisState{}
+	var genesis types.GenesisState
 
 	params, err := k.Params.Get(ctx)
 	if err != nil {
 		return nil, err
 	}
-	genesis.Params = &params
+	genesis.Params = params
 
 	nextID, err := k.NextID.Get(ctx)
 	if err != nil {
@@ -42,11 +40,10 @@ func (k Keeper) ExportGenesis(ctx sdk.Context) (*loanv1.GenesisState, error) {
 	}
 	genesis.NextId = nextID
 
-	var loans []*loanv1.Loan
+	var loans []types.Loan
 
-	err = k.Loans.Walk(ctx, nil, func(_ uint64, loan loanv1.Loan) (bool, error) {
-		l := loan
-		loans = append(loans, &l)
+	err = k.Loans.Walk(ctx, nil, func(_ uint64, loan types.Loan) (bool, error) {
+		loans = append(loans, loan)
 		return false, nil
 	})
 	if err != nil {
@@ -55,5 +52,5 @@ func (k Keeper) ExportGenesis(ctx sdk.Context) (*loanv1.GenesisState, error) {
 
 	genesis.Loans = loans
 
-	return genesis, nil
+	return &genesis, nil
 }

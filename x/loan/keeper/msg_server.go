@@ -1,16 +1,13 @@
 package keeper
 
-import (
-	loanv1 "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
-)
+import "github.com/cosmos/cosmos-sdk/x/loan/types"
 
 // msgServer mengimplementasikan service Msg dari proto
 type msgServer struct {
 	Keeper
-	loanv1.UnimplementedMsgServer
 }
 
 // NewMsgServerImpl mengembalikan implementasi MsgServer module loan
-func NewMsgServerImpl(k Keeper) loanv1.MsgServer {
+func NewMsgServerImpl(k Keeper) types.MsgServer {
 	return &msgServer{Keeper: k}
 }

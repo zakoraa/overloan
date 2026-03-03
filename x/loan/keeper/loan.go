@@ -4,11 +4,12 @@ import (
 	"errors"
 
 	"cosmossdk.io/collections"
-	loanv1 "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/cosmos/cosmos-sdk/x/loan/types"
 )
 
-func (k Keeper) GetLoan(ctx sdk.Context, id uint64) (*loanv1.Loan, error) {
+func (k Keeper) GetLoan(ctx sdk.Context, id uint64) (*types.Loan, error) {
 	loan, err := k.Loans.Get(ctx, id)
 	if err != nil {
 		return nil, err
@@ -16,7 +17,7 @@ func (k Keeper) GetLoan(ctx sdk.Context, id uint64) (*loanv1.Loan, error) {
 	return &loan, nil
 }
 
-func (k Keeper) SetLoan(ctx sdk.Context, loan *loanv1.Loan) error {
+func (k Keeper) SetLoan(ctx sdk.Context, loan *types.Loan) error {
 	err := k.Loans.Set(ctx, loan.Id, *loan)
 
 	if err != nil {

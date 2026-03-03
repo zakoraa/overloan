@@ -5,8 +5,6 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
-
-	loanv1 "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
 )
 
 // Parameter Store Keys
@@ -18,8 +16,6 @@ var (
 	KeyLazGroupPolicy     = []byte("LazGroupPolicy")
 	KeyOmnibusGroupPolicy = []byte("OmnibusGroupPolicy")
 )
-
-type Params loanv1.Params
 
 // Params wrapper lokal agar bisa implement ParamSet
 
@@ -73,8 +69,28 @@ func (p *Params) ParamSetPairs() paramtypes.ParamSetPairs {
 	}
 }
 
+func (p Params) Validate() error {
+
+	// Denom wajib diisi
+	if p.SettlementDenom == "" {
+		return fmt.Errorf("settlement denom required")
+	}
+
+	// Min tidak boleh lebih besar dari Max
+	if p.MinLoanAmount > p.MaxLoanAmount {
+		return fmt.Errorf("min loan amount cannot exceed max loan amount")
+	}
+
+	// Max tenor harus > 0
+	if p.MaxTenorMonths == 0 {
+		return fmt.Errorf("max tenor months must be positive")
+	}
+
+	return nil
+}
+
 // // ValidateParams Stateless Validation (bisnis rule)
-// func ValidateParams(p *loanv1.Params) error {
+// func ValidateParams(p *types.Params) error {
 
 // 	// // SettlementDenom wajib diisi sebagai denom token utama
 // 	// if p.SettlementDenom == "" {

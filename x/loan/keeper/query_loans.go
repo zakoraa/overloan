@@ -3,7 +3,6 @@ package keeper
 import (
 	"context"
 
-	loanv1 "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/query"
 	"github.com/cosmos/cosmos-sdk/x/loan/types"
@@ -11,8 +10,8 @@ import (
 
 func (q queryServer) Loans(
 	ctx context.Context,
-	req *loanv1.QueryLoansRequest,
-) (*loanv1.QueryLoansResponse, error) {
+	req *types.QueryLoansRequest,
+) (*types.QueryLoansResponse, error) {
 
 	if req == nil {
 		return nil, types.ErrInvalidRequest
@@ -20,15 +19,11 @@ func (q queryServer) Loans(
 
 	sdkCtx := sdk.UnwrapSDKContext(ctx)
 
-	pageReq := normalizePagination(
-		convertPageRequest(req.Pagination),
-	)
-
 	loans, pageRes, err := query.CollectionPaginate(
 		sdkCtx,
 		q.k.Loans,
-		pageReq,
-		func(_ uint64, value loanv1.Loan) (*loanv1.Loan, error) {
+		req.Pagination,
+		func(_ uint64, value types.Loan) (*types.Loan, error) {
 			v := value
 			return &v, nil
 		},
@@ -37,8 +32,8 @@ func (q queryServer) Loans(
 		return nil, err
 	}
 
-	return &loanv1.QueryLoansResponse{
+	return &types.QueryLoansResponse{
 		Loans:      loans,
-		Pagination: convertPageResponse(pageRes),
+		Pagination: pageRes,
 	}, nil
 }

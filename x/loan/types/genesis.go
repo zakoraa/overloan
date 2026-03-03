@@ -2,30 +2,41 @@ package types
 
 import (
 	"fmt"
-
-	loanv1 "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
 )
 
-// DefaultGenesis returns the default genesis state
-func DefaultGenesis() *loanv1.GenesisState {
-	return &loanv1.GenesisState{
-		Params: &loanv1.Params{},
-		NextId: 0,
-		Loans:  []*loanv1.Loan{},
+// DefaultGenesis mengembalikan state awal modul loan
+func DefaultGenesis() *GenesisState {
+	return &GenesisState{
+		Params: DefaultParams(), // gunakan default param
+		NextId: 1,               // mulai ID dari 1 (best practice)
+		Loans:  []Loan{},        // inisialisasi slice kosong
 	}
 }
 
-func ValidateGenesis(gs *loanv1.GenesisState) error {
+// Validate melakukan validasi awal sebelum chain start
+func (gs *GenesisState) Validate() error {
 	if gs == nil {
 		return fmt.Errorf("genesis state cannot be nil")
 	}
 
-	// if gs.Params != nil {
-	// 	params := Params(*gs.Params)
-	// 	if err := params.Validate(); err != nil {
-	// 		return err
-	// 	}
-	// }
+	// Validasi parameter global
+	if err := gs.Params.Validate(); err != nil {
+		return err
+	}
+
+	// Validasi NextId tidak boleh 0
+	if gs.NextId == 0 {
+		return fmt.Errorf("next_id must start from 1")
+	}
+
+	// Validasi tidak ada duplicate loan ID
+	seen := make(map[uint64]bool)
+	for _, loan := range gs.Loans {
+		if seen[loan.Id] {
+			return fmt.Errorf("duplicate loan id: %d", loan.Id)
+		}
+		seen[loan.Id] = true
+	}
 
 	return nil
 }

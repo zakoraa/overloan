@@ -19,6 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
+	Msg_UpdateParams_FullMethodName        = "/cosmos.loan.v1.Msg/UpdateParams"
 	Msg_CreateLoan_FullMethodName          = "/cosmos.loan.v1.Msg/CreateLoan"
 	Msg_ApproveLoan_FullMethodName         = "/cosmos.loan.v1.Msg/ApproveLoan"
 	Msg_RejectLoan_FullMethodName          = "/cosmos.loan.v1.Msg/RejectLoan"
@@ -32,6 +33,8 @@ const (
 //
 // Msg defines the Msg service
 type MsgClient interface {
+	// Mengubah konfigurasi global modul (hanya authority)
+	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
 	// Membuat permohonan pinjaman baru dengan status PENDING oleh borrower
 	CreateLoan(ctx context.Context, in *MsgCreateLoan, opts ...grpc.CallOption) (*MsgCreateLoanResponse, error)
 	// Menyetujui pinjaman berstatus PENDING oleh laz_group_policy yang berwenang
@@ -53,6 +56,16 @@ type msgClient struct {
 
 func NewMsgClient(cc grpc.ClientConnInterface) MsgClient {
 	return &msgClient{cc}
+}
+
+func (c *msgClient) UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MsgUpdateParamsResponse)
+	err := c.cc.Invoke(ctx, Msg_UpdateParams_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *msgClient) CreateLoan(ctx context.Context, in *MsgCreateLoan, opts ...grpc.CallOption) (*MsgCreateLoanResponse, error) {
@@ -111,6 +124,8 @@ func (c *msgClient) ConfirmDisbursement(ctx context.Context, in *MsgConfirmDisbu
 //
 // Msg defines the Msg service
 type MsgServer interface {
+	// Mengubah konfigurasi global modul (hanya authority)
+	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
 	// Membuat permohonan pinjaman baru dengan status PENDING oleh borrower
 	CreateLoan(context.Context, *MsgCreateLoan) (*MsgCreateLoanResponse, error)
 	// Menyetujui pinjaman berstatus PENDING oleh laz_group_policy yang berwenang
@@ -134,6 +149,9 @@ type MsgServer interface {
 // pointer dereference when methods are called.
 type UnimplementedMsgServer struct{}
 
+func (UnimplementedMsgServer) UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method UpdateParams not implemented")
+}
 func (UnimplementedMsgServer) CreateLoan(context.Context, *MsgCreateLoan) (*MsgCreateLoanResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method CreateLoan not implemented")
 }
@@ -168,6 +186,24 @@ func RegisterMsgServer(s grpc.ServiceRegistrar, srv MsgServer) {
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&Msg_ServiceDesc, srv)
+}
+
+func _Msg_UpdateParams_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgUpdateParams)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).UpdateParams(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_UpdateParams_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).UpdateParams(ctx, req.(*MsgUpdateParams))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _Msg_CreateLoan_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -267,6 +303,10 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "cosmos.loan.v1.Msg",
 	HandlerType: (*MsgServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "UpdateParams",
+			Handler:    _Msg_UpdateParams_Handler,
+		},
 		{
 			MethodName: "CreateLoan",
 			Handler:    _Msg_CreateLoan_Handler,

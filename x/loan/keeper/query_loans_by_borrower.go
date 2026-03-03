@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"cosmossdk.io/collections"
-	loanv1 "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/query"
 	"github.com/cosmos/cosmos-sdk/x/loan/types"
@@ -12,8 +12,8 @@ import (
 
 func (q queryServer) LoansByBorrower(
 	ctx context.Context,
-	req *loanv1.QueryLoansByBorrowerRequest,
-) (*loanv1.QueryLoansByBorrowerResponse, error) {
+	req *types.QueryLoansByBorrowerRequest,
+) (*types.QueryLoansByBorrowerResponse, error) {
 
 	if req == nil {
 		return nil, types.ErrInvalidRequest
@@ -26,20 +26,16 @@ func (q queryServer) LoansByBorrower(
 		return nil, types.ErrInvalidAddress
 	}
 
-	pageReq := normalizePagination(
-		convertPageRequest(req.Pagination),
-	)
-
 	borrower := req.Borrower
 
 	loans, pageRes, err := query.CollectionFilteredPaginate(
 		sdkCtx,
 		q.k.LoansByBorrower,
-		pageReq,
+		req.Pagination,
 		func(key collections.Pair[string, uint64], loanID uint64) (bool, error) {
 			return key.K1() == borrower, nil
 		},
-		func(key collections.Pair[string, uint64], loanID uint64) (*loanv1.Loan, error) {
+		func(key collections.Pair[string, uint64], loanID uint64) (*types.Loan, error) {
 			loan, err := q.k.Loans.Get(sdkCtx, loanID)
 			if err != nil {
 				return nil, err
@@ -47,13 +43,13 @@ func (q queryServer) LoansByBorrower(
 			return &loan, nil
 		},
 	)
-	
+
 	if err != nil {
 		return nil, err
 	}
 
-	return &loanv1.QueryLoansByBorrowerResponse{
+	return &types.QueryLoansByBorrowerResponse{
 		Loans:      loans,
-		Pagination: convertPageResponse(pageRes),
+		Pagination: pageRes,
 	}, nil
 }

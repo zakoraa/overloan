@@ -6,17 +6,15 @@ import (
 	"fmt"
 
 	"cosmossdk.io/collections"
-	sdkmath "cosmossdk.io/math"
-	loanv1 "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/loan/types"
-	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 func (m msgServer) ConfirmDisbursement(
 	ctx context.Context,
-	msg *loanv1.MsgConfirmDisbursement,
-) (*loanv1.MsgConfirmDisbursementResponse, error) {
+	msg *types.MsgConfirmDisbursement,
+) (*types.MsgConfirmDisbursementResponse, error) {
 
 	sdkCtx := sdk.UnwrapSDKContext(ctx)
 
@@ -50,11 +48,7 @@ func (m msgServer) ConfirmDisbursement(
 
 	moduleAddr := m.GetModuleAddress()
 
-	// Mint settlement token ke module account
-	amountInt, ok := sdkmath.NewIntFromString(loan.Principal.Amount)
-	if !ok {
-		return nil, types.ErrInvalidCoin.Wrap("invalid principal amount")
-	}
+	amountInt := loan.Principal.Amount
 
 	sdkCoin := sdk.NewCoin(
 		loan.Principal.Denom,
@@ -80,8 +74,8 @@ func (m msgServer) ConfirmDisbursement(
 	// Update loan state
 	now := sdkCtx.BlockTime()
 
-	loan.Status = loanv1.LoanStatus_LOAN_STATUS_DISBURSED
-	loan.DisbursedAt = timestamppb.New(now)
+	loan.Status = types.LoanStatus_LOAN_STATUS_DISBURSED
+	loan.DisbursedAt = &now
 	loan.Outstanding = loan.Principal
 
 	m.SetLoan(sdkCtx, loan)
@@ -95,5 +89,5 @@ func (m msgServer) ConfirmDisbursement(
 		),
 	)
 
-	return &loanv1.MsgConfirmDisbursementResponse{}, nil
+	return &types.MsgConfirmDisbursementResponse{}, nil
 }

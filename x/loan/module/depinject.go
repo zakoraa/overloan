@@ -1,4 +1,4 @@
-package module
+package loan
 
 import (
 	"cosmossdk.io/core/appmodule"
@@ -16,7 +16,6 @@ import (
 var _ appmodule.AppModule = AppModule{}
 
 func (AppModule) IsOnePerModuleType() {}
-func (AppModule) IsAppModule()        {}
 
 func init() {
 	appmodule.Register(
@@ -28,7 +27,7 @@ func init() {
 type ModuleInputs struct {
 	depinject.In
 
-	Cdc          codec.BinaryCodec
+	Cdc          codec.Codec
 	StoreService store.KVStoreService
 	Config       *loanmodulev1.Module
 

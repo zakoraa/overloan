@@ -6,15 +6,15 @@ import (
 	"fmt"
 
 	"cosmossdk.io/collections"
-	loanv1 "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/loan/types"
 )
 
 func (m msgServer) RejectLoan(
 	ctx context.Context,
-	msg *loanv1.MsgRejectLoan,
-) (*loanv1.MsgRejectLoanResponse, error) {
+	msg *types.MsgRejectLoan,
+) (*types.MsgRejectLoanResponse, error) {
 
 	sdkCtx := sdk.UnwrapSDKContext(ctx)
 
@@ -33,13 +33,13 @@ func (m msgServer) RejectLoan(
 	}
 
 	//  Validasi state machine
-	if loan.Status != loanv1.LoanStatus_LOAN_STATUS_PENDING {
+	if loan.Status != types.LoanStatus_LOAN_STATUS_PENDING {
 		return nil, types.ErrInvalidStateTransition.
 			Wrap("only pending loan can be rejected")
 	}
 
 	//  Update status
-	loan.Status = loanv1.LoanStatus_LOAN_STATUS_REJECTED
+	loan.Status = types.LoanStatus_LOAN_STATUS_REJECTED
 
 	m.SetLoan(sdkCtx, loan)
 
@@ -52,5 +52,5 @@ func (m msgServer) RejectLoan(
 		),
 	)
 
-	return &loanv1.MsgRejectLoanResponse{}, nil
+	return &types.MsgRejectLoanResponse{}, nil
 }

@@ -6,6 +6,11 @@ option go_package = "github.com/cosmos/cosmos-sdk/x/loan/types";
 
 import "cosmos/base/v1beta1/coin.proto";
 import "google/protobuf/timestamp.proto";
+import "gogoproto/gogo.proto";
+
+option (gogoproto.marshaler_all)   = true;
+option (gogoproto.unmarshaler_all) = true;
+option (gogoproto.sizer_all)       = true;
 
 // LoanStatus merupakam status dari sebuah pinjaman
 enum LoanStatus {
@@ -55,13 +60,13 @@ message Loan {
   LoanStatus status = 7;
 
   // waktu saat permohonan pinjaman dibuat (block time).
-  google.protobuf.Timestamp created_at = 8;
+  google.protobuf.Timestamp created_at = 8 [(gogoproto.stdtime) = true];
 
   // waktu saat pinjaman disetujui.
-  google.protobuf.Timestamp approved_at = 9;
+  google.protobuf.Timestamp approved_at = 9 [(gogoproto.stdtime) = true];
 
   // waktu saat dana dicairkan ke borrower.
-  google.protobuf.Timestamp disbursed_at = 10;
+  google.protobuf.Timestamp disbursed_at = 10 [(gogoproto.stdtime) = true];
 
   // document hash (bisa pakai hash dari IPFS kalau digunakan)
   string metadata_hash = 11;

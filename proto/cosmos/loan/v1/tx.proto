@@ -6,10 +6,16 @@ option go_package = "github.com/cosmos/cosmos-sdk/x/loan/types";
 
 import "cosmos/base/v1beta1/coin.proto";
 import "cosmos/msg/v1/msg.proto";
-
+import "cosmos_proto/cosmos.proto";
+import "cosmos/loan/v1/params.proto";
 
 // Msg defines the Msg service
 service Msg {
+  option (cosmos.msg.v1.service) = true;
+
+  // Mengubah konfigurasi global modul (hanya authority)
+  rpc UpdateParams(MsgUpdateParams) returns (MsgUpdateParamsResponse);
+
   // Membuat permohonan pinjaman baru dengan status PENDING oleh borrower
   rpc CreateLoan(MsgCreateLoan) returns (MsgCreateLoanResponse);
 
@@ -28,12 +34,27 @@ service Msg {
   // Mengonfirmasi pencairan dana dan mengubah status menjadi DISBURSED
   rpc ConfirmDisbursement(MsgConfirmDisbursement) returns (MsgConfirmDisbursementResponse);
 }
+
+// MsgUpdateParams digunakan untuk mengubah parameter modul
+message MsgUpdateParams {
+  option (cosmos.msg.v1.signer) = "authority";
+
+  // alamat otoritas (misal governance module)
+  string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // konfigurasi baru yang akan menggantikan params lama
+  Params params = 2;
+}
+
+// Response kosong karena hanya update state
+message MsgUpdateParamsResponse {}
+
 // MsgCreateLoan digunakan oleh borrower untuk mengajukan permohonan pinjaman baru
 message MsgCreateLoan {
   option (cosmos.msg.v1.signer) = "borrower";
 
   // Alamat borrower (Bech32) sebagai pemohon pinjaman
-  string borrower = 1;
+  string borrower = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
 
   // Nilai pokok pinjaman yang diajukan
   cosmos.base.v1beta1.Coin principal = 2;
@@ -56,7 +77,7 @@ message MsgApproveLoan {
   option (cosmos.msg.v1.signer) = "authority";
 
   // Alamat group policy (laz_group_policy) sebagai otoritas persetujuan
-  string authority = 1;
+  string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
 
   // ID pinjaman yang akan disetujui
   uint64 loan_id = 2;
@@ -70,7 +91,7 @@ message MsgRejectLoan {
   option (cosmos.msg.v1.signer) = "authority";
 
   // Alamat group policy sebagai otoritas penolakan
-  string authority = 1;
+  string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
 
   // ID pinjaman yang akan ditolak
   uint64 loan_id = 2;
@@ -84,7 +105,7 @@ message MsgRepayLoan {
   option (cosmos.msg.v1.signer) = "authority";
 
   // Alamat omnibus_group_policy sebagai otoritas pembayaran
-  string authority = 1;
+  string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
 
   // ID pinjaman yang dibayar
   uint64 loan_id = 2;
@@ -101,7 +122,7 @@ message MsgConfirmDisbursement {
   option (cosmos.msg.v1.signer) = "authority";
 
   // Alamat omnibus_group_policy sebagai otoritas pencairan dana
-  string authority = 1;
+  string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
 
   // ID pinjaman yang dicairkan
   uint64 loan_id = 2;

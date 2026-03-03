@@ -3,16 +3,16 @@ package keeper
 import (
 	"context"
 
-	loanv1 "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/cosmos/cosmos-sdk/x/loan/types"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
 
 func (q queryServer) Loan(
 	ctx context.Context,
-	req *loanv1.QueryLoanRequest,
-) (*loanv1.QueryLoanResponse, error) {
+	req *types.QueryLoanRequest,
+) (*types.QueryLoanResponse, error) {
 
 	if req == nil {
 		return nil, status.Error(codes.InvalidArgument, "invalid request")
@@ -25,7 +25,7 @@ func (q queryServer) Loan(
 		return nil, err
 	}
 
-	return &loanv1.QueryLoanResponse{
+	return &types.QueryLoanResponse{
 		Loan: loan,
 	}, nil
 }

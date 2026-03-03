@@ -9,7 +9,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/loan/types"
 
 	storetypes "cosmossdk.io/store/types"
-	loanv1 "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
@@ -26,7 +26,7 @@ func (k Keeper) SetLoanByBorrower(ctx sdk.Context, borrower sdk.AccAddress, loan
 func (k Keeper) GetLoansByBorrower(
 	ctx sdk.Context,
 	borrower sdk.AccAddress,
-) []*loanv1.Loan {
+) []*types.Loan {
 
 	store := prefix.NewStore(
 		runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx)),
@@ -39,7 +39,7 @@ func (k Keeper) GetLoansByBorrower(
 	)
 	defer iterator.Close()
 
-	var loans []*loanv1.Loan
+	var loans []*types.Loan
 
 	for ; iterator.Valid(); iterator.Next() {
 		key := iterator.Key()

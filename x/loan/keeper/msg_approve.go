@@ -6,16 +6,15 @@ import (
 	"fmt"
 
 	"cosmossdk.io/collections"
-	loanv1 "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/loan/types"
-	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 func (m msgServer) ApproveLoan(
 	ctx context.Context,
-	msg *loanv1.MsgApproveLoan,
-) (*loanv1.MsgApproveLoanResponse, error) {
+	msg *types.MsgApproveLoan,
+) (*types.MsgApproveLoanResponse, error) {
 
 	sdkCtx := sdk.UnwrapSDKContext(ctx)
 
@@ -43,9 +42,9 @@ func (m msgServer) ApproveLoan(
 	// Update state
 	now := sdkCtx.BlockTime()
 
-	loan.Status = loanv1.LoanStatus_LOAN_STATUS_APPROVED
+	loan.Status = types.LoanStatus_LOAN_STATUS_APPROVED
 	loan.LazPolicy = msg.Authority
-	loan.ApprovedAt = timestamppb.New(now)
+	loan.ApprovedAt = &now
 
 	// Persist
 	m.SetLoan(sdkCtx, loan)
@@ -59,5 +58,5 @@ func (m msgServer) ApproveLoan(
 		),
 	)
 
-	return &loanv1.MsgApproveLoanResponse{}, nil
+	return &types.MsgApproveLoanResponse{}, nil
 }

@@ -6,16 +6,15 @@ import (
 	"fmt"
 
 	"cosmossdk.io/collections"
-	sdkmath "cosmossdk.io/math"
-	loanv1 "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/loan/types"
 )
 
 func (m msgServer) RepayLoan(
 	ctx context.Context,
-	msg *loanv1.MsgRepayLoan,
-) (*loanv1.MsgRepayLoanResponse, error) {
+	msg *types.MsgRepayLoan,
+) (*types.MsgRepayLoanResponse, error) {
 
 	sdkCtx := sdk.UnwrapSDKContext(ctx)
 
@@ -39,7 +38,7 @@ func (m msgServer) RepayLoan(
 	}
 
 	//  Harus sudah disbursed
-	if loan.Status != loanv1.LoanStatus_LOAN_STATUS_DISBURSED {
+	if loan.Status != types.LoanStatus_LOAN_STATUS_DISBURSED {
 		return nil, types.ErrInvalidStateTransition.
 			Wrap("loan must be disbursed")
 	}
@@ -51,8 +50,8 @@ func (m msgServer) RepayLoan(
 	}
 
 	//  Parse repayment amount
-	repayInt, ok := sdkmath.NewIntFromString(msg.Amount.Amount)
-	if !ok || !repayInt.IsPositive() {
+	repayInt := msg.Amount.Amount
+	if !repayInt.IsPositive() {
 		return nil, types.ErrInvalidPrincipal.
 			Wrap("repayment must be positive")
 	}
@@ -63,10 +62,7 @@ func (m msgServer) RepayLoan(
 			Wrap("outstanding not set")
 	}
 
-	outstandingInt, ok := sdkmath.NewIntFromString(loan.Outstanding.Amount)
-	if !ok {
-		panic("invalid outstanding amount in state")
-	}
+	outstandingInt := loan.Outstanding.Amount
 
 	// Cek repayment tidak melebihi outstanding
 	if repayInt.GT(outstandingInt) {
@@ -107,11 +103,9 @@ func (m msgServer) RepayLoan(
 	// Update outstanding
 	newOutstanding := outstandingInt.Sub(repayInt)
 
-	loan.Outstanding.Amount = newOutstanding.String()
-
 	//  Jika lunas
 	if newOutstanding.IsZero() {
-		loan.Status = loanv1.LoanStatus_LOAN_STATUS_REPAID
+		loan.Status = types.LoanStatus_LOAN_STATUS_REPAID
 	}
 
 	m.SetLoan(sdkCtx, loan)
@@ -121,9 +115,12 @@ func (m msgServer) RepayLoan(
 		sdk.NewEvent(
 			types.EventTypeLoanRepaid,
 			sdk.NewAttribute(types.AttributeKeyLoanID, fmt.Sprintf("%d", loan.Id)),
-			sdk.NewAttribute(types.AttributeKeyAmount, msg.Amount.Amount+msg.Amount.Denom),
+			sdk.NewAttribute(
+				types.AttributeKeyAmount,
+				msg.Amount.String(),
+			),
 		),
 	)
 
-	return &loanv1.MsgRepayLoanResponse{}, nil
+	return &types.MsgRepayLoanResponse{}, nil
 }

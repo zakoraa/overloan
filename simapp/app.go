@@ -8,8 +8,10 @@ import (
 
 	abci "github.com/cometbft/cometbft/abci/types"
 	dbm "github.com/cosmos/cosmos-db"
+	_ "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
 	"github.com/cosmos/gogoproto/proto"
 	"github.com/spf13/cast"
+	// "google.golang.org/protobuf/reflect/protoregistry"
 
 	autocliv1 "cosmossdk.io/api/cosmos/autocli/v1"
 	reflectionv1 "cosmossdk.io/api/cosmos/reflection/v1"
@@ -198,6 +200,20 @@ func NewSimApp(
 	appCodec := codec.NewProtoCodec(interfaceRegistry)
 	legacyAmino := codec.NewLegacyAmino()
 	txConfig := authtx.NewTxConfig(appCodec, authtx.DefaultSignModes)
+
+	// msgDesc := (&loantypes.MsgCreateLoan{}).ProtoReflect().Descriptor()
+	// fmt.Println("Full name:", msgDesc.FullName())
+
+	// _, err := protoregistry.GlobalFiles.FindDescriptorByName(msgDesc.FullName())
+	// if err != nil {
+	// 	fmt.Println("Descriptor NOT found:", err)
+	// } else {
+	// 	fmt.Println("Descriptor found in GlobalFiles")
+	// }
+
+	// ctx := interfaceRegistry.SigningContext()
+	// signers, err := ctx.GetSigners(&loantypes.MsgApproveLoan{})
+	// fmt.Println("Signer test:", signers, err)
 
 	if err := interfaceRegistry.SigningContext().Validate(); err != nil {
 		panic(err)

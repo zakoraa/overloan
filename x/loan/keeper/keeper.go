@@ -13,7 +13,6 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/codec"
 
-	loanv1 "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
 	"github.com/cosmos/cosmos-sdk/x/loan/types"
 )
 
@@ -29,9 +28,9 @@ type Keeper struct {
 	Schema collections.Schema
 
 	// Primary storage
-	Loans  collections.Map[uint64, loanv1.Loan]
+	Loans  collections.Map[uint64, types.Loan]
 	NextID collections.Item[uint64]
-	Params collections.Item[loanv1.Params]
+	Params collections.Item[types.Params]
 
 	// Secondary index
 	LoansByBorrower collections.Map[
@@ -57,7 +56,7 @@ func NewKeeper(
 		types.LoanKeyPrefix,
 		"loans",
 		collections.Uint64Key,
-		codec.CollValue[loanv1.Loan](cdc),
+		codec.CollValue[types.Loan](cdc),
 	)
 
 	// Secondary index: borrower -> loanID
@@ -80,7 +79,7 @@ func NewKeeper(
 		sb,
 		types.ParamsKey,
 		"params",
-		codec.CollValue[loanv1.Params](cdc),
+		codec.CollValue[types.Params](cdc),
 	)
 
 	schema, err := sb.Build()

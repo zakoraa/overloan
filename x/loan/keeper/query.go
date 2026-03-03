@@ -1,18 +1,15 @@
 package keeper
 
-import (
-	loanv1 "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
-)
+import "github.com/cosmos/cosmos-sdk/x/loan/types"
 
-var _ loanv1.QueryServer = queryServer{}
+var _ types.QueryServer = queryServer{}
 
 // NewQueryServerImpl returns an implementation of the QueryServer interface
 // for the provided Keeper.
-func NewQueryServerImpl(k Keeper) loanv1.QueryServer {
+func NewQueryServerImpl(k Keeper) types.QueryServer {
     return queryServer{k: k}
 }
 
 type queryServer struct {
-    loanv1.UnimplementedQueryServer
     k Keeper
 }

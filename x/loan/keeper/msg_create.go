@@ -4,19 +4,16 @@ import (
 	"context"
 	"fmt"
 
-	basev1beta1 "cosmossdk.io/api/cosmos/base/v1beta1"
 	sdkmath "cosmossdk.io/math"
-	loanv1 "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/loan/types"
-	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 // CreateLoan menangani pembuatan loan baru oleh borrower
 func (m msgServer) CreateLoan(
 	ctx context.Context,
-	msg *loanv1.MsgCreateLoan,
-) (*loanv1.MsgCreateLoanResponse, error) {
+	msg *types.MsgCreateLoan,
+) (*types.MsgCreateLoanResponse, error) {
 
 	// Unwrap context ke SDK context
 	sdkCtx := sdk.UnwrapSDKContext(ctx)
@@ -32,11 +29,7 @@ func (m msgServer) CreateLoan(
 		return nil, types.ErrInvalidPrincipal.Wrap("invalid settlement denom")
 	}
 
-	// Parse amount string menjadi sdkmath.Int
-	amount, ok := sdkmath.NewIntFromString(msg.Principal.Amount)
-	if !ok {
-		return nil, types.ErrInvalidPrincipal.Wrap("invalid amount format")
-	}
+	amount := msg.Principal.Amount
 
 	// Validasi amount dalam range min dan max
 	if amount.Uint64() < params.MinLoanAmount ||
@@ -71,20 +64,20 @@ func (m msgServer) CreateLoan(
 	now := sdkCtx.BlockTime()
 
 	// entity Loan baru dengan status awal PENDING
-	loan := &loanv1.Loan{
+	loan := &types.Loan{
 		Id:       loanID,
 		Borrower: msg.Borrower,
-		Principal: &basev1beta1.Coin{
+		Principal: &sdk.Coin{
 			Denom:  msg.Principal.Denom,
 			Amount: msg.Principal.Amount,
 		},
-		Outstanding: &basev1beta1.Coin{
+		Outstanding: &sdk.Coin{
 			Denom:  msg.Principal.Denom,
-			Amount: "0",
+			Amount: sdkmath.ZeroInt(),
 		},
 		TenorMonths:  msg.TenorMonths,
-		Status:       loanv1.LoanStatus_LOAN_STATUS_PENDING,
-		CreatedAt:    timestamppb.New(now),
+		Status:       types.LoanStatus_LOAN_STATUS_PENDING,
+		CreatedAt:    &now,
 		MetadataHash: msg.MetadataHash,
 	}
 
@@ -100,12 +93,12 @@ func (m msgServer) CreateLoan(
 			types.EventTypeLoanCreated,
 			sdk.NewAttribute(types.AttributeKeyLoanID, fmt.Sprintf("%d", loanID)),
 			sdk.NewAttribute(types.AttributeKeyBorrower, msg.Borrower),
-			sdk.NewAttribute(types.AttributeKeyPrincipal, msg.Principal.Amount),
+			sdk.NewAttribute(types.AttributeKeyPrincipal, msg.Principal.String()),
 		),
 	)
 
 	// Kembalikan response berisi ID loan
-	return &loanv1.MsgCreateLoanResponse{
+	return &types.MsgCreateLoanResponse{
 		LoanId: loanID,
 	}, nil
 }

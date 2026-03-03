@@ -6,7 +6,6 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/loan/types"
 
 	sdkmath "cosmossdk.io/math"
-	loanv1 "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
@@ -22,17 +21,14 @@ func (k Keeper) GetTotalOutstanding(ctx sdk.Context) sdkmath.Int {
 	total := sdkmath.ZeroInt()
 
 	for ; iterator.Valid(); iterator.Next() {
-		var loan loanv1.Loan
+		var loan types.Loan
 		k.cdc.MustUnmarshal(iterator.Value(), &loan)
 
 		if loan.Outstanding == nil {
 			continue
 		}
 
-		amountInt, ok := sdkmath.NewIntFromString(loan.Outstanding.Amount)
-		if !ok {
-			panic("invalid outstanding amount in loan state")
-		}
+		amountInt := loan.Outstanding.Amount
 
 		total = total.Add(amountInt)
 	}

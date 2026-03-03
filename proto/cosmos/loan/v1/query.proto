@@ -11,25 +11,25 @@ option go_package = "github.com/cosmos/cosmos-sdk/x/loan/types";
 
 // Query defines the gRPC querier service
 service Query {
-    // Mengambil parameter (Params) konfigurasi global modul loan
-    rpc Params(QueryParamsRequest) returns (QueryParamsResponse){
-      option (google.api.http).get = "/cosmos/loan/v1/params";
-    };
+  // Mengambil parameter (Params) konfigurasi global modul loan
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/cosmos/loan/v1/params";
+  };
 
-    // Mengambil detail satu pinjaman berdasarkan loan_id
-    rpc Loan(QueryLoanRequest) returns (QueryLoanResponse) {
-      option (google.api.http).get = "/cosmos/loan/v1/loan/{loan_id}";
-    };
+  // Mengambil detail satu pinjaman berdasarkan loan_id
+  rpc Loan(QueryLoanRequest) returns (QueryLoanResponse) {
+    option (google.api.http).get = "/cosmos/loan/v1/loan/{loan_id}";
+  };
 
-    // Mengambil list data pinjaman (dengan pagination)
-    rpc Loans(QueryLoansRequest) returns (QueryLoansResponse) {
-      option (google.api.http).get = "/cosmos/loan/v1/loans";
-    };
+  // Mengambil list data pinjaman (dengan pagination)
+  rpc Loans(QueryLoansRequest) returns (QueryLoansResponse) {
+    option (google.api.http).get = "/cosmos/loan/v1/loans";
+  };
 
-    // Mengambil daftar pinjaman milik borrower tertentu (dengan pagination)
-    rpc LoansByBorrower(QueryLoansByBorrowerRequest) returns (QueryLoansByBorrowerResponse){
-      option (google.api.http).get = "/cosmos/loan/v1/borrowers/{borrower}/loans";
-    };  
+  // Mengambil daftar pinjaman milik borrower tertentu (dengan pagination)
+  rpc LoansByBorrower(QueryLoansByBorrowerRequest) returns (QueryLoansByBorrowerResponse) {
+    option (google.api.http).get = "/cosmos/loan/v1/borrowers/{borrower}/loans";
+  };
 }
 
 // QueryParamsRequest adalah request kosong untuk mengambil parameter global modul
@@ -37,53 +37,53 @@ message QueryParamsRequest {}
 
 // QueryParamsResponse mengembalikan konfigurasi global (Params) modul loan
 message QueryParamsResponse {
-    // Parameter aktif modul loan
-    Params params = 1;
+  // Parameter aktif modul loan
+  Params params = 1;
 }
 
 // QueryLoanRequest digunakan untuk mengambil detail satu pinjaman berdasarkan ID
 message QueryLoanRequest {
-    // ID unik pinjaman yang ingin diambil
-    uint64 loan_id = 1;
+  // ID unik pinjaman yang ingin diambil
+  uint64 loan_id = 1;
 }
 
 // QueryLoanResponse mengembalikan data pinjaman sesuai loan_id
 message QueryLoanResponse {
-    // Informasi lengkap pinjaman
-    Loan loan = 1;
+  // Informasi lengkap pinjaman
+  Loan loan = 1;
 }
 
 // QueryLoansRequest digunakan untuk mengambil daftar pinjaman
 message QueryLoansRequest {
-    // pagination
-    cosmos.base.query.v1beta1.PageRequest pagination = 1;
+  // pagination
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
 }
 
 // QueryLoansResponse mengembalikan daftar pinjaman
 message QueryLoansResponse {
-    // Daftar lengkap pinjaman
-    repeated Loan loans = 1;
+  // Daftar lengkap pinjaman
+  repeated Loan loans = 1;
 
-    // pagination
-    cosmos.base.query.v1beta1.PageResponse pagination = 2;
+  // pagination
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 
 // QueryLoansByBorrowerRequest digunakan untuk mengambil daftar pinjaman
 // milik borrower tertentu
 message QueryLoansByBorrowerRequest {
-    // Alamat borrower dalam format Bech32
-    string borrower = 1;
-    
-    // pagination
-    cosmos.base.query.v1beta1.PageRequest pagination = 2;
+  // Alamat borrower dalam format Bech32
+  string borrower = 1;
+
+  // pagination
+  cosmos.base.query.v1beta1.PageRequest pagination = 2;
 }
 
 // QueryLoansByBorrowerResponse mengembalikan daftar pinjaman
 // yang dimiliki oleh borrower
 message QueryLoansByBorrowerResponse {
-    // Daftar pinjaman milik borrower
-    repeated Loan loans = 1;
+  // Daftar pinjaman milik borrower
+  repeated Loan loans = 1;
 
-    // pagination
-    cosmos.base.query.v1beta1.PageResponse pagination = 2;
+  // pagination
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }

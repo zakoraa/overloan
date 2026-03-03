@@ -3,15 +3,14 @@ package keeper
 import (
 	"context"
 
-	loanv1 "github.com/cosmos/cosmos-sdk/api/cosmos/loan/v1"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/loan/types"
 )
 
 func (q queryServer) Params(
 	ctx context.Context,
-	req *loanv1.QueryParamsRequest,
-) (*loanv1.QueryParamsResponse, error) {
+	req *types.QueryParamsRequest,
+) (*types.QueryParamsResponse, error) {
 
 	if req == nil {
 		return nil, types.ErrInvalidRequest
@@ -24,7 +23,7 @@ func (q queryServer) Params(
 		return nil, err
 	}
 
-	return &loanv1.QueryParamsResponse{
-		Params: params,
+	return &types.QueryParamsResponse{
+		Params: &params,
 	}, nil
 }
