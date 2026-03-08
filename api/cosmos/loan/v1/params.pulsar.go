@@ -3,6 +3,7 @@ package loanv1
 
 import (
 	fmt "fmt"
+	_ "github.com/cosmos/cosmos-proto"
 	runtime "github.com/cosmos/cosmos-proto/runtime"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoiface "google.golang.org/protobuf/runtime/protoiface"
@@ -12,14 +13,106 @@ import (
 	sync "sync"
 )
 
+var _ protoreflect.List = (*_Params_5_list)(nil)
+
+type _Params_5_list struct {
+	list *[]string
+}
+
+func (x *_Params_5_list) Len() int {
+	if x.list == nil {
+		return 0
+	}
+	return len(*x.list)
+}
+
+func (x *_Params_5_list) Get(i int) protoreflect.Value {
+	return protoreflect.ValueOfString((*x.list)[i])
+}
+
+func (x *_Params_5_list) Set(i int, value protoreflect.Value) {
+	valueUnwrapped := value.String()
+	concreteValue := valueUnwrapped
+	(*x.list)[i] = concreteValue
+}
+
+func (x *_Params_5_list) Append(value protoreflect.Value) {
+	valueUnwrapped := value.String()
+	concreteValue := valueUnwrapped
+	*x.list = append(*x.list, concreteValue)
+}
+
+func (x *_Params_5_list) AppendMutable() protoreflect.Value {
+	panic(fmt.Errorf("AppendMutable can not be called on message Params at list field LazAuthorities as it is not of Message kind"))
+}
+
+func (x *_Params_5_list) Truncate(n int) {
+	*x.list = (*x.list)[:n]
+}
+
+func (x *_Params_5_list) NewElement() protoreflect.Value {
+	v := ""
+	return protoreflect.ValueOfString(v)
+}
+
+func (x *_Params_5_list) IsValid() bool {
+	return x.list != nil
+}
+
+var _ protoreflect.List = (*_Params_6_list)(nil)
+
+type _Params_6_list struct {
+	list *[]string
+}
+
+func (x *_Params_6_list) Len() int {
+	if x.list == nil {
+		return 0
+	}
+	return len(*x.list)
+}
+
+func (x *_Params_6_list) Get(i int) protoreflect.Value {
+	return protoreflect.ValueOfString((*x.list)[i])
+}
+
+func (x *_Params_6_list) Set(i int, value protoreflect.Value) {
+	valueUnwrapped := value.String()
+	concreteValue := valueUnwrapped
+	(*x.list)[i] = concreteValue
+}
+
+func (x *_Params_6_list) Append(value protoreflect.Value) {
+	valueUnwrapped := value.String()
+	concreteValue := valueUnwrapped
+	*x.list = append(*x.list, concreteValue)
+}
+
+func (x *_Params_6_list) AppendMutable() protoreflect.Value {
+	panic(fmt.Errorf("AppendMutable can not be called on message Params at list field OmnibusAuthorities as it is not of Message kind"))
+}
+
+func (x *_Params_6_list) Truncate(n int) {
+	*x.list = (*x.list)[:n]
+}
+
+func (x *_Params_6_list) NewElement() protoreflect.Value {
+	v := ""
+	return protoreflect.ValueOfString(v)
+}
+
+func (x *_Params_6_list) IsValid() bool {
+	return x.list != nil
+}
+
 var (
-	md_Params                      protoreflect.MessageDescriptor
-	fd_Params_settlement_denom     protoreflect.FieldDescriptor
-	fd_Params_max_loan_amount      protoreflect.FieldDescriptor
-	fd_Params_min_loan_amount      protoreflect.FieldDescriptor
-	fd_Params_max_tenor_months     protoreflect.FieldDescriptor
-	fd_Params_laz_group_policy     protoreflect.FieldDescriptor
-	fd_Params_omnibus_group_policy protoreflect.FieldDescriptor
+	md_Params                     protoreflect.MessageDescriptor
+	fd_Params_settlement_denom    protoreflect.FieldDescriptor
+	fd_Params_max_loan_amount     protoreflect.FieldDescriptor
+	fd_Params_min_loan_amount     protoreflect.FieldDescriptor
+	fd_Params_max_tenor_months    protoreflect.FieldDescriptor
+	fd_Params_laz_authorities     protoreflect.FieldDescriptor
+	fd_Params_omnibus_authorities protoreflect.FieldDescriptor
 )
 
 func init() {
@@ -29,8 +122,8 @@ func init() {
 	fd_Params_max_loan_amount = md_Params.Fields().ByName("max_loan_amount")
 	fd_Params_min_loan_amount = md_Params.Fields().ByName("min_loan_amount")
 	fd_Params_max_tenor_months = md_Params.Fields().ByName("max_tenor_months")
-	fd_Params_laz_group_policy = md_Params.Fields().ByName("laz_group_policy")
-	fd_Params_omnibus_group_policy = md_Params.Fields().ByName("omnibus_group_policy")
+	fd_Params_laz_authorities = md_Params.Fields().ByName("laz_authorities")
+	fd_Params_omnibus_authorities = md_Params.Fields().ByName("omnibus_authorities")
 }
 
 var _ protoreflect.Message = (*fastReflection_Params)(nil)
@@ -122,15 +215,15 @@ func (x *fastReflection_Params) Range(f func(protoreflect.FieldDescriptor, proto
 			return
 		}
 	}
-	if x.LazGroupPolicy != "" {
-		value := protoreflect.ValueOfString(x.LazGroupPolicy)
-		if !f(fd_Params_laz_group_policy, value) {
+	if len(x.LazAuthorities) != 0 {
+		value := protoreflect.ValueOfList(&_Params_5_list{list: &x.LazAuthorities})
+		if !f(fd_Params_laz_authorities, value) {
 			return
 		}
 	}
-	if x.OmnibusGroupPolicy != "" {
-		value := protoreflect.ValueOfString(x.OmnibusGroupPolicy)
-		if !f(fd_Params_omnibus_group_policy, value) {
+	if len(x.OmnibusAuthorities) != 0 {
+		value := protoreflect.ValueOfList(&_Params_6_list{list: &x.OmnibusAuthorities})
+		if !f(fd_Params_omnibus_authorities, value) {
 			return
 		}
 	}
@@ -157,10 +250,10 @@ func (x *fastReflection_Params) Has(fd protoreflect.FieldDescriptor) bool {
 		return x.MinLoanAmount != uint64(0)
 	case "cosmos.loan.v1.Params.max_tenor_months":
 		return x.MaxTenorMonths != uint64(0)
-	case "cosmos.loan.v1.Params.laz_group_policy":
-		return x.LazGroupPolicy != ""
-	case "cosmos.loan.v1.Params.omnibus_group_policy":
-		return x.OmnibusGroupPolicy != ""
+	case "cosmos.loan.v1.Params.laz_authorities":
+		return len(x.LazAuthorities) != 0
+	case "cosmos.loan.v1.Params.omnibus_authorities":
+		return len(x.OmnibusAuthorities) != 0
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.Params"))
@@ -185,10 +278,10 @@ func (x *fastReflection_Params) Clear(fd protoreflect.FieldDescriptor) {
 		x.MinLoanAmount = uint64(0)
 	case "cosmos.loan.v1.Params.max_tenor_months":
 		x.MaxTenorMonths = uint64(0)
-	case "cosmos.loan.v1.Params.laz_group_policy":
-		x.LazGroupPolicy = ""
-	case "cosmos.loan.v1.Params.omnibus_group_policy":
-		x.OmnibusGroupPolicy = ""
+	case "cosmos.loan.v1.Params.laz_authorities":
+		x.LazAuthorities = nil
+	case "cosmos.loan.v1.Params.omnibus_authorities":
+		x.OmnibusAuthorities = nil
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.Params"))
@@ -217,12 +310,18 @@ func (x *fastReflection_Params) Get(descriptor protoreflect.FieldDescriptor) pro
 	case "cosmos.loan.v1.Params.max_tenor_months":
 		value := x.MaxTenorMonths
 		return protoreflect.ValueOfUint64(value)
-	case "cosmos.loan.v1.Params.laz_group_policy":
-		value := x.LazGroupPolicy
-		return protoreflect.ValueOfString(value)
-	case "cosmos.loan.v1.Params.omnibus_group_policy":
-		value := x.OmnibusGroupPolicy
-		return protoreflect.ValueOfString(value)
+	case "cosmos.loan.v1.Params.laz_authorities":
+		if len(x.LazAuthorities) == 0 {
+			return protoreflect.ValueOfList(&_Params_5_list{})
+		}
+		listValue := &_Params_5_list{list: &x.LazAuthorities}
+		return protoreflect.ValueOfList(listValue)
+	case "cosmos.loan.v1.Params.omnibus_authorities":
+		if len(x.OmnibusAuthorities) == 0 {
+			return protoreflect.ValueOfList(&_Params_6_list{})
+		}
+		listValue := &_Params_6_list{list: &x.OmnibusAuthorities}
+		return protoreflect.ValueOfList(listValue)
 	default:
 		if descriptor.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.Params"))
@@ -251,10 +350,14 @@ func (x *fastReflection_Params) Set(fd protoreflect.FieldDescriptor, value proto
 		x.MinLoanAmount = value.Uint()
 	case "cosmos.loan.v1.Params.max_tenor_months":
 		x.MaxTenorMonths = value.Uint()
-	case "cosmos.loan.v1.Params.laz_group_policy":
-		x.LazGroupPolicy = value.Interface().(string)
-	case "cosmos.loan.v1.Params.omnibus_group_policy":
-		x.OmnibusGroupPolicy = value.Interface().(string)
+	case "cosmos.loan.v1.Params.laz_authorities":
+		lv := value.List()
+		clv := lv.(*_Params_5_list)
+		x.LazAuthorities = *clv.list
+	case "cosmos.loan.v1.Params.omnibus_authorities":
+		lv := value.List()
+		clv := lv.(*_Params_6_list)
+		x.OmnibusAuthorities = *clv.list
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.Params"))
@@ -275,6 +378,18 @@ func (x *fastReflection_Params) Set(fd protoreflect.FieldDescriptor, value proto
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_Params) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
+	case "cosmos.loan.v1.Params.laz_authorities":
+		if x.LazAuthorities == nil {
+			x.LazAuthorities = []string{}
+		}
+		value := &_Params_5_list{list: &x.LazAuthorities}
+		return protoreflect.ValueOfList(value)
+	case "cosmos.loan.v1.Params.omnibus_authorities":
+		if x.OmnibusAuthorities == nil {
+			x.OmnibusAuthorities = []string{}
+		}
+		value := &_Params_6_list{list: &x.OmnibusAuthorities}
+		return protoreflect.ValueOfList(value)
 	case "cosmos.loan.v1.Params.settlement_denom":
 		panic(fmt.Errorf("field settlement_denom of message cosmos.loan.v1.Params is not mutable"))
 	case "cosmos.loan.v1.Params.max_loan_amount":
@@ -283,10 +398,6 @@ func (x *fastReflection_Params) Mutable(fd protoreflect.FieldDescriptor) protore
 		panic(fmt.Errorf("field min_loan_amount of message cosmos.loan.v1.Params is not mutable"))
 	case "cosmos.loan.v1.Params.max_tenor_months":
 		panic(fmt.Errorf("field max_tenor_months of message cosmos.loan.v1.Params is not mutable"))
-	case "cosmos.loan.v1.Params.laz_group_policy":
-		panic(fmt.Errorf("field laz_group_policy of message cosmos.loan.v1.Params is not mutable"))
-	case "cosmos.loan.v1.Params.omnibus_group_policy":
-		panic(fmt.Errorf("field omnibus_group_policy of message cosmos.loan.v1.Params is not mutable"))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.Params"))
@@ -308,10 +419,12 @@ func (x *fastReflection_Params) NewField(fd protoreflect.FieldDescriptor) protor
 		return protoreflect.ValueOfUint64(uint64(0))
 	case "cosmos.loan.v1.Params.max_tenor_months":
 		return protoreflect.ValueOfUint64(uint64(0))
-	case "cosmos.loan.v1.Params.laz_group_policy":
-		return protoreflect.ValueOfString("")
-	case "cosmos.loan.v1.Params.omnibus_group_policy":
-		return protoreflect.ValueOfString("")
+	case "cosmos.loan.v1.Params.laz_authorities":
+		list := []string{}
+		return protoreflect.ValueOfList(&_Params_5_list{list: &list})
+	case "cosmos.loan.v1.Params.omnibus_authorities":
+		list := []string{}
+		return protoreflect.ValueOfList(&_Params_6_list{list: &list})
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.Params"))
@@ -394,13 +507,17 @@ func (x *fastReflection_Params) ProtoMethods() *protoiface.Methods {
 		if x.MaxTenorMonths != 0 {
 			n += 1 + runtime.Sov(uint64(x.MaxTenorMonths))
 		}
-		l = len(x.LazGroupPolicy)
-		if l > 0 {
-			n += 1 + l + runtime.Sov(uint64(l))
+		if len(x.LazAuthorities) > 0 {
+			for _, s := range x.LazAuthorities {
+				l = len(s)
+				n += 1 + l + runtime.Sov(uint64(l))
+			}
 		}
-		l = len(x.OmnibusGroupPolicy)
-		if l > 0 {
-			n += 1 + l + runtime.Sov(uint64(l))
+		if len(x.OmnibusAuthorities) > 0 {
+			for _, s := range x.OmnibusAuthorities {
+				l = len(s)
+				n += 1 + l + runtime.Sov(uint64(l))
+			}
 		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
@@ -431,19 +548,23 @@ func (x *fastReflection_Params) ProtoMethods() *protoiface.Methods {
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if len(x.OmnibusGroupPolicy) > 0 {
-			i -= len(x.OmnibusGroupPolicy)
-			copy(dAtA[i:], x.OmnibusGroupPolicy)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.OmnibusGroupPolicy)))
-			i--
-			dAtA[i] = 0x32
+		if len(x.OmnibusAuthorities) > 0 {
+			for iNdEx := len(x.OmnibusAuthorities) - 1; iNdEx >= 0; iNdEx-- {
+				i -= len(x.OmnibusAuthorities[iNdEx])
+				copy(dAtA[i:], x.OmnibusAuthorities[iNdEx])
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(x.OmnibusAuthorities[iNdEx])))
+				i--
+				dAtA[i] = 0x32
+			}
 		}
-		if len(x.LazGroupPolicy) > 0 {
-			i -= len(x.LazGroupPolicy)
-			copy(dAtA[i:], x.LazGroupPolicy)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.LazGroupPolicy)))
-			i--
-			dAtA[i] = 0x2a
+		if len(x.LazAuthorities) > 0 {
+			for iNdEx := len(x.LazAuthorities) - 1; iNdEx >= 0; iNdEx-- {
+				i -= len(x.LazAuthorities[iNdEx])
+				copy(dAtA[i:], x.LazAuthorities[iNdEx])
+				i = runtime.EncodeVarint(dAtA, i, uint64(len(x.LazAuthorities[iNdEx])))
+				i--
+				dAtA[i] = 0x2a
+			}
 		}
 		if x.MaxTenorMonths != 0 {
 			i = runtime.EncodeVarint(dAtA, i, uint64(x.MaxTenorMonths))
@@ -607,7 +728,7 @@ func (x *fastReflection_Params) ProtoMethods() *protoiface.Methods {
 				}
 			case 5:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field LazGroupPolicy", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field LazAuthorities", wireType)
 				}
 				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
@@ -635,11 +756,11 @@ func (x *fastReflection_Params) ProtoMethods() *protoiface.Methods {
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.LazGroupPolicy = string(dAtA[iNdEx:postIndex])
+				x.LazAuthorities = append(x.LazAuthorities, string(dAtA[iNdEx:postIndex]))
 				iNdEx = postIndex
 			case 6:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field OmnibusGroupPolicy", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field OmnibusAuthorities", wireType)
 				}
 				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
@@ -667,7 +788,7 @@ func (x *fastReflection_Params) ProtoMethods() *protoiface.Methods {
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.OmnibusGroupPolicy = string(dAtA[iNdEx:postIndex])
+				x.OmnibusAuthorities = append(x.OmnibusAuthorities, string(dAtA[iNdEx:postIndex]))
 				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
@@ -729,12 +850,12 @@ type Params struct {
 	MaxLoanAmount uint64 `protobuf:"varint,2,opt,name=max_loan_amount,json=maxLoanAmount,proto3" json:"max_loan_amount,omitempty"`
 	// min pinjaman
 	MinLoanAmount uint64 `protobuf:"varint,3,opt,name=min_loan_amount,json=minLoanAmount,proto3" json:"min_loan_amount,omitempty"`
-	// min durasi peminjaman
+	// max durasi peminjaman
 	MaxTenorMonths uint64 `protobuf:"varint,4,opt,name=max_tenor_months,json=maxTenorMonths,proto3" json:"max_tenor_months,omitempty"`
-	// Group policy address yang berwenang approve loan
-	LazGroupPolicy string `protobuf:"bytes,5,opt,name=laz_group_policy,json=lazGroupPolicy,proto3" json:"laz_group_policy,omitempty"`
-	// approval disbursement, approval settlement, atau handling pool dana terpusat
-	OmnibusGroupPolicy string `protobuf:"bytes,6,opt,name=omnibus_group_policy,json=omnibusGroupPolicy,proto3" json:"omnibus_group_policy,omitempty"`
+	// policy addresses yang berwenang approve loan
+	LazAuthorities []string `protobuf:"bytes,5,rep,name=laz_authorities,json=lazAuthorities,proto3" json:"laz_authorities,omitempty"`
+	// policy addresses yang berwenang approve disbursement
+	OmnibusAuthorities []string `protobuf:"bytes,6,rep,name=omnibus_authorities,json=omnibusAuthorities,proto3" json:"omnibus_authorities,omitempty"`
 }
 
 func (x *Params) Reset() {
@@ -785,18 +906,18 @@ func (x *Params) GetMaxTenorMonths() uint64 {
 	return 0
 }
 
-func (x *Params) GetLazGroupPolicy() string {
+func (x *Params) GetLazAuthorities() []string {
 	if x != nil {
-		return x.LazGroupPolicy
+		return x.LazAuthorities
 	}
-	return ""
+	return nil
 }
 
-func (x *Params) GetOmnibusGroupPolicy() string {
+func (x *Params) GetOmnibusAuthorities() []string {
 	if x != nil {
-		return x.OmnibusGroupPolicy
+		return x.OmnibusAuthorities
 	}
-	return ""
+	return nil
 }
 
 var File_cosmos_loan_v1_params_proto protoreflect.FileDescriptor
@@ -804,35 +925,40 @@ var File_cosmos_loan_v1_params_proto protoreflect.FileDescriptor
 var file_cosmos_loan_v1_params_proto_rawDesc = []byte{
 	0x0a, 0x1b, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x6c, 0x6f, 0x61, 0x6e, 0x2f, 0x76, 0x31,
 	0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0e, 0x63,
-	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x22, 0x89, 0x02,
-	0x0a, 0x06, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x29, 0x0a, 0x10, 0x73, 0x65, 0x74, 0x74,
-	0x6c, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x5f, 0x64, 0x65, 0x6e, 0x6f, 0x6d, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x0f, 0x73, 0x65, 0x74, 0x74, 0x6c, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x44, 0x65,
-	0x6e, 0x6f, 0x6d, 0x12, 0x26, 0x0a, 0x0f, 0x6d, 0x61, 0x78, 0x5f, 0x6c, 0x6f, 0x61, 0x6e, 0x5f,
-	0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0d, 0x6d, 0x61,
-	0x78, 0x4c, 0x6f, 0x61, 0x6e, 0x41, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x26, 0x0a, 0x0f, 0x6d,
-	0x69, 0x6e, 0x5f, 0x6c, 0x6f, 0x61, 0x6e, 0x5f, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x03,
-	0x20, 0x01, 0x28, 0x04, 0x52, 0x0d, 0x6d, 0x69, 0x6e, 0x4c, 0x6f, 0x61, 0x6e, 0x41, 0x6d, 0x6f,
-	0x75, 0x6e, 0x74, 0x12, 0x28, 0x0a, 0x10, 0x6d, 0x61, 0x78, 0x5f, 0x74, 0x65, 0x6e, 0x6f, 0x72,
-	0x5f, 0x6d, 0x6f, 0x6e, 0x74, 0x68, 0x73, 0x18, 0x04, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0e, 0x6d,
-	0x61, 0x78, 0x54, 0x65, 0x6e, 0x6f, 0x72, 0x4d, 0x6f, 0x6e, 0x74, 0x68, 0x73, 0x12, 0x28, 0x0a,
-	0x10, 0x6c, 0x61, 0x7a, 0x5f, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x5f, 0x70, 0x6f, 0x6c, 0x69, 0x63,
-	0x79, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0e, 0x6c, 0x61, 0x7a, 0x47, 0x72, 0x6f, 0x75,
-	0x70, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x12, 0x30, 0x0a, 0x14, 0x6f, 0x6d, 0x6e, 0x69, 0x62,
-	0x75, 0x73, 0x5f, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x5f, 0x70, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x18,
-	0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x12, 0x6f, 0x6d, 0x6e, 0x69, 0x62, 0x75, 0x73, 0x47, 0x72,
-	0x6f, 0x75, 0x70, 0x50, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x42, 0xa3, 0x01, 0x0a, 0x12, 0x63, 0x6f,
-	0x6d, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31,
-	0x42, 0x0b, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a,
-	0x26, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70,
-	0x69, 0x2f, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x6c, 0x6f, 0x61, 0x6e, 0x2f, 0x76, 0x31,
-	0x3b, 0x6c, 0x6f, 0x61, 0x6e, 0x76, 0x31, 0xa2, 0x02, 0x03, 0x43, 0x4c, 0x58, 0xaa, 0x02, 0x0e,
-	0x43, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x4c, 0x6f, 0x61, 0x6e, 0x2e, 0x56, 0x31, 0xca, 0x02,
-	0x0e, 0x43, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x5c, 0x4c, 0x6f, 0x61, 0x6e, 0x5c, 0x56, 0x31, 0xe2,
-	0x02, 0x1a, 0x43, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x5c, 0x4c, 0x6f, 0x61, 0x6e, 0x5c, 0x56, 0x31,
-	0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x10, 0x43,
-	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x3a, 0x3a, 0x4c, 0x6f, 0x61, 0x6e, 0x3a, 0x3a, 0x56, 0x31, 0x62,
-	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x1a, 0x19, 0x63,
+	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x5f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x63, 0x6f, 0x73, 0x6d,
+	0x6f, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xbb, 0x02, 0x0a, 0x06, 0x50, 0x61, 0x72,
+	0x61, 0x6d, 0x73, 0x12, 0x29, 0x0a, 0x10, 0x73, 0x65, 0x74, 0x74, 0x6c, 0x65, 0x6d, 0x65, 0x6e,
+	0x74, 0x5f, 0x64, 0x65, 0x6e, 0x6f, 0x6d, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0f, 0x73,
+	0x65, 0x74, 0x74, 0x6c, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x44, 0x65, 0x6e, 0x6f, 0x6d, 0x12, 0x26,
+	0x0a, 0x0f, 0x6d, 0x61, 0x78, 0x5f, 0x6c, 0x6f, 0x61, 0x6e, 0x5f, 0x61, 0x6d, 0x6f, 0x75, 0x6e,
+	0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0d, 0x6d, 0x61, 0x78, 0x4c, 0x6f, 0x61, 0x6e,
+	0x41, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x26, 0x0a, 0x0f, 0x6d, 0x69, 0x6e, 0x5f, 0x6c, 0x6f,
+	0x61, 0x6e, 0x5f, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52,
+	0x0d, 0x6d, 0x69, 0x6e, 0x4c, 0x6f, 0x61, 0x6e, 0x41, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x28,
+	0x0a, 0x10, 0x6d, 0x61, 0x78, 0x5f, 0x74, 0x65, 0x6e, 0x6f, 0x72, 0x5f, 0x6d, 0x6f, 0x6e, 0x74,
+	0x68, 0x73, 0x18, 0x04, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0e, 0x6d, 0x61, 0x78, 0x54, 0x65, 0x6e,
+	0x6f, 0x72, 0x4d, 0x6f, 0x6e, 0x74, 0x68, 0x73, 0x12, 0x41, 0x0a, 0x0f, 0x6c, 0x61, 0x7a, 0x5f,
+	0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x69, 0x65, 0x73, 0x18, 0x05, 0x20, 0x03, 0x28,
+	0x09, 0x42, 0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64,
+	0x64, 0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x0e, 0x6c, 0x61, 0x7a,
+	0x41, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x69, 0x65, 0x73, 0x12, 0x49, 0x0a, 0x13, 0x6f,
+	0x6d, 0x6e, 0x69, 0x62, 0x75, 0x73, 0x5f, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x69,
+	0x65, 0x73, 0x18, 0x06, 0x20, 0x03, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f,
+	0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69,
+	0x6e, 0x67, 0x52, 0x12, 0x6f, 0x6d, 0x6e, 0x69, 0x62, 0x75, 0x73, 0x41, 0x75, 0x74, 0x68, 0x6f,
+	0x72, 0x69, 0x74, 0x69, 0x65, 0x73, 0x42, 0xa3, 0x01, 0x0a, 0x12, 0x63, 0x6f, 0x6d, 0x2e, 0x63,
+	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x42, 0x0b, 0x50,
+	0x61, 0x72, 0x61, 0x6d, 0x73, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x26, 0x63, 0x6f,
+	0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x63,
+	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x6c, 0x6f, 0x61, 0x6e, 0x2f, 0x76, 0x31, 0x3b, 0x6c, 0x6f,
+	0x61, 0x6e, 0x76, 0x31, 0xa2, 0x02, 0x03, 0x43, 0x4c, 0x58, 0xaa, 0x02, 0x0e, 0x43, 0x6f, 0x73,
+	0x6d, 0x6f, 0x73, 0x2e, 0x4c, 0x6f, 0x61, 0x6e, 0x2e, 0x56, 0x31, 0xca, 0x02, 0x0e, 0x43, 0x6f,
+	0x73, 0x6d, 0x6f, 0x73, 0x5c, 0x4c, 0x6f, 0x61, 0x6e, 0x5c, 0x56, 0x31, 0xe2, 0x02, 0x1a, 0x43,
+	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x5c, 0x4c, 0x6f, 0x61, 0x6e, 0x5c, 0x56, 0x31, 0x5c, 0x47, 0x50,
+	0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x10, 0x43, 0x6f, 0x73, 0x6d,
+	0x6f, 0x73, 0x3a, 0x3a, 0x4c, 0x6f, 0x61, 0x6e, 0x3a, 0x3a, 0x56, 0x31, 0x62, 0x06, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (

@@ -7,9 +7,9 @@ import (
 // DefaultGenesis mengembalikan state awal modul loan
 func DefaultGenesis() *GenesisState {
 	return &GenesisState{
-		Params: DefaultParams(), // gunakan default param
-		NextId: 1,               // mulai ID dari 1 (best practice)
-		Loans:  []Loan{},        // inisialisasi slice kosong
+		Params: DefaultParams(), 
+		NextId: 1,               
+		Loans:  []Loan{},        
 	}
 }
 

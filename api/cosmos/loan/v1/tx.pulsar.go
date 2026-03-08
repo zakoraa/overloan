@@ -873,6 +873,7 @@ func (x *fastReflection_MsgUpdateParamsResponse) ProtoMethods() *protoiface.Meth
 var (
 	md_MsgCreateLoan               protoreflect.MessageDescriptor
 	fd_MsgCreateLoan_borrower      protoreflect.FieldDescriptor
+	fd_MsgCreateLoan_laz           protoreflect.FieldDescriptor
 	fd_MsgCreateLoan_principal     protoreflect.FieldDescriptor
 	fd_MsgCreateLoan_tenor_months  protoreflect.FieldDescriptor
 	fd_MsgCreateLoan_metadata_hash protoreflect.FieldDescriptor
@@ -882,6 +883,7 @@ func init() {
 	file_cosmos_loan_v1_tx_proto_init()
 	md_MsgCreateLoan = File_cosmos_loan_v1_tx_proto.Messages().ByName("MsgCreateLoan")
 	fd_MsgCreateLoan_borrower = md_MsgCreateLoan.Fields().ByName("borrower")
+	fd_MsgCreateLoan_laz = md_MsgCreateLoan.Fields().ByName("laz")
 	fd_MsgCreateLoan_principal = md_MsgCreateLoan.Fields().ByName("principal")
 	fd_MsgCreateLoan_tenor_months = md_MsgCreateLoan.Fields().ByName("tenor_months")
 	fd_MsgCreateLoan_metadata_hash = md_MsgCreateLoan.Fields().ByName("metadata_hash")
@@ -958,6 +960,12 @@ func (x *fastReflection_MsgCreateLoan) Range(f func(protoreflect.FieldDescriptor
 			return
 		}
 	}
+	if x.Laz != "" {
+		value := protoreflect.ValueOfString(x.Laz)
+		if !f(fd_MsgCreateLoan_laz, value) {
+			return
+		}
+	}
 	if x.Principal != nil {
 		value := protoreflect.ValueOfMessage(x.Principal.ProtoReflect())
 		if !f(fd_MsgCreateLoan_principal, value) {
@@ -993,6 +1001,8 @@ func (x *fastReflection_MsgCreateLoan) Has(fd protoreflect.FieldDescriptor) bool
 	switch fd.FullName() {
 	case "cosmos.loan.v1.MsgCreateLoan.borrower":
 		return x.Borrower != ""
+	case "cosmos.loan.v1.MsgCreateLoan.laz":
+		return x.Laz != ""
 	case "cosmos.loan.v1.MsgCreateLoan.principal":
 		return x.Principal != nil
 	case "cosmos.loan.v1.MsgCreateLoan.tenor_months":
@@ -1017,6 +1027,8 @@ func (x *fastReflection_MsgCreateLoan) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
 	case "cosmos.loan.v1.MsgCreateLoan.borrower":
 		x.Borrower = ""
+	case "cosmos.loan.v1.MsgCreateLoan.laz":
+		x.Laz = ""
 	case "cosmos.loan.v1.MsgCreateLoan.principal":
 		x.Principal = nil
 	case "cosmos.loan.v1.MsgCreateLoan.tenor_months":
@@ -1041,6 +1053,9 @@ func (x *fastReflection_MsgCreateLoan) Get(descriptor protoreflect.FieldDescript
 	switch descriptor.FullName() {
 	case "cosmos.loan.v1.MsgCreateLoan.borrower":
 		value := x.Borrower
+		return protoreflect.ValueOfString(value)
+	case "cosmos.loan.v1.MsgCreateLoan.laz":
+		value := x.Laz
 		return protoreflect.ValueOfString(value)
 	case "cosmos.loan.v1.MsgCreateLoan.principal":
 		value := x.Principal
@@ -1073,6 +1088,8 @@ func (x *fastReflection_MsgCreateLoan) Set(fd protoreflect.FieldDescriptor, valu
 	switch fd.FullName() {
 	case "cosmos.loan.v1.MsgCreateLoan.borrower":
 		x.Borrower = value.Interface().(string)
+	case "cosmos.loan.v1.MsgCreateLoan.laz":
+		x.Laz = value.Interface().(string)
 	case "cosmos.loan.v1.MsgCreateLoan.principal":
 		x.Principal = value.Message().Interface().(*v1beta1.Coin)
 	case "cosmos.loan.v1.MsgCreateLoan.tenor_months":
@@ -1106,6 +1123,8 @@ func (x *fastReflection_MsgCreateLoan) Mutable(fd protoreflect.FieldDescriptor) 
 		return protoreflect.ValueOfMessage(x.Principal.ProtoReflect())
 	case "cosmos.loan.v1.MsgCreateLoan.borrower":
 		panic(fmt.Errorf("field borrower of message cosmos.loan.v1.MsgCreateLoan is not mutable"))
+	case "cosmos.loan.v1.MsgCreateLoan.laz":
+		panic(fmt.Errorf("field laz of message cosmos.loan.v1.MsgCreateLoan is not mutable"))
 	case "cosmos.loan.v1.MsgCreateLoan.tenor_months":
 		panic(fmt.Errorf("field tenor_months of message cosmos.loan.v1.MsgCreateLoan is not mutable"))
 	case "cosmos.loan.v1.MsgCreateLoan.metadata_hash":
@@ -1124,6 +1143,8 @@ func (x *fastReflection_MsgCreateLoan) Mutable(fd protoreflect.FieldDescriptor) 
 func (x *fastReflection_MsgCreateLoan) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
 	case "cosmos.loan.v1.MsgCreateLoan.borrower":
+		return protoreflect.ValueOfString("")
+	case "cosmos.loan.v1.MsgCreateLoan.laz":
 		return protoreflect.ValueOfString("")
 	case "cosmos.loan.v1.MsgCreateLoan.principal":
 		m := new(v1beta1.Coin)
@@ -1205,6 +1226,10 @@ func (x *fastReflection_MsgCreateLoan) ProtoMethods() *protoiface.Methods {
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
+		l = len(x.Laz)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
 		if x.Principal != nil {
 			l = options.Size(x.Principal)
 			n += 1 + l + runtime.Sov(uint64(l))
@@ -1250,12 +1275,12 @@ func (x *fastReflection_MsgCreateLoan) ProtoMethods() *protoiface.Methods {
 			copy(dAtA[i:], x.MetadataHash)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.MetadataHash)))
 			i--
-			dAtA[i] = 0x22
+			dAtA[i] = 0x2a
 		}
 		if x.TenorMonths != 0 {
 			i = runtime.EncodeVarint(dAtA, i, uint64(x.TenorMonths))
 			i--
-			dAtA[i] = 0x18
+			dAtA[i] = 0x20
 		}
 		if x.Principal != nil {
 			encoded, err := options.Marshal(x.Principal)
@@ -1268,6 +1293,13 @@ func (x *fastReflection_MsgCreateLoan) ProtoMethods() *protoiface.Methods {
 			i -= len(encoded)
 			copy(dAtA[i:], encoded)
 			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+			i--
+			dAtA[i] = 0x1a
+		}
+		if len(x.Laz) > 0 {
+			i -= len(x.Laz)
+			copy(dAtA[i:], x.Laz)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Laz)))
 			i--
 			dAtA[i] = 0x12
 		}
@@ -1361,6 +1393,38 @@ func (x *fastReflection_MsgCreateLoan) ProtoMethods() *protoiface.Methods {
 				iNdEx = postIndex
 			case 2:
 				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Laz", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Laz = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 3:
+				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Principal", wireType)
 				}
 				var msglen int
@@ -1395,7 +1459,7 @@ func (x *fastReflection_MsgCreateLoan) ProtoMethods() *protoiface.Methods {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
 				}
 				iNdEx = postIndex
-			case 3:
+			case 4:
 				if wireType != 0 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field TenorMonths", wireType)
 				}
@@ -1414,7 +1478,7 @@ func (x *fastReflection_MsgCreateLoan) ProtoMethods() *protoiface.Methods {
 						break
 					}
 				}
-			case 4:
+			case 5:
 				if wireType != 2 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field MetadataHash", wireType)
 				}
@@ -1886,15 +1950,15 @@ func (x *fastReflection_MsgCreateLoanResponse) ProtoMethods() *protoiface.Method
 }
 
 var (
-	md_MsgApproveLoan           protoreflect.MessageDescriptor
-	fd_MsgApproveLoan_authority protoreflect.FieldDescriptor
-	fd_MsgApproveLoan_loan_id   protoreflect.FieldDescriptor
+	md_MsgApproveLoan         protoreflect.MessageDescriptor
+	fd_MsgApproveLoan_laz     protoreflect.FieldDescriptor
+	fd_MsgApproveLoan_loan_id protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_cosmos_loan_v1_tx_proto_init()
 	md_MsgApproveLoan = File_cosmos_loan_v1_tx_proto.Messages().ByName("MsgApproveLoan")
-	fd_MsgApproveLoan_authority = md_MsgApproveLoan.Fields().ByName("authority")
+	fd_MsgApproveLoan_laz = md_MsgApproveLoan.Fields().ByName("laz")
 	fd_MsgApproveLoan_loan_id = md_MsgApproveLoan.Fields().ByName("loan_id")
 }
 
@@ -1963,9 +2027,9 @@ func (x *fastReflection_MsgApproveLoan) Interface() protoreflect.ProtoMessage {
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
 func (x *fastReflection_MsgApproveLoan) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.Authority != "" {
-		value := protoreflect.ValueOfString(x.Authority)
-		if !f(fd_MsgApproveLoan_authority, value) {
+	if x.Laz != "" {
+		value := protoreflect.ValueOfString(x.Laz)
+		if !f(fd_MsgApproveLoan_laz, value) {
 			return
 		}
 	}
@@ -1990,8 +2054,8 @@ func (x *fastReflection_MsgApproveLoan) Range(f func(protoreflect.FieldDescripto
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_MsgApproveLoan) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "cosmos.loan.v1.MsgApproveLoan.authority":
-		return x.Authority != ""
+	case "cosmos.loan.v1.MsgApproveLoan.laz":
+		return x.Laz != ""
 	case "cosmos.loan.v1.MsgApproveLoan.loan_id":
 		return x.LoanId != uint64(0)
 	default:
@@ -2010,8 +2074,8 @@ func (x *fastReflection_MsgApproveLoan) Has(fd protoreflect.FieldDescriptor) boo
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgApproveLoan) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "cosmos.loan.v1.MsgApproveLoan.authority":
-		x.Authority = ""
+	case "cosmos.loan.v1.MsgApproveLoan.laz":
+		x.Laz = ""
 	case "cosmos.loan.v1.MsgApproveLoan.loan_id":
 		x.LoanId = uint64(0)
 	default:
@@ -2030,8 +2094,8 @@ func (x *fastReflection_MsgApproveLoan) Clear(fd protoreflect.FieldDescriptor) {
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_MsgApproveLoan) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "cosmos.loan.v1.MsgApproveLoan.authority":
-		value := x.Authority
+	case "cosmos.loan.v1.MsgApproveLoan.laz":
+		value := x.Laz
 		return protoreflect.ValueOfString(value)
 	case "cosmos.loan.v1.MsgApproveLoan.loan_id":
 		value := x.LoanId
@@ -2056,8 +2120,8 @@ func (x *fastReflection_MsgApproveLoan) Get(descriptor protoreflect.FieldDescrip
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgApproveLoan) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "cosmos.loan.v1.MsgApproveLoan.authority":
-		x.Authority = value.Interface().(string)
+	case "cosmos.loan.v1.MsgApproveLoan.laz":
+		x.Laz = value.Interface().(string)
 	case "cosmos.loan.v1.MsgApproveLoan.loan_id":
 		x.LoanId = value.Uint()
 	default:
@@ -2080,8 +2144,8 @@ func (x *fastReflection_MsgApproveLoan) Set(fd protoreflect.FieldDescriptor, val
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgApproveLoan) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "cosmos.loan.v1.MsgApproveLoan.authority":
-		panic(fmt.Errorf("field authority of message cosmos.loan.v1.MsgApproveLoan is not mutable"))
+	case "cosmos.loan.v1.MsgApproveLoan.laz":
+		panic(fmt.Errorf("field laz of message cosmos.loan.v1.MsgApproveLoan is not mutable"))
 	case "cosmos.loan.v1.MsgApproveLoan.loan_id":
 		panic(fmt.Errorf("field loan_id of message cosmos.loan.v1.MsgApproveLoan is not mutable"))
 	default:
@@ -2097,7 +2161,7 @@ func (x *fastReflection_MsgApproveLoan) Mutable(fd protoreflect.FieldDescriptor)
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_MsgApproveLoan) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "cosmos.loan.v1.MsgApproveLoan.authority":
+	case "cosmos.loan.v1.MsgApproveLoan.laz":
 		return protoreflect.ValueOfString("")
 	case "cosmos.loan.v1.MsgApproveLoan.loan_id":
 		return protoreflect.ValueOfUint64(uint64(0))
@@ -2170,7 +2234,7 @@ func (x *fastReflection_MsgApproveLoan) ProtoMethods() *protoiface.Methods {
 		var n int
 		var l int
 		_ = l
-		l = len(x.Authority)
+		l = len(x.Laz)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
@@ -2211,10 +2275,10 @@ func (x *fastReflection_MsgApproveLoan) ProtoMethods() *protoiface.Methods {
 			i--
 			dAtA[i] = 0x10
 		}
-		if len(x.Authority) > 0 {
-			i -= len(x.Authority)
-			copy(dAtA[i:], x.Authority)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Authority)))
+		if len(x.Laz) > 0 {
+			i -= len(x.Laz)
+			copy(dAtA[i:], x.Laz)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Laz)))
 			i--
 			dAtA[i] = 0xa
 		}
@@ -2269,7 +2333,7 @@ func (x *fastReflection_MsgApproveLoan) ProtoMethods() *protoiface.Methods {
 			switch fieldNum {
 			case 1:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Authority", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Laz", wireType)
 				}
 				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
@@ -2297,7 +2361,7 @@ func (x *fastReflection_MsgApproveLoan) ProtoMethods() *protoiface.Methods {
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.Authority = string(dAtA[iNdEx:postIndex])
+				x.Laz = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
 			case 2:
 				if wireType != 0 {
@@ -2710,15 +2774,15 @@ func (x *fastReflection_MsgApproveLoanResponse) ProtoMethods() *protoiface.Metho
 }
 
 var (
-	md_MsgRejectLoan           protoreflect.MessageDescriptor
-	fd_MsgRejectLoan_authority protoreflect.FieldDescriptor
-	fd_MsgRejectLoan_loan_id   protoreflect.FieldDescriptor
+	md_MsgRejectLoan         protoreflect.MessageDescriptor
+	fd_MsgRejectLoan_laz     protoreflect.FieldDescriptor
+	fd_MsgRejectLoan_loan_id protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_cosmos_loan_v1_tx_proto_init()
 	md_MsgRejectLoan = File_cosmos_loan_v1_tx_proto.Messages().ByName("MsgRejectLoan")
-	fd_MsgRejectLoan_authority = md_MsgRejectLoan.Fields().ByName("authority")
+	fd_MsgRejectLoan_laz = md_MsgRejectLoan.Fields().ByName("laz")
 	fd_MsgRejectLoan_loan_id = md_MsgRejectLoan.Fields().ByName("loan_id")
 }
 
@@ -2787,9 +2851,9 @@ func (x *fastReflection_MsgRejectLoan) Interface() protoreflect.ProtoMessage {
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
 func (x *fastReflection_MsgRejectLoan) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.Authority != "" {
-		value := protoreflect.ValueOfString(x.Authority)
-		if !f(fd_MsgRejectLoan_authority, value) {
+	if x.Laz != "" {
+		value := protoreflect.ValueOfString(x.Laz)
+		if !f(fd_MsgRejectLoan_laz, value) {
 			return
 		}
 	}
@@ -2814,8 +2878,8 @@ func (x *fastReflection_MsgRejectLoan) Range(f func(protoreflect.FieldDescriptor
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_MsgRejectLoan) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "cosmos.loan.v1.MsgRejectLoan.authority":
-		return x.Authority != ""
+	case "cosmos.loan.v1.MsgRejectLoan.laz":
+		return x.Laz != ""
 	case "cosmos.loan.v1.MsgRejectLoan.loan_id":
 		return x.LoanId != uint64(0)
 	default:
@@ -2834,8 +2898,8 @@ func (x *fastReflection_MsgRejectLoan) Has(fd protoreflect.FieldDescriptor) bool
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgRejectLoan) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "cosmos.loan.v1.MsgRejectLoan.authority":
-		x.Authority = ""
+	case "cosmos.loan.v1.MsgRejectLoan.laz":
+		x.Laz = ""
 	case "cosmos.loan.v1.MsgRejectLoan.loan_id":
 		x.LoanId = uint64(0)
 	default:
@@ -2854,8 +2918,8 @@ func (x *fastReflection_MsgRejectLoan) Clear(fd protoreflect.FieldDescriptor) {
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_MsgRejectLoan) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "cosmos.loan.v1.MsgRejectLoan.authority":
-		value := x.Authority
+	case "cosmos.loan.v1.MsgRejectLoan.laz":
+		value := x.Laz
 		return protoreflect.ValueOfString(value)
 	case "cosmos.loan.v1.MsgRejectLoan.loan_id":
 		value := x.LoanId
@@ -2880,8 +2944,8 @@ func (x *fastReflection_MsgRejectLoan) Get(descriptor protoreflect.FieldDescript
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgRejectLoan) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "cosmos.loan.v1.MsgRejectLoan.authority":
-		x.Authority = value.Interface().(string)
+	case "cosmos.loan.v1.MsgRejectLoan.laz":
+		x.Laz = value.Interface().(string)
 	case "cosmos.loan.v1.MsgRejectLoan.loan_id":
 		x.LoanId = value.Uint()
 	default:
@@ -2904,8 +2968,8 @@ func (x *fastReflection_MsgRejectLoan) Set(fd protoreflect.FieldDescriptor, valu
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgRejectLoan) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "cosmos.loan.v1.MsgRejectLoan.authority":
-		panic(fmt.Errorf("field authority of message cosmos.loan.v1.MsgRejectLoan is not mutable"))
+	case "cosmos.loan.v1.MsgRejectLoan.laz":
+		panic(fmt.Errorf("field laz of message cosmos.loan.v1.MsgRejectLoan is not mutable"))
 	case "cosmos.loan.v1.MsgRejectLoan.loan_id":
 		panic(fmt.Errorf("field loan_id of message cosmos.loan.v1.MsgRejectLoan is not mutable"))
 	default:
@@ -2921,7 +2985,7 @@ func (x *fastReflection_MsgRejectLoan) Mutable(fd protoreflect.FieldDescriptor) 
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_MsgRejectLoan) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "cosmos.loan.v1.MsgRejectLoan.authority":
+	case "cosmos.loan.v1.MsgRejectLoan.laz":
 		return protoreflect.ValueOfString("")
 	case "cosmos.loan.v1.MsgRejectLoan.loan_id":
 		return protoreflect.ValueOfUint64(uint64(0))
@@ -2994,7 +3058,7 @@ func (x *fastReflection_MsgRejectLoan) ProtoMethods() *protoiface.Methods {
 		var n int
 		var l int
 		_ = l
-		l = len(x.Authority)
+		l = len(x.Laz)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
@@ -3035,10 +3099,10 @@ func (x *fastReflection_MsgRejectLoan) ProtoMethods() *protoiface.Methods {
 			i--
 			dAtA[i] = 0x10
 		}
-		if len(x.Authority) > 0 {
-			i -= len(x.Authority)
-			copy(dAtA[i:], x.Authority)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Authority)))
+		if len(x.Laz) > 0 {
+			i -= len(x.Laz)
+			copy(dAtA[i:], x.Laz)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Laz)))
 			i--
 			dAtA[i] = 0xa
 		}
@@ -3093,7 +3157,7 @@ func (x *fastReflection_MsgRejectLoan) ProtoMethods() *protoiface.Methods {
 			switch fieldNum {
 			case 1:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Authority", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Laz", wireType)
 				}
 				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
@@ -3121,7 +3185,7 @@ func (x *fastReflection_MsgRejectLoan) ProtoMethods() *protoiface.Methods {
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.Authority = string(dAtA[iNdEx:postIndex])
+				x.Laz = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
 			case 2:
 				if wireType != 0 {
@@ -3534,16 +3598,16 @@ func (x *fastReflection_MsgRejectLoanResponse) ProtoMethods() *protoiface.Method
 }
 
 var (
-	md_MsgRepayLoan           protoreflect.MessageDescriptor
-	fd_MsgRepayLoan_authority protoreflect.FieldDescriptor
-	fd_MsgRepayLoan_loan_id   protoreflect.FieldDescriptor
-	fd_MsgRepayLoan_amount    protoreflect.FieldDescriptor
+	md_MsgRepayLoan         protoreflect.MessageDescriptor
+	fd_MsgRepayLoan_omnibus protoreflect.FieldDescriptor
+	fd_MsgRepayLoan_loan_id protoreflect.FieldDescriptor
+	fd_MsgRepayLoan_amount  protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_cosmos_loan_v1_tx_proto_init()
 	md_MsgRepayLoan = File_cosmos_loan_v1_tx_proto.Messages().ByName("MsgRepayLoan")
-	fd_MsgRepayLoan_authority = md_MsgRepayLoan.Fields().ByName("authority")
+	fd_MsgRepayLoan_omnibus = md_MsgRepayLoan.Fields().ByName("omnibus")
 	fd_MsgRepayLoan_loan_id = md_MsgRepayLoan.Fields().ByName("loan_id")
 	fd_MsgRepayLoan_amount = md_MsgRepayLoan.Fields().ByName("amount")
 }
@@ -3613,9 +3677,9 @@ func (x *fastReflection_MsgRepayLoan) Interface() protoreflect.ProtoMessage {
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
 func (x *fastReflection_MsgRepayLoan) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.Authority != "" {
-		value := protoreflect.ValueOfString(x.Authority)
-		if !f(fd_MsgRepayLoan_authority, value) {
+	if x.Omnibus != "" {
+		value := protoreflect.ValueOfString(x.Omnibus)
+		if !f(fd_MsgRepayLoan_omnibus, value) {
 			return
 		}
 	}
@@ -3646,8 +3710,8 @@ func (x *fastReflection_MsgRepayLoan) Range(f func(protoreflect.FieldDescriptor,
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_MsgRepayLoan) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "cosmos.loan.v1.MsgRepayLoan.authority":
-		return x.Authority != ""
+	case "cosmos.loan.v1.MsgRepayLoan.omnibus":
+		return x.Omnibus != ""
 	case "cosmos.loan.v1.MsgRepayLoan.loan_id":
 		return x.LoanId != uint64(0)
 	case "cosmos.loan.v1.MsgRepayLoan.amount":
@@ -3668,8 +3732,8 @@ func (x *fastReflection_MsgRepayLoan) Has(fd protoreflect.FieldDescriptor) bool 
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgRepayLoan) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "cosmos.loan.v1.MsgRepayLoan.authority":
-		x.Authority = ""
+	case "cosmos.loan.v1.MsgRepayLoan.omnibus":
+		x.Omnibus = ""
 	case "cosmos.loan.v1.MsgRepayLoan.loan_id":
 		x.LoanId = uint64(0)
 	case "cosmos.loan.v1.MsgRepayLoan.amount":
@@ -3690,8 +3754,8 @@ func (x *fastReflection_MsgRepayLoan) Clear(fd protoreflect.FieldDescriptor) {
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_MsgRepayLoan) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "cosmos.loan.v1.MsgRepayLoan.authority":
-		value := x.Authority
+	case "cosmos.loan.v1.MsgRepayLoan.omnibus":
+		value := x.Omnibus
 		return protoreflect.ValueOfString(value)
 	case "cosmos.loan.v1.MsgRepayLoan.loan_id":
 		value := x.LoanId
@@ -3719,8 +3783,8 @@ func (x *fastReflection_MsgRepayLoan) Get(descriptor protoreflect.FieldDescripto
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgRepayLoan) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "cosmos.loan.v1.MsgRepayLoan.authority":
-		x.Authority = value.Interface().(string)
+	case "cosmos.loan.v1.MsgRepayLoan.omnibus":
+		x.Omnibus = value.Interface().(string)
 	case "cosmos.loan.v1.MsgRepayLoan.loan_id":
 		x.LoanId = value.Uint()
 	case "cosmos.loan.v1.MsgRepayLoan.amount":
@@ -3750,8 +3814,8 @@ func (x *fastReflection_MsgRepayLoan) Mutable(fd protoreflect.FieldDescriptor) p
 			x.Amount = new(v1beta1.Coin)
 		}
 		return protoreflect.ValueOfMessage(x.Amount.ProtoReflect())
-	case "cosmos.loan.v1.MsgRepayLoan.authority":
-		panic(fmt.Errorf("field authority of message cosmos.loan.v1.MsgRepayLoan is not mutable"))
+	case "cosmos.loan.v1.MsgRepayLoan.omnibus":
+		panic(fmt.Errorf("field omnibus of message cosmos.loan.v1.MsgRepayLoan is not mutable"))
 	case "cosmos.loan.v1.MsgRepayLoan.loan_id":
 		panic(fmt.Errorf("field loan_id of message cosmos.loan.v1.MsgRepayLoan is not mutable"))
 	default:
@@ -3767,7 +3831,7 @@ func (x *fastReflection_MsgRepayLoan) Mutable(fd protoreflect.FieldDescriptor) p
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_MsgRepayLoan) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "cosmos.loan.v1.MsgRepayLoan.authority":
+	case "cosmos.loan.v1.MsgRepayLoan.omnibus":
 		return protoreflect.ValueOfString("")
 	case "cosmos.loan.v1.MsgRepayLoan.loan_id":
 		return protoreflect.ValueOfUint64(uint64(0))
@@ -3843,7 +3907,7 @@ func (x *fastReflection_MsgRepayLoan) ProtoMethods() *protoiface.Methods {
 		var n int
 		var l int
 		_ = l
-		l = len(x.Authority)
+		l = len(x.Omnibus)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
@@ -3902,10 +3966,10 @@ func (x *fastReflection_MsgRepayLoan) ProtoMethods() *protoiface.Methods {
 			i--
 			dAtA[i] = 0x10
 		}
-		if len(x.Authority) > 0 {
-			i -= len(x.Authority)
-			copy(dAtA[i:], x.Authority)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Authority)))
+		if len(x.Omnibus) > 0 {
+			i -= len(x.Omnibus)
+			copy(dAtA[i:], x.Omnibus)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Omnibus)))
 			i--
 			dAtA[i] = 0xa
 		}
@@ -3960,7 +4024,7 @@ func (x *fastReflection_MsgRepayLoan) ProtoMethods() *protoiface.Methods {
 			switch fieldNum {
 			case 1:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Authority", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Omnibus", wireType)
 				}
 				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
@@ -3988,7 +4052,7 @@ func (x *fastReflection_MsgRepayLoan) ProtoMethods() *protoiface.Methods {
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.Authority = string(dAtA[iNdEx:postIndex])
+				x.Omnibus = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
 			case 2:
 				if wireType != 0 {
@@ -4437,15 +4501,15 @@ func (x *fastReflection_MsgRepayLoanResponse) ProtoMethods() *protoiface.Methods
 }
 
 var (
-	md_MsgConfirmDisbursement           protoreflect.MessageDescriptor
-	fd_MsgConfirmDisbursement_authority protoreflect.FieldDescriptor
-	fd_MsgConfirmDisbursement_loan_id   protoreflect.FieldDescriptor
+	md_MsgConfirmDisbursement         protoreflect.MessageDescriptor
+	fd_MsgConfirmDisbursement_omnibus protoreflect.FieldDescriptor
+	fd_MsgConfirmDisbursement_loan_id protoreflect.FieldDescriptor
 )
 
 func init() {
 	file_cosmos_loan_v1_tx_proto_init()
 	md_MsgConfirmDisbursement = File_cosmos_loan_v1_tx_proto.Messages().ByName("MsgConfirmDisbursement")
-	fd_MsgConfirmDisbursement_authority = md_MsgConfirmDisbursement.Fields().ByName("authority")
+	fd_MsgConfirmDisbursement_omnibus = md_MsgConfirmDisbursement.Fields().ByName("omnibus")
 	fd_MsgConfirmDisbursement_loan_id = md_MsgConfirmDisbursement.Fields().ByName("loan_id")
 }
 
@@ -4514,9 +4578,9 @@ func (x *fastReflection_MsgConfirmDisbursement) Interface() protoreflect.ProtoMe
 // While iterating, mutating operations may only be performed
 // on the current field descriptor.
 func (x *fastReflection_MsgConfirmDisbursement) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
-	if x.Authority != "" {
-		value := protoreflect.ValueOfString(x.Authority)
-		if !f(fd_MsgConfirmDisbursement_authority, value) {
+	if x.Omnibus != "" {
+		value := protoreflect.ValueOfString(x.Omnibus)
+		if !f(fd_MsgConfirmDisbursement_omnibus, value) {
 			return
 		}
 	}
@@ -4541,8 +4605,8 @@ func (x *fastReflection_MsgConfirmDisbursement) Range(f func(protoreflect.FieldD
 // a repeated field is populated if it is non-empty.
 func (x *fastReflection_MsgConfirmDisbursement) Has(fd protoreflect.FieldDescriptor) bool {
 	switch fd.FullName() {
-	case "cosmos.loan.v1.MsgConfirmDisbursement.authority":
-		return x.Authority != ""
+	case "cosmos.loan.v1.MsgConfirmDisbursement.omnibus":
+		return x.Omnibus != ""
 	case "cosmos.loan.v1.MsgConfirmDisbursement.loan_id":
 		return x.LoanId != uint64(0)
 	default:
@@ -4561,8 +4625,8 @@ func (x *fastReflection_MsgConfirmDisbursement) Has(fd protoreflect.FieldDescrip
 // Clear is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgConfirmDisbursement) Clear(fd protoreflect.FieldDescriptor) {
 	switch fd.FullName() {
-	case "cosmos.loan.v1.MsgConfirmDisbursement.authority":
-		x.Authority = ""
+	case "cosmos.loan.v1.MsgConfirmDisbursement.omnibus":
+		x.Omnibus = ""
 	case "cosmos.loan.v1.MsgConfirmDisbursement.loan_id":
 		x.LoanId = uint64(0)
 	default:
@@ -4581,8 +4645,8 @@ func (x *fastReflection_MsgConfirmDisbursement) Clear(fd protoreflect.FieldDescr
 // of the value; to obtain a mutable reference, use Mutable.
 func (x *fastReflection_MsgConfirmDisbursement) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
 	switch descriptor.FullName() {
-	case "cosmos.loan.v1.MsgConfirmDisbursement.authority":
-		value := x.Authority
+	case "cosmos.loan.v1.MsgConfirmDisbursement.omnibus":
+		value := x.Omnibus
 		return protoreflect.ValueOfString(value)
 	case "cosmos.loan.v1.MsgConfirmDisbursement.loan_id":
 		value := x.LoanId
@@ -4607,8 +4671,8 @@ func (x *fastReflection_MsgConfirmDisbursement) Get(descriptor protoreflect.Fiel
 // Set is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgConfirmDisbursement) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
 	switch fd.FullName() {
-	case "cosmos.loan.v1.MsgConfirmDisbursement.authority":
-		x.Authority = value.Interface().(string)
+	case "cosmos.loan.v1.MsgConfirmDisbursement.omnibus":
+		x.Omnibus = value.Interface().(string)
 	case "cosmos.loan.v1.MsgConfirmDisbursement.loan_id":
 		x.LoanId = value.Uint()
 	default:
@@ -4631,8 +4695,8 @@ func (x *fastReflection_MsgConfirmDisbursement) Set(fd protoreflect.FieldDescrip
 // Mutable is a mutating operation and unsafe for concurrent use.
 func (x *fastReflection_MsgConfirmDisbursement) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "cosmos.loan.v1.MsgConfirmDisbursement.authority":
-		panic(fmt.Errorf("field authority of message cosmos.loan.v1.MsgConfirmDisbursement is not mutable"))
+	case "cosmos.loan.v1.MsgConfirmDisbursement.omnibus":
+		panic(fmt.Errorf("field omnibus of message cosmos.loan.v1.MsgConfirmDisbursement is not mutable"))
 	case "cosmos.loan.v1.MsgConfirmDisbursement.loan_id":
 		panic(fmt.Errorf("field loan_id of message cosmos.loan.v1.MsgConfirmDisbursement is not mutable"))
 	default:
@@ -4648,7 +4712,7 @@ func (x *fastReflection_MsgConfirmDisbursement) Mutable(fd protoreflect.FieldDes
 // For lists, maps, and messages, this returns a new, empty, mutable value.
 func (x *fastReflection_MsgConfirmDisbursement) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
 	switch fd.FullName() {
-	case "cosmos.loan.v1.MsgConfirmDisbursement.authority":
+	case "cosmos.loan.v1.MsgConfirmDisbursement.omnibus":
 		return protoreflect.ValueOfString("")
 	case "cosmos.loan.v1.MsgConfirmDisbursement.loan_id":
 		return protoreflect.ValueOfUint64(uint64(0))
@@ -4721,7 +4785,7 @@ func (x *fastReflection_MsgConfirmDisbursement) ProtoMethods() *protoiface.Metho
 		var n int
 		var l int
 		_ = l
-		l = len(x.Authority)
+		l = len(x.Omnibus)
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
@@ -4762,10 +4826,10 @@ func (x *fastReflection_MsgConfirmDisbursement) ProtoMethods() *protoiface.Metho
 			i--
 			dAtA[i] = 0x10
 		}
-		if len(x.Authority) > 0 {
-			i -= len(x.Authority)
-			copy(dAtA[i:], x.Authority)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Authority)))
+		if len(x.Omnibus) > 0 {
+			i -= len(x.Omnibus)
+			copy(dAtA[i:], x.Omnibus)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Omnibus)))
 			i--
 			dAtA[i] = 0xa
 		}
@@ -4820,7 +4884,7 @@ func (x *fastReflection_MsgConfirmDisbursement) ProtoMethods() *protoiface.Metho
 			switch fieldNum {
 			case 1:
 				if wireType != 2 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Authority", wireType)
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Omnibus", wireType)
 				}
 				var stringLen uint64
 				for shift := uint(0); ; shift += 7 {
@@ -4848,7 +4912,7 @@ func (x *fastReflection_MsgConfirmDisbursement) ProtoMethods() *protoiface.Metho
 				if postIndex > l {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
 				}
-				x.Authority = string(dAtA[iNdEx:postIndex])
+				x.Omnibus = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
 			case 2:
 				if wireType != 0 {
@@ -5260,6 +5324,894 @@ func (x *fastReflection_MsgConfirmDisbursementResponse) ProtoMethods() *protoifa
 	}
 }
 
+var (
+	md_MsgRejectDisbursement         protoreflect.MessageDescriptor
+	fd_MsgRejectDisbursement_omnibus protoreflect.FieldDescriptor
+	fd_MsgRejectDisbursement_loan_id protoreflect.FieldDescriptor
+	fd_MsgRejectDisbursement_reason  protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_cosmos_loan_v1_tx_proto_init()
+	md_MsgRejectDisbursement = File_cosmos_loan_v1_tx_proto.Messages().ByName("MsgRejectDisbursement")
+	fd_MsgRejectDisbursement_omnibus = md_MsgRejectDisbursement.Fields().ByName("omnibus")
+	fd_MsgRejectDisbursement_loan_id = md_MsgRejectDisbursement.Fields().ByName("loan_id")
+	fd_MsgRejectDisbursement_reason = md_MsgRejectDisbursement.Fields().ByName("reason")
+}
+
+var _ protoreflect.Message = (*fastReflection_MsgRejectDisbursement)(nil)
+
+type fastReflection_MsgRejectDisbursement MsgRejectDisbursement
+
+func (x *MsgRejectDisbursement) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgRejectDisbursement)(x)
+}
+
+func (x *MsgRejectDisbursement) slowProtoReflect() protoreflect.Message {
+	mi := &file_cosmos_loan_v1_tx_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_MsgRejectDisbursement_messageType fastReflection_MsgRejectDisbursement_messageType
+var _ protoreflect.MessageType = fastReflection_MsgRejectDisbursement_messageType{}
+
+type fastReflection_MsgRejectDisbursement_messageType struct{}
+
+func (x fastReflection_MsgRejectDisbursement_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgRejectDisbursement)(nil)
+}
+func (x fastReflection_MsgRejectDisbursement_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgRejectDisbursement)
+}
+func (x fastReflection_MsgRejectDisbursement_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgRejectDisbursement
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_MsgRejectDisbursement) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgRejectDisbursement
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_MsgRejectDisbursement) Type() protoreflect.MessageType {
+	return _fastReflection_MsgRejectDisbursement_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_MsgRejectDisbursement) New() protoreflect.Message {
+	return new(fastReflection_MsgRejectDisbursement)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_MsgRejectDisbursement) Interface() protoreflect.ProtoMessage {
+	return (*MsgRejectDisbursement)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_MsgRejectDisbursement) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.Omnibus != "" {
+		value := protoreflect.ValueOfString(x.Omnibus)
+		if !f(fd_MsgRejectDisbursement_omnibus, value) {
+			return
+		}
+	}
+	if x.LoanId != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.LoanId)
+		if !f(fd_MsgRejectDisbursement_loan_id, value) {
+			return
+		}
+	}
+	if x.Reason != "" {
+		value := protoreflect.ValueOfString(x.Reason)
+		if !f(fd_MsgRejectDisbursement_reason, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_MsgRejectDisbursement) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "cosmos.loan.v1.MsgRejectDisbursement.omnibus":
+		return x.Omnibus != ""
+	case "cosmos.loan.v1.MsgRejectDisbursement.loan_id":
+		return x.LoanId != uint64(0)
+	case "cosmos.loan.v1.MsgRejectDisbursement.reason":
+		return x.Reason != ""
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.MsgRejectDisbursement"))
+		}
+		panic(fmt.Errorf("message cosmos.loan.v1.MsgRejectDisbursement does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgRejectDisbursement) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "cosmos.loan.v1.MsgRejectDisbursement.omnibus":
+		x.Omnibus = ""
+	case "cosmos.loan.v1.MsgRejectDisbursement.loan_id":
+		x.LoanId = uint64(0)
+	case "cosmos.loan.v1.MsgRejectDisbursement.reason":
+		x.Reason = ""
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.MsgRejectDisbursement"))
+		}
+		panic(fmt.Errorf("message cosmos.loan.v1.MsgRejectDisbursement does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_MsgRejectDisbursement) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "cosmos.loan.v1.MsgRejectDisbursement.omnibus":
+		value := x.Omnibus
+		return protoreflect.ValueOfString(value)
+	case "cosmos.loan.v1.MsgRejectDisbursement.loan_id":
+		value := x.LoanId
+		return protoreflect.ValueOfUint64(value)
+	case "cosmos.loan.v1.MsgRejectDisbursement.reason":
+		value := x.Reason
+		return protoreflect.ValueOfString(value)
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.MsgRejectDisbursement"))
+		}
+		panic(fmt.Errorf("message cosmos.loan.v1.MsgRejectDisbursement does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgRejectDisbursement) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "cosmos.loan.v1.MsgRejectDisbursement.omnibus":
+		x.Omnibus = value.Interface().(string)
+	case "cosmos.loan.v1.MsgRejectDisbursement.loan_id":
+		x.LoanId = value.Uint()
+	case "cosmos.loan.v1.MsgRejectDisbursement.reason":
+		x.Reason = value.Interface().(string)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.MsgRejectDisbursement"))
+		}
+		panic(fmt.Errorf("message cosmos.loan.v1.MsgRejectDisbursement does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgRejectDisbursement) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "cosmos.loan.v1.MsgRejectDisbursement.omnibus":
+		panic(fmt.Errorf("field omnibus of message cosmos.loan.v1.MsgRejectDisbursement is not mutable"))
+	case "cosmos.loan.v1.MsgRejectDisbursement.loan_id":
+		panic(fmt.Errorf("field loan_id of message cosmos.loan.v1.MsgRejectDisbursement is not mutable"))
+	case "cosmos.loan.v1.MsgRejectDisbursement.reason":
+		panic(fmt.Errorf("field reason of message cosmos.loan.v1.MsgRejectDisbursement is not mutable"))
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.MsgRejectDisbursement"))
+		}
+		panic(fmt.Errorf("message cosmos.loan.v1.MsgRejectDisbursement does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_MsgRejectDisbursement) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "cosmos.loan.v1.MsgRejectDisbursement.omnibus":
+		return protoreflect.ValueOfString("")
+	case "cosmos.loan.v1.MsgRejectDisbursement.loan_id":
+		return protoreflect.ValueOfUint64(uint64(0))
+	case "cosmos.loan.v1.MsgRejectDisbursement.reason":
+		return protoreflect.ValueOfString("")
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.MsgRejectDisbursement"))
+		}
+		panic(fmt.Errorf("message cosmos.loan.v1.MsgRejectDisbursement does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_MsgRejectDisbursement) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in cosmos.loan.v1.MsgRejectDisbursement", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_MsgRejectDisbursement) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgRejectDisbursement) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_MsgRejectDisbursement) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_MsgRejectDisbursement) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*MsgRejectDisbursement)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		l = len(x.Omnibus)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.LoanId != 0 {
+			n += 1 + runtime.Sov(uint64(x.LoanId))
+		}
+		l = len(x.Reason)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*MsgRejectDisbursement)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if len(x.Reason) > 0 {
+			i -= len(x.Reason)
+			copy(dAtA[i:], x.Reason)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Reason)))
+			i--
+			dAtA[i] = 0x1a
+		}
+		if x.LoanId != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.LoanId))
+			i--
+			dAtA[i] = 0x10
+		}
+		if len(x.Omnibus) > 0 {
+			i -= len(x.Omnibus)
+			copy(dAtA[i:], x.Omnibus)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Omnibus)))
+			i--
+			dAtA[i] = 0xa
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*MsgRejectDisbursement)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgRejectDisbursement: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgRejectDisbursement: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Omnibus", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Omnibus = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 2:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field LoanId", wireType)
+				}
+				x.LoanId = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.LoanId |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			case 3:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Reason", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Reason = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var (
+	md_MsgRejectDisbursementResponse protoreflect.MessageDescriptor
+)
+
+func init() {
+	file_cosmos_loan_v1_tx_proto_init()
+	md_MsgRejectDisbursementResponse = File_cosmos_loan_v1_tx_proto.Messages().ByName("MsgRejectDisbursementResponse")
+}
+
+var _ protoreflect.Message = (*fastReflection_MsgRejectDisbursementResponse)(nil)
+
+type fastReflection_MsgRejectDisbursementResponse MsgRejectDisbursementResponse
+
+func (x *MsgRejectDisbursementResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgRejectDisbursementResponse)(x)
+}
+
+func (x *MsgRejectDisbursementResponse) slowProtoReflect() protoreflect.Message {
+	mi := &file_cosmos_loan_v1_tx_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_MsgRejectDisbursementResponse_messageType fastReflection_MsgRejectDisbursementResponse_messageType
+var _ protoreflect.MessageType = fastReflection_MsgRejectDisbursementResponse_messageType{}
+
+type fastReflection_MsgRejectDisbursementResponse_messageType struct{}
+
+func (x fastReflection_MsgRejectDisbursementResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgRejectDisbursementResponse)(nil)
+}
+func (x fastReflection_MsgRejectDisbursementResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgRejectDisbursementResponse)
+}
+func (x fastReflection_MsgRejectDisbursementResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgRejectDisbursementResponse
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_MsgRejectDisbursementResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgRejectDisbursementResponse
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_MsgRejectDisbursementResponse) Type() protoreflect.MessageType {
+	return _fastReflection_MsgRejectDisbursementResponse_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_MsgRejectDisbursementResponse) New() protoreflect.Message {
+	return new(fastReflection_MsgRejectDisbursementResponse)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_MsgRejectDisbursementResponse) Interface() protoreflect.ProtoMessage {
+	return (*MsgRejectDisbursementResponse)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_MsgRejectDisbursementResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_MsgRejectDisbursementResponse) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.MsgRejectDisbursementResponse"))
+		}
+		panic(fmt.Errorf("message cosmos.loan.v1.MsgRejectDisbursementResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgRejectDisbursementResponse) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.MsgRejectDisbursementResponse"))
+		}
+		panic(fmt.Errorf("message cosmos.loan.v1.MsgRejectDisbursementResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_MsgRejectDisbursementResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.MsgRejectDisbursementResponse"))
+		}
+		panic(fmt.Errorf("message cosmos.loan.v1.MsgRejectDisbursementResponse does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgRejectDisbursementResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.MsgRejectDisbursementResponse"))
+		}
+		panic(fmt.Errorf("message cosmos.loan.v1.MsgRejectDisbursementResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgRejectDisbursementResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.MsgRejectDisbursementResponse"))
+		}
+		panic(fmt.Errorf("message cosmos.loan.v1.MsgRejectDisbursementResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_MsgRejectDisbursementResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: cosmos.loan.v1.MsgRejectDisbursementResponse"))
+		}
+		panic(fmt.Errorf("message cosmos.loan.v1.MsgRejectDisbursementResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_MsgRejectDisbursementResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in cosmos.loan.v1.MsgRejectDisbursementResponse", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_MsgRejectDisbursementResponse) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgRejectDisbursementResponse) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_MsgRejectDisbursementResponse) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_MsgRejectDisbursementResponse) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*MsgRejectDisbursementResponse)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*MsgRejectDisbursementResponse)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*MsgRejectDisbursementResponse)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgRejectDisbursementResponse: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgRejectDisbursementResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
 // Code generated by protoc-gen-go. DO NOT EDIT.
 // versions:
 // 	protoc-gen-go v1.27.0
@@ -5354,12 +6306,14 @@ type MsgCreateLoan struct {
 
 	// Alamat borrower (Bech32) sebagai pemohon pinjaman
 	Borrower string `protobuf:"bytes,1,opt,name=borrower,proto3" json:"borrower,omitempty"`
+	// Alamat laz (Bech32) sebagai penerima pemohonan pinjaman
+	Laz string `protobuf:"bytes,2,opt,name=laz,proto3" json:"laz,omitempty"`
 	// Nilai pokok pinjaman yang diajukan
-	Principal *v1beta1.Coin `protobuf:"bytes,2,opt,name=principal,proto3" json:"principal,omitempty"`
+	Principal *v1beta1.Coin `protobuf:"bytes,3,opt,name=principal,proto3" json:"principal,omitempty"`
 	// Durasi pinjaman dalam satuan bulan
-	TenorMonths uint64 `protobuf:"varint,3,opt,name=tenor_months,json=tenorMonths,proto3" json:"tenor_months,omitempty"`
+	TenorMonths uint64 `protobuf:"varint,4,opt,name=tenor_months,json=tenorMonths,proto3" json:"tenor_months,omitempty"`
 	// Hash dokumen pendukung (misalnya IPFS CID atau SHA256 kontrak)
-	MetadataHash string `protobuf:"bytes,4,opt,name=metadata_hash,json=metadataHash,proto3" json:"metadata_hash,omitempty"`
+	MetadataHash string `protobuf:"bytes,5,opt,name=metadata_hash,json=metadataHash,proto3" json:"metadata_hash,omitempty"`
 }
 
 func (x *MsgCreateLoan) Reset() {
@@ -5385,6 +6339,13 @@ func (*MsgCreateLoan) Descriptor() ([]byte, []int) {
 func (x *MsgCreateLoan) GetBorrower() string {
 	if x != nil {
 		return x.Borrower
+	}
+	return ""
+}
+
+func (x *MsgCreateLoan) GetLaz() string {
+	if x != nil {
+		return x.Laz
 	}
 	return ""
 }
@@ -5447,14 +6408,14 @@ func (x *MsgCreateLoanResponse) GetLoanId() uint64 {
 	return 0
 }
 
-// MsgApproveLoan digunakan oleh policy yang berwenang untuk menyetujui pinjaman
+// MsgApproveLoan digunakan oleh laz yang berwenang untuk menyetujui pinjaman
 type MsgApproveLoan struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Alamat group policy (laz_group_policy) sebagai otoritas persetujuan
-	Authority string `protobuf:"bytes,1,opt,name=authority,proto3" json:"authority,omitempty"`
+	// Alamat (laz) sebagai otoritas persetujuan
+	Laz string `protobuf:"bytes,1,opt,name=laz,proto3" json:"laz,omitempty"`
 	// ID pinjaman yang akan disetujui
 	LoanId uint64 `protobuf:"varint,2,opt,name=loan_id,json=loanId,proto3" json:"loan_id,omitempty"`
 }
@@ -5479,9 +6440,9 @@ func (*MsgApproveLoan) Descriptor() ([]byte, []int) {
 	return file_cosmos_loan_v1_tx_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *MsgApproveLoan) GetAuthority() string {
+func (x *MsgApproveLoan) GetLaz() string {
 	if x != nil {
-		return x.Authority
+		return x.Laz
 	}
 	return ""
 }
@@ -5520,14 +6481,14 @@ func (*MsgApproveLoanResponse) Descriptor() ([]byte, []int) {
 	return file_cosmos_loan_v1_tx_proto_rawDescGZIP(), []int{5}
 }
 
-// MsgRejectLoan digunakan oleh policy yang berwenang untuk menolak pinjaman
+// MsgRejectLoan digunakan oleh laz yang berwenang untuk menolak pinjaman
 type MsgRejectLoan struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Alamat group policy sebagai otoritas penolakan
-	Authority string `protobuf:"bytes,1,opt,name=authority,proto3" json:"authority,omitempty"`
+	// Alamat  sebagai otoritas penolakan
+	Laz string `protobuf:"bytes,1,opt,name=laz,proto3" json:"laz,omitempty"`
 	// ID pinjaman yang akan ditolak
 	LoanId uint64 `protobuf:"varint,2,opt,name=loan_id,json=loanId,proto3" json:"loan_id,omitempty"`
 }
@@ -5552,9 +6513,9 @@ func (*MsgRejectLoan) Descriptor() ([]byte, []int) {
 	return file_cosmos_loan_v1_tx_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *MsgRejectLoan) GetAuthority() string {
+func (x *MsgRejectLoan) GetLaz() string {
 	if x != nil {
-		return x.Authority
+		return x.Laz
 	}
 	return ""
 }
@@ -5593,14 +6554,14 @@ func (*MsgRejectLoanResponse) Descriptor() ([]byte, []int) {
 	return file_cosmos_loan_v1_tx_proto_rawDescGZIP(), []int{7}
 }
 
-// MsgRepayLoan digunakan untuk mencatat pembayaran pinjaman
+// MsgRepayLoan digunakan untuk mencatat pembayaran pinjaman yang dihasilkan oleh omnibus
 type MsgRepayLoan struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Alamat omnibus_group_policy sebagai otoritas pembayaran
-	Authority string `protobuf:"bytes,1,opt,name=authority,proto3" json:"authority,omitempty"`
+	// Alamat omnibus sebagai otoritas pembayaran
+	Omnibus string `protobuf:"bytes,1,opt,name=omnibus,proto3" json:"omnibus,omitempty"`
 	// ID pinjaman yang dibayar
 	LoanId uint64 `protobuf:"varint,2,opt,name=loan_id,json=loanId,proto3" json:"loan_id,omitempty"`
 	// Jumlah yang dibayarkan
@@ -5627,9 +6588,9 @@ func (*MsgRepayLoan) Descriptor() ([]byte, []int) {
 	return file_cosmos_loan_v1_tx_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *MsgRepayLoan) GetAuthority() string {
+func (x *MsgRepayLoan) GetOmnibus() string {
 	if x != nil {
-		return x.Authority
+		return x.Omnibus
 	}
 	return ""
 }
@@ -5681,8 +6642,8 @@ type MsgConfirmDisbursement struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Alamat omnibus_group_policy sebagai otoritas pencairan dana
-	Authority string `protobuf:"bytes,1,opt,name=authority,proto3" json:"authority,omitempty"`
+	// Alamat omnibus sebagai otoritas pencairan dana
+	Omnibus string `protobuf:"bytes,1,opt,name=omnibus,proto3" json:"omnibus,omitempty"`
 	// ID pinjaman yang dicairkan
 	LoanId uint64 `protobuf:"varint,2,opt,name=loan_id,json=loanId,proto3" json:"loan_id,omitempty"`
 }
@@ -5707,9 +6668,9 @@ func (*MsgConfirmDisbursement) Descriptor() ([]byte, []int) {
 	return file_cosmos_loan_v1_tx_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *MsgConfirmDisbursement) GetAuthority() string {
+func (x *MsgConfirmDisbursement) GetOmnibus() string {
 	if x != nil {
-		return x.Authority
+		return x.Omnibus
 	}
 	return ""
 }
@@ -5748,6 +6709,89 @@ func (*MsgConfirmDisbursementResponse) Descriptor() ([]byte, []int) {
 	return file_cosmos_loan_v1_tx_proto_rawDescGZIP(), []int{11}
 }
 
+// MsgRejectDisbursement, Omnibus dalam kasus tertentu, menolak pencairan dana pinjaman yang sudah disetujui
+// cth: layanan error, bank transfer gagal, rekening borrower invalid, etc
+type MsgRejectDisbursement struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// alamat omnibus yang berwenang menolak pencairan
+	Omnibus string `protobuf:"bytes,1,opt,name=omnibus,proto3" json:"omnibus,omitempty"`
+	// ID pinjaman yang pencairannya ditolak
+	LoanId uint64 `protobuf:"varint,2,opt,name=loan_id,json=loanId,proto3" json:"loan_id,omitempty"`
+	// alasan penolakan pencairan
+	Reason string `protobuf:"bytes,3,opt,name=reason,proto3" json:"reason,omitempty"`
+}
+
+func (x *MsgRejectDisbursement) Reset() {
+	*x = MsgRejectDisbursement{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_cosmos_loan_v1_tx_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MsgRejectDisbursement) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MsgRejectDisbursement) ProtoMessage() {}
+
+// Deprecated: Use MsgRejectDisbursement.ProtoReflect.Descriptor instead.
+func (*MsgRejectDisbursement) Descriptor() ([]byte, []int) {
+	return file_cosmos_loan_v1_tx_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *MsgRejectDisbursement) GetOmnibus() string {
+	if x != nil {
+		return x.Omnibus
+	}
+	return ""
+}
+
+func (x *MsgRejectDisbursement) GetLoanId() uint64 {
+	if x != nil {
+		return x.LoanId
+	}
+	return 0
+}
+
+func (x *MsgRejectDisbursement) GetReason() string {
+	if x != nil {
+		return x.Reason
+	}
+	return ""
+}
+
+// MsgRejectDisbursementResponse tidak mengembalikan data tambahan
+type MsgRejectDisbursementResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *MsgRejectDisbursementResponse) Reset() {
+	*x = MsgRejectDisbursementResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_cosmos_loan_v1_tx_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MsgRejectDisbursementResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MsgRejectDisbursementResponse) ProtoMessage() {}
+
+// Deprecated: Use MsgRejectDisbursementResponse.ProtoReflect.Descriptor instead.
+func (*MsgRejectDisbursementResponse) Descriptor() ([]byte, []int) {
+	return file_cosmos_loan_v1_tx_proto_rawDescGZIP(), []int{13}
+}
+
 var File_cosmos_loan_v1_tx_proto protoreflect.FileDescriptor
 
 var file_cosmos_loan_v1_tx_proto_rawDesc = []byte{
@@ -5771,107 +6815,125 @@ var file_cosmos_loan_v1_tx_proto_rawDesc = []byte{
 	0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x3a, 0x0e, 0x82, 0xe7, 0xb0, 0x2a, 0x09, 0x61, 0x75, 0x74,
 	0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x22, 0x19, 0x0a, 0x17, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64,
 	0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x22, 0xd5, 0x01, 0x0a, 0x0d, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4c,
+	0x65, 0x22, 0x81, 0x02, 0x0a, 0x0d, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4c,
 	0x6f, 0x61, 0x6e, 0x12, 0x34, 0x0a, 0x08, 0x62, 0x6f, 0x72, 0x72, 0x6f, 0x77, 0x65, 0x72, 0x18,
 	0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f,
 	0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52,
-	0x08, 0x62, 0x6f, 0x72, 0x72, 0x6f, 0x77, 0x65, 0x72, 0x12, 0x37, 0x0a, 0x09, 0x70, 0x72, 0x69,
-	0x6e, 0x63, 0x69, 0x70, 0x61, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x63,
-	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74,
-	0x61, 0x31, 0x2e, 0x43, 0x6f, 0x69, 0x6e, 0x52, 0x09, 0x70, 0x72, 0x69, 0x6e, 0x63, 0x69, 0x70,
-	0x61, 0x6c, 0x12, 0x21, 0x0a, 0x0c, 0x74, 0x65, 0x6e, 0x6f, 0x72, 0x5f, 0x6d, 0x6f, 0x6e, 0x74,
-	0x68, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0b, 0x74, 0x65, 0x6e, 0x6f, 0x72, 0x4d,
-	0x6f, 0x6e, 0x74, 0x68, 0x73, 0x12, 0x23, 0x0a, 0x0d, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74,
-	0x61, 0x5f, 0x68, 0x61, 0x73, 0x68, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x6d, 0x65,
-	0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x48, 0x61, 0x73, 0x68, 0x3a, 0x0d, 0x82, 0xe7, 0xb0, 0x2a,
-	0x08, 0x62, 0x6f, 0x72, 0x72, 0x6f, 0x77, 0x65, 0x72, 0x22, 0x30, 0x0a, 0x15, 0x4d, 0x73, 0x67,
-	0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x12, 0x17, 0x0a, 0x07, 0x6c, 0x6f, 0x61, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x04, 0x52, 0x06, 0x6c, 0x6f, 0x61, 0x6e, 0x49, 0x64, 0x22, 0x71, 0x0a, 0x0e, 0x4d,
-	0x73, 0x67, 0x41, 0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x4c, 0x6f, 0x61, 0x6e, 0x12, 0x36, 0x0a,
-	0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x08, 0x62, 0x6f, 0x72, 0x72, 0x6f, 0x77, 0x65, 0x72, 0x12, 0x2a, 0x0a, 0x03, 0x6c, 0x61, 0x7a,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d,
+	0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67,
+	0x52, 0x03, 0x6c, 0x61, 0x7a, 0x12, 0x37, 0x0a, 0x09, 0x70, 0x72, 0x69, 0x6e, 0x63, 0x69, 0x70,
+	0x61, 0x6c, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f,
+	0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x43,
+	0x6f, 0x69, 0x6e, 0x52, 0x09, 0x70, 0x72, 0x69, 0x6e, 0x63, 0x69, 0x70, 0x61, 0x6c, 0x12, 0x21,
+	0x0a, 0x0c, 0x74, 0x65, 0x6e, 0x6f, 0x72, 0x5f, 0x6d, 0x6f, 0x6e, 0x74, 0x68, 0x73, 0x18, 0x04,
+	0x20, 0x01, 0x28, 0x04, 0x52, 0x0b, 0x74, 0x65, 0x6e, 0x6f, 0x72, 0x4d, 0x6f, 0x6e, 0x74, 0x68,
+	0x73, 0x12, 0x23, 0x0a, 0x0d, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x5f, 0x68, 0x61,
+	0x73, 0x68, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61,
+	0x74, 0x61, 0x48, 0x61, 0x73, 0x68, 0x3a, 0x0d, 0x82, 0xe7, 0xb0, 0x2a, 0x08, 0x62, 0x6f, 0x72,
+	0x72, 0x6f, 0x77, 0x65, 0x72, 0x22, 0x30, 0x0a, 0x15, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x17,
+	0x0a, 0x07, 0x6c, 0x6f, 0x61, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52,
+	0x06, 0x6c, 0x6f, 0x61, 0x6e, 0x49, 0x64, 0x22, 0x5f, 0x0a, 0x0e, 0x4d, 0x73, 0x67, 0x41, 0x70,
+	0x70, 0x72, 0x6f, 0x76, 0x65, 0x4c, 0x6f, 0x61, 0x6e, 0x12, 0x2a, 0x0a, 0x03, 0x6c, 0x61, 0x7a,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d,
+	0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67,
+	0x52, 0x03, 0x6c, 0x61, 0x7a, 0x12, 0x17, 0x0a, 0x07, 0x6c, 0x6f, 0x61, 0x6e, 0x5f, 0x69, 0x64,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x06, 0x6c, 0x6f, 0x61, 0x6e, 0x49, 0x64, 0x3a, 0x08,
+	0x82, 0xe7, 0xb0, 0x2a, 0x03, 0x6c, 0x61, 0x7a, 0x22, 0x18, 0x0a, 0x16, 0x4d, 0x73, 0x67, 0x41,
+	0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x22, 0x5e, 0x0a, 0x0d, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x6a, 0x65, 0x63, 0x74, 0x4c,
+	0x6f, 0x61, 0x6e, 0x12, 0x2a, 0x0a, 0x03, 0x6c, 0x61, 0x7a, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
 	0x42, 0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64,
-	0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x09, 0x61, 0x75, 0x74, 0x68,
-	0x6f, 0x72, 0x69, 0x74, 0x79, 0x12, 0x17, 0x0a, 0x07, 0x6c, 0x6f, 0x61, 0x6e, 0x5f, 0x69, 0x64,
-	0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x06, 0x6c, 0x6f, 0x61, 0x6e, 0x49, 0x64, 0x3a, 0x0e,
-	0x82, 0xe7, 0xb0, 0x2a, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x22, 0x18,
-	0x0a, 0x16, 0x4d, 0x73, 0x67, 0x41, 0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x4c, 0x6f, 0x61, 0x6e,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x70, 0x0a, 0x0d, 0x4d, 0x73, 0x67, 0x52,
-	0x65, 0x6a, 0x65, 0x63, 0x74, 0x4c, 0x6f, 0x61, 0x6e, 0x12, 0x36, 0x0a, 0x09, 0x61, 0x75, 0x74,
-	0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4,
-	0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73,
-	0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74,
-	0x79, 0x12, 0x17, 0x0a, 0x07, 0x6c, 0x6f, 0x61, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01,
-	0x28, 0x04, 0x52, 0x06, 0x6c, 0x6f, 0x61, 0x6e, 0x49, 0x64, 0x3a, 0x0e, 0x82, 0xe7, 0xb0, 0x2a,
-	0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x22, 0x17, 0x0a, 0x15, 0x4d, 0x73,
-	0x67, 0x52, 0x65, 0x6a, 0x65, 0x63, 0x74, 0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x22, 0xa2, 0x01, 0x0a, 0x0c, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x70, 0x61, 0x79,
-	0x4c, 0x6f, 0x61, 0x6e, 0x12, 0x36, 0x0a, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74,
-	0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73,
-	0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e,
-	0x67, 0x52, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x12, 0x17, 0x0a, 0x07,
-	0x6c, 0x6f, 0x61, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x06, 0x6c,
-	0x6f, 0x61, 0x6e, 0x49, 0x64, 0x12, 0x31, 0x0a, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18,
-	0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62,
-	0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x43, 0x6f, 0x69, 0x6e,
-	0x52, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x3a, 0x0e, 0x82, 0xe7, 0xb0, 0x2a, 0x09, 0x61,
-	0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x22, 0x16, 0x0a, 0x14, 0x4d, 0x73, 0x67, 0x52,
-	0x65, 0x70, 0x61, 0x79, 0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x22, 0x79, 0x0a, 0x16, 0x4d, 0x73, 0x67, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x72, 0x6d, 0x44, 0x69,
-	0x73, 0x62, 0x75, 0x72, 0x73, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x12, 0x36, 0x0a, 0x09, 0x61, 0x75,
-	0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2,
+	0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x03, 0x6c, 0x61, 0x7a, 0x12,
+	0x17, 0x0a, 0x07, 0x6c, 0x6f, 0x61, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04,
+	0x52, 0x06, 0x6c, 0x6f, 0x61, 0x6e, 0x49, 0x64, 0x3a, 0x08, 0x82, 0xe7, 0xb0, 0x2a, 0x03, 0x6c,
+	0x61, 0x7a, 0x22, 0x17, 0x0a, 0x15, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x6a, 0x65, 0x63, 0x74, 0x4c,
+	0x6f, 0x61, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x9c, 0x01, 0x0a, 0x0c,
+	0x4d, 0x73, 0x67, 0x52, 0x65, 0x70, 0x61, 0x79, 0x4c, 0x6f, 0x61, 0x6e, 0x12, 0x32, 0x0a, 0x07,
+	0x6f, 0x6d, 0x6e, 0x69, 0x62, 0x75, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2,
 	0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73,
-	0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69,
-	0x74, 0x79, 0x12, 0x17, 0x0a, 0x07, 0x6c, 0x6f, 0x61, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20,
-	0x01, 0x28, 0x04, 0x52, 0x06, 0x6c, 0x6f, 0x61, 0x6e, 0x49, 0x64, 0x3a, 0x0e, 0x82, 0xe7, 0xb0,
-	0x2a, 0x09, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x74, 0x79, 0x22, 0x20, 0x0a, 0x1e, 0x4d,
-	0x73, 0x67, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x72, 0x6d, 0x44, 0x69, 0x73, 0x62, 0x75, 0x72, 0x73,
-	0x65, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0xa5, 0x04,
-	0x0a, 0x03, 0x4d, 0x73, 0x67, 0x12, 0x58, 0x0a, 0x0c, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50,
-	0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x1f, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c,
-	0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
-	0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x1a, 0x27, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e,
-	0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74,
-	0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
-	0x52, 0x0a, 0x0a, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4c, 0x6f, 0x61, 0x6e, 0x12, 0x1d, 0x2e,
-	0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d,
-	0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4c, 0x6f, 0x61, 0x6e, 0x1a, 0x25, 0x2e, 0x63,
+	0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x07, 0x6f, 0x6d, 0x6e, 0x69, 0x62, 0x75, 0x73,
+	0x12, 0x17, 0x0a, 0x07, 0x6c, 0x6f, 0x61, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x04, 0x52, 0x06, 0x6c, 0x6f, 0x61, 0x6e, 0x49, 0x64, 0x12, 0x31, 0x0a, 0x06, 0x61, 0x6d, 0x6f,
+	0x75, 0x6e, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e, 0x63, 0x6f, 0x73, 0x6d,
+	0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e, 0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e,
+	0x43, 0x6f, 0x69, 0x6e, 0x52, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x3a, 0x0c, 0x82, 0xe7,
+	0xb0, 0x2a, 0x07, 0x6f, 0x6d, 0x6e, 0x69, 0x62, 0x75, 0x73, 0x22, 0x16, 0x0a, 0x14, 0x4d, 0x73,
+	0x67, 0x52, 0x65, 0x70, 0x61, 0x79, 0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x22, 0x73, 0x0a, 0x16, 0x4d, 0x73, 0x67, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x72, 0x6d,
+	0x44, 0x69, 0x73, 0x62, 0x75, 0x72, 0x73, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x12, 0x32, 0x0a, 0x07,
+	0x6f, 0x6d, 0x6e, 0x69, 0x62, 0x75, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2,
+	0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73,
+	0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x07, 0x6f, 0x6d, 0x6e, 0x69, 0x62, 0x75, 0x73,
+	0x12, 0x17, 0x0a, 0x07, 0x6c, 0x6f, 0x61, 0x6e, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x04, 0x52, 0x06, 0x6c, 0x6f, 0x61, 0x6e, 0x49, 0x64, 0x3a, 0x0c, 0x82, 0xe7, 0xb0, 0x2a, 0x07,
+	0x6f, 0x6d, 0x6e, 0x69, 0x62, 0x75, 0x73, 0x22, 0x20, 0x0a, 0x1e, 0x4d, 0x73, 0x67, 0x43, 0x6f,
+	0x6e, 0x66, 0x69, 0x72, 0x6d, 0x44, 0x69, 0x73, 0x62, 0x75, 0x72, 0x73, 0x65, 0x6d, 0x65, 0x6e,
+	0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x8a, 0x01, 0x0a, 0x15, 0x4d, 0x73,
+	0x67, 0x52, 0x65, 0x6a, 0x65, 0x63, 0x74, 0x44, 0x69, 0x73, 0x62, 0x75, 0x72, 0x73, 0x65, 0x6d,
+	0x65, 0x6e, 0x74, 0x12, 0x32, 0x0a, 0x07, 0x6f, 0x6d, 0x6e, 0x69, 0x62, 0x75, 0x73, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
+	0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x07,
+	0x6f, 0x6d, 0x6e, 0x69, 0x62, 0x75, 0x73, 0x12, 0x17, 0x0a, 0x07, 0x6c, 0x6f, 0x61, 0x6e, 0x5f,
+	0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x06, 0x6c, 0x6f, 0x61, 0x6e, 0x49, 0x64,
+	0x12, 0x16, 0x0a, 0x06, 0x72, 0x65, 0x61, 0x73, 0x6f, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x06, 0x72, 0x65, 0x61, 0x73, 0x6f, 0x6e, 0x3a, 0x0c, 0x82, 0xe7, 0xb0, 0x2a, 0x07, 0x6f,
+	0x6d, 0x6e, 0x69, 0x62, 0x75, 0x73, 0x22, 0x1f, 0x0a, 0x1d, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x6a,
+	0x65, 0x63, 0x74, 0x44, 0x69, 0x73, 0x62, 0x75, 0x72, 0x73, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0x91, 0x05, 0x0a, 0x03, 0x4d, 0x73, 0x67, 0x12,
+	0x58, 0x0a, 0x0c, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12,
+	0x1f, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31,
+	0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73,
+	0x1a, 0x27, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76,
+	0x31, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d,
+	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x52, 0x0a, 0x0a, 0x43, 0x72, 0x65,
+	0x61, 0x74, 0x65, 0x4c, 0x6f, 0x61, 0x6e, 0x12, 0x1d, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
+	0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61,
+	0x74, 0x65, 0x4c, 0x6f, 0x61, 0x6e, 0x1a, 0x25, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e,
+	0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74,
+	0x65, 0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x55, 0x0a,
+	0x0b, 0x41, 0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x4c, 0x6f, 0x61, 0x6e, 0x12, 0x1e, 0x2e, 0x63,
 	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73,
-	0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f,
-	0x6e, 0x73, 0x65, 0x12, 0x55, 0x0a, 0x0b, 0x41, 0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x4c, 0x6f,
-	0x61, 0x6e, 0x12, 0x1e, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e,
-	0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x41, 0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x4c, 0x6f,
-	0x61, 0x6e, 0x1a, 0x26, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e,
-	0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x41, 0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x4c, 0x6f,
-	0x61, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x52, 0x0a, 0x0a, 0x52, 0x65,
-	0x6a, 0x65, 0x63, 0x74, 0x4c, 0x6f, 0x61, 0x6e, 0x12, 0x1d, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f,
-	0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x6a,
-	0x65, 0x63, 0x74, 0x4c, 0x6f, 0x61, 0x6e, 0x1a, 0x25, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
-	0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x6a, 0x65,
-	0x63, 0x74, 0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4f,
-	0x0a, 0x09, 0x52, 0x65, 0x70, 0x61, 0x79, 0x4c, 0x6f, 0x61, 0x6e, 0x12, 0x1c, 0x2e, 0x63, 0x6f,
-	0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67,
-	0x52, 0x65, 0x70, 0x61, 0x79, 0x4c, 0x6f, 0x61, 0x6e, 0x1a, 0x24, 0x2e, 0x63, 0x6f, 0x73, 0x6d,
-	0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x52, 0x65,
-	0x70, 0x61, 0x79, 0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
-	0x6d, 0x0a, 0x13, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x72, 0x6d, 0x44, 0x69, 0x73, 0x62, 0x75, 0x72,
-	0x73, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x12, 0x26, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e,
-	0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x6f, 0x6e, 0x66, 0x69,
-	0x72, 0x6d, 0x44, 0x69, 0x73, 0x62, 0x75, 0x72, 0x73, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x1a, 0x2e,
+	0x67, 0x41, 0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x4c, 0x6f, 0x61, 0x6e, 0x1a, 0x26, 0x2e, 0x63,
+	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73,
+	0x67, 0x41, 0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x4c, 0x6f, 0x61, 0x6e, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x52, 0x0a, 0x0a, 0x52, 0x65, 0x6a, 0x65, 0x63, 0x74, 0x4c, 0x6f,
+	0x61, 0x6e, 0x12, 0x1d, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e,
+	0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x6a, 0x65, 0x63, 0x74, 0x4c, 0x6f, 0x61,
+	0x6e, 0x1a, 0x25, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e,
+	0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x6a, 0x65, 0x63, 0x74, 0x4c, 0x6f, 0x61, 0x6e,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4f, 0x0a, 0x09, 0x52, 0x65, 0x70, 0x61,
+	0x79, 0x4c, 0x6f, 0x61, 0x6e, 0x12, 0x1c, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c,
+	0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x70, 0x61, 0x79, 0x4c,
+	0x6f, 0x61, 0x6e, 0x1a, 0x24, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61,
+	0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x70, 0x61, 0x79, 0x4c, 0x6f, 0x61,
+	0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x6d, 0x0a, 0x13, 0x43, 0x6f, 0x6e,
+	0x66, 0x69, 0x72, 0x6d, 0x44, 0x69, 0x73, 0x62, 0x75, 0x72, 0x73, 0x65, 0x6d, 0x65, 0x6e, 0x74,
+	0x12, 0x26, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76,
+	0x31, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x72, 0x6d, 0x44, 0x69, 0x73, 0x62,
+	0x75, 0x72, 0x73, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x1a, 0x2e, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f,
+	0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x6f, 0x6e,
+	0x66, 0x69, 0x72, 0x6d, 0x44, 0x69, 0x73, 0x62, 0x75, 0x72, 0x73, 0x65, 0x6d, 0x65, 0x6e, 0x74,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x6a, 0x0a, 0x12, 0x52, 0x65, 0x6a, 0x65,
+	0x63, 0x74, 0x44, 0x69, 0x73, 0x62, 0x75, 0x72, 0x73, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x12, 0x25,
 	0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e,
-	0x4d, 0x73, 0x67, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x72, 0x6d, 0x44, 0x69, 0x73, 0x62, 0x75, 0x72,
-	0x73, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x1a, 0x05,
-	0x80, 0xe7, 0xb0, 0x2a, 0x01, 0x42, 0x9f, 0x01, 0x0a, 0x12, 0x63, 0x6f, 0x6d, 0x2e, 0x63, 0x6f,
-	0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x42, 0x07, 0x54, 0x78,
-	0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x26, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73,
-	0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
-	0x2f, 0x6c, 0x6f, 0x61, 0x6e, 0x2f, 0x76, 0x31, 0x3b, 0x6c, 0x6f, 0x61, 0x6e, 0x76, 0x31, 0xa2,
-	0x02, 0x03, 0x43, 0x4c, 0x58, 0xaa, 0x02, 0x0e, 0x43, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x4c,
-	0x6f, 0x61, 0x6e, 0x2e, 0x56, 0x31, 0xca, 0x02, 0x0e, 0x43, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x5c,
-	0x4c, 0x6f, 0x61, 0x6e, 0x5c, 0x56, 0x31, 0xe2, 0x02, 0x1a, 0x43, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
-	0x5c, 0x4c, 0x6f, 0x61, 0x6e, 0x5c, 0x56, 0x31, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61,
-	0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x10, 0x43, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x3a, 0x3a, 0x4c,
-	0x6f, 0x61, 0x6e, 0x3a, 0x3a, 0x56, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x4d, 0x73, 0x67, 0x52, 0x65, 0x6a, 0x65, 0x63, 0x74, 0x44, 0x69, 0x73, 0x62, 0x75, 0x72, 0x73,
+	0x65, 0x6d, 0x65, 0x6e, 0x74, 0x1a, 0x2d, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c,
+	0x6f, 0x61, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x52, 0x65, 0x6a, 0x65, 0x63, 0x74,
+	0x44, 0x69, 0x73, 0x62, 0x75, 0x72, 0x73, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x1a, 0x05, 0x80, 0xe7, 0xb0, 0x2a, 0x01, 0x42, 0x9f, 0x01, 0x0a, 0x12,
+	0x63, 0x6f, 0x6d, 0x2e, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x6c, 0x6f, 0x61, 0x6e, 0x2e,
+	0x76, 0x31, 0x42, 0x07, 0x54, 0x78, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x26, 0x63,
+	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f,
+	0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2f, 0x6c, 0x6f, 0x61, 0x6e, 0x2f, 0x76, 0x31, 0x3b, 0x6c,
+	0x6f, 0x61, 0x6e, 0x76, 0x31, 0xa2, 0x02, 0x03, 0x43, 0x4c, 0x58, 0xaa, 0x02, 0x0e, 0x43, 0x6f,
+	0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x4c, 0x6f, 0x61, 0x6e, 0x2e, 0x56, 0x31, 0xca, 0x02, 0x0e, 0x43,
+	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x5c, 0x4c, 0x6f, 0x61, 0x6e, 0x5c, 0x56, 0x31, 0xe2, 0x02, 0x1a,
+	0x43, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x5c, 0x4c, 0x6f, 0x61, 0x6e, 0x5c, 0x56, 0x31, 0x5c, 0x47,
+	0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x10, 0x43, 0x6f, 0x73,
+	0x6d, 0x6f, 0x73, 0x3a, 0x3a, 0x4c, 0x6f, 0x61, 0x6e, 0x3a, 0x3a, 0x56, 0x31, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -5886,7 +6948,7 @@ func file_cosmos_loan_v1_tx_proto_rawDescGZIP() []byte {
 	return file_cosmos_loan_v1_tx_proto_rawDescData
 }
 
-var file_cosmos_loan_v1_tx_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_cosmos_loan_v1_tx_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_cosmos_loan_v1_tx_proto_goTypes = []interface{}{
 	(*MsgUpdateParams)(nil),                // 0: cosmos.loan.v1.MsgUpdateParams
 	(*MsgUpdateParamsResponse)(nil),        // 1: cosmos.loan.v1.MsgUpdateParamsResponse
@@ -5900,27 +6962,31 @@ var file_cosmos_loan_v1_tx_proto_goTypes = []interface{}{
 	(*MsgRepayLoanResponse)(nil),           // 9: cosmos.loan.v1.MsgRepayLoanResponse
 	(*MsgConfirmDisbursement)(nil),         // 10: cosmos.loan.v1.MsgConfirmDisbursement
 	(*MsgConfirmDisbursementResponse)(nil), // 11: cosmos.loan.v1.MsgConfirmDisbursementResponse
-	(*Params)(nil),                         // 12: cosmos.loan.v1.Params
-	(*v1beta1.Coin)(nil),                   // 13: cosmos.base.v1beta1.Coin
+	(*MsgRejectDisbursement)(nil),          // 12: cosmos.loan.v1.MsgRejectDisbursement
+	(*MsgRejectDisbursementResponse)(nil),  // 13: cosmos.loan.v1.MsgRejectDisbursementResponse
+	(*Params)(nil),                         // 14: cosmos.loan.v1.Params
+	(*v1beta1.Coin)(nil),                   // 15: cosmos.base.v1beta1.Coin
 }
 var file_cosmos_loan_v1_tx_proto_depIdxs = []int32{
-	12, // 0: cosmos.loan.v1.MsgUpdateParams.params:type_name -> cosmos.loan.v1.Params
-	13, // 1: cosmos.loan.v1.MsgCreateLoan.principal:type_name -> cosmos.base.v1beta1.Coin
-	13, // 2: cosmos.loan.v1.MsgRepayLoan.amount:type_name -> cosmos.base.v1beta1.Coin
+	14, // 0: cosmos.loan.v1.MsgUpdateParams.params:type_name -> cosmos.loan.v1.Params
+	15, // 1: cosmos.loan.v1.MsgCreateLoan.principal:type_name -> cosmos.base.v1beta1.Coin
+	15, // 2: cosmos.loan.v1.MsgRepayLoan.amount:type_name -> cosmos.base.v1beta1.Coin
 	0,  // 3: cosmos.loan.v1.Msg.UpdateParams:input_type -> cosmos.loan.v1.MsgUpdateParams
 	2,  // 4: cosmos.loan.v1.Msg.CreateLoan:input_type -> cosmos.loan.v1.MsgCreateLoan
 	4,  // 5: cosmos.loan.v1.Msg.ApproveLoan:input_type -> cosmos.loan.v1.MsgApproveLoan
 	6,  // 6: cosmos.loan.v1.Msg.RejectLoan:input_type -> cosmos.loan.v1.MsgRejectLoan
 	8,  // 7: cosmos.loan.v1.Msg.RepayLoan:input_type -> cosmos.loan.v1.MsgRepayLoan
 	10, // 8: cosmos.loan.v1.Msg.ConfirmDisbursement:input_type -> cosmos.loan.v1.MsgConfirmDisbursement
-	1,  // 9: cosmos.loan.v1.Msg.UpdateParams:output_type -> cosmos.loan.v1.MsgUpdateParamsResponse
-	3,  // 10: cosmos.loan.v1.Msg.CreateLoan:output_type -> cosmos.loan.v1.MsgCreateLoanResponse
-	5,  // 11: cosmos.loan.v1.Msg.ApproveLoan:output_type -> cosmos.loan.v1.MsgApproveLoanResponse
-	7,  // 12: cosmos.loan.v1.Msg.RejectLoan:output_type -> cosmos.loan.v1.MsgRejectLoanResponse
-	9,  // 13: cosmos.loan.v1.Msg.RepayLoan:output_type -> cosmos.loan.v1.MsgRepayLoanResponse
-	11, // 14: cosmos.loan.v1.Msg.ConfirmDisbursement:output_type -> cosmos.loan.v1.MsgConfirmDisbursementResponse
-	9,  // [9:15] is the sub-list for method output_type
-	3,  // [3:9] is the sub-list for method input_type
+	12, // 9: cosmos.loan.v1.Msg.RejectDisbursement:input_type -> cosmos.loan.v1.MsgRejectDisbursement
+	1,  // 10: cosmos.loan.v1.Msg.UpdateParams:output_type -> cosmos.loan.v1.MsgUpdateParamsResponse
+	3,  // 11: cosmos.loan.v1.Msg.CreateLoan:output_type -> cosmos.loan.v1.MsgCreateLoanResponse
+	5,  // 12: cosmos.loan.v1.Msg.ApproveLoan:output_type -> cosmos.loan.v1.MsgApproveLoanResponse
+	7,  // 13: cosmos.loan.v1.Msg.RejectLoan:output_type -> cosmos.loan.v1.MsgRejectLoanResponse
+	9,  // 14: cosmos.loan.v1.Msg.RepayLoan:output_type -> cosmos.loan.v1.MsgRepayLoanResponse
+	11, // 15: cosmos.loan.v1.Msg.ConfirmDisbursement:output_type -> cosmos.loan.v1.MsgConfirmDisbursementResponse
+	13, // 16: cosmos.loan.v1.Msg.RejectDisbursement:output_type -> cosmos.loan.v1.MsgRejectDisbursementResponse
+	10, // [10:17] is the sub-list for method output_type
+	3,  // [3:10] is the sub-list for method input_type
 	3,  // [3:3] is the sub-list for extension type_name
 	3,  // [3:3] is the sub-list for extension extendee
 	0,  // [0:3] is the sub-list for field type_name
@@ -6077,6 +7143,30 @@ func file_cosmos_loan_v1_tx_proto_init() {
 				return nil
 			}
 		}
+		file_cosmos_loan_v1_tx_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MsgRejectDisbursement); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_cosmos_loan_v1_tx_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MsgRejectDisbursementResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -6084,7 +7174,7 @@ func file_cosmos_loan_v1_tx_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_cosmos_loan_v1_tx_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   12,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

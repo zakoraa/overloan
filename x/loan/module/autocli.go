@@ -5,47 +5,34 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/loan/types"
 )
 
-// AutoCLIOptions mengatur konfigurasi CLI otomatis
-// berdasarkan service Query dan Msg di protobuf.
 func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 	return &autocliv1.ModuleOptions{
 
-		// ---------------------------
-		// Query Commands (read-only)
-		// ---------------------------
 		Query: &autocliv1.ServiceCommandDescriptor{
 			Service: types.Query_serviceDesc.ServiceName,
 			RpcCommandOptions: []*autocliv1.RpcCommandOptions{
-
-				// Query parameter modul
 				{
 					RpcMethod: "Params",
 					Use:       "params",
-					Short:     "Menampilkan parameter modul loan",
+					Short:     "Displaying loan module parameters",
 				},
-
-				// Query satu loan berdasarkan ID
 				{
 					RpcMethod: "Loan",
 					Use:       "loan [loan-id]",
-					Short:     "Menampilkan detail satu loan",
+					Short:     "Displaying details of one loan",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{
 						{ProtoField: "loan_id"},
 					},
 				},
-
-				// Query semua loan (dengan pagination)
 				{
 					RpcMethod: "Loans",
 					Use:       "loans",
-					Short:     "Menampilkan daftar semua loan",
+					Short:     "Displaying a list of all loans",
 				},
-
-				// Query loan berdasarkan borrower
 				{
 					RpcMethod: "LoansByBorrower",
 					Use:       "loans-by-borrower [borrower]",
-					Short:     "Menampilkan daftar loan milik borrower",
+					Short:     "Displaying a list of loans belonging to the borrower",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{
 						{ProtoField: "borrower"},
 					},
@@ -53,66 +40,48 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 			},
 		},
 
-		// ---------------------------
-		// Transaction Commands (state changing)
-		// ---------------------------
 		Tx: &autocliv1.ServiceCommandDescriptor{
-			Service: types.Msg_serviceDesc.ServiceName,
-
-			// true agar tetap bisa gabung dengan custom command kalau ada
+			Service:              types.Msg_serviceDesc.ServiceName,
 			EnhanceCustomCommand: true,
-
 			RpcCommandOptions: []*autocliv1.RpcCommandOptions{
-
-				// Update parameter (biasanya authority/gov only)
 				{
 					RpcMethod: "UpdateParams",
 					Use:       "update-params",
-					Short:     "Mengubah parameter modul loan (authority only)",
+					Short:     "Changing loan module parameters (authority only)",
 				},
-
-				// Membuat loan baru
 				{
 					RpcMethod: "CreateLoan",
 					Use:       "create-loan",
-					Short:     "Mengajukan permohonan loan baru",
+					Short:     "Apply for a new loan",
 				},
-
-				// Menyetujui loan
 				{
 					RpcMethod: "ApproveLoan",
 					Use:       "approve-loan [loan-id]",
-					Short:     "Menyetujui loan",
+					Short:     "Approve the loan",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{
 						{ProtoField: "loan_id"},
 					},
 				},
-
-				// Menolak loan
 				{
 					RpcMethod: "RejectLoan",
 					Use:       "reject-loan [loan-id]",
-					Short:     "Menolak loan",
+					Short:     "Rejecting a loan",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{
 						{ProtoField: "loan_id"},
 					},
 				},
-
-				// Membayar loan
 				{
 					RpcMethod: "RepayLoan",
 					Use:       "repay-loan [loan-id]",
-					Short:     "Melakukan pembayaran loan",
+					Short:     "Making loan payments",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{
 						{ProtoField: "loan_id"},
 					},
 				},
-
-				// Konfirmasi pencairan dana
 				{
 					RpcMethod: "ConfirmDisbursement",
 					Use:       "confirm-disbursement [loan-id]",
-					Short:     "Konfirmasi pencairan loan",
+					Short:     "Confirmation of loan disbursement",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{
 						{ProtoField: "loan_id"},
 					},

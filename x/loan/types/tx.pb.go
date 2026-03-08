@@ -126,12 +126,14 @@ var xxx_messageInfo_MsgUpdateParamsResponse proto.InternalMessageInfo
 type MsgCreateLoan struct {
 	// Alamat borrower (Bech32) sebagai pemohon pinjaman
 	Borrower string `protobuf:"bytes,1,opt,name=borrower,proto3" json:"borrower,omitempty"`
+	// Alamat laz (Bech32) sebagai penerima pemohonan pinjaman
+	Laz string `protobuf:"bytes,2,opt,name=laz,proto3" json:"laz,omitempty"`
 	// Nilai pokok pinjaman yang diajukan
-	Principal *types.Coin `protobuf:"bytes,2,opt,name=principal,proto3" json:"principal,omitempty"`
+	Principal *types.Coin `protobuf:"bytes,3,opt,name=principal,proto3" json:"principal,omitempty"`
 	// Durasi pinjaman dalam satuan bulan
-	TenorMonths uint64 `protobuf:"varint,3,opt,name=tenor_months,json=tenorMonths,proto3" json:"tenor_months,omitempty"`
+	TenorMonths uint64 `protobuf:"varint,4,opt,name=tenor_months,json=tenorMonths,proto3" json:"tenor_months,omitempty"`
 	// Hash dokumen pendukung (misalnya IPFS CID atau SHA256 kontrak)
-	MetadataHash string `protobuf:"bytes,4,opt,name=metadata_hash,json=metadataHash,proto3" json:"metadata_hash,omitempty"`
+	MetadataHash string `protobuf:"bytes,5,opt,name=metadata_hash,json=metadataHash,proto3" json:"metadata_hash,omitempty"`
 }
 
 func (m *MsgCreateLoan) Reset()         { *m = MsgCreateLoan{} }
@@ -170,6 +172,13 @@ var xxx_messageInfo_MsgCreateLoan proto.InternalMessageInfo
 func (m *MsgCreateLoan) GetBorrower() string {
 	if m != nil {
 		return m.Borrower
+	}
+	return ""
+}
+
+func (m *MsgCreateLoan) GetLaz() string {
+	if m != nil {
+		return m.Laz
 	}
 	return ""
 }
@@ -241,10 +250,10 @@ func (m *MsgCreateLoanResponse) GetLoanId() uint64 {
 	return 0
 }
 
-// MsgApproveLoan digunakan oleh policy yang berwenang untuk menyetujui pinjaman
+// MsgApproveLoan digunakan oleh laz yang berwenang untuk menyetujui pinjaman
 type MsgApproveLoan struct {
-	// Alamat group policy (laz_group_policy) sebagai otoritas persetujuan
-	Authority string `protobuf:"bytes,1,opt,name=authority,proto3" json:"authority,omitempty"`
+	// Alamat (laz) sebagai otoritas persetujuan
+	Laz string `protobuf:"bytes,1,opt,name=laz,proto3" json:"laz,omitempty"`
 	// ID pinjaman yang akan disetujui
 	LoanId uint64 `protobuf:"varint,2,opt,name=loan_id,json=loanId,proto3" json:"loan_id,omitempty"`
 }
@@ -282,9 +291,9 @@ func (m *MsgApproveLoan) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MsgApproveLoan proto.InternalMessageInfo
 
-func (m *MsgApproveLoan) GetAuthority() string {
+func (m *MsgApproveLoan) GetLaz() string {
 	if m != nil {
-		return m.Authority
+		return m.Laz
 	}
 	return ""
 }
@@ -333,10 +342,10 @@ func (m *MsgApproveLoanResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MsgApproveLoanResponse proto.InternalMessageInfo
 
-// MsgRejectLoan digunakan oleh policy yang berwenang untuk menolak pinjaman
+// MsgRejectLoan digunakan oleh laz yang berwenang untuk menolak pinjaman
 type MsgRejectLoan struct {
-	// Alamat group policy sebagai otoritas penolakan
-	Authority string `protobuf:"bytes,1,opt,name=authority,proto3" json:"authority,omitempty"`
+	// Alamat  sebagai otoritas penolakan
+	Laz string `protobuf:"bytes,1,opt,name=laz,proto3" json:"laz,omitempty"`
 	// ID pinjaman yang akan ditolak
 	LoanId uint64 `protobuf:"varint,2,opt,name=loan_id,json=loanId,proto3" json:"loan_id,omitempty"`
 }
@@ -374,9 +383,9 @@ func (m *MsgRejectLoan) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MsgRejectLoan proto.InternalMessageInfo
 
-func (m *MsgRejectLoan) GetAuthority() string {
+func (m *MsgRejectLoan) GetLaz() string {
 	if m != nil {
-		return m.Authority
+		return m.Laz
 	}
 	return ""
 }
@@ -425,10 +434,10 @@ func (m *MsgRejectLoanResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MsgRejectLoanResponse proto.InternalMessageInfo
 
-// MsgRepayLoan digunakan untuk mencatat pembayaran pinjaman
+// MsgRepayLoan digunakan untuk mencatat pembayaran pinjaman yang dihasilkan oleh omnibus
 type MsgRepayLoan struct {
-	// Alamat omnibus_group_policy sebagai otoritas pembayaran
-	Authority string `protobuf:"bytes,1,opt,name=authority,proto3" json:"authority,omitempty"`
+	// Alamat omnibus sebagai otoritas pembayaran
+	Omnibus string `protobuf:"bytes,1,opt,name=omnibus,proto3" json:"omnibus,omitempty"`
 	// ID pinjaman yang dibayar
 	LoanId uint64 `protobuf:"varint,2,opt,name=loan_id,json=loanId,proto3" json:"loan_id,omitempty"`
 	// Jumlah yang dibayarkan
@@ -468,9 +477,9 @@ func (m *MsgRepayLoan) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MsgRepayLoan proto.InternalMessageInfo
 
-func (m *MsgRepayLoan) GetAuthority() string {
+func (m *MsgRepayLoan) GetOmnibus() string {
 	if m != nil {
-		return m.Authority
+		return m.Omnibus
 	}
 	return ""
 }
@@ -528,8 +537,8 @@ var xxx_messageInfo_MsgRepayLoanResponse proto.InternalMessageInfo
 
 // MsgConfirmDisbursement digunakan untuk mengonfirmasi bahwa dana telah dicairkan
 type MsgConfirmDisbursement struct {
-	// Alamat omnibus_group_policy sebagai otoritas pencairan dana
-	Authority string `protobuf:"bytes,1,opt,name=authority,proto3" json:"authority,omitempty"`
+	// Alamat omnibus sebagai otoritas pencairan dana
+	Omnibus string `protobuf:"bytes,1,opt,name=omnibus,proto3" json:"omnibus,omitempty"`
 	// ID pinjaman yang dicairkan
 	LoanId uint64 `protobuf:"varint,2,opt,name=loan_id,json=loanId,proto3" json:"loan_id,omitempty"`
 }
@@ -567,9 +576,9 @@ func (m *MsgConfirmDisbursement) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MsgConfirmDisbursement proto.InternalMessageInfo
 
-func (m *MsgConfirmDisbursement) GetAuthority() string {
+func (m *MsgConfirmDisbursement) GetOmnibus() string {
 	if m != nil {
-		return m.Authority
+		return m.Omnibus
 	}
 	return ""
 }
@@ -618,6 +627,108 @@ func (m *MsgConfirmDisbursementResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MsgConfirmDisbursementResponse proto.InternalMessageInfo
 
+// MsgRejectDisbursement, Omnibus dalam kasus tertentu, menolak pencairan dana pinjaman yang sudah disetujui
+// cth: layanan error, bank transfer gagal, rekening borrower invalid, etc
+type MsgRejectDisbursement struct {
+	// alamat omnibus yang berwenang menolak pencairan
+	Omnibus string `protobuf:"bytes,1,opt,name=omnibus,proto3" json:"omnibus,omitempty"`
+	// ID pinjaman yang pencairannya ditolak
+	LoanId uint64 `protobuf:"varint,2,opt,name=loan_id,json=loanId,proto3" json:"loan_id,omitempty"`
+	// alasan penolakan pencairan
+	Reason string `protobuf:"bytes,3,opt,name=reason,proto3" json:"reason,omitempty"`
+}
+
+func (m *MsgRejectDisbursement) Reset()         { *m = MsgRejectDisbursement{} }
+func (m *MsgRejectDisbursement) String() string { return proto.CompactTextString(m) }
+func (*MsgRejectDisbursement) ProtoMessage()    {}
+func (*MsgRejectDisbursement) Descriptor() ([]byte, []int) {
+	return fileDescriptor_73b61ff6b54bde18, []int{12}
+}
+func (m *MsgRejectDisbursement) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgRejectDisbursement) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgRejectDisbursement.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgRejectDisbursement) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgRejectDisbursement.Merge(m, src)
+}
+func (m *MsgRejectDisbursement) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgRejectDisbursement) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgRejectDisbursement.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgRejectDisbursement proto.InternalMessageInfo
+
+func (m *MsgRejectDisbursement) GetOmnibus() string {
+	if m != nil {
+		return m.Omnibus
+	}
+	return ""
+}
+
+func (m *MsgRejectDisbursement) GetLoanId() uint64 {
+	if m != nil {
+		return m.LoanId
+	}
+	return 0
+}
+
+func (m *MsgRejectDisbursement) GetReason() string {
+	if m != nil {
+		return m.Reason
+	}
+	return ""
+}
+
+// MsgRejectDisbursementResponse tidak mengembalikan data tambahan
+type MsgRejectDisbursementResponse struct {
+}
+
+func (m *MsgRejectDisbursementResponse) Reset()         { *m = MsgRejectDisbursementResponse{} }
+func (m *MsgRejectDisbursementResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgRejectDisbursementResponse) ProtoMessage()    {}
+func (*MsgRejectDisbursementResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_73b61ff6b54bde18, []int{13}
+}
+func (m *MsgRejectDisbursementResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgRejectDisbursementResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgRejectDisbursementResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgRejectDisbursementResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgRejectDisbursementResponse.Merge(m, src)
+}
+func (m *MsgRejectDisbursementResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgRejectDisbursementResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgRejectDisbursementResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgRejectDisbursementResponse proto.InternalMessageInfo
+
 func init() {
 	proto.RegisterType((*MsgUpdateParams)(nil), "cosmos.loan.v1.MsgUpdateParams")
 	proto.RegisterType((*MsgUpdateParamsResponse)(nil), "cosmos.loan.v1.MsgUpdateParamsResponse")
@@ -631,53 +742,60 @@ func init() {
 	proto.RegisterType((*MsgRepayLoanResponse)(nil), "cosmos.loan.v1.MsgRepayLoanResponse")
 	proto.RegisterType((*MsgConfirmDisbursement)(nil), "cosmos.loan.v1.MsgConfirmDisbursement")
 	proto.RegisterType((*MsgConfirmDisbursementResponse)(nil), "cosmos.loan.v1.MsgConfirmDisbursementResponse")
+	proto.RegisterType((*MsgRejectDisbursement)(nil), "cosmos.loan.v1.MsgRejectDisbursement")
+	proto.RegisterType((*MsgRejectDisbursementResponse)(nil), "cosmos.loan.v1.MsgRejectDisbursementResponse")
 }
 
 func init() { proto.RegisterFile("cosmos/loan/v1/tx.proto", fileDescriptor_73b61ff6b54bde18) }
 
 var fileDescriptor_73b61ff6b54bde18 = []byte{
-	// 653 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xbc, 0x55, 0x4d, 0x6b, 0x13, 0x41,
-	0x18, 0xee, 0xb6, 0x31, 0x9a, 0xb7, 0x69, 0x85, 0xb5, 0x36, 0xe9, 0xaa, 0x6b, 0x8c, 0x5f, 0xb5,
-	0xd0, 0x5d, 0x53, 0x45, 0xa1, 0xb7, 0x36, 0x1e, 0x14, 0x0c, 0xca, 0x4a, 0x41, 0xbc, 0x84, 0x49,
-	0x76, 0xdc, 0xac, 0x76, 0x67, 0xd6, 0x99, 0x49, 0x6c, 0x6e, 0xe2, 0xcd, 0x9b, 0xbf, 0x41, 0xf0,
-	0xde, 0x83, 0x3f, 0xc2, 0x63, 0x11, 0x04, 0x8f, 0xd2, 0x1e, 0xfa, 0x37, 0x64, 0x77, 0x67, 0x3f,
-	0x92, 0x2c, 0xa9, 0x08, 0xf5, 0x14, 0x76, 0x9e, 0x67, 0x9e, 0xf7, 0x79, 0xbf, 0x32, 0x50, 0xe9,
-	0x52, 0xee, 0x51, 0x6e, 0xee, 0x52, 0x44, 0xcc, 0x41, 0xc3, 0x14, 0x7b, 0x86, 0xcf, 0xa8, 0xa0,
-	0xea, 0x62, 0x04, 0x18, 0x01, 0x60, 0x0c, 0x1a, 0x9a, 0x2e, 0x89, 0x1d, 0xc4, 0xb1, 0x39, 0x68,
-	0x74, 0xb0, 0x40, 0x0d, 0xb3, 0x4b, 0x5d, 0x12, 0xf1, 0xb5, 0x58, 0xc8, 0xe3, 0x4e, 0xa0, 0xe3,
-	0x71, 0x47, 0x02, 0x2b, 0x11, 0xd0, 0x0e, 0xbf, 0x4c, 0xa9, 0x1a, 0x41, 0x97, 0xc6, 0x82, 0xfb,
-	0x88, 0x21, 0x4f, 0x82, 0xf5, 0x4f, 0x0a, 0x9c, 0x6f, 0x71, 0x67, 0xc7, 0xb7, 0x91, 0xc0, 0xcf,
-	0x43, 0x44, 0x7d, 0x00, 0x25, 0xd4, 0x17, 0x3d, 0xca, 0x5c, 0x31, 0xac, 0x2a, 0x35, 0x65, 0xb5,
-	0xb4, 0x5d, 0xfd, 0xf1, 0x6d, 0x7d, 0x49, 0xaa, 0x6e, 0xd9, 0x36, 0xc3, 0x9c, 0xbf, 0x10, 0xcc,
-	0x25, 0x8e, 0x95, 0x52, 0x55, 0x03, 0x8a, 0x91, 0x76, 0x75, 0xb6, 0xa6, 0xac, 0xce, 0x6f, 0x2c,
-	0x1b, 0xa3, 0xd9, 0x19, 0x91, 0xbe, 0x25, 0x59, 0x9b, 0x8b, 0x1f, 0x8f, 0xf7, 0xd7, 0xd2, 0xfb,
-	0xf5, 0x15, 0xa8, 0x8c, 0x59, 0xb1, 0x30, 0xf7, 0x29, 0xe1, 0xb8, 0xfe, 0x53, 0x81, 0x85, 0x16,
-	0x77, 0x9a, 0x0c, 0x23, 0x81, 0x9f, 0x52, 0x44, 0xd4, 0xfb, 0x70, 0xae, 0x43, 0x19, 0xa3, 0xef,
-	0x31, 0x3b, 0xd1, 0x63, 0xc2, 0x54, 0x1f, 0x42, 0xc9, 0x67, 0x2e, 0xe9, 0xba, 0x3e, 0xda, 0x95,
-	0x2e, 0x57, 0x62, 0x97, 0x41, 0xcd, 0x0d, 0x59, 0x73, 0xa3, 0x49, 0x5d, 0x62, 0xa5, 0x5c, 0xf5,
-	0x1a, 0x94, 0x05, 0x26, 0x94, 0xb5, 0x3d, 0x4a, 0x44, 0x8f, 0x57, 0xe7, 0x6a, 0xca, 0x6a, 0xc1,
-	0x9a, 0x0f, 0xcf, 0x5a, 0xe1, 0x91, 0x7a, 0x1d, 0x16, 0x3c, 0x2c, 0x90, 0x8d, 0x04, 0x6a, 0xf7,
-	0x10, 0xef, 0x55, 0x0b, 0x81, 0x2d, 0xab, 0x1c, 0x1f, 0x3e, 0x46, 0xbc, 0xb7, 0xb9, 0x10, 0xe4,
-	0x9c, 0xf8, 0xa9, 0xdf, 0x85, 0x8b, 0x23, 0x69, 0xc5, 0x09, 0xab, 0x15, 0x38, 0x1b, 0x54, 0xad,
-	0xed, 0xda, 0x61, 0x76, 0x05, 0xab, 0x18, 0x7c, 0x3e, 0xb1, 0xeb, 0xef, 0x60, 0xb1, 0xc5, 0x9d,
-	0x2d, 0xdf, 0x67, 0x74, 0x10, 0x55, 0xe2, 0x5f, 0xdb, 0x95, 0x09, 0x31, 0x9b, 0x0d, 0x31, 0xd1,
-	0x97, 0x2a, 0x2c, 0x8f, 0x86, 0x4c, 0xda, 0xe2, 0x87, 0x5d, 0xb1, 0xf0, 0x1b, 0xdc, 0x15, 0xff,
-	0xc7, 0x4b, 0x25, 0x2c, 0x58, 0x1a, 0x31, 0xb1, 0xf2, 0x45, 0x81, 0x72, 0x88, 0xf8, 0x68, 0x78,
-	0x2a, 0x56, 0xd4, 0x06, 0x14, 0x91, 0x47, 0xfb, 0x44, 0x84, 0xcd, 0x9f, 0x3a, 0x38, 0x92, 0x38,
-	0xe1, 0x7e, 0x19, 0x96, 0xb2, 0x1e, 0x13, 0xf3, 0xc3, 0xb0, 0xc2, 0x4d, 0x4a, 0x5e, 0xbb, 0xcc,
-	0x7b, 0xe4, 0xf2, 0x4e, 0x9f, 0x71, 0xec, 0x61, 0x22, 0x4e, 0xbf, 0xa0, 0x35, 0xd0, 0xf3, 0x43,
-	0xc7, 0xe6, 0x36, 0xbe, 0x16, 0x60, 0xae, 0xc5, 0x1d, 0xf5, 0x25, 0x94, 0x47, 0xfe, 0x26, 0xae,
-	0x8e, 0xaf, 0xf7, 0xd8, 0xf2, 0x6a, 0xb7, 0x4f, 0x20, 0x24, 0xc3, 0x6e, 0x01, 0x64, 0x36, 0xfb,
-	0x4a, 0xce, 0xb5, 0x14, 0xd6, 0x6e, 0x4e, 0x85, 0x13, 0xcd, 0x1d, 0x98, 0xcf, 0x2e, 0x89, 0x9e,
-	0x73, 0x2b, 0x83, 0x6b, 0xb7, 0xa6, 0xe3, 0x59, 0xab, 0x99, 0x71, 0xcf, 0xb3, 0x9a, 0xc2, 0xb9,
-	0x56, 0x27, 0x47, 0x57, 0x7d, 0x06, 0xa5, 0x74, 0x6c, 0x2f, 0xe7, 0xde, 0x91, 0xa8, 0x76, 0x63,
-	0x1a, 0x9a, 0x08, 0x7a, 0x70, 0x21, 0x6f, 0x96, 0xf2, 0x72, 0xcc, 0xe1, 0x69, 0xc6, 0xdf, 0xf1,
-	0xe2, 0x70, 0xda, 0x99, 0x0f, 0xc7, 0xfb, 0x6b, 0xca, 0x76, 0xf3, 0xfb, 0xa1, 0xae, 0x1c, 0x1c,
-	0xea, 0xca, 0xef, 0x43, 0x5d, 0xf9, 0x7c, 0xa4, 0xcf, 0x1c, 0x1c, 0xe9, 0x33, 0xbf, 0x8e, 0xf4,
-	0x99, 0x57, 0x77, 0x1c, 0x57, 0xf4, 0xfa, 0x1d, 0xa3, 0x4b, 0x3d, 0xf9, 0x34, 0xc9, 0x9f, 0x75,
-	0x6e, 0xbf, 0x35, 0xf7, 0xa2, 0x97, 0x49, 0x0c, 0x7d, 0xcc, 0x3b, 0xc5, 0xf0, 0x59, 0xba, 0xf7,
-	0x27, 0x00, 0x00, 0xff, 0xff, 0xca, 0x4a, 0x0b, 0xf7, 0x32, 0x07, 0x00, 0x00,
+	// 735 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x55, 0xcb, 0x6e, 0xd3, 0x4c,
+	0x18, 0xad, 0x7b, 0x49, 0x9b, 0xaf, 0x69, 0x7f, 0xc9, 0x7f, 0x49, 0x52, 0x43, 0xdd, 0x10, 0x6e,
+	0xa5, 0x52, 0x1d, 0x52, 0x10, 0x48, 0xd9, 0xb5, 0x61, 0x01, 0x12, 0x11, 0xc8, 0xa8, 0x12, 0x62,
+	0x41, 0x34, 0x49, 0x06, 0xc7, 0xa5, 0x9e, 0xb1, 0x66, 0x26, 0xa1, 0x65, 0x05, 0xec, 0x60, 0x05,
+	0x7b, 0x1e, 0xa2, 0x0b, 0x1e, 0x82, 0x65, 0xc5, 0x8a, 0x25, 0x6a, 0x17, 0x7d, 0x0d, 0xe4, 0xf1,
+	0x35, 0xc1, 0x4d, 0xba, 0xa0, 0x2b, 0xcb, 0x73, 0xce, 0x9c, 0xef, 0x7c, 0x67, 0x6e, 0x50, 0x68,
+	0x53, 0xee, 0x50, 0x5e, 0xd9, 0xa3, 0x88, 0x54, 0xfa, 0xd5, 0x8a, 0xd8, 0x37, 0x5c, 0x46, 0x05,
+	0x55, 0x17, 0x7d, 0xc0, 0xf0, 0x00, 0xa3, 0x5f, 0xd5, 0xf4, 0x80, 0xd8, 0x42, 0x1c, 0x57, 0xfa,
+	0xd5, 0x16, 0x16, 0xa8, 0x5a, 0x69, 0x53, 0x9b, 0xf8, 0x7c, 0x2d, 0x14, 0x72, 0xb8, 0xe5, 0xe9,
+	0x38, 0xdc, 0x0a, 0x80, 0x65, 0x1f, 0x68, 0xca, 0xbf, 0x4a, 0xa0, 0xea, 0x43, 0x97, 0x87, 0x8a,
+	0xbb, 0x88, 0x21, 0x27, 0x00, 0xcb, 0x9f, 0x14, 0xf8, 0xaf, 0xc1, 0xad, 0x1d, 0xb7, 0x83, 0x04,
+	0x7e, 0x26, 0x11, 0xf5, 0x3e, 0x64, 0x51, 0x4f, 0x74, 0x29, 0xb3, 0xc5, 0x41, 0x51, 0x29, 0x29,
+	0x6b, 0xd9, 0xed, 0xe2, 0xcf, 0xef, 0x1b, 0x4b, 0x81, 0xea, 0x56, 0xa7, 0xc3, 0x30, 0xe7, 0xcf,
+	0x05, 0xb3, 0x89, 0x65, 0xc6, 0x54, 0xd5, 0x80, 0x8c, 0xaf, 0x5d, 0x9c, 0x2c, 0x29, 0x6b, 0xf3,
+	0x9b, 0x79, 0x63, 0xb0, 0x3b, 0xc3, 0xd7, 0x37, 0x03, 0x56, 0x6d, 0xf1, 0xe3, 0xe9, 0xe1, 0x7a,
+	0x3c, 0xbf, 0xbc, 0x0c, 0x85, 0x21, 0x2b, 0x26, 0xe6, 0x2e, 0x25, 0x1c, 0x97, 0x3f, 0x4c, 0xc2,
+	0x42, 0x83, 0x5b, 0x75, 0x86, 0x91, 0xc0, 0x4f, 0x28, 0x22, 0xea, 0x3d, 0x98, 0x6b, 0x51, 0xc6,
+	0xe8, 0x5b, 0xcc, 0xc6, 0x7a, 0x8c, 0x98, 0xea, 0x3a, 0x4c, 0xed, 0xa1, 0x77, 0xd2, 0xdf, 0xa8,
+	0x09, 0x1e, 0x49, 0x7d, 0x00, 0x59, 0x97, 0xd9, 0xa4, 0x6d, 0xbb, 0x68, 0xaf, 0x38, 0x25, 0x3b,
+	0x5a, 0x0e, 0x3b, 0xf2, 0xd6, 0xc7, 0x08, 0xd6, 0xc7, 0xa8, 0x53, 0x9b, 0x98, 0x31, 0x57, 0xbd,
+	0x0a, 0x39, 0x81, 0x09, 0x65, 0x4d, 0x87, 0x12, 0xd1, 0xe5, 0xc5, 0xe9, 0x92, 0xb2, 0x36, 0x6d,
+	0xce, 0xcb, 0xb1, 0x86, 0x1c, 0x52, 0xaf, 0xc1, 0x82, 0x83, 0x05, 0xea, 0x20, 0x81, 0x9a, 0x5d,
+	0xc4, 0xbb, 0xc5, 0x19, 0xcf, 0x91, 0x99, 0x0b, 0x07, 0x1f, 0x21, 0xde, 0xad, 0x2d, 0x78, 0xf9,
+	0x44, 0xde, 0xcb, 0x77, 0xe0, 0xd2, 0x40, 0x04, 0x61, 0x38, 0x6a, 0x01, 0x66, 0xbd, 0x84, 0x9b,
+	0x76, 0x47, 0x26, 0x31, 0x6d, 0x66, 0xbc, 0xdf, 0xc7, 0x9d, 0x72, 0x13, 0x16, 0x1b, 0xdc, 0xda,
+	0x72, 0x5d, 0x46, 0xfb, 0x7e, 0x6a, 0x41, 0xff, 0xca, 0x79, 0xfa, 0x4f, 0xc8, 0x4e, 0x26, 0x65,
+	0x6b, 0x73, 0x9e, 0x2f, 0x8f, 0x52, 0x2e, 0x42, 0x7e, 0xb0, 0x40, 0xb4, 0x60, 0xaf, 0xe4, 0x7a,
+	0x99, 0x78, 0x17, 0xb7, 0xc5, 0x45, 0x54, 0x2e, 0xc8, 0x30, 0x62, 0xfd, 0xa8, 0xf0, 0x37, 0x05,
+	0x72, 0x12, 0x71, 0xd1, 0x81, 0x2c, 0xbc, 0x09, 0xb3, 0xd4, 0x21, 0x76, 0xab, 0xc7, 0xc7, 0x16,
+	0x0f, 0x89, 0x67, 0x1a, 0x50, 0xab, 0x90, 0x41, 0x0e, 0xed, 0x11, 0x31, 0x7e, 0x43, 0x04, 0xc4,
+	0x5a, 0xce, 0xf3, 0x1c, 0x2a, 0x97, 0xf3, 0xb0, 0x94, 0x74, 0x17, 0xd9, 0xe6, 0x32, 0xc9, 0x3a,
+	0x25, 0xaf, 0x6d, 0xe6, 0x3c, 0xb4, 0x79, 0xab, 0xc7, 0x38, 0x76, 0x30, 0x11, 0xff, 0xd4, 0xff,
+	0x90, 0x99, 0x12, 0xe8, 0xe9, 0x45, 0x23, 0x5b, 0x9f, 0x95, 0x44, 0xce, 0x17, 0x66, 0x4b, 0xcd,
+	0x43, 0x86, 0x61, 0xc4, 0x29, 0x91, 0xb1, 0x66, 0xcd, 0xe0, 0x6f, 0xc8, 0xee, 0x2a, 0xac, 0xa4,
+	0x7a, 0x09, 0xdd, 0x6e, 0x7e, 0x9d, 0x81, 0xa9, 0x06, 0xb7, 0xd4, 0x17, 0x90, 0x1b, 0xb8, 0xd0,
+	0x56, 0x87, 0x2f, 0xa2, 0xa1, 0x6b, 0x46, 0xbb, 0x35, 0x86, 0x10, 0x1d, 0x35, 0x13, 0x20, 0x71,
+	0x07, 0xad, 0xa4, 0x4c, 0x8b, 0x61, 0xed, 0xc6, 0x48, 0x38, 0xd2, 0xdc, 0x81, 0xf9, 0xe4, 0x11,
+	0xd5, 0x53, 0x66, 0x25, 0x70, 0xed, 0xe6, 0x68, 0x3c, 0x69, 0x35, 0x71, 0xfc, 0xd2, 0xac, 0xc6,
+	0x70, 0xaa, 0xd5, 0xbf, 0x0f, 0x97, 0xfa, 0x14, 0xb2, 0xf1, 0xc1, 0xba, 0x92, 0x3a, 0x27, 0x40,
+	0xb5, 0xeb, 0xa3, 0xd0, 0x48, 0xd0, 0x81, 0xff, 0xd3, 0xf6, 0x7c, 0x5a, 0x8f, 0x29, 0x3c, 0xcd,
+	0x38, 0x1f, 0x2f, 0x2a, 0xb7, 0x0b, 0x6a, 0xca, 0x56, 0x3e, 0xbb, 0xf9, 0x81, 0x62, 0x1b, 0xe7,
+	0xa2, 0x85, 0xb5, 0xb4, 0x99, 0xf7, 0xa7, 0x87, 0xeb, 0xca, 0x76, 0xfd, 0xc7, 0xb1, 0xae, 0x1c,
+	0x1d, 0xeb, 0xca, 0xef, 0x63, 0x5d, 0xf9, 0x72, 0xa2, 0x4f, 0x1c, 0x9d, 0xe8, 0x13, 0xbf, 0x4e,
+	0xf4, 0x89, 0x97, 0xb7, 0x2d, 0x5b, 0x74, 0x7b, 0x2d, 0xa3, 0x4d, 0x9d, 0xe0, 0xc1, 0x0e, 0x3e,
+	0x1b, 0xbc, 0xf3, 0xa6, 0xb2, 0xef, 0xbf, 0xd7, 0xe2, 0xc0, 0xc5, 0xbc, 0x95, 0x91, 0x8f, 0xf5,
+	0xdd, 0x3f, 0x01, 0x00, 0x00, 0xff, 0xff, 0x1b, 0xc6, 0x75, 0x1a, 0x48, 0x08, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -696,17 +814,19 @@ type MsgClient interface {
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
 	// Membuat permohonan pinjaman baru dengan status PENDING oleh borrower
 	CreateLoan(ctx context.Context, in *MsgCreateLoan, opts ...grpc.CallOption) (*MsgCreateLoanResponse, error)
-	// Menyetujui pinjaman berstatus PENDING oleh laz_group_policy yang berwenang
+	// Menyetujui pinjaman berstatus PENDING oleh laz yang berwenang
 	// status berubah jadi APPROVED
 	ApproveLoan(ctx context.Context, in *MsgApproveLoan, opts ...grpc.CallOption) (*MsgApproveLoanResponse, error)
-	// Menolak pinjaman berstatus PENDING oleh laz_group_policy yang berwenang
+	// Menolak pinjaman berstatus PENDING oleh laz yang berwenang
 	// status berubah jadi REJECTED
 	RejectLoan(ctx context.Context, in *MsgRejectLoan, opts ...grpc.CallOption) (*MsgRejectLoanResponse, error)
-	// Mencatat pembayaran pinjaman oleh omnibus_group_policy
+	// Mencatat pembayaran pinjaman oleh omnibus
 	// Mengurangi outstanding dan membakar settlement token
 	RepayLoan(ctx context.Context, in *MsgRepayLoan, opts ...grpc.CallOption) (*MsgRepayLoanResponse, error)
 	// Mengonfirmasi pencairan dana dan mengubah status menjadi DISBURSED
 	ConfirmDisbursement(ctx context.Context, in *MsgConfirmDisbursement, opts ...grpc.CallOption) (*MsgConfirmDisbursementResponse, error)
+	// Menolak pencairan dana pinjaman yang sudah disetujui
+	RejectDisbursement(ctx context.Context, in *MsgRejectDisbursement, opts ...grpc.CallOption) (*MsgRejectDisbursementResponse, error)
 }
 
 type msgClient struct {
@@ -771,23 +891,34 @@ func (c *msgClient) ConfirmDisbursement(ctx context.Context, in *MsgConfirmDisbu
 	return out, nil
 }
 
+func (c *msgClient) RejectDisbursement(ctx context.Context, in *MsgRejectDisbursement, opts ...grpc.CallOption) (*MsgRejectDisbursementResponse, error) {
+	out := new(MsgRejectDisbursementResponse)
+	err := c.cc.Invoke(ctx, "/cosmos.loan.v1.Msg/RejectDisbursement", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 type MsgServer interface {
 	// Mengubah konfigurasi global modul (hanya authority)
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
 	// Membuat permohonan pinjaman baru dengan status PENDING oleh borrower
 	CreateLoan(context.Context, *MsgCreateLoan) (*MsgCreateLoanResponse, error)
-	// Menyetujui pinjaman berstatus PENDING oleh laz_group_policy yang berwenang
+	// Menyetujui pinjaman berstatus PENDING oleh laz yang berwenang
 	// status berubah jadi APPROVED
 	ApproveLoan(context.Context, *MsgApproveLoan) (*MsgApproveLoanResponse, error)
-	// Menolak pinjaman berstatus PENDING oleh laz_group_policy yang berwenang
+	// Menolak pinjaman berstatus PENDING oleh laz yang berwenang
 	// status berubah jadi REJECTED
 	RejectLoan(context.Context, *MsgRejectLoan) (*MsgRejectLoanResponse, error)
-	// Mencatat pembayaran pinjaman oleh omnibus_group_policy
+	// Mencatat pembayaran pinjaman oleh omnibus
 	// Mengurangi outstanding dan membakar settlement token
 	RepayLoan(context.Context, *MsgRepayLoan) (*MsgRepayLoanResponse, error)
 	// Mengonfirmasi pencairan dana dan mengubah status menjadi DISBURSED
 	ConfirmDisbursement(context.Context, *MsgConfirmDisbursement) (*MsgConfirmDisbursementResponse, error)
+	// Menolak pencairan dana pinjaman yang sudah disetujui
+	RejectDisbursement(context.Context, *MsgRejectDisbursement) (*MsgRejectDisbursementResponse, error)
 }
 
 // UnimplementedMsgServer can be embedded to have forward compatible implementations.
@@ -811,6 +942,9 @@ func (*UnimplementedMsgServer) RepayLoan(ctx context.Context, req *MsgRepayLoan)
 }
 func (*UnimplementedMsgServer) ConfirmDisbursement(ctx context.Context, req *MsgConfirmDisbursement) (*MsgConfirmDisbursementResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ConfirmDisbursement not implemented")
+}
+func (*UnimplementedMsgServer) RejectDisbursement(ctx context.Context, req *MsgRejectDisbursement) (*MsgRejectDisbursementResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RejectDisbursement not implemented")
 }
 
 func RegisterMsgServer(s grpc1.Server, srv MsgServer) {
@@ -925,6 +1059,24 @@ func _Msg_ConfirmDisbursement_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_RejectDisbursement_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgRejectDisbursement)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).RejectDisbursement(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cosmos.loan.v1.Msg/RejectDisbursement",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).RejectDisbursement(ctx, req.(*MsgRejectDisbursement))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var Msg_serviceDesc = _Msg_serviceDesc
 var _Msg_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "cosmos.loan.v1.Msg",
@@ -953,6 +1105,10 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ConfirmDisbursement",
 			Handler:    _Msg_ConfirmDisbursement_Handler,
+		},
+		{
+			MethodName: "RejectDisbursement",
+			Handler:    _Msg_RejectDisbursement_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -1049,12 +1205,12 @@ func (m *MsgCreateLoan) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		copy(dAtA[i:], m.MetadataHash)
 		i = encodeVarintTx(dAtA, i, uint64(len(m.MetadataHash)))
 		i--
-		dAtA[i] = 0x22
+		dAtA[i] = 0x2a
 	}
 	if m.TenorMonths != 0 {
 		i = encodeVarintTx(dAtA, i, uint64(m.TenorMonths))
 		i--
-		dAtA[i] = 0x18
+		dAtA[i] = 0x20
 	}
 	if m.Principal != nil {
 		{
@@ -1065,6 +1221,13 @@ func (m *MsgCreateLoan) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 			i -= size
 			i = encodeVarintTx(dAtA, i, uint64(size))
 		}
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.Laz) > 0 {
+		i -= len(m.Laz)
+		copy(dAtA[i:], m.Laz)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Laz)))
 		i--
 		dAtA[i] = 0x12
 	}
@@ -1131,10 +1294,10 @@ func (m *MsgApproveLoan) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x10
 	}
-	if len(m.Authority) > 0 {
-		i -= len(m.Authority)
-		copy(dAtA[i:], m.Authority)
-		i = encodeVarintTx(dAtA, i, uint64(len(m.Authority)))
+	if len(m.Laz) > 0 {
+		i -= len(m.Laz)
+		copy(dAtA[i:], m.Laz)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Laz)))
 		i--
 		dAtA[i] = 0xa
 	}
@@ -1189,10 +1352,10 @@ func (m *MsgRejectLoan) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x10
 	}
-	if len(m.Authority) > 0 {
-		i -= len(m.Authority)
-		copy(dAtA[i:], m.Authority)
-		i = encodeVarintTx(dAtA, i, uint64(len(m.Authority)))
+	if len(m.Laz) > 0 {
+		i -= len(m.Laz)
+		copy(dAtA[i:], m.Laz)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Laz)))
 		i--
 		dAtA[i] = 0xa
 	}
@@ -1259,10 +1422,10 @@ func (m *MsgRepayLoan) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x10
 	}
-	if len(m.Authority) > 0 {
-		i -= len(m.Authority)
-		copy(dAtA[i:], m.Authority)
-		i = encodeVarintTx(dAtA, i, uint64(len(m.Authority)))
+	if len(m.Omnibus) > 0 {
+		i -= len(m.Omnibus)
+		copy(dAtA[i:], m.Omnibus)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Omnibus)))
 		i--
 		dAtA[i] = 0xa
 	}
@@ -1317,10 +1480,10 @@ func (m *MsgConfirmDisbursement) MarshalToSizedBuffer(dAtA []byte) (int, error) 
 		i--
 		dAtA[i] = 0x10
 	}
-	if len(m.Authority) > 0 {
-		i -= len(m.Authority)
-		copy(dAtA[i:], m.Authority)
-		i = encodeVarintTx(dAtA, i, uint64(len(m.Authority)))
+	if len(m.Omnibus) > 0 {
+		i -= len(m.Omnibus)
+		copy(dAtA[i:], m.Omnibus)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Omnibus)))
 		i--
 		dAtA[i] = 0xa
 	}
@@ -1343,6 +1506,71 @@ func (m *MsgConfirmDisbursementResponse) MarshalTo(dAtA []byte) (int, error) {
 }
 
 func (m *MsgConfirmDisbursementResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgRejectDisbursement) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgRejectDisbursement) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgRejectDisbursement) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Reason) > 0 {
+		i -= len(m.Reason)
+		copy(dAtA[i:], m.Reason)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Reason)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if m.LoanId != 0 {
+		i = encodeVarintTx(dAtA, i, uint64(m.LoanId))
+		i--
+		dAtA[i] = 0x10
+	}
+	if len(m.Omnibus) > 0 {
+		i -= len(m.Omnibus)
+		copy(dAtA[i:], m.Omnibus)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Omnibus)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgRejectDisbursementResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgRejectDisbursementResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgRejectDisbursementResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -1397,6 +1625,10 @@ func (m *MsgCreateLoan) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovTx(uint64(l))
 	}
+	l = len(m.Laz)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
 	if m.Principal != nil {
 		l = m.Principal.Size()
 		n += 1 + l + sovTx(uint64(l))
@@ -1429,7 +1661,7 @@ func (m *MsgApproveLoan) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = len(m.Authority)
+	l = len(m.Laz)
 	if l > 0 {
 		n += 1 + l + sovTx(uint64(l))
 	}
@@ -1454,7 +1686,7 @@ func (m *MsgRejectLoan) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = len(m.Authority)
+	l = len(m.Laz)
 	if l > 0 {
 		n += 1 + l + sovTx(uint64(l))
 	}
@@ -1479,7 +1711,7 @@ func (m *MsgRepayLoan) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = len(m.Authority)
+	l = len(m.Omnibus)
 	if l > 0 {
 		n += 1 + l + sovTx(uint64(l))
 	}
@@ -1508,7 +1740,7 @@ func (m *MsgConfirmDisbursement) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = len(m.Authority)
+	l = len(m.Omnibus)
 	if l > 0 {
 		n += 1 + l + sovTx(uint64(l))
 	}
@@ -1519,6 +1751,35 @@ func (m *MsgConfirmDisbursement) Size() (n int) {
 }
 
 func (m *MsgConfirmDisbursementResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *MsgRejectDisbursement) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Omnibus)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	if m.LoanId != 0 {
+		n += 1 + sovTx(uint64(m.LoanId))
+	}
+	l = len(m.Reason)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	return n
+}
+
+func (m *MsgRejectDisbursementResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1764,6 +2025,38 @@ func (m *MsgCreateLoan) Unmarshal(dAtA []byte) error {
 			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Laz", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Laz = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Principal", wireType)
 			}
 			var msglen int
@@ -1798,7 +2091,7 @@ func (m *MsgCreateLoan) Unmarshal(dAtA []byte) error {
 				return err
 			}
 			iNdEx = postIndex
-		case 3:
+		case 4:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field TenorMonths", wireType)
 			}
@@ -1817,7 +2110,7 @@ func (m *MsgCreateLoan) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
-		case 4:
+		case 5:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field MetadataHash", wireType)
 			}
@@ -1970,7 +2263,7 @@ func (m *MsgApproveLoan) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Authority", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Laz", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -1998,7 +2291,7 @@ func (m *MsgApproveLoan) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Authority = string(dAtA[iNdEx:postIndex])
+			m.Laz = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 2:
 			if wireType != 0 {
@@ -2121,7 +2414,7 @@ func (m *MsgRejectLoan) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Authority", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Laz", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -2149,7 +2442,7 @@ func (m *MsgRejectLoan) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Authority = string(dAtA[iNdEx:postIndex])
+			m.Laz = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 2:
 			if wireType != 0 {
@@ -2272,7 +2565,7 @@ func (m *MsgRepayLoan) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Authority", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Omnibus", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -2300,7 +2593,7 @@ func (m *MsgRepayLoan) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Authority = string(dAtA[iNdEx:postIndex])
+			m.Omnibus = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 2:
 			if wireType != 0 {
@@ -2459,7 +2752,7 @@ func (m *MsgConfirmDisbursement) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Authority", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Omnibus", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -2487,7 +2780,7 @@ func (m *MsgConfirmDisbursement) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Authority = string(dAtA[iNdEx:postIndex])
+			m.Omnibus = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 2:
 			if wireType != 0 {
@@ -2556,6 +2849,189 @@ func (m *MsgConfirmDisbursementResponse) Unmarshal(dAtA []byte) error {
 		}
 		if fieldNum <= 0 {
 			return fmt.Errorf("proto: MsgConfirmDisbursementResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgRejectDisbursement) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgRejectDisbursement: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgRejectDisbursement: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Omnibus", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Omnibus = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field LoanId", wireType)
+			}
+			m.LoanId = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.LoanId |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Reason", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Reason = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgRejectDisbursementResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgRejectDisbursementResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgRejectDisbursementResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:

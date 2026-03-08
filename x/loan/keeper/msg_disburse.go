@@ -18,21 +18,19 @@ func (m msgServer) ConfirmDisbursement(
 
 	sdkCtx := sdk.UnwrapSDKContext(ctx)
 
-	// Ambil params
 	params, err := m.GetParams(sdkCtx)
 	if err != nil {
 		return nil, err
 	}
 
-	// Validasi authority (harus omnibus policy)
-	if err := m.ValidateAuthority(
+	// Validasi omnibus authority
+	if err := m.ValidateOmnibusAuthority(
 		sdkCtx,
-		msg.Authority,
+		msg.Omnibus,
 	); err != nil {
 		return nil, err
 	}
 
-	// Ambil loan
 	loan, err := m.GetLoan(sdkCtx, msg.LoanId)
 	if err != nil {
 		if errors.Is(err, collections.ErrNotFound) {
@@ -46,22 +44,21 @@ func (m msgServer) ConfirmDisbursement(
 		return nil, err
 	}
 
-	moduleAddr := m.GetModuleAddress()
-
-	amountInt := loan.Principal.Amount
-
-	sdkCoin := sdk.NewCoin(
-		loan.Principal.Denom,
-		amountInt,
-	)
-
-	coins := sdk.NewCoins(sdkCoin)
-	// Transfer ke Omnibus policy address
-	omnibusAddr, err := sdk.AccAddressFromBech32(params.OmnibusGroupPolicy)
-	if err != nil {
-		return nil, err
+	// Validasi denom settlement
+	if loan.Principal.Denom != params.SettlementDenom {
+		return nil, types.ErrInvalidPrincipal
 	}
 
+	moduleAddr := m.GetModuleAddress()
+
+	omnibusAddr, err := sdk.AccAddressFromBech32(msg.Omnibus)
+	if err != nil {
+		return nil, types.ErrInvalidAddress.Wrap(err.Error())
+	}
+
+	coins := sdk.NewCoins(*loan.Principal)
+
+	// Transfer settlement token ke omnibus
 	if err := m.bankKeeper.SendCoins(
 		sdkCtx,
 		moduleAddr,
@@ -71,7 +68,6 @@ func (m msgServer) ConfirmDisbursement(
 		return nil, err
 	}
 
-	// Update loan state
 	now := sdkCtx.BlockTime()
 
 	loan.Status = types.LoanStatus_LOAN_STATUS_DISBURSED
@@ -80,11 +76,11 @@ func (m msgServer) ConfirmDisbursement(
 
 	m.SetLoan(sdkCtx, loan)
 
-	// Emit event
 	sdkCtx.EventManager().EmitEvent(
 		sdk.NewEvent(
 			types.EventTypeLoanDisbursed,
 			sdk.NewAttribute(types.AttributeKeyLoanID, fmt.Sprintf("%d", loan.Id)),
+			sdk.NewAttribute(types.AttributeKeyOmnibus, msg.Omnibus),
 			sdk.NewAttribute(types.AttributeKeyAmount, loan.Principal.String()),
 		),
 	)

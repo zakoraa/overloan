@@ -53,10 +53,3 @@ type AccountKeeper interface {
 	// berdasarkan nama modul
 	GetModuleAddress(moduleName string) sdk.AccAddress
 }
-
-// GroupKeeper mendefinisikan interface minimal yang dibutuhkan dari modul x/group
-// type GroupKeeper interface {
-// 	// HasGroupPolicy memeriksa apakah suatu alamat
-// 	// merupakan group policy yang valid/terdaftar
-// 	HasGroupPolicy(ctx context.Context, address string) (bool, error)
-// }

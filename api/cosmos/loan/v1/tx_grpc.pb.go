@@ -25,6 +25,7 @@ const (
 	Msg_RejectLoan_FullMethodName          = "/cosmos.loan.v1.Msg/RejectLoan"
 	Msg_RepayLoan_FullMethodName           = "/cosmos.loan.v1.Msg/RepayLoan"
 	Msg_ConfirmDisbursement_FullMethodName = "/cosmos.loan.v1.Msg/ConfirmDisbursement"
+	Msg_RejectDisbursement_FullMethodName  = "/cosmos.loan.v1.Msg/RejectDisbursement"
 )
 
 // MsgClient is the client API for Msg service.
@@ -37,17 +38,19 @@ type MsgClient interface {
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
 	// Membuat permohonan pinjaman baru dengan status PENDING oleh borrower
 	CreateLoan(ctx context.Context, in *MsgCreateLoan, opts ...grpc.CallOption) (*MsgCreateLoanResponse, error)
-	// Menyetujui pinjaman berstatus PENDING oleh laz_group_policy yang berwenang
+	// Menyetujui pinjaman berstatus PENDING oleh laz yang berwenang
 	// status berubah jadi APPROVED
 	ApproveLoan(ctx context.Context, in *MsgApproveLoan, opts ...grpc.CallOption) (*MsgApproveLoanResponse, error)
-	// Menolak pinjaman berstatus PENDING oleh laz_group_policy yang berwenang
+	// Menolak pinjaman berstatus PENDING oleh laz yang berwenang
 	// status berubah jadi REJECTED
 	RejectLoan(ctx context.Context, in *MsgRejectLoan, opts ...grpc.CallOption) (*MsgRejectLoanResponse, error)
-	// Mencatat pembayaran pinjaman oleh omnibus_group_policy
+	// Mencatat pembayaran pinjaman oleh omnibus
 	// Mengurangi outstanding dan membakar settlement token
 	RepayLoan(ctx context.Context, in *MsgRepayLoan, opts ...grpc.CallOption) (*MsgRepayLoanResponse, error)
 	// Mengonfirmasi pencairan dana dan mengubah status menjadi DISBURSED
 	ConfirmDisbursement(ctx context.Context, in *MsgConfirmDisbursement, opts ...grpc.CallOption) (*MsgConfirmDisbursementResponse, error)
+	// Menolak pencairan dana pinjaman yang sudah disetujui
+	RejectDisbursement(ctx context.Context, in *MsgRejectDisbursement, opts ...grpc.CallOption) (*MsgRejectDisbursementResponse, error)
 }
 
 type msgClient struct {
@@ -118,6 +121,16 @@ func (c *msgClient) ConfirmDisbursement(ctx context.Context, in *MsgConfirmDisbu
 	return out, nil
 }
 
+func (c *msgClient) RejectDisbursement(ctx context.Context, in *MsgRejectDisbursement, opts ...grpc.CallOption) (*MsgRejectDisbursementResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MsgRejectDisbursementResponse)
+	err := c.cc.Invoke(ctx, Msg_RejectDisbursement_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility.
@@ -128,17 +141,19 @@ type MsgServer interface {
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
 	// Membuat permohonan pinjaman baru dengan status PENDING oleh borrower
 	CreateLoan(context.Context, *MsgCreateLoan) (*MsgCreateLoanResponse, error)
-	// Menyetujui pinjaman berstatus PENDING oleh laz_group_policy yang berwenang
+	// Menyetujui pinjaman berstatus PENDING oleh laz yang berwenang
 	// status berubah jadi APPROVED
 	ApproveLoan(context.Context, *MsgApproveLoan) (*MsgApproveLoanResponse, error)
-	// Menolak pinjaman berstatus PENDING oleh laz_group_policy yang berwenang
+	// Menolak pinjaman berstatus PENDING oleh laz yang berwenang
 	// status berubah jadi REJECTED
 	RejectLoan(context.Context, *MsgRejectLoan) (*MsgRejectLoanResponse, error)
-	// Mencatat pembayaran pinjaman oleh omnibus_group_policy
+	// Mencatat pembayaran pinjaman oleh omnibus
 	// Mengurangi outstanding dan membakar settlement token
 	RepayLoan(context.Context, *MsgRepayLoan) (*MsgRepayLoanResponse, error)
 	// Mengonfirmasi pencairan dana dan mengubah status menjadi DISBURSED
 	ConfirmDisbursement(context.Context, *MsgConfirmDisbursement) (*MsgConfirmDisbursementResponse, error)
+	// Menolak pencairan dana pinjaman yang sudah disetujui
+	RejectDisbursement(context.Context, *MsgRejectDisbursement) (*MsgRejectDisbursementResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -166,6 +181,9 @@ func (UnimplementedMsgServer) RepayLoan(context.Context, *MsgRepayLoan) (*MsgRep
 }
 func (UnimplementedMsgServer) ConfirmDisbursement(context.Context, *MsgConfirmDisbursement) (*MsgConfirmDisbursementResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ConfirmDisbursement not implemented")
+}
+func (UnimplementedMsgServer) RejectDisbursement(context.Context, *MsgRejectDisbursement) (*MsgRejectDisbursementResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method RejectDisbursement not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 func (UnimplementedMsgServer) testEmbeddedByValue()             {}
@@ -296,6 +314,24 @@ func _Msg_ConfirmDisbursement_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_RejectDisbursement_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgRejectDisbursement)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).RejectDisbursement(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_RejectDisbursement_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).RejectDisbursement(ctx, req.(*MsgRejectDisbursement))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -326,6 +362,10 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ConfirmDisbursement",
 			Handler:    _Msg_ConfirmDisbursement_Handler,
+		},
+		{
+			MethodName: "RejectDisbursement",
+			Handler:    _Msg_RejectDisbursement_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

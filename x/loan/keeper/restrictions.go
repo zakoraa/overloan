@@ -29,8 +29,10 @@ func (k Keeper) SettlementSendRestriction(
 			return nil
 		}
 
-		if from.String() == params.OmnibusGroupPolicy {
-			return nil
+		for _, auth := range params.OmnibusAuthorities {
+			if from.String() == auth {
+				return nil
+			}
 		}
 
 		return fmt.Errorf("settlement token non-transferable")

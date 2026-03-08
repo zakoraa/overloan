@@ -4,6 +4,8 @@ package cosmos.loan.v1;
 
 option go_package = "github.com/cosmos/cosmos-sdk/x/loan/types";
 
+import "cosmos_proto/cosmos.proto";
+
 // Params berisi konfigurasi global modul loan yang dapat diubah melalui governance
 message Params {
   // denom token yang digunakan (uover, uatom)
@@ -15,12 +17,12 @@ message Params {
   // min pinjaman
   uint64 min_loan_amount = 3;
 
-  // min durasi peminjaman
+  // max durasi peminjaman
   uint64 max_tenor_months = 4;
 
-  // Group policy address yang berwenang approve loan
-  string laz_group_policy = 5;
+  // policy addresses yang berwenang approve loan
+  repeated string laz_authorities = 5 [(cosmos_proto.scalar) = "cosmos.AddressString"];
 
-  // approval disbursement, approval settlement, atau handling pool dana terpusat
-  string omnibus_group_policy = 6;
+  //  policy addresses yang berwenang approve disbursement
+  repeated string omnibus_authorities = 6 [(cosmos_proto.scalar) = "cosmos.AddressString"];
 }

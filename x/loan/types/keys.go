@@ -14,17 +14,22 @@ const (
 var (
 	ParamsKey = []byte("loan_params")
 
-	EventTypeLoanCreated   = "loan_created"
-	EventTypeLoanApproved  = "loan_approved"
-	EventTypeLoanRejected  = "loan_rejected"
-	EventTypeLoanDisbursed = "loan_disbursed"
-	EventTypeLoanRepaid    = "loan_repaid"
+	EventTypeLoanCreated          = "loan_created"
+	EventTypeLoanApproved         = "loan_approved"
+	EventTypeLoanRejected         = "loan_rejected"
+	EventTypeLoanDisbursed        = "loan_disbursed"
+	EventTypeLoanDisburseRejected = "loan_disburse_rejected"
+	EventTypeLoanRepaid           = "loan_repaid"
+	EventTypeUpdateParams         = "loan_update_params"
 
 	AttributeKeyLoanID    = "loan_id"
 	AttributeKeyBorrower  = "borrower"
-	AttributeKeyPrincipal = "principal"
+	AttributeKeyLaz       = "laz"
+	AttributeKeyOmnibus   = "omnibus"
 	AttributeKeyAuthority = "authority"
+	AttributeKeyPrincipal = "principal"
 	AttributeKeyAmount    = "amount"
+	AttributeKeyReason    = "reason"
 
 	LoanKeyPrefix        = []byte{0x11}
 	LoanByBorrowerPrefix = []byte{0x12}

@@ -13,8 +13,8 @@ var (
 	KeyMinLoanAmount      = []byte("MinLoanAmount")
 	KeyMaxLoanAmount      = []byte("MaxLoanAmount")
 	KeyMaxTenorMonths     = []byte("MaxTenorMonths")
-	KeyLazGroupPolicy     = []byte("LazGroupPolicy")
-	KeyOmnibusGroupPolicy = []byte("OmnibusGroupPolicy")
+	KeyLazAuthorities     = []byte("LazAuthorities")
+	KeyOmnibusAuthorities = []byte("OmnibusAuthorities")
 )
 
 // Params wrapper lokal agar bisa implement ParamSet
@@ -66,13 +66,13 @@ func (p *Params) ParamSetPairs() paramtypes.ParamSetPairs {
 			validateUint64,
 		),
 		paramtypes.NewParamSetPair(
-			KeyLazGroupPolicy,
-			&p.LazGroupPolicy,
+			KeyLazAuthorities,
+			&p.LazAuthorities,
 			validateAddress,
 		),
 		paramtypes.NewParamSetPair(
-			KeyOmnibusGroupPolicy,
-			&p.OmnibusGroupPolicy,
+			KeyOmnibusAuthorities,
+			&p.OmnibusAuthorities,
 			validateAddress,
 		),
 	}
@@ -121,13 +121,13 @@ func (p Params) Validate() error {
 // 	// 	return ErrInvalidRequest.Wrap("max tenor must be > 0")
 // 	// }
 
-// 	// // Validasi format alamat LazGroupPolicy
-// 	// if _, err := sdk.AccAddressFromBech32(p.LazGroupPolicy); err != nil {
+// 	// // Validasi format alamat LazAuthorities
+// 	// if _, err := sdk.AccAddressFromBech32(p.LazAuthorities); err != nil {
 // 	// 	return ErrInvalidAddress.Wrap("invalid laz group policy")
 // 	// }
 
-// 	// // Validasi format alamat OmnibusGroupPolicy
-// 	// if _, err := sdk.AccAddressFromBech32(p.OmnibusGroupPolicy); err != nil {
+// 	// // Validasi format alamat OmnibusAuthorities
+// 	// if _, err := sdk.AccAddressFromBech32(p.OmnibusAuthorities); err != nil {
 // 	// 	return ErrInvalidAddress.Wrap("invalid omnibus group policy")
 // 	// }
 
@@ -182,11 +182,11 @@ func validateAddress(i interface{}) error {
 // 	// 	return fmt.Errorf("max tenor must be > 0")
 // 	// }
 
-// 	// if _, err := sdk.AccAddressFromBech32(p.LazGroupPolicy); err != nil {
+// 	// if _, err := sdk.AccAddressFromBech32(p.LazAuthorities); err != nil {
 // 	// 	return fmt.Errorf("invalid laz group policy address")
 // 	// }
 
-// 	// if _, err := sdk.AccAddressFromBech32(p.OmnibusGroupPolicy); err != nil {
+// 	// if _, err := sdk.AccAddressFromBech32(p.OmnibusAuthorities); err != nil {
 // 	// 	return fmt.Errorf("invalid omnibus group policy address")
 // 	// }
 

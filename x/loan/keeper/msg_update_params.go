@@ -14,17 +14,33 @@ func (m msgServer) UpdateParams(
 
 	sdkCtx := sdk.UnwrapSDKContext(ctx)
 
-	if err := m.ValidateAuthority(sdkCtx, msg.Authority); err != nil {
+	// Validasi authority
+	if err := m.ValidateAuthority(msg.Authority); err != nil {
 		return nil, err
 	}
 
+	// Params tidak boleh nil
 	if msg.Params == nil {
-		return nil, types.ErrInvalidRequest.Wrap("params cannot be nil")
+		return nil, types.ErrInvalidRequest.Wrap("params must not be nil")
 	}
 
+	// Validasi params
+	if err := msg.Params.Validate(); err != nil {
+		return nil, err
+	}
+
+	// Update params
 	if err := m.SetParams(sdkCtx, *msg.Params); err != nil {
 		return nil, err
 	}
+
+	// Emit event
+	sdkCtx.EventManager().EmitEvent(
+		sdk.NewEvent(
+			types.EventTypeUpdateParams,
+			sdk.NewAttribute(types.AttributeKeyAuthority, msg.Authority),
+		),
+	)
 
 	return &types.MsgUpdateParamsResponse{}, nil
 }

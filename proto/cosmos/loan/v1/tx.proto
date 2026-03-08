@@ -19,20 +19,23 @@ service Msg {
   // Membuat permohonan pinjaman baru dengan status PENDING oleh borrower
   rpc CreateLoan(MsgCreateLoan) returns (MsgCreateLoanResponse);
 
-  // Menyetujui pinjaman berstatus PENDING oleh laz_group_policy yang berwenang
+  // Menyetujui pinjaman berstatus PENDING oleh laz yang berwenang
   // status berubah jadi APPROVED
   rpc ApproveLoan(MsgApproveLoan) returns (MsgApproveLoanResponse);
 
-  // Menolak pinjaman berstatus PENDING oleh laz_group_policy yang berwenang
+  // Menolak pinjaman berstatus PENDING oleh laz yang berwenang
   // status berubah jadi REJECTED
   rpc RejectLoan(MsgRejectLoan) returns (MsgRejectLoanResponse);
 
-  // Mencatat pembayaran pinjaman oleh omnibus_group_policy
+  // Mencatat pembayaran pinjaman oleh omnibus
   // Mengurangi outstanding dan membakar settlement token
   rpc RepayLoan(MsgRepayLoan) returns (MsgRepayLoanResponse);
 
   // Mengonfirmasi pencairan dana dan mengubah status menjadi DISBURSED
   rpc ConfirmDisbursement(MsgConfirmDisbursement) returns (MsgConfirmDisbursementResponse);
+
+  // Menolak pencairan dana pinjaman yang sudah disetujui
+  rpc RejectDisbursement(MsgRejectDisbursement) returns (MsgRejectDisbursementResponse);
 }
 
 // MsgUpdateParams digunakan untuk mengubah parameter modul
@@ -56,14 +59,17 @@ message MsgCreateLoan {
   // Alamat borrower (Bech32) sebagai pemohon pinjaman
   string borrower = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
 
+  // Alamat laz (Bech32) sebagai penerima pemohonan pinjaman
+  string laz = 2 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
   // Nilai pokok pinjaman yang diajukan
-  cosmos.base.v1beta1.Coin principal = 2;
+  cosmos.base.v1beta1.Coin principal = 3;
 
   // Durasi pinjaman dalam satuan bulan
-  uint64 tenor_months = 3;
+  uint64 tenor_months = 4;
 
   // Hash dokumen pendukung (misalnya IPFS CID atau SHA256 kontrak)
-  string metadata_hash = 4;
+  string metadata_hash = 5;
 }
 
 // MsgCreateLoanResponse mengembalikan ID pinjaman yang baru dibuat
@@ -72,12 +78,12 @@ message MsgCreateLoanResponse {
   uint64 loan_id = 1;
 }
 
-// MsgApproveLoan digunakan oleh policy yang berwenang untuk menyetujui pinjaman
+// MsgApproveLoan digunakan oleh laz yang berwenang untuk menyetujui pinjaman
 message MsgApproveLoan {
-  option (cosmos.msg.v1.signer) = "authority";
+  option (cosmos.msg.v1.signer) = "laz";
 
-  // Alamat group policy (laz_group_policy) sebagai otoritas persetujuan
-  string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // Alamat (laz) sebagai otoritas persetujuan
+  string laz = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
 
   // ID pinjaman yang akan disetujui
   uint64 loan_id = 2;
@@ -86,12 +92,12 @@ message MsgApproveLoan {
 // MsgApproveLoanResponse tidak mengembalikan data tambahan
 message MsgApproveLoanResponse {}
 
-// MsgRejectLoan digunakan oleh policy yang berwenang untuk menolak pinjaman
+// MsgRejectLoan digunakan oleh laz yang berwenang untuk menolak pinjaman
 message MsgRejectLoan {
-  option (cosmos.msg.v1.signer) = "authority";
+  option (cosmos.msg.v1.signer) = "laz";
 
-  // Alamat group policy sebagai otoritas penolakan
-  string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // Alamat  sebagai otoritas penolakan
+  string laz = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
 
   // ID pinjaman yang akan ditolak
   uint64 loan_id = 2;
@@ -100,12 +106,12 @@ message MsgRejectLoan {
 // MsgRejectLoanResponse tidak mengembalikan data tambahan
 message MsgRejectLoanResponse {}
 
-// MsgRepayLoan digunakan untuk mencatat pembayaran pinjaman
+// MsgRepayLoan digunakan untuk mencatat pembayaran pinjaman yang dihasilkan oleh omnibus
 message MsgRepayLoan {
-  option (cosmos.msg.v1.signer) = "authority";
+  option (cosmos.msg.v1.signer) = "omnibus";
 
-  // Alamat omnibus_group_policy sebagai otoritas pembayaran
-  string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // Alamat omnibus sebagai otoritas pembayaran
+  string omnibus = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
 
   // ID pinjaman yang dibayar
   uint64 loan_id = 2;
@@ -119,10 +125,10 @@ message MsgRepayLoanResponse {}
 
 // MsgConfirmDisbursement digunakan untuk mengonfirmasi bahwa dana telah dicairkan
 message MsgConfirmDisbursement {
-  option (cosmos.msg.v1.signer) = "authority";
+  option (cosmos.msg.v1.signer) = "omnibus";
 
-  // Alamat omnibus_group_policy sebagai otoritas pencairan dana
-  string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  // Alamat omnibus sebagai otoritas pencairan dana
+  string omnibus = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
 
   // ID pinjaman yang dicairkan
   uint64 loan_id = 2;
@@ -130,3 +136,21 @@ message MsgConfirmDisbursement {
 
 // MsgConfirmDisbursementResponse tidak mengembalikan data tambahan
 message MsgConfirmDisbursementResponse {}
+
+// MsgRejectDisbursement, Omnibus dalam kasus tertentu, menolak pencairan dana pinjaman yang sudah disetujui
+// cth: layanan error, bank transfer gagal, rekening borrower invalid, etc
+message MsgRejectDisbursement {
+  option (cosmos.msg.v1.signer) = "omnibus";
+
+  // alamat omnibus yang berwenang menolak pencairan
+  string omnibus = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // ID pinjaman yang pencairannya ditolak
+  uint64 loan_id = 2;
+
+  // alasan penolakan pencairan
+  string reason = 3;
+}
+
+// MsgRejectDisbursementResponse tidak mengembalikan data tambahan
+message MsgRejectDisbursementResponse {}

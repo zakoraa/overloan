@@ -18,12 +18,15 @@ func (m msgServer) RejectLoan(
 
 	sdkCtx := sdk.UnwrapSDKContext(ctx)
 
-	//  Validasi authority
-	if err := m.ValidateAuthority(sdkCtx, msg.Authority); err != nil {
+	// Validasi laz authority
+	if err := m.ValidateLazAuthority(
+		sdkCtx,
+		msg.Laz,
+	); err != nil {
 		return nil, err
 	}
 
-	//  Ambil loan
+	// Ambil loan
 	loan, err := m.GetLoan(sdkCtx, msg.LoanId)
 	if err != nil {
 		if errors.Is(err, collections.ErrNotFound) {
@@ -32,23 +35,27 @@ func (m msgServer) RejectLoan(
 		return nil, err
 	}
 
-	//  Validasi state machine
-	if loan.Status != types.LoanStatus_LOAN_STATUS_PENDING {
-		return nil, types.ErrInvalidStateTransition.
-			Wrap("only pending loan can be rejected")
+	// Pastikan loan memang milik laz ini
+	if loan.Laz != msg.Laz {
+		return nil, types.ErrUnauthorized
 	}
 
-	//  Update status
+	// Validasi state machine (loan harus PENDING)
+	if err := types.CanReject(loan); err != nil {
+		return nil, err
+	}
+
+	// Update status
 	loan.Status = types.LoanStatus_LOAN_STATUS_REJECTED
 
 	m.SetLoan(sdkCtx, loan)
 
-	//  Emit event
+	// Emit event
 	sdkCtx.EventManager().EmitEvent(
 		sdk.NewEvent(
 			types.EventTypeLoanRejected,
 			sdk.NewAttribute(types.AttributeKeyLoanID, fmt.Sprintf("%d", loan.Id)),
-			sdk.NewAttribute(types.AttributeKeyAuthority, msg.Authority),
+			sdk.NewAttribute(types.AttributeKeyLaz, msg.Laz),
 		),
 	)
 

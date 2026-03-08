@@ -7,6 +7,7 @@ option go_package = "github.com/cosmos/cosmos-sdk/x/loan/types";
 import "cosmos/base/v1beta1/coin.proto";
 import "google/protobuf/timestamp.proto";
 import "gogoproto/gogo.proto";
+import "cosmos_proto/cosmos.proto";
 
 option (gogoproto.marshaler_all)   = true;
 option (gogoproto.unmarshaler_all) = true;
@@ -41,33 +42,35 @@ message Loan {
   // ID unik pinjaman
   uint64 id = 1;
 
-  // sdk.AccAddress (dalam format bech32)
-  string borrower = 2;
+  // Address peminjam
+  string borrower = 2 [(cosmos_proto.scalar) = "cosmos.AddressString"];
 
-  // group policy address yang approve
-  // audit siapa policy yang approve
-  string laz_policy = 3;
+  // address yang approve/tolak pinjaman
+  string laz = 3 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // address yang approve disbursement
+  string omnibus = 4 [(cosmos_proto.scalar) = "cosmos.AddressString"];
 
   // Nilai pokok awal peminjaman saat disetujui
-  cosmos.base.v1beta1.Coin principal = 4;
+  cosmos.base.v1beta1.Coin principal = 5;
   // Sisa kewajiban yang masih harus dibayar
-  cosmos.base.v1beta1.Coin outstanding = 5;
+  cosmos.base.v1beta1.Coin outstanding = 6;
 
   // Durasi pinjaman dalam bulan
-  uint64 tenor_months = 6;
+  uint64 tenor_months = 7;
 
   // status pembayaran
-  LoanStatus status = 7;
+  LoanStatus status = 8;
 
   // waktu saat permohonan pinjaman dibuat (block time).
-  google.protobuf.Timestamp created_at = 8 [(gogoproto.stdtime) = true];
+  google.protobuf.Timestamp created_at = 9 [(gogoproto.stdtime) = true];
 
   // waktu saat pinjaman disetujui.
-  google.protobuf.Timestamp approved_at = 9 [(gogoproto.stdtime) = true];
+  google.protobuf.Timestamp approved_at = 10 [(gogoproto.stdtime) = true];
 
   // waktu saat dana dicairkan ke borrower.
-  google.protobuf.Timestamp disbursed_at = 10 [(gogoproto.stdtime) = true];
+  google.protobuf.Timestamp disbursed_at = 11 [(gogoproto.stdtime) = true];
 
   // document hash (bisa pakai hash dari IPFS kalau digunakan)
-  string metadata_hash = 11;
+  string metadata_hash = 12;
 }

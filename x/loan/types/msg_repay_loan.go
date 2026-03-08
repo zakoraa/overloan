@@ -10,31 +10,31 @@ var _ sdk.Msg = (*MsgRepayLoan)(nil)
 
 // ValidateMsgRepayLoan melakukan validasi stateless
 // Fungsi ini dipanggil sebelum tx diproses keeper
-func ValidateMsgRepayLoan(msg *MsgRepayLoan) error {
+func (m *MsgRepayLoan) ValidateMsgRepayLoan() error {
 
-	// Validasi authority address (format Bech32)
-	if _, err := sdk.AccAddressFromBech32(msg.Authority); err != nil {
+	// Validasi omnibus address (format Bech32)
+	if _, err := sdk.AccAddressFromBech32(m.Omnibus); err != nil {
 		return errorsmod.Wrapf(
 			ErrInvalidAddress,
-			"invalid authority address: %v",
+			"invalid omnibus address: %v",
 			err,
 		)
 	}
 
 	// loan_id wajib ada
-	if msg.LoanId == 0 {
+	if m.LoanId == 0 {
 		return ErrInvalidRequest.Wrap("loan_id required")
 	}
 
 	// Amount tidak boleh nil
-	if msg.Amount == nil {
+	if m.Amount == nil {
 		return ErrInvalidRequest.Wrap("amount required")
 	}
 
 	// Validasi coin positif
 	if err := ValidatePositiveCoin(
-		msg.Amount.Denom,
-		msg.Amount.Amount,
+		m.Amount.Denom,
+		m.Amount.Amount,
 	); err != nil {
 		return errorsmod.Wrapf(
 			ErrInvalidCoin,

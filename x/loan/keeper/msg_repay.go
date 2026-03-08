@@ -23,12 +23,15 @@ func (m msgServer) RepayLoan(
 		return nil, err
 	}
 
-	//  Validasi authority
-	if err := m.ValidateAuthority(sdkCtx, msg.Authority); err != nil {
+	// Validasi omnibus authority
+	if err := m.ValidateOmnibusAuthority(
+		sdkCtx,
+		msg.Omnibus,
+	); err != nil {
 		return nil, err
 	}
 
-	//  Ambil loan
+	// Ambil loan
 	loan, err := m.GetLoan(sdkCtx, msg.LoanId)
 	if err != nil {
 		if errors.Is(err, collections.ErrNotFound) {
@@ -37,26 +40,24 @@ func (m msgServer) RepayLoan(
 		return nil, err
 	}
 
-	//  Harus sudah disbursed
-	if loan.Status != types.LoanStatus_LOAN_STATUS_DISBURSED {
-		return nil, types.ErrInvalidStateTransition.
-			Wrap("loan must be disbursed")
+	// Validasi state machine
+	if err := types.CanRepay(loan); err != nil {
+		return nil, err
 	}
 
-	//  Validasi denom
+	// Validasi denom
 	if msg.Amount.Denom != params.SettlementDenom {
 		return nil, types.ErrInvalidPrincipal.
 			Wrap("invalid settlement denom")
 	}
 
-	//  Parse repayment amount
+	// Validasi repayment positif
 	repayInt := msg.Amount.Amount
 	if !repayInt.IsPositive() {
 		return nil, types.ErrInvalidPrincipal.
 			Wrap("repayment must be positive")
 	}
 
-	//  Parse outstanding
 	if loan.Outstanding == nil {
 		return nil, types.ErrInvalidStateTransition.
 			Wrap("outstanding not set")
@@ -70,18 +71,18 @@ func (m msgServer) RepayLoan(
 			Wrap("repayment exceeds outstanding")
 	}
 
-	// Convert ke sdk.Coin untuk transfer
-	repayCoin := sdk.NewCoin(msg.Amount.Denom, repayInt)
-	coins := sdk.NewCoins(repayCoin)
-
-	omnibusAddr, err := sdk.AccAddressFromBech32(params.OmnibusGroupPolicy)
+	// Parse omnibus address
+	omnibusAddr, err := sdk.AccAddressFromBech32(msg.Omnibus)
 	if err != nil {
-		return nil, err
+		return nil, types.ErrInvalidAddress.Wrap(err.Error())
 	}
 
 	moduleAddr := m.GetModuleAddress()
 
-	// Transfer dari Omnibus → Module
+	// Transfer repayment dari omnibus → module
+	repayCoin := sdk.NewCoin(msg.Amount.Denom, repayInt)
+	coins := sdk.NewCoins(repayCoin)
+
 	if err := m.bankKeeper.SendCoins(
 		sdkCtx,
 		omnibusAddr,
@@ -91,7 +92,7 @@ func (m msgServer) RepayLoan(
 		return nil, err
 	}
 
-	// Burn dari module account
+	// Burn settlement token
 	if err := m.bankKeeper.BurnCoins(
 		sdkCtx,
 		types.ModuleName,
@@ -103,22 +104,25 @@ func (m msgServer) RepayLoan(
 	// Update outstanding
 	newOutstanding := outstandingInt.Sub(repayInt)
 
-	//  Jika lunas
+	loan.Outstanding = &sdk.Coin{
+		Denom:  msg.Amount.Denom,
+		Amount: newOutstanding,
+	}
+
+	// Jika lunas
 	if newOutstanding.IsZero() {
 		loan.Status = types.LoanStatus_LOAN_STATUS_REPAID
 	}
 
 	m.SetLoan(sdkCtx, loan)
 
-	//  Emit event
+	// Emit event
 	sdkCtx.EventManager().EmitEvent(
 		sdk.NewEvent(
 			types.EventTypeLoanRepaid,
 			sdk.NewAttribute(types.AttributeKeyLoanID, fmt.Sprintf("%d", loan.Id)),
-			sdk.NewAttribute(
-				types.AttributeKeyAmount,
-				msg.Amount.String(),
-			),
+			sdk.NewAttribute(types.AttributeKeyOmnibus, msg.Omnibus),
+			sdk.NewAttribute(types.AttributeKeyAmount, msg.Amount.String()),
 		),
 	)
 

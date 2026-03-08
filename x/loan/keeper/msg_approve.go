@@ -18,9 +18,10 @@ func (m msgServer) ApproveLoan(
 
 	sdkCtx := sdk.UnwrapSDKContext(ctx)
 
-	if err := m.ValidateAuthority(
+	// Validasi laz authority
+	if err := m.ValidateLazAuthority(
 		sdkCtx,
-		msg.Authority,
+		msg.Laz,
 	); err != nil {
 		return nil, err
 	}
@@ -34,6 +35,11 @@ func (m msgServer) ApproveLoan(
 		return nil, err
 	}
 
+	// Pastikan loan memang milik laz ini
+	if loan.Laz != msg.Laz {
+		return nil, types.ErrUnauthorized
+	}
+
 	// Validasi state machine
 	if err := types.CanApprove(loan); err != nil {
 		return nil, err
@@ -43,7 +49,6 @@ func (m msgServer) ApproveLoan(
 	now := sdkCtx.BlockTime()
 
 	loan.Status = types.LoanStatus_LOAN_STATUS_APPROVED
-	loan.LazPolicy = msg.Authority
 	loan.ApprovedAt = &now
 
 	// Persist
@@ -54,7 +59,7 @@ func (m msgServer) ApproveLoan(
 		sdk.NewEvent(
 			types.EventTypeLoanApproved,
 			sdk.NewAttribute(types.AttributeKeyLoanID, fmt.Sprintf("%d", loan.Id)),
-			sdk.NewAttribute(types.AttributeKeyAuthority, msg.Authority),
+			sdk.NewAttribute(types.AttributeKeyLaz, msg.Laz),
 		),
 	)
 

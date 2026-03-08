@@ -5,7 +5,6 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/loan/types"
 )
 
-// InitGenesis initializes the module's state from a provided genesis state.
 func (k Keeper) InitGenesis(ctx sdk.Context, gs types.GenesisState) {
 
 	if err := k.SetParams(ctx, gs.Params); err != nil {
