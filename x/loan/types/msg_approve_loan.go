@@ -8,9 +8,9 @@ import (
 // Pastikan MsgApproveLoan dari proto memenuhi interface sdk.Msg
 var _ sdk.Msg = (*MsgApproveLoan)(nil)
 
-// ValidateMsgApproveLoan melakukan validasi stateless (tanpa akses store)
+// ValidateBasic melakukan validasi stateless (tanpa akses store)
 // Fungsi ini dipanggil sebelum tx diproses keeper
-func (m *MsgApproveLoan) ValidateMsgApproveLoan() error {
+func (m *MsgApproveLoan) ValidateBasic() error {
 
 	// Validasi alamat laz dalam format Bech32
 	if _, err := sdk.AccAddressFromBech32(m.Laz); err != nil {

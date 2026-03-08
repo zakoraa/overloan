@@ -8,9 +8,9 @@ import (
 // Pastikan MsgRepayLoan dari proto memenuhi interface sdk.Msg
 var _ sdk.Msg = (*MsgRepayLoan)(nil)
 
-// ValidateMsgRepayLoan melakukan validasi stateless
+// ValidateBasic melakukan validasi stateless
 // Fungsi ini dipanggil sebelum tx diproses keeper
-func (m *MsgRepayLoan) ValidateMsgRepayLoan() error {
+func (m *MsgRepayLoan) ValidateBasic() error {
 
 	// Validasi omnibus address (format Bech32)
 	if _, err := sdk.AccAddressFromBech32(m.Omnibus); err != nil {

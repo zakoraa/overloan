@@ -49,25 +49,6 @@ func (m msgServer) ConfirmDisbursement(
 		return nil, types.ErrInvalidPrincipal
 	}
 
-	moduleAddr := m.GetModuleAddress()
-
-	omnibusAddr, err := sdk.AccAddressFromBech32(msg.Omnibus)
-	if err != nil {
-		return nil, types.ErrInvalidAddress.Wrap(err.Error())
-	}
-
-	coins := sdk.NewCoins(*loan.Principal)
-
-	// Transfer settlement token ke omnibus
-	if err := m.bankKeeper.SendCoins(
-		sdkCtx,
-		moduleAddr,
-		omnibusAddr,
-		coins,
-	); err != nil {
-		return nil, err
-	}
-
 	now := sdkCtx.BlockTime()
 
 	loan.Status = types.LoanStatus_LOAN_STATUS_DISBURSED

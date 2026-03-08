@@ -1,19 +1,23 @@
 {
+  "title": "Update Loan Params",
+  "summary": "Set laz and omnibus authorities",
+  "deposit": "10000000stake",
   "messages": [
     {
       "@type": "/cosmos.loan.v1.MsgUpdateParams",
       "authority": "cosmos10d07y265gmmuvt4z0w9aw880jnsr700j6zn9kn",
       "params": {
         "settlement_denom": "stake",
-        "max_loan_amount": "1000000",
         "min_loan_amount": "100",
+        "max_loan_amount": "1000000",
         "max_tenor_months": "12",
-        "laz_authority": "cosmos1k3eqea3rqjwy4axma3adtmehw0jw4jws88v64j",
-        "omnibus_authority": "cosmos1520k80danftzlvj09uzfr6tzqmzcs87st3vprj"
+        "laz_authorities": [
+          "cosmos1zmxqkc4zyy5wr678ulj9cuqhm445r4vg6xal9t"
+        ],
+        "omnibus_authorities": [
+          "cosmos1p5lkxqrrqy2n6zvesxp358phm35wjqvjrp4lq2"
+        ]
       }
     }
-  ],
-  "deposit": "100000stake",
-  "title": "Update Loan Params",
-  "summary": "Change laz authority"
+  ]
 }

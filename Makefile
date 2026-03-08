@@ -561,3 +561,12 @@ build-v53:
 		echo "No changes to reapply"; \
 	fi
 .PHONY: build-v53
+
+init-dev:
+	rm -rf private/.overloand
+	bash scripts/init-chain.sh
+	bash scripts/update-gov-genesis.sh
+	./build/simd start --home ./private/.overloand
+
+create-proposal:
+	bash scripts/create-proposal.sh

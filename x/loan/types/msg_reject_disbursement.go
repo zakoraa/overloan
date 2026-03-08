@@ -8,9 +8,9 @@ import (
 // Pastikan MsgRejectDisbursement dari proto memenuhi interface sdk.Msg
 var _ sdk.Msg = (*MsgRejectDisbursement)(nil)
 
-// ValidateRejectDisbursement melakukan validasi stateless (tanpa akses store)
+// ValidateBasic melakukan validasi stateless (tanpa akses store)
 // Fungsi ini dipanggil sebelum tx diproses keeper
-func (m *MsgRejectDisbursement) ValidateRejectDisbursement() error {
+func (m *MsgRejectDisbursement) ValidateBasic() error {
 
 	// Validasi alamat omnibus dalam format Bech32
 	if _, err := sdk.AccAddressFromBech32(m.Omnibus); err != nil {

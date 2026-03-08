@@ -334,7 +334,7 @@ func NewSimApp(
 	app.LoanKeeper = loankeeper.NewKeeper(
 		appCodec,
 		runtime.NewKVStoreService(keys[loantypes.StoreKey]),
-		app.BankKeeper,
+		// app.BankKeeper,
 		app.AccountKeeper,
 		// app.GroupKeeper,
 		authtypes.NewModuleAddress(govtypes.ModuleName).String(),

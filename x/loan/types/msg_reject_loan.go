@@ -8,8 +8,8 @@ import (
 // Pastikan MsgRejectLoan memenuhi sdk.Msg
 var _ sdk.Msg = (*MsgRejectLoan)(nil)
 
-// ValidateMsgRejectLoan melakukan validasi stateless
-func (m *MsgRejectLoan) ValidateMsgRejectLoan() error {
+// ValidateBasic melakukan validasi stateless
+func (m *MsgRejectLoan) ValidateBasic() error {
 
 	// laz wajib valid Bech32
 	if _, err := sdk.AccAddressFromBech32(m.Laz); err != nil {

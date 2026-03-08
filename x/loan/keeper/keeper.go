@@ -20,7 +20,7 @@ type Keeper struct {
 	cdc          codec.BinaryCodec
 	storeService store.KVStoreService
 
-	bankKeeper    types.BankKeeper
+	// bankKeeper    types.BankKeeper
 	accountKeeper types.AccountKeeper
 
 	authority string
@@ -43,7 +43,7 @@ type Keeper struct {
 func NewKeeper(
 	cdc codec.BinaryCodec,
 	storeService store.KVStoreService,
-	bankKeeper types.BankKeeper,
+	// bankKeeper types.BankKeeper,
 	accountKeeper types.AccountKeeper,
 	authority string,
 ) Keeper {
@@ -88,9 +88,9 @@ func NewKeeper(
 	}
 
 	return Keeper{
-		cdc:             cdc,
-		storeService:    storeService,
-		bankKeeper:      bankKeeper,
+		cdc:          cdc,
+		storeService: storeService,
+		// bankKeeper:      bankKeeper,
 		accountKeeper:   accountKeeper,
 		authority:       authority,
 		Schema:          schema,

@@ -31,7 +31,7 @@ type ModuleInputs struct {
 	StoreService store.KVStoreService
 	Config       *loanmodulev1.Module
 
-	BankKeeper    types.BankKeeper
+	// BankKeeper    types.BankKeeper
 	AccountKeeper types.AccountKeeper
 }
 
@@ -48,7 +48,7 @@ func ProvideModule(in ModuleInputs) ModuleOutputs {
 	k := keeper.NewKeeper(
 		in.Cdc,
 		in.StoreService,
-		in.BankKeeper,
+		// in.BankKeeper,
 		in.AccountKeeper,
 		authority.String(),
 	)
