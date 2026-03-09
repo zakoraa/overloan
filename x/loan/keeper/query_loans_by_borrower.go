@@ -7,6 +7,7 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/query"
+
 	"github.com/cosmos/cosmos-sdk/x/loan/types"
 )
 
@@ -21,25 +22,30 @@ func (q queryServer) LoansByBorrower(
 
 	sdkCtx := sdk.UnwrapSDKContext(ctx)
 
-	_, err := sdk.AccAddressFromBech32(req.Borrower)
+	// validate borrower address
+	borrowerAddr, err := sdk.AccAddressFromBech32(req.Borrower)
 	if err != nil {
 		return nil, types.ErrInvalidAddress
 	}
-
-	borrower := req.Borrower
 
 	loans, pageRes, err := query.CollectionFilteredPaginate(
 		sdkCtx,
 		q.k.LoansByBorrower,
 		req.Pagination,
-		func(key collections.Pair[string, uint64], loanID uint64) (bool, error) {
-			return key.K1() == borrower, nil
+
+		// filter keys
+		func(key collections.Pair[sdk.AccAddress, uint64], loanID uint64) (bool, error) {
+			return key.K1().Equals(borrowerAddr), nil
 		},
-		func(key collections.Pair[string, uint64], loanID uint64) (*types.Loan, error) {
+
+		// transform result
+		func(key collections.Pair[sdk.AccAddress, uint64], loanID uint64) (*types.Loan, error) {
+
 			loan, err := q.k.Loans.Get(sdkCtx, loanID)
 			if err != nil {
 				return nil, err
 			}
+
 			return &loan, nil
 		},
 	)

@@ -12,6 +12,7 @@ import (
 	"cosmossdk.io/core/store"
 
 	"github.com/cosmos/cosmos-sdk/codec"
+	sdk "github.com/cosmos/cosmos-sdk/types"
 
 	"github.com/cosmos/cosmos-sdk/x/loan/types"
 )
@@ -34,7 +35,7 @@ type Keeper struct {
 
 	// Secondary index
 	LoansByBorrower collections.Map[
-		collections.Pair[string, uint64],
+		collections.Pair[sdk.AccAddress, uint64],
 		uint64,
 	]
 }
@@ -64,7 +65,7 @@ func NewKeeper(
 		sb,
 		types.LoanByBorrowerPrefix,
 		"loans_by_borrower",
-		collections.PairKeyCodec(collections.StringKey, collections.Uint64Key),
+		collections.PairKeyCodec(sdk.AccAddressKey, collections.Uint64Key),
 		collections.Uint64Value,
 	)
 

@@ -12,10 +12,10 @@
         "max_loan_amount": "1000000",
         "max_tenor_months": "12",
         "laz_authorities": [
-          "cosmos1zmxqkc4zyy5wr678ulj9cuqhm445r4vg6xal9t"
+          "cosmos1n0ywlx2jlrs08jhu64x23g0ceag2758njy6y0v"
         ],
         "omnibus_authorities": [
-          "cosmos1p5lkxqrrqy2n6zvesxp358phm35wjqvjrp4lq2"
+          "cosmos14y9kjpd447ggxw3u09vr66zd8sdnv58yzsxf07"
         ]
       }
     }

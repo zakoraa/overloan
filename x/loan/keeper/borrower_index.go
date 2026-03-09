@@ -1,71 +1,72 @@
 package keeper
 
 import (
-	"errors"
-
 	"cosmossdk.io/collections"
-	"cosmossdk.io/store/prefix"
-	"github.com/cosmos/cosmos-sdk/runtime"
 	"github.com/cosmos/cosmos-sdk/x/loan/types"
-
-	storetypes "cosmossdk.io/store/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
-func (k Keeper) SetLoanByBorrower(ctx sdk.Context, borrower sdk.AccAddress, loanID uint64) {
-	store := prefix.NewStore(
-		runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx)),
-		types.LoanByBorrowerPrefix,
-	)
+func (k Keeper) SetLoanByBorrower(
+	ctx sdk.Context,
+	borrower sdk.AccAddress,
+	loanID uint64,
+) error {
 
-	key := append(borrower.Bytes(), sdk.Uint64ToBigEndian(loanID)...)
-	store.Set(key, []byte{1})
+	return k.LoansByBorrower.Set(
+		ctx,
+		collections.Join(borrower, loanID),
+		loanID,
+	)
 }
 
 func (k Keeper) GetLoansByBorrower(
 	ctx sdk.Context,
 	borrower sdk.AccAddress,
-) []*types.Loan {
+) ([]*types.Loan, error) {
 
-	store := prefix.NewStore(
-		runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx)),
-		types.LoanByBorrowerPrefix,
-	)
+	rng := collections.NewPrefixedPairRange[sdk.AccAddress, uint64](borrower)
 
-	iterator := store.Iterator(
-		borrower.Bytes(),
-		storetypes.PrefixEndBytes(borrower.Bytes()),
-	)
-	defer iterator.Close()
+	iter, err := k.LoansByBorrower.Iterate(ctx, rng)
+	if err != nil {
+		return nil, err
+	}
+	defer iter.Close()
 
 	var loans []*types.Loan
 
-	for ; iterator.Valid(); iterator.Next() {
-		key := iterator.Key()
-		loanID := sdk.BigEndianToUint64(key[len(borrower.Bytes()):])
+	for ; iter.Valid(); iter.Next() {
 
-		loan, err := k.GetLoan(ctx, loanID)
+		kv, err := iter.KeyValue()
 		if err != nil {
-			if errors.Is(err, collections.ErrNotFound) {
-				continue
-			}
-			return nil
+			continue
 		}
 
-		loans = append(loans, loan)
+		loanID := kv.Key.K2()
+
+		loan, err := k.Loans.Get(ctx, loanID)
+		if err != nil {
+			continue
+		}
+
+		loans = append(loans, &loan)
 	}
 
-	return loans
+	return loans, nil
 }
 
 func (k Keeper) HasActiveLoan(ctx sdk.Context, borrower sdk.AccAddress) bool {
-	loans := k.GetLoansByBorrower(ctx, borrower)
+
+	loans, err := k.GetLoansByBorrower(ctx, borrower)
+	if err != nil {
+		return false
+	}
 
 	for _, loan := range loans {
 		if types.IsActiveStatus(loan.Status) {
 			return true
 		}
 	}
+
 	return false
 }
