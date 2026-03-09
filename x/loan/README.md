@@ -19,49 +19,49 @@ More detailed documentation is available in the following pages:
 <ul>
 
 <li>
-<a href="https://github.com/zakoraa/overloan/blob/main/docs/modules/loan/overview.html">
+<a href="https://github.com/zakoraa/overloan/blob/main/docs/modules/loan/overview.md">
 Module Overview
 </a>
 </li>
 
 <li>
-<a href="https://github.com/zakoraa/overloan/blob/main/docs/modules/loan/concepts.html">
+<a href="https://github.com/zakoraa/overloan/blob/main/docs/modules/loan/concepts.md">
 Concepts
 </a>
 </li>
 
 <li>
-<a href="https://github.com/zakoraa/overloan/blob/main/docs/modules/loan/lifecycle.html">
+<a href="https://github.com/zakoraa/overloan/blob/main/docs/modules/loan/lifecycle.md">
 Loan Lifecycle
 </a>
 </li>
 
 <li>
-<a href="https://github.com/zakoraa/overloan/blob/main/docs/modules/loan/state.html">
+<a href="https://github.com/zakoraa/overloan/blob/main/docs/modules/loan/state.md">
 State Layout
 </a>
 </li>
 
 <li>
-<a href="https://github.com/zakoraa/overloan/blob/main/docs/modules/loan/params.html">
+<a href="https://github.com/zakoraa/overloan/blob/main/docs/modules/loan/params.md">
 Module Parameters
 </a>
 </li>
 
 <li>
-<a href="https://github.com/zakoraa/overloan/blob/main/docs/modules/loan/messages.html">
+<a href="https://github.com/zakoraa/overloan/blob/main/docs/modules/loan/messages.md">
 Messages
 </a>
 </li>
 
 <li>
-<a href="https://github.com/zakoraa/overloan/blob/main/docs/modules/loan/queries.html">
+<a href="https://github.com/zakoraa/overloan/blob/main/docs/modules/loan/queries.md">
 Queries
 </a>
 </li>
 
 <li>
-<a href="https://github.com/zakoraa/overloan/blob/main/docs/modules/loan/dev-guide.html">
+<a href="https://github.com/zakoraa/overloan/blob/main/docs/modules/loan/dev-guide.md">
 Developer Guide
 </a>
 </li>
