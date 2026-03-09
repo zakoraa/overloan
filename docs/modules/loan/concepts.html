@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Loan Module Concepts</title>
+</head>
+
+<body>
+
+<h1>Loan Module Concepts</h1>
+
+<p>
+The Loan module manages the lifecycle of loans issued to borrowers
+under a controlled policy framework.
+</p>
+
+<h2>Loan</h2>
+
+<p>
+A loan represents a borrowing agreement recorded on-chain.
+</p>
+
+<table border="1">
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td>id</td>
+<td>Unique identifier of the loan</td>
+</tr>
+
+<tr>
+<td>borrower</td>
+<td>Address requesting the loan</td>
+</tr>
+
+<tr>
+<td>laz</td>
+<td>Authority responsible for approving the loan</td>
+</tr>
+
+<tr>
+<td>omnibus</td>
+<td>Authority responsible for confirming disbursement and repayment</td>
+</tr>
+
+<tr>
+<td>principal</td>
+<td>Initial loan amount</td>
+</tr>
+
+<tr>
+<td>outstanding</td>
+<td>Remaining amount to be repaid</td>
+</tr>
+
+<tr>
+<td>tenor_months</td>
+<td>Duration of the loan</td>
+</tr>
+
+</table>
+
+<h2>Actors</h2>
+
+<h3>Borrower</h3>
+
+<p>
+The borrower submits loan requests and receives the loan funds.
+</p>
+
+<h3>LAZ Authority</h3>
+
+<p>
+Authorized policy actor responsible for approving or rejecting loans.
+</p>
+
+<h3>Omnibus Authority</h3>
+
+<p>
+Responsible for confirming disbursement and recording repayments.
+</p>
+
+<h3>Governance</h3>
+
+<p>
+Controls module parameters such as loan limits and authorized actors.
+</p>
+
+<h2>Loan Status</h2>
+
+<table border="1">
+
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td>PENDING</td>
+<td>Loan request submitted</td>
+</tr>
+
+<tr>
+<td>APPROVED</td>
+<td>Loan approved by LAZ</td>
+</tr>
+
+<tr>
+<td>DISBURSED</td>
+<td>Funds disbursed to borrower</td>
+</tr>
+
+<tr>
+<td>REPAID</td>
+<td>Loan fully repaid</td>
+</tr>
+
+<tr>
+<td>REJECTED</td>
+<td>Loan rejected</td>
+</tr>
+
+<tr>
+<td>CANCELLED</td>
+<td>Disbursement rejected</td>
+</tr>
+
+</table>
+
+</body>
+</html>

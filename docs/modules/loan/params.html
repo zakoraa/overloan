@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Loan Module Parameters</title>
+</head>
+
+<body>
+
+<h1>Loan Module Parameters</h1>
+
+<p>
+Module parameters define global configuration values
+that control how the loan system behaves.
+</p>
+
+<h2>Parameter List</h2>
+
+<table border="1">
+
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td>settlement_denom</td>
+<td>Token denomination used for loan settlement</td>
+</tr>
+
+<tr>
+<td>min_loan_amount</td>
+<td>Minimum loan size allowed</td>
+</tr>
+
+<tr>
+<td>max_loan_amount</td>
+<td>Maximum loan size allowed</td>
+</tr>
+
+<tr>
+<td>max_tenor_months</td>
+<td>Maximum loan duration</td>
+</tr>
+
+<tr>
+<td>laz_authorities</td>
+<td>Addresses allowed to approve or reject loans</td>
+</tr>
+
+<tr>
+<td>omnibus_authorities</td>
+<td>Addresses allowed to confirm disbursement and repayment</td>
+</tr>
+
+</table>
+
+<h2>Parameter Governance</h2>
+
+<p>
+Parameters can only be modified via governance proposals.
+</p>
+
+<h3>Example Proposal</h3>
+
+<pre>
+{
+  "title": "Update Loan Params",
+  "deposit": "10000000stake",
+  "messages": [
+    {
+      "@type": "/cosmos.loan.v1.MsgUpdateParams",
+      "params": {
+        "settlement_denom": "stake"
+      }
+    }
+  ]
+}
+</pre>
+
+</body>
+</html>

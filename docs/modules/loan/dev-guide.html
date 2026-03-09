@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Loan Module Developer Guide</title>
+</head>
+
+<body>
+
+<h1>Loan Module Developer Guide</h1>
+
+<p>
+This guide describes how developers can run a local chain,
+configure module parameters, and test the full lifecycle of a loan.
+</p>
+
+<h2>Prerequisites</h2>
+
+<ul>
+<li>Go installed</li>
+<li>Cosmos SDK application built</li>
+<li>CLI binary <code>simd</code> available</li>
+</ul>
+
+<h2>Step 1 — Initialize Development Chain</h2>
+
+<pre>
+make init-dev
+</pre>
+
+<p>
+This command will:
+</p>
+
+<ul>
+<li>Remove previous chain state</li>
+<li>Initialize a new chain</li>
+<li>Create validator, borrower, laz and omnibus accounts</li>
+<li>Configure governance voting period</li>
+<li>Start the node</li>
+</ul>
+
+<h2>Step 2 — Submit Governance Proposal</h2>
+
+<p>
+Module parameters must be configured through governance.
+</p>
+
+<pre>
+make create-proposal
+</pre>
+
+<p>
+This proposal updates the module parameters including:
+</p>
+
+<ul>
+<li>Settlement denom</li>
+<li>Minimum loan amount</li>
+<li>Maximum loan amount</li>
+<li>Authorized LAZ addresses</li>
+<li>Authorized Omnibus addresses</li>
+</ul>
+
+<h2>Step 3 — Check Proposal Status</h2>
+
+<pre>
+./build/simd query gov proposal 1
+</pre>
+
+<h2>Step 4 — Create Loan</h2>
+
+<pre>
+./build/simd tx loan create-loan \
+--laz &lt;LAZ_ADDRESS&gt; \
+--principal 1000stake \
+--tenor-months 6 \
+--metadata-hash QmHash123 \
+--from borrower \
+--chain-id overloan-1
+</pre>
+
+<p>Status: <b>PENDING</b></p>
+
+<h2>Step 5 — Approve or Reject Loan</h2>
+
+<h3>Approve Loan</h3>
+
+<pre>
+./build/simd tx loan approve-loan &lt;loan_id&gt; --from laz
+</pre>
+
+<p>Status: <b>APPROVED</b></p>
+
+<h3>Reject Loan</h3>
+
+<pre>
+./build/simd tx loan reject-loan &lt;loan_id&gt; --from laz
+</pre>
+
+<p>Status: <b>REJECTED</b></p>
+
+<h2>Step 6 — Confirm Disbursement</h2>
+
+<pre>
+./build/simd tx loan confirm-disbursement &lt;loan_id&gt; --from omnibus
+</pre>
+
+<p>Status: <b>DISBURSED</b></p>
+
+<h2>Step 7 — Repay Loan</h2>
+
+<pre>
+./build/simd tx loan repay-loan &lt;loan_id&gt; --from omnibus
+</pre>
+
+<p>Status: <b>REPAID</b></p>
+
+<h2>Loan Lifecycle Summary</h2>
+
+<ol>
+<li>Create loan request</li>
+<li>Approval or rejection by LAZ</li>
+<li>Disbursement confirmation by Omnibus</li>
+<li>Repayment of outstanding balance</li>
+</ol>
+
+</body>
+</html>
